@@ -7,7 +7,7 @@ set :repo_url, "git@github.com:ngocnguyenbk/myapp.git"
 set :ssh_options, { :forward_agent => true }
 
 set :pty, true
-set :linked_files, %w(config/database.yml config/application.yml)
+set :linked_files, %w(config/database.yml config/secrets.yml)
 set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads)
 set :keep_releases, 5
 set :rvm_type, :user
