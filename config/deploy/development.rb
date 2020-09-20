@@ -1,7 +1,7 @@
 set :stage, :development
 set :rails_env, :staging
 set :user, :deploy
-set :deploy_to, "/var/www/myapp/current"
+set :deploy_to, "/var/www/myapp"
 
 set :branch, :develop
 
