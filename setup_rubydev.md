@@ -4,7 +4,7 @@
 
 ```
 Cloud Server: AWS
-OS: Centos 7
+OS: Amazon Linux 2
 ```
 
 ## Prepare the system
@@ -22,15 +22,15 @@ curl -sSL https://get.rvm.io | bash -s stable --ruby
 source /home/deploy/.rvm/scripts/rvm
 ```
 
-3. Install Ruby 2.6.0, bundle, Node.js, Git
+3. Install Ruby 2.6.6, bundle, Node.js, Git
 
 ```
-# Ruby 2.6.0
-rvm install ruby-2.6.0
-rvm --default use ruby-2.6.0
+# Ruby 2.6.6
+rvm install ruby-2.6.6
+rvm --default use ruby-2.6.6
 
 # Bundler
-gem install bundler -v 2.0.1
+gem install bundler -v 2.1.4
 
 # Node JS
 sudo yum install -y epel-release
@@ -68,7 +68,17 @@ sudo systemctl start nginx # Start service
 sudo systemctl status nginx # Check status service
 ```
 
-6. Install `ffmpeg`
+6. Config puma
+
+```
+sudo touch /etc/systemd/system/puma.service
+sudo vi /etc/systemd/system/puma.service
+sudo systemctl daemon-reload
+sudo systemctl enable puma
+sudo systemctl restart puma
+```
+
+7. Install `ffmpeg`
 
 ```
 sudo yum update
@@ -78,14 +88,14 @@ sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release
 sudo yum install ffmpeg ffmpeg-devel
 ```
 
-7. Install `ghostscript`
+8. Install `ghostscript`
 
 ```
 sudo yum install ghostscript -y
 sudo yum install ImageMagick ImageMagick-devel -y
 ```
 
-8. Install `libicu-devel`
+9. Install `libicu-devel`
 
 ```
 sudo yum install -y libicu-devel
@@ -136,5 +146,5 @@ vi /var/www/myapp/shared/config/database.yml # add config database
 
 ```
 # Ruby Dev server
-bundle exec cap rubydev deploy
+bundle exec cap development deploy
 ```
