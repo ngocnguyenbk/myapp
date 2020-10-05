@@ -26,6 +26,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano'
   gem 'capistrano3-puma'
+  gem 'capistrano-passenger'
   gem 'capistrano-rails', require: false
   gem 'capistrano-yarn'
   gem 'capistrano-bundler', require: false
