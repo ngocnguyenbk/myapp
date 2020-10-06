@@ -12,6 +12,7 @@ gem "jbuilder", "~> 2.7"
 gem "dotenv-rails"
 gem "slim"
 gem "bootsnap", ">= 1.4.2", require: false
+gem "paranoia"
 
 group :development, :test do
   gem "pry-rails"
