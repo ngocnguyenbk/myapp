@@ -1,4 +1,4 @@
-# Setup Video Management System on rubydev server
+# Setup My App on rubydev server
 
 ## Information Rubydev
 
@@ -76,29 +76,6 @@ sudo vi /etc/systemd/system/puma.service
 sudo systemctl daemon-reload
 sudo systemctl enable puma
 sudo systemctl restart puma
-```
-
-7. Install `ffmpeg`
-
-```
-sudo yum update
-sudo yum install epel-release
-sudo rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
-sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
-sudo yum install ffmpeg ffmpeg-devel
-```
-
-8. Install `ghostscript`
-
-```
-sudo yum install ghostscript -y
-sudo yum install ImageMagick ImageMagick-devel -y
-```
-
-9. Install `libicu-devel`
-
-```
-sudo yum install -y libicu-devel
 ```
 
 ## Deploy
