@@ -1,0 +1,4 @@
+- if controller_name != 'sessions'
+  = link_to t(".log_in"), new_user_session_path, class: "btn btn-primary"
+- if devise_mapping.registerable? && controller_name != 'registrations'
+  = link_to t(".sign_up"), new_user_registration_path, class: "btn btn-primary"
