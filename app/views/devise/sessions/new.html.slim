@@ -1,0 +1,16 @@
+h2.row.justify-content-center
+  = t(".log_in")
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = f.input :email, autofocus: true
+  .text-danger
+    = flash[:email_alert]
+  = f.input :password
+  .text-danger
+    = flash[:password_alert]
+    = flash[:alert]
+  - if devise_mapping.rememberable?
+    = f.check_box :remember_me, class: "mr-1"
+    = f.label :remember_me
+  .form-group.row.justify-content-center
+    = f.submit t(".log_in"), class: "btn btn-primary mr-1"
+    = render "devise/shared/links"
