@@ -7,6 +7,22 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 
+import 'bootstrap'
+import Vue from 'vue'
+import store from '../store'
+import Users from '../user.vue'
+
+document.addEventListener('DOMContentLoaded', () => {
+  const elementUser = document.getElementById('userApp')
+
+  if(elementUser != null) {
+    var userApp = new Vue({
+      el: '#userApp',
+      store,
+      render: h => h(Users, {})
+    })
+  }
+})
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
