@@ -11,15 +11,25 @@ import 'bootstrap'
 import Vue from 'vue'
 import store from '../store'
 import Users from '../user.vue'
+import Floors from '../floor.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const elementUser = document.getElementById('userApp')
+  const elementFloor = document.getElementById('floorApp')
 
   if(elementUser != null) {
     var userApp = new Vue({
       el: '#userApp',
       store,
       render: h => h(Users, {})
+    })
+  }
+
+  if(elementFloor != null) {
+    var floorApp = new Vue({
+      el: '#floorApp',
+      store,
+      render: h => h(Floors, {})
     })
   }
 })

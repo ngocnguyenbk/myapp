@@ -2,18 +2,47 @@ require "faker"
 
 unless Rails.env.production?
   namespace :default_data do
-    task create_user: :environment do
-      100.times do |_i|
-        User.create! first_name: Faker::Name.first_name,
-                     last_name: Faker::Name.last_name,
-                     email: Faker::Internet.email,
-                     phone: Faker::Base.numerify("84#######"),
-                     birthday: rand(18..40).years.ago,
-                     password: "654321",
-                     password_confirmation: "654321",
-                     updated_at: rand(32..60).days.ago,
-                     created_at: rand(32..60).days.ago
+    task create_floors: :environment do
+      7.times do |i|
+        Floor.create!(floor_id: i)
       end
+    end
+
+    task create_rooms: :environment do
+      rooms = []
+      j = 0
+      Floor.all.each do |floor|
+        5.times do |_i|
+          j += 1
+          rooms << floor.rooms.build(
+            room_id: j,
+            floor_id: floor.id
+          )
+        end
+      end
+
+      Room.import! rooms
+    end
+
+    task create_users: :environment do
+      users = []
+      Room.all.each do |room|
+        3.times do |_i|
+          users << room.users.build(
+            first_name: Faker::Name.first_name,
+            last_name: Faker::Name.last_name,
+            email: Faker::Internet.email,
+            phone: Faker::Base.numerify("84#######"),
+            birthday: rand(18..40).years.ago,
+            password: "654321",
+            password_confirmation: "654321",
+            room_id: room.id,
+            updated_at: rand(32..60).days.ago,
+            created_at: rand(32..60).days.ago
+          )
+        end
+      end
+      User.import! users
     end
   end
 end
