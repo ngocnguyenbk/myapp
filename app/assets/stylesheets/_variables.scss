@@ -32,3 +32,9 @@ $sizes: (
   220px: 220px,
   300px: 300px,
 );
+
+@each $key, $value in $sizes {
+  .w-#{$key} {
+    width: $value;
+  }
+}
