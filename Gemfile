@@ -15,6 +15,9 @@ gem "bootsnap", ">= 1.4.2", require: false
 gem "paranoia"
 gem "devise"
 gem "simple_form"
+gem "active_model_serializers"
+gem "faker"
+gem "kaminari"
 
 group :development, :test do
   gem "pry-rails"
