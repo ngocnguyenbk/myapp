@@ -7,5 +7,8 @@ Rails.application.routes.draw do
     sessions: "sessions",
     registrations: "registrations"
   }
+
+  draw :api
+
   root to: "home_pages#index"
 end
