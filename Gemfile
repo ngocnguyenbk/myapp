@@ -18,6 +18,7 @@ gem "simple_form"
 gem "active_model_serializers"
 gem "faker"
 gem "kaminari"
+gem "activerecord-import"
 
 group :development, :test do
   gem "pry-rails"

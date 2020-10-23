@@ -3,6 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   include SoftDeletable
 
+  belongs_to :room
+
   validates :phone, uniqueness: { case_sensitive: true }, numericality: { only_integer: true }, length: { in: 9..11 }
 
   def created_date
