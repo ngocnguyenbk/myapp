@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    BOARDING HOUSE MANAGEMENT SYSTEM
+    <TableFloor
+      :floors="floors"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import { mapState, mapActions } from 'vuex'
+import TableFloor from './component_floors/tableFloors.vue'
 
 export default {
+  components: {
+    TableFloor
+  },
   computed: {
     ...mapState({
-      params: state => state.floor.params,
       floors: state => state.floor.floors
     }),
   },
@@ -20,10 +25,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
-</style>

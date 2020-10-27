@@ -8,6 +8,8 @@ require("@rails/activestorage").start()
 require("channels")
 
 import 'bootstrap'
+import '@fortawesome/fontawesome-free/js/fontawesome'
+
 import Vue from 'vue'
 import store from '../store'
 import Users from '../user.vue'

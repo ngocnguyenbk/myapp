@@ -16,6 +16,7 @@ unless Rails.env.production?
           j += 1
           rooms << floor.rooms.build(
             room_id: j,
+            status: rand(0..2),
             floor_id: floor.id
           )
         end
@@ -26,7 +27,7 @@ unless Rails.env.production?
 
     task create_users: :environment do
       users = []
-      Room.all.each do |room|
+      Room.where(status: 0).each do |room|
         3.times do |_i|
           users << room.users.build(
             first_name: Faker::Name.first_name,
