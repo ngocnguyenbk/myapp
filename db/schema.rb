@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_014451) do
+ActiveRecord::Schema.define(version: 2020_10_30_061415) do
 
   create_table "floors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
-    t.integer "floor_id"
+    t.integer "floor_number"
     t.datetime "deleted_at"
     t.boolean "active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -21,13 +21,15 @@ ActiveRecord::Schema.define(version: 2020_10_23_014451) do
   end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
-    t.integer "room_id"
+    t.integer "room_number"
     t.datetime "deleted_at"
     t.boolean "active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "floor_id"
     t.integer "status", default: 1, null: false
+    t.integer "holder_id"
+    t.float "area"
     t.index ["floor_id"], name: "index_rooms_on_floor_id"
   end
 
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_10_23_014451) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.bigint "room_id"
+    t.string "identity_card"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["phone"], name: "index_users_on_phone", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

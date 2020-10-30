@@ -19,6 +19,8 @@ gem "active_model_serializers"
 gem "faker"
 gem "kaminari"
 gem "activerecord-import"
+gem "rack-dev-mark"
+gem "virtus"
 
 group :development, :test do
   gem "pry-rails"
