@@ -9,5 +9,16 @@ export default {
     }).catch(function (error) {
       console.log(error.response)
     });
+  },
+  loadUsers (params, cb) {
+    axios.get('/api/users.json', {
+      params: {
+        room_id: params.room_id
+      }
+    }).then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    });
   }
 }

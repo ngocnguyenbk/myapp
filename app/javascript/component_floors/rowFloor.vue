@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="floor_name">Floor {{floor.floor_id}}</span>
+    <span class="floor_name">Floor {{floor.floor_number}}</span>
     <div class="grid-container">
       <RowRoom :room="room" v-for="(room, index) in floor.rooms" :key="index"/>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <tbody :class="background_row_user(user, odd)">
+  <tbody :class="background_row_user">
     <tr>
       <td>{{user.id}}</td>
       <td>{{user.first_name}}</td>
@@ -8,7 +8,9 @@
       <td>{{user.phone}}</td>
       <td>{{user.birth_day}}</td>
       <td>{{user.created_date}}</td>
-      <td>{{user.status_active}}</td>
+      <td class="text-center">
+        <div :class="['dot dot-sm ml-auto', status_user]"></div>
+      </td>
     </tr>
   </tbody>
 </template>
@@ -25,16 +27,16 @@ export default {
       required: true
     }
   },
-  methods: {
-    background_row_user: function(user, odd){
-      if (user.status_active === true){
-        return odd ? 'odd-bg' : 'even-bg'
-      }
+  computed: {
+    background_row_user: function(){
+      return this.odd ? 'odd-bg' : 'even-bg'
+    },
+    status_user: function(){
+      return this.user.status_active ? 'active' : 'inactive'
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>
