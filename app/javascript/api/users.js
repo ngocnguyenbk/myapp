@@ -20,5 +20,14 @@ export default {
     }).catch(function (error) {
       console.log(error.response)
     });
+  },
+  loadRooms (params, cb) {
+    axios.get('/api/users/rooms.json', {
+      params: params
+    }).then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    });
   }
 }

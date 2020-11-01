@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    <div class="text-right">
-      <Paginator
-        :currentPage="currentPage"
-        :showPaginate="showPaginate"
-        :totalPages="totalPages"
-        :loadObjects="loadUsers"
-      />
+    <div  class="d-flex">
+      <div class="new-user">
+        <a class="btn btn-primary" href="/users/new">New user</a>
+      </div>
+      <div class="ml-auto">
+        <Paginator
+          :currentPage="currentPage"
+          :showPaginate="showPaginate"
+          :totalPages="totalPages"
+          :loadObjects="loadUsers"
+        />
+      </div>
     </div>
     <TableUser
       :users="users"
