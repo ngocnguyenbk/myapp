@@ -9,6 +9,9 @@ require("channels")
 
 import 'bootstrap'
 import '@fortawesome/fontawesome-free/js/fontawesome'
+import $ from 'jquery'
+import 'select2'
+import 'select2/dist/css/select2.css'
 
 import Vue from 'vue'
 import store from '../store'

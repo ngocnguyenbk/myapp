@@ -26,7 +26,7 @@ export default {
   components: {
     Paginate
   },
-  data: function(){
+  data: function() {
     return {
       pageNo: this.currentPage,
     }
@@ -46,7 +46,7 @@ export default {
     }
   },
   watch: {
-    currentPage: function(value){
+    currentPage: function(value) {
       this.pageNo = value
     }
   },

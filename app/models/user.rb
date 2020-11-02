@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def birth_day
     DateFormat.new(birthday)
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
