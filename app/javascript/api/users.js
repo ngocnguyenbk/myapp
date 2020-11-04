@@ -20,5 +20,24 @@ export default {
     }).catch(function (error) {
       console.log(error.response)
     });
+  },
+  updateUser (params, cb) {
+    axios.patch(`/users/${params.id}.json`,
+      { user: params },
+      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+    ).then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    });
+  },
+  deleteUser (params, cb) {
+    axios.delete(`/users/${params.id}.json`,
+      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+    ).then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    });
   }
 }

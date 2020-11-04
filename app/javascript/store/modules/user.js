@@ -1,3 +1,4 @@
+import { data } from 'jquery'
 import user from '../../api/users'
 
 const state = {
@@ -6,7 +7,8 @@ const state = {
   showPaginate: false,
   totalPages: 0,
   totalCount: 0,
-  currentPage: 0
+  currentPage: 0,
+  currentUser: {}
 }
 
 const actions = {
@@ -17,6 +19,21 @@ const actions = {
   getUsers({ commit }) {
     user.loadWithCondition({}, users => {
       commit('setUsers', users)
+    })
+  },
+  setCurrentUser({ commit }, user) {
+    commit('setCurrentUser', user)
+  },
+  submitFormData({ commit, dispatch, state }, payload) {
+    user.updateUser(payload.params, data => {
+      commit('setForm', data)
+      dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
+    })
+  },
+  deleteUser({ commit, dispatch, state }, payload) {
+    user.deleteUser(payload.params, data => {
+      commit('setForm', data)
+      dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
     })
   }
 }
@@ -35,6 +52,12 @@ const mutations = {
     state.totalCount = data.total_count
     state.showPaginate = data.total_pages > 1
     state.users = data.data
+  },
+  setCurrentUser(state, user) {
+    state.currentUser = user
+  },
+  setForm(state, params) {
+    state.params = params
   }
 }
 
