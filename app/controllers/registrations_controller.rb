@@ -2,21 +2,24 @@ class RegistrationsController < Devise::RegistrationsController
   layout "login"
 
   def new
-    @user = User.new
+    @admin = Admin.new
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to root_path
+    @admin = Admin.new(admin_params)
+    if @admin.save
+      flash.now[:success] = t(".success")
+      redirect_to new_admin_session_path
     else
+      flash.now[:danger] = t(".failure")
       render :new
     end
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :phone, :password, :password_confirmation)
+  def admin_params
+    params.require(:admin).permit(:full_name, :email, :birthday, :role, :phone,
+                                  :password, :password_confirmation)
   end
 end

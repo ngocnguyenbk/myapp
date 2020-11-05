@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_061415) do
+ActiveRecord::Schema.define(version: 2020_11_05_133740) do
+
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.string "full_name"
+    t.string "email"
+    t.string "phone"
+    t.string "encrypted_password", default: "", null: false
+    t.date "birthday"
+    t.integer "role", default: 0, null: false
+    t.datetime "deleted_at"
+    t.datetime "remember_created_at"
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["phone"], name: "index_admins_on_phone", unique: true
+  end
 
   create_table "floors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.integer "floor_number"

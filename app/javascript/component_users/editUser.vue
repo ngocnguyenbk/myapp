@@ -44,6 +44,8 @@ import InputRadioButtons from '../components/inputRadioButtons'
 import InputSelect2 from '../components/inputSelect2.vue'
 import FieldConfirm from '../components/fieldConfirm.vue'
 
+import show_flash_mixins from '../mixins/show_flash'
+
 export default {
   components: {
     InputText,
@@ -53,7 +55,8 @@ export default {
   },
   computed: {
     ...mapState({
-      currentUser: state => state.user.currentUser
+      currentUser: state => state.user.currentUser,
+      isValid: state => state.user.isValid
     })
   },
   data: function() {
@@ -76,10 +79,12 @@ export default {
     }
   },
   methods: {
-    submitForm: function() {
-      this.$store.dispatch('user/submitFormData', { params: this.params })
+    submitForm: async function() {
+      await this.$store.dispatch('user/editUser', { params: this.params })
       this.isRegistration = true
       this.isConfirm = false
+
+      this.show_flash(this.isValid)
     },
     submitConfirm: function() {
       this.isRegistration = false
@@ -89,7 +94,8 @@ export default {
       this.isConfirm = false
       this.isRegistration = true
     }
-  }
+  },
+  mixins: [show_flash_mixins]
 }
 </script>
 

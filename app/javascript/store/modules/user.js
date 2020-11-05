@@ -8,7 +8,8 @@ const state = {
   totalPages: 0,
   totalCount: 0,
   currentPage: 0,
-  currentUser: {}
+  currentUser: {},
+  isValid: true
 }
 
 const actions = {
@@ -24,15 +25,19 @@ const actions = {
   setCurrentUser({ commit }, user) {
     commit('setCurrentUser', user)
   },
-  submitFormData({ commit, dispatch, state }, payload) {
-    user.updateUser(payload.params, data => {
-      commit('setForm', data)
+  async editUser({ commit, dispatch, state }, payload) {
+    await user.updateUser(payload.params, data => {
+      if (data.status === 'ok') {
+        commit('setCurrentUser', data.user)
+        commit('setStatusResponse', true)
+      } else {
+        commit('setStatusResponse', false)
+      }
       dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
     })
   },
   deleteUser({ commit, dispatch, state }, payload) {
     user.deleteUser(payload.params, data => {
-      commit('setForm', data)
       dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
     })
   }
@@ -56,8 +61,8 @@ const mutations = {
   setCurrentUser(state, user) {
     state.currentUser = user
   },
-  setForm(state, params) {
-    state.params = params
+  setStatusResponse(state, status) {
+    state.isValid = status
   }
 }
 

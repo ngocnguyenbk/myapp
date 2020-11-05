@@ -10,8 +10,8 @@ export default {
       console.log(error.response)
     });
   },
-  updateRoom (params, cb) {
-    axios.patch(`/api/floors/rooms/${params.id}.json`,
+  async updateRoom (params, cb) {
+    await axios.patch(`/api/floors/rooms/${params.id}.json`,
       { room: params },
       { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
     ).then(function(response) {

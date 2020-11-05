@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, path: :user, only: [:sessions, :registrations], path_names: {
+  devise_for :admins, path: :admin, only: [:sessions, :registrations], path_names: {
     sign_in: :login,
     sign_out: :logout,
     sign_up: :signup

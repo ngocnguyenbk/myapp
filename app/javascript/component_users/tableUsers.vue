@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-multi-body" @contextmenu.prevent="$refs.menu.open($event)">
+  <table class="table table-multi-body table-bordered" @contextmenu.prevent="$refs.menu.open($event)">
     <ContextMenu ref="menu">
       <ContextMenuItem @click.native="editUser()">Edit user</ContextMenuItem>
       <ContextMenuItem @click.native="deleteUser()">Delete user</ContextMenuItem>

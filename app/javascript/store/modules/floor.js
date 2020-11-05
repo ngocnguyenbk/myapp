@@ -9,7 +9,8 @@ const state = {
     'hired': 'Hired',
     'deposited': 'Deposited',
     'empty': 'Empty'
-  }
+  },
+  isValid: true
 }
 
 const actions = {
@@ -26,9 +27,14 @@ const actions = {
       commit('setUsers', users)
     })
   },
-  submitFormData({ commit, dispatch }, payload) {
-    floor.updateRoom(payload.params, data => {
-      commit('setForm', data)
+  async editRoom({ commit, dispatch }, payload) {
+    await floor.updateRoom(payload.params, data => {
+      if (data.status === 'ok') {
+        commit('setCurrentRoom', data.room)
+        commit('setStatusResponse', true)
+      } else {
+        commit('setStatusResponse', false)
+      }
       dispatch('getFloors', {})
     })
   }
@@ -46,6 +52,9 @@ const mutations = {
   },
   setForm(state, params) {
     state.params = params
+  },
+  setStatusResponse(state, status) {
+    state.isValid = status
   }
 }
 

@@ -17,3 +17,18 @@ en:
               too_short: " minimum is %{count} characters"
             password_confirmation:
               confirmation: "doesn't match"
+        admin:
+          attributes:
+            email:
+              blank: " can't be blank"
+              taken: " is already connected to an account"
+            phone:
+              too_short: " minimum is %{count} characters"
+              too_long: " maximum is %{count} characters"
+              not_a_number: " not a number"
+              taken: " is already connected to an account"
+            password:
+              blank: " can't be blank"
+              too_short: " minimum is %{count} characters"
+            password_confirmation:
+              confirmation: "doesn't match"

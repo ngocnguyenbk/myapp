@@ -47,24 +47,6 @@ unless Rails.env.production?
       end
       User.import! users
     end
-
-    task create_admin: :environment do
-      group_admin = %w[ngoc@gmail.com manh@gmail.com]
-
-      group_admin.each do |account|
-        User.create!  first_name: Faker::Name.first_name,
-                      last_name: Faker::Name.last_name,
-                      email: account,
-                      phone: Faker::Base.numerify("84#######"),
-                      identity_card: Faker::Base.numerify("##########"),
-                      birthday: rand(18..40).years.ago,
-                      password: "654321",
-                      password_confirmation: "654321",
-                      room_id: Room.all.sample.id,
-                      updated_at: rand(32..60).days.ago,
-                      created_at: rand(32..60).days.ago
-      end
-    end
   end
 end
 # rubocop:enable Metrics/BlockLength

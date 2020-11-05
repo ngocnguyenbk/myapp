@@ -12,10 +12,13 @@ class UsersForm
   attribute :phone, String
 
   validates :birthday, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: { case_sensitive: true, model: User }, email: true, reduce: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :phone, presence: true
+  validates :phone, presence: true, uniqueness: { case_sensitive: true, model: User },
+                    numericality: { only_integer: true }, length: { in: 9..11 }, reduce: true
+
+  delegate :persisted?, to: :user
 
   def self.name
     "User"
@@ -24,7 +27,9 @@ class UsersForm
   def save
     return false unless valid?
 
-    user.update!(attributes)
+    ActiveRecord::Base.transaction do
+      user.update!(attributes)
+    end
   end
 
   delegate :destroy, to: :user

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <FlashMessage :position="'left top'"></FlashMessage>
     <div class="text-right">
       <Paginator
         :currentPage="currentPage"

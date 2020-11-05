@@ -15,7 +15,11 @@ class UsersController < ApplicationController
   def update
     @form = UsersForm.new(user_params)
     @form.record = @user
-    @form.save
+    if @form.save
+      render json: { user: UserSerializer.new(@form.record), status: :ok, message: "Success" }
+    else
+      render json: { status: :unprocessable_entity, error: @form.errors }
+    end
   end
 
   def destroy
