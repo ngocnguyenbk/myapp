@@ -1,5 +1,5 @@
 <template>
-  <tbody :class="background_row_user">
+  <tbody :class="background_row_user" @contextmenu.prevent="setCurrentUser">
     <tr>
       <td>{{user.id}}</td>
       <td>{{user.first_name}}</td>
@@ -35,6 +35,11 @@ export default {
       return this.user.status_active ? 'active' : 'inactive'
     }
   },
+  methods: {
+    setCurrentUser: function() {
+      this.$store.dispatch('user/setCurrentUser', this.user)
+    }
+  }
 }
 </script>
 

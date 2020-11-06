@@ -2,7 +2,7 @@
   <div class="form-group row">
     <label class="col-lg-2 col-form-label">{{lableText}}</label>
     <div class="col-lg-10">
-      <span class="form-control string border-0">{{value}}</span>
+      <input class="form-control border-0" :value="value" readonly>
     </div>
   </div>
 </template>

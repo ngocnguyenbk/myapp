@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :phone, :birth_day, :created_date, :status_active
+  attributes :id, :full_name, :first_name, :last_name, :email, :phone, :birth_day, :created_date, :status_active
 
   def status_active
     object.active
