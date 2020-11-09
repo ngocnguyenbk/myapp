@@ -37,8 +37,11 @@ const actions = {
       commit('setRooms', rooms)
     })
   },
-  getNewUsers({ commit }, data) {
-    commit('setNewUser', data)
+  setNewUser({ commit }) {
+    commit('setNewUser')
+  },
+  deleteNewUser({ commit }, index) {
+    commit('deleteNewUser', index)
   }
 }
 
@@ -60,19 +63,20 @@ const mutations = {
   setRooms(state, rooms) {
     state.rooms = rooms
   },
-  setNewUser(state, data) {
-    for (let i = 1; i < data; i++) {
-      state.newUsers.push({
-        first_name: '',
-        last_name: '',
-        email: '',
-        phone: '',
-        birthday: '',
-        identity_card: '',
-        room_id: ''
-      })
-    }
+  setNewUser(state) {
+    state.newUsers.push({
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone: '',
+      birthday: '',
+      identity_card: '',
+      room_id: ''
+    })
   },
+  deleteNewUser(state, index) {
+    state.newUsers.splice(index, 1)
+  }
 }
 
 export default {
