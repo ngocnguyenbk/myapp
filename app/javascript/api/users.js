@@ -39,5 +39,24 @@ export default {
     }).catch(function (error) {
       console.log(error.response)
     });
+  },
+  loadRooms (params, cb) {
+    axios.get('/api/users/rooms.json', {
+      params: params
+    }).then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    });
+  },
+  createUsers (params, cb) {
+    axios.post('/users.json',
+      { multi_users: { user_attributes: params }},
+      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+    ).then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    });
   }
 }

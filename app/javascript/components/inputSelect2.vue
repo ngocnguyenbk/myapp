@@ -3,8 +3,10 @@
     <label :for="inputId" class="col-lg-2 col-form-label">{{lableText}}</label>
     <div class="col-lg-10">
       <select class="form-control" :id="inputId" :ref="typeSelect">
+        <option></option>
         <option v-for="(value, key) in options" :value="key">{{value}}</option>
       </select>
+      <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
   </div>
 </template>
@@ -35,14 +37,17 @@ export default {
     typeSelect: {
       type: String,
       required: true
+    },
+    eMsg: {
+      type: String
     }
   },
   mounted: function() {
-    var vm = this
-    return $(`#${this.inputId}`).select2({
+    let vm = this
+    return $(`#${vm.inputId}`).select2({
       width: '100%',
       allowClear: true,
-      placeholder: "Select an user",
+      placeholder: "Select room",
     }).on('select2:select select2:unselect', function() {
       vm.$emit('input', this.value)
     })

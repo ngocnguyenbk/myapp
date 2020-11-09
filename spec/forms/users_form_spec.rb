@@ -12,6 +12,7 @@ RSpec.describe UsersForm, type: :model do
     it { should validate_presence_of(:first_name).with_message(:blank) }
     it { should validate_presence_of(:last_name).with_message(:blank) }
     it { should validate_presence_of(:phone).with_message(:blank) }
+    it { should validate_presence_of(:room_id).with_message(:blank) }
 
     it { should validate_numericality_of(:phone) }
 
@@ -39,8 +40,18 @@ RSpec.describe UsersForm, type: :model do
       it { is_expected.to eq false }
     end
 
-    context "when valid" do
-      let(:user) { FactoryBot.build :user }
+    context "when create user valid" do
+      let(:room) { FactoryBot.create :room }
+      let(:user) { FactoryBot.build :user, room_id: room.id }
+
+      subject { user_form.save }
+
+      it { is_expected.to eq true }
+    end
+
+    context "when update user valid" do
+      let(:room) { FactoryBot.create :room }
+      let(:user) { FactoryBot.create :user, room_id: room.id }
 
       subject { user_form.save }
 

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :user, only: [:update, :destroy]
 
+  USER_PARAMETERS = [:id, :birthday, :email, :first_name, :last_name, :phone, :identity_card, :room_id].freeze
+
   def index
     @presenter = UsersPresenter.new(params)
 
@@ -12,8 +14,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def new; end
+
+  def create
+    @form = BatchCreate::UsersForm.new(multi_user_params)
+    if @form.save
+      flash[:success] = t(".success")
+      render json: { status: :ok }
+    else
+      render json: { status: :unprocessable_entity, errors: @form.error_child }
+    end
+  end
+
   def update
-    @form = UsersForm.new(user_params)
+    @form = UsersForm.new(user_params.merge(room_id: @user.room_id))
     @form.record = @user
     if @form.save
       render json: { user: UserSerializer.new(@form.record), status: :ok, message: "Success" }
@@ -35,6 +49,10 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:id, :birthday, :email, :first_name, :last_name, :phone)
+    params.require(:user).permit(*USER_PARAMETERS)
+  end
+
+  def multi_user_params
+    params.require(:multi_users).permit(user_attributes: USER_PARAMETERS)
   end
 end

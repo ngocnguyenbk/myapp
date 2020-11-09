@@ -1,5 +1,6 @@
 import { data } from 'jquery'
 import user from '../../api/users'
+import mixin from '../../mixins/handle_errors'
 
 const state = {
   params: {},
@@ -9,7 +10,20 @@ const state = {
   totalCount: 0,
   currentPage: 0,
   currentUser: {},
-  isValid: true
+  isValid: true,
+  rooms: {},
+  newUsers: [
+    {
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone: '',
+      birthday: '',
+      identity_card: '',
+      room_id: ''
+    }
+  ],
+  errorMessases: {}
 }
 
 const actions = {
@@ -40,6 +54,26 @@ const actions = {
     user.deleteUser(payload.params, data => {
       dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
     })
+  },
+  getRooms({ commit }) {
+    user.loadRooms({}, rooms => {
+      commit('setRooms', rooms)
+    })
+  },
+  setNewUser({ commit }) {
+    commit('setNewUser')
+  },
+  createUsers({ commit }, payload) {
+    user.createUsers(payload.params, data => {
+      if (data.status === 'ok') {
+        window.location.href = '/floors'
+      } else {
+        commit('setErrors', mixin.methods.handle_errors(data.errors))
+      }
+    })
+  },
+  deleteNewUser({ commit }, index) {
+    commit('deleteNewUser', index)
   }
 }
 
@@ -63,6 +97,29 @@ const mutations = {
   },
   setStatusResponse(state, status) {
     state.isValid = status
+  },
+  setForm(state, params) {
+    state.params = params
+  },
+  setRooms(state, rooms) {
+    state.rooms = rooms
+  },
+  setNewUser(state) {
+    state.newUsers.push({
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone: '',
+      birthday: '',
+      identity_card: '',
+      room_id: ''
+    })
+  },
+  deleteNewUser(state, index) {
+    state.newUsers.splice(index, 1)
+  },
+  setErrors(state, errorMessases) {
+    state.errorMessases = errorMessases
   }
 }
 

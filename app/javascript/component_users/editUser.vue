@@ -12,6 +12,7 @@
               <InputText inputId="email" lableText="Email" :valueInput="params.email" v-model="params.email"/>
               <InputText inputId="birthday" lableText="Birthday" :valueInput="params.birthday" v-model="params.birthday"/>
               <InputText inputId="phone" lableText="Phone" :valueInput="params.phone" v-model="params.phone"/>
+              <InputText :inputId="'identity_card'" lableText="Identity card" v-model="params.identity_card" :valueInput="params.identity_card"/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -25,6 +26,7 @@
               <FieldConfirm lableText="Email" :value="params.email"/>
               <FieldConfirm lableText="Birthday" :value="params.birthday"/>
               <FieldConfirm lableText="Phone" :value="params.phone"/>
+              <FieldConfirm lableText="Identity card" :value="params.identity_card"/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="backToRegistration">Back</button>
@@ -74,7 +76,8 @@ export default {
         email: val.email,
         first_name: val.first_name,
         last_name: val.last_name,
-        phone: val.phone
+        phone: val.phone,
+        identity_card: val.identity_card
       }
     }
   },

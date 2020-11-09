@@ -5,6 +5,8 @@ class UsersForm < BaseForm
   attribute :first_name, String
   attribute :last_name, String
   attribute :phone, String
+  attribute :identity_card, String
+  attribute :room_id, Integer
 
   validates :birthday, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: true, model: User }, email: true
@@ -12,8 +14,9 @@ class UsersForm < BaseForm
   validates :last_name, presence: true
   validates :phone, presence: true, uniqueness: { case_sensitive: true, model: User },
                     numericality: { only_integer: true }, length: { in: 9..11 }
+  validates :room_id, presence: true
 
-  delegate :persisted?, to: :user
+  delegate :persisted?, :id, to: :user
 
   def self.name
     "User"
@@ -25,6 +28,8 @@ class UsersForm < BaseForm
     ActiveRecord::Base.transaction do
       user.update!(attributes)
     end
+
+    true
   end
 
   delegate :destroy, to: :user
