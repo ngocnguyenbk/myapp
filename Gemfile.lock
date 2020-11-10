@@ -127,6 +127,8 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    email_validator (2.0.1)
+      activemodel
     equalizer (0.0.11)
     erubi (1.9.0)
     faker (2.14.0)
@@ -371,6 +373,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise
   dotenv-rails
+  email_validator
   faker
   jbuilder (~> 2.7)
   kaminari
