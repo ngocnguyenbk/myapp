@@ -9,5 +9,6 @@ html
     = javascript_pack_tag 'application'
   body.sidebar-lg-show[data-controller="#{controller_path}" data-action="#{action_name}"]
     .app-body
+      = render "shared/flash"
       main.main
         = yield

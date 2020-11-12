@@ -9,6 +9,11 @@ module Api
         @form = RoomsForm.new(room_params)
         @form.record = @room
         @form.save
+        if @form.save
+          render json: { room: RoomSerializer.new(@form.record), status: :ok, message: "Success" }
+        else
+          render json: { status: :unprocessable_entity, error: @form.errors }
+        end
       end
 
       private

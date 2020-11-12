@@ -10,17 +10,25 @@ class RoomsForm
   attribute :area, Float
   attribute :status, String
 
+  validates :room_number, presence: true, uniqueness: { case_sensitive: true, model: Room }
+
+  delegate :persisted?, to: :room
+
   def self.name
     "Room"
   end
 
   def save
+    return false if invalid?
+
     room.update!(attributes)
 
-    return unless room.empty?
+    unless room.empty?
+      room.update!(holder_id: nil)
+      User.without_deleted.where(room_id: room.id).destroy_all
+    end
 
-    room.update!(holder_id: nil)
-    User.without_deleted.where(room_id: room.id).destroy_all
+    true
   end
 
   def room

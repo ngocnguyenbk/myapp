@@ -1,0 +1,5 @@
+en:
+  registrations:
+    create:
+      failure: "Create admin failure!"
+      success: "Create admin success!"

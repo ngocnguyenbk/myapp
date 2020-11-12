@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <FlashMessage :position="'right top'"></FlashMessage>
     <TableFloor
       :floors="floors"
     />

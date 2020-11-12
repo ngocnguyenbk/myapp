@@ -21,8 +21,8 @@ export default {
       console.log(error.response)
     });
   },
-  updateUser (params, cb) {
-    axios.patch(`/users/${params.id}.json`,
+  async updateUser (params, cb) {
+    await axios.patch(`/users/${params.id}.json`,
       { user: params },
       { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
     ).then(function(response) {

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Edit Room {{currentRoom.id}}</h5>
+          <h5 class="modal-title">Edit Room {{currentRoom.room_number}}</h5>
         </div>
         <div v-show="isRegistration">
           <div class="modal-body">
@@ -47,6 +47,8 @@ import InputRadioButtons from '../components/inputRadioButtons'
 import InputSelect2 from '../components/inputSelect2.vue'
 import FieldConfirm from '../components/fieldConfirm.vue'
 
+import show_flash_mixins from '../mixins/show_flash'
+
 export default {
   components: {
     InputNumber,
@@ -58,7 +60,8 @@ export default {
     ...mapState({
       currentRoom: state => state.floor.currentRoom,
       roomStatus: state => state.floor.roomStatus,
-      collectionUsers: state => state.floor.users
+      collectionUsers: state => state.floor.users,
+      isValid: state => state.floor.isValid
     })
   },
   data: function() {
@@ -80,10 +83,12 @@ export default {
     }
   },
   methods: {
-    submitForm: function() {
-      this.$store.dispatch('floor/submitFormData', { params: this.params})
+    submitForm: async function() {
+      await this.$store.dispatch('floor/editRoom', { params: this.params })
       this.isRegistration = true
       this.isConfirm = false
+
+      this.show_flash(this.isValid)
     },
     submitConfirm: function() {
       this.isRegistration = false
@@ -93,6 +98,7 @@ export default {
       this.isConfirm = false
       this.isRegistration = true
     }
-  }
+  },
+  mixins: [show_flash_mixins]
 }
 </script>

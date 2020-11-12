@@ -12,11 +12,14 @@ import '@fortawesome/fontawesome-free/js/fontawesome'
 import $ from 'jquery'
 import 'select2'
 import 'select2/dist/css/select2.css'
+import FlashMessage from '@smartweb/vue-flash-message';
 
 import Vue from 'vue'
 import store from '../store'
 import Users from '../user.vue'
 import Floors from '../floor.vue'
+
+Vue.use(FlashMessage)
 
 document.addEventListener('DOMContentLoaded', () => {
   const elementUser = document.getElementById('userApp')
