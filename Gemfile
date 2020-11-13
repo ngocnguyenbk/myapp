@@ -26,6 +26,8 @@ gem "email_validator"
 group :development, :test do
   gem "pry-rails"
   gem "pry", "0.13.1"
+  gem "factory_bot_rails"
+  gem "rspec-rails"
 end
 
 group :development do
@@ -48,6 +50,8 @@ group :test do
   gem "capybara", ">= 2.15"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "database_cleaner"
+  gem "shoulda-matchers"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
