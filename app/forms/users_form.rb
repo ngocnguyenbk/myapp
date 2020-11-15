@@ -1,9 +1,4 @@
-class UsersForm
-  include Virtus.model
-  include ActiveModel::Model
-
-  attr_accessor :record
-
+class UsersForm < BaseForm
   attribute :id, Integer
   attribute :birthday, String
   attribute :email, String
@@ -12,11 +7,11 @@ class UsersForm
   attribute :phone, String
 
   validates :birthday, presence: true
-  validates :email, presence: true, uniqueness: { case_sensitive: true, model: User }, email: true, reduce: true
+  validates :email, presence: true, uniqueness: { case_sensitive: true, model: User }, email: true
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :phone, presence: true, uniqueness: { case_sensitive: true, model: User },
-                    numericality: { only_integer: true }, length: { in: 9..11 }, reduce: true
+                    numericality: { only_integer: true }, length: { in: 9..11 }
 
   delegate :persisted?, to: :user
 

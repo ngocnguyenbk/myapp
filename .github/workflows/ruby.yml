@@ -50,5 +50,11 @@ jobs:
         bundle config set path 'vendor/bundle'
         bundle install --jobs 4 --retry 3 --path vendor/bundle
         bin/rails db:prepare
-    - name: Run test rubocop
+    - name: Rubocop
       run: bundle exec rubocop
+    - name: Rspec
+      env:
+        RAILS_ENV: test
+      run: |
+        bundle exec rails db:migrate
+        bundle exec rspec spec

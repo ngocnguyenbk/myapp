@@ -1,9 +1,4 @@
-class RoomsForm
-  include Virtus.model
-  include ActiveModel::Model
-
-  attr_accessor :record
-
+class RoomsForm < BaseForm
   attribute :id, Integer
   attribute :room_number, Integer
   attribute :holder_id, Integer
@@ -23,7 +18,7 @@ class RoomsForm
 
     room.update!(attributes)
 
-    unless room.empty?
+    if room.empty?
       room.update!(holder_id: nil)
       User.without_deleted.where(room_id: room.id).destroy_all
     end
