@@ -32,4 +32,6 @@ yarn-debug.log*
 /config/database.yml
 .ssh/
 .env
-coverage
+
+# Ignore "simplecov" coverage
+coverage/

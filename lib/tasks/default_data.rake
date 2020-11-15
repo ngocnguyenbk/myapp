@@ -37,8 +37,6 @@ unless Rails.env.production?
             phone: Faker::Base.numerify("84#######"),
             identity_card: Faker::Base.numerify("##########"),
             birthday: rand(18..40).years.ago,
-            password: "654321",
-            password_confirmation: "654321",
             room_id: room.id,
             updated_at: rand(32..60).days.ago,
             created_at: rand(32..60).days.ago
