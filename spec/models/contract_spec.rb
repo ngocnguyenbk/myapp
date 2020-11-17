@@ -23,4 +23,18 @@ RSpec.describe Contract, type: :model do
 
     it { is_expected.to eq "19/03/2021" }
   end
+
+  before { allow(Time).to receive(:now).and_return("2021-01-25".to_time) }
+
+  describe "#total_months_rented" do
+    subject { contract.total_months_rented }
+
+    it { is_expected.to eq 3 }
+  end
+
+  describe "#total_months_remaining" do
+    subject { contract.total_months_remaining }
+
+    it { is_expected.to eq 2 }
+  end
 end

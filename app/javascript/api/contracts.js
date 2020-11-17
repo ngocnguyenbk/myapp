@@ -35,5 +35,13 @@ export default {
     }).catch(function (error) {
       console.log(error.response)
     });
+  },
+  loadDetailContract (id, cb) {
+    axios.get(`/contracts/${id}.json`, {}
+    ).then(function(response) {
+      cb(response.data)
+    })['catch'](function(error) {
+      console.log(error)
+    })
   }
 }

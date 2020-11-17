@@ -8,6 +8,13 @@
       <td>{{contract.deposited_money | formatNumber}}</td>
       <td>{{contract.start_date}}</td>
       <td>{{contract.end_date}}</td>
+      <td>
+        <i class="far fa-eye text-primary pointer"
+           data-toggle="modal"
+           data-target="#detailContract"
+           @click="getDetailContract"
+        />
+      </td>
     </tr>
   </tbody>
 </template>
@@ -28,6 +35,17 @@ export default {
     background_row_contract: function() {
       return this.odd ? 'odd-bg' : 'even-bg'
     }
+  },
+  methods: {
+    getDetailContract: function() {
+      this.$store.dispatch('contract/getDetailContract', this.contract)
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .pointer {
+    cursor: pointer;
+  }
+</style>
