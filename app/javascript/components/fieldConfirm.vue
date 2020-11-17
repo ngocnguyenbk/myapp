@@ -1,7 +1,7 @@
 <template>
   <div class="form-group row">
-    <label class="col-lg-2 col-form-label">{{lableText}}</label>
-    <div class="col-lg-10">
+    <label :class="['col-form-label', colLable]">{{lableText}}</label>
+    <div :class="[colInput]">
       <input class="form-control border-0" :value="value" readonly>
     </div>
   </div>
@@ -16,6 +16,14 @@ export default {
     },
     value: {
       type: [Number, String]
+    },
+    colLable: {
+      type: String,
+      default: "col-lg-2"
+    },
+    colInput: {
+      type: String,
+      default: "col-lg-10"
     }
   }
 }

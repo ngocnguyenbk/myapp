@@ -13,6 +13,7 @@
               :options="collectionUsers"
               :selected="params.holder_id"
               v-model="params.holder_id"
+              placeHolder="Select holder"
               typeSelect="single_select"
             />
             <InputRadioButtons inputId="status" lableText="Room status" :options="roomStatus" :valueInput="params.status" v-model="params.status"/>

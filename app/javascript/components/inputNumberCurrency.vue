@@ -2,7 +2,7 @@
   <div class="form-group row">
     <label :for="inputId" :class="['col-form-label', colLable]">{{lableText}}</label>
     <div :class="[colInput]">
-      <input :type="typeInput" class="form-control" :id="inputId" v-model="inputVal">
+      <input type="text" class="form-control" :id="inputId" v-model="inputVal" autocomplete="off">
       <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
   </div>
@@ -16,10 +16,6 @@ export default {
     }
   },
   props: {
-    typeInput: {
-      type: String,
-      default: 'text'
-    },
     inputId: {
       type: String,
       required: true
@@ -48,7 +44,7 @@ export default {
       return this.$emit('input', val)
     },
     valueInput: function(val) {
-      return this.inputVal = val
+      return this.inputVal = numeral(val).format('0,0')
     }
   }
 }

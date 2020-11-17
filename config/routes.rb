@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   draw :api
 
-  root to: "home_pages#index"
+  root to: "floors#index"
   resources :users
   resources :floors
+  resources :contracts
 end

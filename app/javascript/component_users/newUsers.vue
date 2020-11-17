@@ -1,7 +1,9 @@
 <template>
   <div class="new-users">
     <div  class="d-flex">
-      <h1>New User</h1>
+      <div class="align-self-center">
+        <h3>New user</h3>
+      </div>
       <div class="d-flex ml-auto p-3">
         <button class="btn btn-primary" @click="addNewUser">Add user</button>
       </div>
@@ -19,38 +21,46 @@
                        v-model="newUser.first_name"
                        :valueInput="newUser.first_name"
                        :eMsg="errorMessases[i]? errorMessases[i]['first_name'] : ''"
+                       colLable="col-lg-1" colInput="col-lg-11"
             />
             <InputText :inputId="'last_name_' + i" lableText="Last name"
                        v-model="newUser.last_name"
                        :valueInput="newUser.last_name"
                        :eMsg="errorMessases[i]? errorMessases[i]['last_name'] : ''"
+                       colLable="col-lg-1" colInput="col-lg-11"
             />
             <InputText :inputId="'email_' + i" lableText="Email"
                        v-model="newUser.email"
                        :valueInput="newUser.email"
                        :eMsg="errorMessases[i]? errorMessases[i]['email'] : ''"
+                       colLable="col-lg-1" colInput="col-lg-11"
             />
             <InputText :inputId="'phone_' + i" lableText="Phone"
                        v-model="newUser.phone"
                        :valueInput="newUser.phone"
                        :eMsg="errorMessases[i]? errorMessases[i]['phone'] : ''"
+                       colLable="col-lg-1" colInput="col-lg-11"
             />
             <InputText :inputId="'birthday_' + i" lableText="Birthday"
                        v-model="newUser.birthday"
                        :valueInput="newUser.birthday"
                        :eMsg="errorMessases[i]? errorMessases[i]['birthday'] : ''"
+                       colLable="col-lg-1" colInput="col-lg-11"
             />
             <InputText :inputId="'identity_card_' + i" lableText="Identity card"
                        v-model="newUser.identity_card"
                        :valueInput="newUser.identity_card"
                        :eMsg="errorMessases[i]? errorMessases[i]['identity_card'] : ''"
+                       colLable="col-lg-1" colInput="col-lg-11"
             />
             <InputSelect2 :inputId="'room_id_' + i" lableText="Room number"
               :options="collectionRooms"
               :selected="newUser.holder_id"
               typeSelect="single_select"
               v-model="newUser.room_id"
+              placeHolder="Select room"
               :eMsg="errorMessases[i]? errorMessases[i]['room_id'] : ''"
+              colLable="col-lg-1" colInput="col-lg-11"
             />
           </div>
           <hr/>
@@ -109,8 +119,9 @@ export default {
 }
 </script>
 
-<style>
-.form-input{
-  border: 1px solid #bab7b7;
+<style lang="scss" scoped>
+.form-input {
+  border: 2px solid #e8e7e7;
+  background-color: #f3f3f3;
 }
 </style>

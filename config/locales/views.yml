@@ -1,0 +1,8 @@
+en:
+  shared:
+    menu:
+      bms: "BMS"
+      user: "Users"
+      floors: "Floors"
+      contracts: "Contracts"
+      log_out: "Log out"

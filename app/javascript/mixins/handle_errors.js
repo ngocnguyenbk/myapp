@@ -9,6 +9,13 @@ export default {
         }
       }
       return errors
+    },
+    handle_single_error: function(val) {
+      let errors = {}
+      for (const [key, message] of Object.entries(val)) {
+        errors[key] = message[0]
+      }
+      return errors
     }
   }
 }
