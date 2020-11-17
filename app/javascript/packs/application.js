@@ -17,12 +17,14 @@ import FlashMessage from '@smartweb/vue-flash-message';
 import Vue from 'vue'
 import store from '../store'
 import Users from '../user.vue'
+import NewUser from '../newUser.vue'
 import Floors from '../floor.vue'
 
 Vue.use(FlashMessage)
 
 document.addEventListener('DOMContentLoaded', () => {
   const elementUser = document.getElementById('userApp')
+  const elementNewUser = document.getElementById('newUserApp')
   const elementFloor = document.getElementById('floorApp')
 
   if(elementUser != null) {
@@ -30,6 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
       el: '#userApp',
       store,
       render: h => h(Users, {})
+    })
+  }
+
+  if(elementNewUser != null) {
+    var newUserApp = new Vue({
+      el: '#newUserApp',
+      store,
+      render: h => h(NewUser, {})
     })
   }
 

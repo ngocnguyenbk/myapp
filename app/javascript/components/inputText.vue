@@ -3,6 +3,7 @@
     <label :for="inputId" class="col-lg-2 col-form-label">{{lableText}}</label>
     <div class="col-lg-10">
       <input type="text" class="form-control" :id="inputId" v-model="inputVal">
+      <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
   </div>
 </template>
@@ -25,6 +26,9 @@ export default {
     },
     valueInput: {
       type: [Number, String]
+    },
+    eMsg: {
+      type: String
     }
   },
   watch: {

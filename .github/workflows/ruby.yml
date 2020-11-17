@@ -30,6 +30,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
         ruby-version: 2.6

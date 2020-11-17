@@ -3,3 +3,6 @@ en:
     create:
       failure: "Create admin failure!"
       success: "Create admin success!"
+  users:
+    create:
+      success: "Create user success!"
