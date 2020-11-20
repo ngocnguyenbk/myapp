@@ -5,8 +5,9 @@ html
     title Boarding House
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_pack_tag 'application'
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_pack_tag "application"
+    = favicon_link_tag "favicon.png"
   body.sidebar-lg-show[data-controller="#{controller_path}" data-action="#{action_name}"]
     .app-body
       = render "shared/flash"
