@@ -2,48 +2,38 @@
 
 ## Build Environment
 
-### Development
+### Development (Docker)
 
 1. Git clone
 ```
 git clone git@github.com:ngocnguyenbk/myapp.git
 ```
-2. [Install RVM](https://gorails.com/setup/ubuntu/20.04#ruby-rvm)
-
-3. Install Ruby 2.6.6
+2. Config database
 ```
-rvm install 2.6.6
-```
-4. Install Bundler
-```
-gem install bundler -v 2.1.4
-```
-5. Install Rails 6.0.3.3
-```
-gem install rails -v 6.0.3.3
-```
-5. [Install Mysql](https://gorails.com/setup/ubuntu/20.04#database)
-
-6. Install Nodejs 10.19.0
-```
-curl -sL https://deb.nodesource.com/setup_10.x | bash -
-```
-7. Install Yarn 1.22.5
-```
-sudo apt install --no-install-recommends yarn
-```
-8. Build system
-
-```
-cd path/to/myapp
 cp config/database_example.yml config/database.yml
-bundle install
-rails db:create db:migrate db:seed
-yarn install
-rails assets:precompile
 ```
-9. Run system
+
+3. Build and run Docker
 ```
-rails s
+  docker-compose build
+  docker-compose up
+  # Open new terminal
+    docker-compose exec web bash
+    bundle install (Only the first time)
+    rails db:create db:migrate db:seed
+    rails assets:precompile
 ```
+
+4. Starting server
+```
+rails s -b 0.0.0.0
+```
+
+5. [Optional] Start webpack-dev-server
+```
+# Open new terminal
+  docker-compose exec web bash
+  bin/webpack-dev-server
+```
+
 When server running, open (http://localhost:3000)
