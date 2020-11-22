@@ -1,0 +1,12 @@
+nav.navbar.navbar-inverse.navbar-dark.bg-primary
+  .container-fluid.d-flex
+    .navbar-header
+      = link_to "BMS", root_path, class: "navbar-brand text-light font-weight-bold"
+    ul.nav.navbar-nav.flex-row.flex-fill
+      li.w-8.text-center
+        = link_to "User", users_path, class: "p-2 text-light #{active_for(controller: "users")}"
+      li.w-8.text-center
+        = link_to "Floors", floors_path, class: "p-2 text-light #{active_for(controller: "floors")}"
+    ul.nav.navbar-nav.navbar-right
+      li
+        = link_to "Log out", destroy_admin_session_path, method: "delete" , class: "text-light"

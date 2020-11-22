@@ -9,6 +9,7 @@ html
     = javascript_pack_tag "application"
     = favicon_link_tag "favicon.png"
   body.sidebar-lg-show[data-controller="#{controller_path}" data-action="#{action_name}"]
+    = render "shared/menu"
     .app-body
       = render "shared/flash"
       main.main
