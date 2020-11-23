@@ -4,7 +4,7 @@
     <div class="col-lg-10">
       <select class="form-control" :id="inputId" :ref="typeSelect">
         <option></option>
-        <option v-for="(value, key) in options" :value="key">{{value}}</option>
+        <option v-for="(value, key) in options" :value="key" :key="key">{{value}}</option>
       </select>
       <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
