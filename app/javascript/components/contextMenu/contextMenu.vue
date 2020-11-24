@@ -66,7 +66,7 @@ export default {
     },
     referenceObject(evt) {
       const left = evt.clientX
-      const top = evt.clientY + 10
+      const top = evt.clientY - 50
       const right = left + 1
       const bottom = top + 1
       const clientWidth = 1
