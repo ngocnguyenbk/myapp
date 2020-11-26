@@ -7,4 +7,9 @@ namespace :api, defaults: { format: :json } do
   namespace :users, defaults: { format: :json } do
     resources :rooms, only: [:index]
   end
+
+  namespace :contracts, defaults: { format: :json } do
+    resources :rooms, only: [:index]
+    resources :users, only: [:index]
+  end
 end

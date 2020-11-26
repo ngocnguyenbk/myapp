@@ -2,7 +2,7 @@
   <div id="app">
     <div  class="d-flex">
       <FlashMessage :position="'left top'"></FlashMessage>
-      <div class="new-user">
+      <div :class="['new-user', { 'mb-2': !showPaginate }]">
         <a class="btn btn-primary" href="/users/new">New user</a>
       </div>
       <div class="ml-auto">
@@ -34,7 +34,6 @@ export default {
   computed: {
     ...mapState({
       params: state => state.user.params,
-      totalCount: state => state.user.totalCount,
       totalPages: state => state.user.totalPages,
       showPaginate: state => state.user.showPaginate,
       users: state => state.user.users,

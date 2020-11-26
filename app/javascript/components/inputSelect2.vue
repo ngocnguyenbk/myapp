@@ -1,7 +1,7 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" class="col-lg-2 col-form-label">{{lableText}}</label>
-    <div class="col-lg-10">
+    <label :for="inputId" :class="['col-form-label', colLable]">{{lableText}}</label>
+    <div :class="[colInput]">
       <select class="form-control" :id="inputId" :ref="typeSelect">
         <option></option>
         <option v-for="(value, key) in options" :value="key" :key="key">{{value}}</option>
@@ -40,6 +40,17 @@ export default {
     },
     eMsg: {
       type: String
+    },
+    placeHolder: {
+      type: String
+    },
+    colLable: {
+      type: String,
+      default: "col-lg-2"
+    },
+    colInput: {
+      type: String,
+      default: "col-lg-10"
     }
   },
   mounted: function() {
@@ -47,9 +58,9 @@ export default {
     return $(`#${vm.inputId}`).select2({
       width: '100%',
       allowClear: true,
-      placeholder: "Select room",
+      placeholder: vm.placeHolder,
     }).on('select2:select select2:unselect', function() {
-      vm.$emit('input', this.value)
+      vm.$emit('input', vm.value)
     })
   },
   updated: function() {

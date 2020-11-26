@@ -6,3 +6,6 @@ en:
   users:
     create:
       success: "Create user success!"
+  contracts:
+    create:
+      success: "Create contract success!"

@@ -6,26 +6,33 @@
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
+window.numeral = require("numeral");
 
 import 'bootstrap'
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import $ from 'jquery'
 import 'select2'
 import 'select2/dist/css/select2.css'
-import FlashMessage from '@smartweb/vue-flash-message';
+import FlashMessage from '@smartweb/vue-flash-message'
 
 import Vue from 'vue'
 import store from '../store'
 import Users from '../user.vue'
 import NewUser from '../newUser.vue'
 import Floors from '../floor.vue'
+import Contracts from '../contract.vue'
 
 Vue.use(FlashMessage)
+
+Vue.filter('formatNumber', function (value) {
+  return numeral(value).format('0,0')
+})
 
 document.addEventListener('DOMContentLoaded', () => {
   const elementUser = document.getElementById('userApp')
   const elementNewUser = document.getElementById('newUserApp')
   const elementFloor = document.getElementById('floorApp')
+  const elementContract = document.getElementById('contractApp')
 
   if(elementUser != null) {
     var userApp = new Vue({
@@ -48,6 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
       el: '#floorApp',
       store,
       render: h => h(Floors, {})
+    })
+  }
+
+  if(elementContract != null) {
+    var contractApp = new Vue({
+      el: '#contractApp',
+      store,
+      render: h => h(Contracts, {})
     })
   }
 })

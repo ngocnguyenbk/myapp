@@ -1,8 +1,8 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" class="col-lg-2 col-form-label">{{lableText}}</label>
-    <div class="col-lg-10 align-self-center">
-      <div class="form-check form-check-inline" v-for="(val, key) in options">
+    <label :for="inputId" :class="['col-form-label', colLable]">{{lableText}}</label>
+    <div :class="['align-self-center', colInput]">
+      <div class="form-check form-check-inline" v-for="(val, key) in options" :key="key">
         <input type="radio" class="form-check-input" :id="inputId+'_'+key" :name="inputId" :checked="valueInput == key" :value="key" v-model="radioVal">
         <label class="form-check-label" :for="inputId+'_'+key">{{val}}</label>
       </div>
@@ -32,6 +32,14 @@ export default {
     },
     valueInput: {
       type: String
+    },
+    colLable: {
+      type: String,
+      default: "col-lg-2"
+    },
+    colInput: {
+      type: String,
+      default: "col-lg-10"
     }
   },
   watch: {

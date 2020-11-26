@@ -1,0 +1,16 @@
+body[data-controller="contracts"] {
+  &[data-action="index"]{
+    .table{
+      .table-header{
+        background-color: #3c88f0;
+        color: white;
+      }
+      .odd-bg{
+        background-color: white;
+      }
+      .even-bg{
+        background-color: whitesmoke;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" class="col-lg-2 col-form-label">{{lableText}}</label>
-    <div class="col-lg-10">
+    <label :for="inputId" :class="['col-form-label', colLable]">{{lableText}}</label>
+    <div :class="[colInput]">
       <input type="number" class="form-control" :id="inputId" v-model="inputVal">
     </div>
   </div>
@@ -25,6 +25,14 @@ export default {
     },
     valueInput: {
       type: [Number, String]
+    },
+    colLable: {
+      type: String,
+      default: "col-lg-2"
+    },
+    colInput: {
+      type: String,
+      default: "col-lg-10"
     }
   },
   watch: {

@@ -1,4 +1,4 @@
-class UserListSerializer
+class ContractListSerializer
   attr_reader :data
 
   def initialize(args)
@@ -9,7 +9,7 @@ class UserListSerializer
     {
       current_page: data.current_page,
       total_pages: data.total_pages,
-      data: ActiveModelSerializers::SerializableResource.new(data.users, each_serializer: UserSerializer)
+      data: ActiveModelSerializers::SerializableResource.new(data.contracts, each_serializer: ContractSerializer)
     }
   end
 end

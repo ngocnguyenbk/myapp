@@ -45,6 +45,25 @@ unless Rails.env.production?
       end
       User.import! users
     end
+
+    task update_room_holder_id: :environment do
+      Room.where(status: 0).each do |room|
+        room.update(holder_id: room.users.sample.id)
+      end
+    end
+
+    task contracts: :environment do
+      Room.where(status: 0).each do |room|
+        Contract.create!(
+          holder_id: room.holder_id,
+          room_id: room.id,
+          room_price: Faker::Number.decimal(l_digits: 7, r_digits: 1),
+          deposited_money: Faker::Number.decimal(l_digits: 6, r_digits: 1),
+          started_date: Time.zone.now,
+          ended_date: rand(1..2).years.since
+        )
+      end
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength
