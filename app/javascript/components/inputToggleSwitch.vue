@@ -1,12 +1,12 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" class="col-lg-2 col-form-label">{{lableText}}</label>
-    <div class="col-lg-10">
+    <div class="col-lg-2">
       <label class="switch">
         <input type="checkbox" v-model="checked">
         <span class="slider round"></span>
       </label>
     </div>
+    <label :for="inputId" class="col-lg-2 col-form-label">{{lableText}}</label>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
   },
   watch: {
     checked: function(val) {
-      return this.$emit('input', val)
+      return this.$emit('checked', val)
     },
     value: function(val) {
       return this.checked = val
