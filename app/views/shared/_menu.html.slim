@@ -3,11 +3,11 @@ nav.navbar.navbar-inverse.navbar-dark.bg-primary
     .navbar-header
       = link_to t(".bms"), root_path, class: "navbar-brand text-light font-weight-bold"
     ul.nav.navbar-nav.flex-row.flex-fill
-      li.w-5.text-center
+      li.w-100px.text-center
         = link_to t(".user"), users_path, class: "p-2 text-light #{active_for(controller: "users")}"
-      li.w-5.text-center
+      li.w-100px.text-center
         = link_to t(".floors"), floors_path, class: "p-2 text-light #{active_for(controller: "floors")}"
-      li.w-5.text-center
+      li.w-100px.text-center
         = link_to t(".contracts"), contracts_path, class: "p-2 text-light #{active_for(controller: "contracts")}"
     ul.nav.navbar-nav.navbar-right
       li
