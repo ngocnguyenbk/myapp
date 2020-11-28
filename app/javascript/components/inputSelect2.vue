@@ -60,7 +60,7 @@ export default {
       allowClear: true,
       placeholder: vm.placeHolder,
     }).on('select2:select select2:unselect', function() {
-      vm.$emit('input', vm.value)
+      vm.$emit('input', this.value)
     })
   },
   updated: function() {
