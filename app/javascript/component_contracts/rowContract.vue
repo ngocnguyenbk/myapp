@@ -1,6 +1,6 @@
 <template>
   <tbody :class="background_row_contract">
-    <tr>
+    <tr @dblclick="dbclickShowContract">
       <td>{{contract.id}}</td>
       <td>{{contract.holder_name}}</td>
       <td>{{contract.room_number}}</td>
@@ -39,6 +39,10 @@ export default {
   methods: {
     getDetailContract: function() {
       this.$store.dispatch('contract/getDetailContract', this.contract)
+    },
+    dbclickShowContract: function() {
+      this.getDetailContract()
+      $('#detailContract').modal('toggle')
     }
   }
 }
