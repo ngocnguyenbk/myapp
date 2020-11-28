@@ -59,8 +59,8 @@ unless Rails.env.production?
           room_id: room.id,
           room_price: Faker::Number.decimal(l_digits: 7, r_digits: 1),
           deposited_money: Faker::Number.decimal(l_digits: 6, r_digits: 1),
-          started_date: Time.zone.now,
-          ended_date: rand(1..2).years.since
+          started_date: Faker::Date.between(from: 2.years.ago, to: 1.year.ago),
+          ended_date: Faker::Date.between(from: Time.zone.today, to: 2.years.since)
         )
       end
     end

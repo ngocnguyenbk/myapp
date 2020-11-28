@@ -1,6 +1,6 @@
 <template>
-  <div :id="content_room" class="d-flex flex-column" data-toggle="modal" data-target="#editRoom" @click="setCurrentRoom">
-    <div :class="['dot dot-lg ml-auto', status_room]"></div>
+  <div :id="contentRoom" class="d-flex flex-column" data-toggle="modal" data-target="#editRoom" @click="setCurrentRoom">
+    <div :class="['dot dot-lg ml-auto', statusRoom]"></div>
     <div class="text-center">{{room.room_number}}</div>
     <div class="d-flex mt-auto">
       <div class="mr-auto p-2 w-100px">
@@ -24,10 +24,10 @@ export default {
     }
   },
   computed: {
-    content_room: function() {
+    contentRoom: function() {
       return `content_room_${this.room.room_number}`
     },
-    status_room: function() {
+    statusRoom: function() {
       return this.room.status
     }
   },

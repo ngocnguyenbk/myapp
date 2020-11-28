@@ -9,7 +9,8 @@ const state = {
   rooms: {},
   users: {},
   errorMessases: {},
-  isIndex: true
+  isIndex: true,
+  detailContract: {}
 }
 
 const actions = {
@@ -43,6 +44,11 @@ const actions = {
   },
   setIsIndex( { commit }, payload ) {
     commit('setIsIndex', payload)
+  },
+  getDetailContract({ commit }, payload) {
+    contract.loadDetailContract(payload.id, data => {
+      commit('setDetailContract', data)
+    })
   }
 }
 
@@ -71,6 +77,9 @@ const mutations = {
   },
   setIsIndex(state, isIndex) {
     state.isIndex = isIndex
+  },
+  setDetailContract(state, detailContract) {
+    state.detailContract = detailContract
   }
 }
 
