@@ -7,10 +7,12 @@
         </div>
         <div class="modal-body">
           <span>Do you want delete user <span class="text-danger">{{ currentUser.full_name }}</span>?</span>
+          <hr/>
+          <InputToggleSwitch lableText="Yes" inputId="confirm" v-model="confirm" @checked="confirm = $event"/>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" @click="submitDelete">Delete</button>
+          <button type="button" class="btn btn-danger btn-delete" data-dismiss="modal" @click="submitDelete">Delete</button>
         </div>
       </div>
     </div>
@@ -19,8 +21,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import InputToggleSwitch from '../components/inputToggleSwitch'
 
 export default {
+  components: {
+    InputToggleSwitch
+  },
   computed: {
     ...mapState({
       currentUser: state => state.user.currentUser
@@ -28,7 +34,8 @@ export default {
   },
   data: function() {
     return {
-      params: {}
+      params: {},
+      confirm : false
     }
   },
   watch: {
@@ -40,8 +47,12 @@ export default {
   },
   methods: {
     submitDelete: function() {
+      if (!this.confirm) return
       this.$store.dispatch('user/deleteUser', { params: this.params })
     }
+  },
+  updated: function() {
+    $('.btn-delete').prop('disabled', !this.confirm)
   }
 }
 </script>
