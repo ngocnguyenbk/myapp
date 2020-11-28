@@ -1,5 +1,6 @@
 class ContractSerializer < ActiveModel::Serializer
-  attributes :id, :holder_name, :room_number, :room_price, :deposited_money, :start_date, :end_date
+  attributes :id, :holder_name, :room_number, :room_price, :deposited_money, :start_date, :end_date,
+             :active
 
   def room_number
     object.room_room_number
