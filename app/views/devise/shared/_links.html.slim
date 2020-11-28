@@ -1,4 +1,4 @@
-- if controller_name != 'sessions'
+- if controller_name != "sessions"
   = link_to t(".log_in"), new_admin_session_path, class: "btn btn-primary"
-- if devise_mapping.registerable? && controller_name != 'registrations'
+- if devise_mapping.registerable? && controller_name != "registrations" && Rails.env.development?
   = link_to t(".sign_up"), new_admin_registration_path, class: "btn btn-primary"

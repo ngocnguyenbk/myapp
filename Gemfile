@@ -22,6 +22,7 @@ gem "activerecord-import"
 gem "rack-dev-mark"
 gem "virtus"
 gem "email_validator"
+gem "seed-fu"
 
 group :development, :test do
   gem "pry-rails"

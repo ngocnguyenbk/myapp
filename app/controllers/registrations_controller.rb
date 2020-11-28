@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_action :only_to_development
+
   layout "login"
 
   def new
