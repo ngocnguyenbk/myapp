@@ -8,15 +8,12 @@
       <td>{{contract.deposited_money | formatNumber}}</td>
       <td>{{contract.start_date}}</td>
       <td>{{contract.end_date}}</td>
-      <td class="text-center">
+      <td>
         <i class="far fa-eye text-primary pointer"
            data-toggle="modal"
            data-target="#detailContract"
            @click="getDetailContract"
         />
-      </td>
-      <td class="text-center">
-        <div :class="['dot dot-sm ml-auto', statusContract]"></div>
       </td>
     </tr>
   </tbody>
@@ -37,9 +34,6 @@ export default {
   computed: {
     background_row_contract: function() {
       return this.odd ? 'odd-bg' : 'even-bg'
-    },
-    statusContract: function() {
-      return this.contract.active ? 'active' : 'inactive'
     }
   },
   methods: {

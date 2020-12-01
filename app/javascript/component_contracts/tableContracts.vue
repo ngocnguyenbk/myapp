@@ -2,15 +2,14 @@
   <table class="table table-multi-body table-bordered">
     <thead class="table-header">
       <tr class="table-head">
-        <td class="w-120px">Contract id</td>
+        <td class="w-200px">Contract id</td>
         <td class="w-200px">Holder name</td>
-        <td class="w-150px">Room number</td>
+        <td class="w-200px">Room number</td>
         <td>Room price</td>
         <td class="w-200px">Deposited money</td>
-        <td class="w-120px">Start date</td>
-        <td class="w-120px">End date</td>
+        <td class="w-200px">Start date</td>
+        <td class="w-200px">End date</td>
         <td class="w-100px">Details</td>
-        <td class="w-100px">Status</td>
       </tr>
     </thead>
     <RowContract :contract="contract" :odd="(index % 2) != 0" v-for="(contract, index) in contracts" :key="index" />
