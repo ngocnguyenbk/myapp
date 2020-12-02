@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  before_action :contract, only: :show
+  before_action :contract, only: [:show, :destroy]
 
   def index
     @presenter = ContractsPresenter.new(params)
@@ -34,6 +34,12 @@ class ContractsController < ApplicationController
     end
   end
 
+  def destroy
+    @form = ContractsForm.new
+    @form.record = @contract
+    @form.destroy
+  end
+
   private
 
   def contract_params
@@ -41,6 +47,6 @@ class ContractsController < ApplicationController
   end
 
   def contract
-    Contract.find(params[:id])
+    @contract = Contract.find(params[:id])
   end
 end
