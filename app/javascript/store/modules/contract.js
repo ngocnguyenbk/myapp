@@ -49,6 +49,11 @@ const actions = {
     contract.loadDetailContract(payload.id, data => {
       commit('setDetailContract', data)
     })
+  },
+  deleteContract({ dispatch, state }, payload ) {
+    contract.deleteContract(payload.params, data => {
+      dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
+    })
   }
 }
 

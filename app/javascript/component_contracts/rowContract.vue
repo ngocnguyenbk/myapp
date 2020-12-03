@@ -16,6 +16,13 @@
         />
       </td>
       <td class="text-center">
+        <i :class="['far fa-stop-circle text-danger', contract.active ? 'pointer' : 'pointer_disable']"
+           data-toggle="modal"
+           data-target="#terminateContract"
+           @click="getDetailContract"
+        />
+      </td>
+      <td class="text-center">
         <div :class="['dot dot-sm ml-auto', statusContract]"></div>
       </td>
     </tr>
@@ -57,5 +64,10 @@ export default {
 <style lang="scss" scoped>
   .pointer {
     cursor: pointer;
+  }
+
+  .pointer_disable {
+    pointer-events: none;
+    color: gray !important;
   }
 </style>

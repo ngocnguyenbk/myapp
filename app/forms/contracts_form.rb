@@ -30,6 +30,8 @@ class ContractsForm < BaseForm
     true
   end
 
+  delegate :destroy, to: :contract
+
   private
 
   def contract

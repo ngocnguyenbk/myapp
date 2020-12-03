@@ -14,7 +14,7 @@ class UsersPresenter
   attr_reader :params
 
   def paginate
-    total_count = User.all.without_deleted.size
+    total_count = User.all.size
     total_pages = (total_count % @limit).zero? ? total_count / @limit : (total_count / @limit) + 1
     {
       current_page: (params[:page].presence || 1).to_i,
