@@ -11,8 +11,9 @@
         <td class="w-200px">Last name</td>
         <td>Email</td>
         <td class="w-200px">Phone</td>
-        <td class="w-200px">Birthday</td>
-        <td class="w-200px">Created at</td>
+        <td class="w-120px">Birthday</td>
+        <td class="w-120px">Created at</td>
+        <td class="w-120px">Edit / Delete</td>
         <td class="w-60px">Active</td>
       </tr>
     </thead>
