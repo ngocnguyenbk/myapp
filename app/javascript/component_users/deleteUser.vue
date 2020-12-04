@@ -1,7 +1,7 @@
 <template>
   <div class="modal fade" id="deleteUser" role="dialog" aria-modal="true" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+      <div class="modal-content" v-if="currentUser.status_active">
         <div class="modal-header">
           <h5 class="modal-title">Delete user <strong>{{ currentUser.full_name }}</strong></h5>
         </div>
@@ -13,6 +13,17 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-danger btn-delete" data-dismiss="modal" @click="submitDelete">Delete</button>
+        </div>
+      </div>
+      <div class="modal-content" v-else>
+        <div class="modal-header">
+          <h5 class="modal-title">Info</h5>
+        </div>
+        <div class="modal-body">
+          <span>User <strong class="text-danger">{{ currentUser.full_name }}</strong> deleted!</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
