@@ -53,3 +53,23 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+set :stage, :staging
+set :rails_env, :staging
+set :user, :deploy
+set :deploy_to, "/var/www/myapp"
+
+server "107.167.80.122", user: fetch(:user), roles: %w[app db batch]
+
+set :deploy_ref, ENV["DEPLOY_REF"]
+if fetch(:deploy_ref)
+  set :branch, fetch(:deploy_ref)
+else
+  set :branch, "staging"
+end
+
+set :ssh_options,
+    keys: %w[.ssh/deploy_stg_bms.pem],
+    forward_agent: true,
+    user: fetch(:user),
+    port: 28_301
