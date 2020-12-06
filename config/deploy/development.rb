@@ -1,5 +1,5 @@
 set :stage, :development
-set :rails_env, :staging
+set :rails_env, :development
 set :user, :deploy
 set :deploy_to, "/var/www/myapp"
 
