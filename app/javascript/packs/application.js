@@ -9,7 +9,7 @@ require("channels")
 window.numeral = require("numeral");
 
 import 'bootstrap'
-import '@fortawesome/fontawesome-free/js/fontawesome'
+import '../stylesheets/application.scss'
 import $ from 'jquery'
 import 'select2'
 import 'select2/dist/css/select2.css'
