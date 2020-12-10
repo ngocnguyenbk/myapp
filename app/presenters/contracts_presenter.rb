@@ -5,7 +5,7 @@ class ContractsPresenter
   end
 
   def contracts
-    contracts = Contract.all.page(params[:page])
+    contracts = Contract.all.includes(:room, :holder).page(params[:page])
     OpenStruct.new({ contracts: contracts, count: contracts.size }.merge(paginate))
   end
 

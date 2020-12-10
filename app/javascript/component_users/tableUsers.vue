@@ -9,6 +9,7 @@
         <td class="w-100px">User id</td>
         <td class="w-200px">First name</td>
         <td class="w-200px">Last name</td>
+        <td class="w-150px">Room number</td>
         <td>Email</td>
         <td class="w-200px">Phone</td>
         <td class="w-120px">Birthday</td>

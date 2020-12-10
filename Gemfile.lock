@@ -80,6 +80,9 @@ GEM
     bootsnap (1.4.8-java)
       msgpack (~> 1.0)
     builder (3.2.4)
+    bullet (6.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     capistrano (3.14.1)
       airbrussh (>= 1.0.0)
       i18n
@@ -358,6 +361,7 @@ GEM
     tzinfo-data (1.2020.1)
       tzinfo (>= 1.0.0)
     unicode-display_width (1.7.0)
+    uniform_notifier (1.13.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -398,6 +402,7 @@ DEPENDENCIES
   active_model_serializers
   activerecord-import
   bootsnap (>= 1.4.2)
+  bullet
   capistrano
   capistrano-bundler
   capistrano-rails
