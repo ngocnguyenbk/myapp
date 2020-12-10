@@ -7,6 +7,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", media: "all"
     = javascript_pack_tag "application"
+    = stylesheet_pack_tag "application", media: "all"
     = favicon_link_tag "favicon.png"
   body.sidebar-lg-show[data-controller="#{controller_path}" data-action="#{action_name}"]
     = render "shared/menu"
