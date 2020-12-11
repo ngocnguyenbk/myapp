@@ -5,7 +5,7 @@ class UsersPresenter
   end
 
   def users
-    users = User.all.page(params[:page])
+    users = User.all.includes(:room).order("rooms.room_number ASC").page(params[:page])
     OpenStruct.new({ users: users, count: users.size }.merge(paginate))
   end
 
