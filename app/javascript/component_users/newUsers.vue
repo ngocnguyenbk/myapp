@@ -17,49 +17,49 @@
             <button class="btn btn-danger ml-auto" type="button" @click="deleteNewUser(i)" v-if="i > 0">Delete</button>
           </div>
           <div class="form-input p-2">
-            <InputText :inputId="'first_name_' + i" lableText="First name"
+            <InputText :inputId="'first_name_' + i" labelText="First name"
                        v-model="newUser.first_name"
                        :valueInput="newUser.first_name"
-                       :eMsg="errorMessases[i]? errorMessases[i]['first_name'] : ''"
+                       :eMsg="errorMessages[i]? errorMessages[i]['first_name'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'last_name_' + i" lableText="Last name"
+            <InputText :inputId="'last_name_' + i" labelText="Last name"
                        v-model="newUser.last_name"
                        :valueInput="newUser.last_name"
-                       :eMsg="errorMessases[i]? errorMessases[i]['last_name'] : ''"
+                       :eMsg="errorMessages[i]? errorMessages[i]['last_name'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'email_' + i" lableText="Email"
+            <InputText :inputId="'email_' + i" labelText="Email"
                        v-model="newUser.email"
                        :valueInput="newUser.email"
-                       :eMsg="errorMessases[i]? errorMessases[i]['email'] : ''"
+                       :eMsg="errorMessages[i]? errorMessages[i]['email'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'phone_' + i" lableText="Phone"
+            <InputText :inputId="'phone_' + i" labelText="Phone"
                        v-model="newUser.phone"
                        :valueInput="newUser.phone"
-                       :eMsg="errorMessases[i]? errorMessases[i]['phone'] : ''"
+                       :eMsg="errorMessages[i]? errorMessages[i]['phone'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'birthday_' + i" lableText="Birthday"
+            <InputText :inputId="'birthday_' + i" labelText="Birthday"
                        v-model="newUser.birthday"
                        :valueInput="newUser.birthday"
-                       :eMsg="errorMessases[i]? errorMessases[i]['birthday'] : ''"
+                       :eMsg="errorMessages[i]? errorMessages[i]['birthday'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'identity_card_' + i" lableText="Identity card"
+            <InputText :inputId="'identity_card_' + i" labelText="Identity card"
                        v-model="newUser.identity_card"
                        :valueInput="newUser.identity_card"
-                       :eMsg="errorMessases[i]? errorMessases[i]['identity_card'] : ''"
+                       :eMsg="errorMessages[i]? errorMessages[i]['identity_card'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputSelect2 :inputId="'room_id_' + i" lableText="Room number"
+            <InputSelect2 :inputId="'room_id_' + i" labelText="Room number"
               :options="collectionRooms"
               :selected="newUser.holder_id"
               typeSelect="single_select"
               v-model="newUser.room_id"
               placeHolder="Select room"
-              :eMsg="errorMessases[i]? errorMessases[i]['room_id'] : ''"
+              :eMsg="errorMessages[i]? errorMessages[i]['room_id'] : ''"
               colLable="col-lg-1" colInput="col-lg-11"
             />
           </div>
@@ -88,7 +88,7 @@ export default {
     ...mapState({
       collectionRooms: state => state.user.rooms,
       newUsers: state => state.user.newUsers,
-      errorMessases: state => state.user.errorMessases
+      errorMessages: state => state.user.errorMessages
     })
   },
   components: {

@@ -8,7 +8,7 @@
         <div class="modal-body">
           <span>Do you want delete user <span class="text-danger">{{ currentUser.full_name }}</span>?</span>
           <hr/>
-          <InputToggleSwitch lableText="Yes" inputId="confirm" v-model="confirm" @checked="confirm = $event"/>
+          <InputToggleSwitch labelText="Yes" inputId="confirm" v-model="confirm" @checked="confirm = $event"/>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -7,16 +7,16 @@
         </div>
         <div v-show="isRegistration">
           <div class="modal-body">
-            <InputNumber inputId="room_number" lableText="Room number" :valueInput="params.room_number" v-model="params.room_number"/>
-            <InputNumber inputId="area" lableText="Room area" :valueInput="params.area" v-model="params.area"/>
-            <InputSelect2 inputId="holder_id" lableText="Room holder"
+            <InputNumber inputId="room_number" labelText="Room number" :valueInput="params.room_number" v-model="params.room_number"/>
+            <InputNumber inputId="area" labelText="Room area" :valueInput="params.area" v-model="params.area"/>
+            <InputSelect2 inputId="holder_id" labelText="Room holder"
               :options="collectionUsers"
               :selected="params.holder_id"
               v-model="params.holder_id"
               placeHolder="Select holder"
               typeSelect="single_select"
             />
-            <InputRadioButtons inputId="status" lableText="Room status" :options="roomStatus" :valueInput="params.status" v-model="params.status"/>
+            <InputRadioButtons inputId="status" labelText="Room status" :options="roomStatus" :valueInput="params.status" v-model="params.status"/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -26,10 +26,10 @@
 
         <div v-show="isConfirm">
           <div class="modal-body">
-            <FieldConfirm lableText="Room number" :value="params.room_number"/>
-            <FieldConfirm lableText="Area" :value="params.area"/>
-            <FieldConfirm lableText="House holder" :value="collectionUsers[params.holder_id]"/>
-            <FieldConfirm lableText="Room status" :value="roomStatus[params.status]"/>
+            <FieldConfirm labelText="Room number" :value="params.room_number"/>
+            <FieldConfirm labelText="Area" :value="params.area"/>
+            <FieldConfirm labelText="House holder" :value="collectionUsers[params.holder_id]"/>
+            <FieldConfirm labelText="Room status" :value="roomStatus[params.status]"/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="backToRegistration">Back</button>

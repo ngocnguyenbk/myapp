@@ -14,10 +14,23 @@ RSpec.describe ExtendContractForm, type: :model do
     let(:params) { { number_months: "3" } }
     let(:contract_form) { described_class.new(params) }
 
-    before do
-      contract_form.record = contract
+    subject { contract_form.save }
+
+    context "when step = confirmation" do
+      before do
+        contract_form.step = "confirmation"
+      end
+
+      it { is_expected.to eq true }
     end
 
-    it { expect { contract_form.save }.to change(contract, :ended_date).from("13/12/2020".to_date).to("13/03/2021".to_date) }
+    context "when step = done" do
+      before do
+        contract_form.record = contract
+        contract_form.step = "done"
+      end
+
+      it { is_expected.to eq true }
+    end
   end
 end

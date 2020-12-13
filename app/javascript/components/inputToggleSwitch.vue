@@ -6,7 +6,7 @@
         <span class="slider round"></span>
       </label>
     </div>
-    <label :for="inputId" class="col-lg-2 col-form-label">{{lableText}}</label>
+    <label :for="inputId" class="col-lg-2 col-form-label">{{labelText}}</label>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
       type: String,
       required: true
     },
-    lableText: {
+    labelText: {
       type: String,
       required: true
     },

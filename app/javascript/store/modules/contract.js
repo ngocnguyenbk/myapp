@@ -8,13 +8,14 @@ const state = {
   currentPage: 0,
   rooms: {},
   users: {},
-  errorMessases: {},
+  errorMessages: {},
   isIndex: true,
   detailContract: {},
   defaultMonth: {
     3: "3 months",
     6: "6 months",
-    9: "9 months"
+    9: "9 months",
+    12: "12 months"
   },
   isValid: true
 }
@@ -94,8 +95,8 @@ const mutations = {
   setCurrentPage(state, page) {
     state.currentPage = Number(page)
   },
-  setErrors(state, errorMessases) {
-    state.errorMessases = errorMessases
+  setErrors(state, errorMessages) {
+    state.errorMessages = errorMessages
   },
   setIsIndex(state, isIndex) {
     state.isIndex = isIndex

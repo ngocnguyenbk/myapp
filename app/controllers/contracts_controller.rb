@@ -59,7 +59,7 @@ class ContractsController < ApplicationController
   end
 
   def extend_params
-    params.require(:contract).permit(:number_months)
+    params.require(:contract).permit(:step, :number_months)
   end
 
   def contract

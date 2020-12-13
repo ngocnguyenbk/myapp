@@ -55,7 +55,7 @@ export default {
   },
   async extendContract (params, cb) {
     await axios.patch(`/contracts/${params.id}.json`,
-      { contract: { number_months: params.number_months } },
+      { contract: { number_months: params.number_months, step: params.step } },
       { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
     ).then(function(response) {
       cb(response.data)
