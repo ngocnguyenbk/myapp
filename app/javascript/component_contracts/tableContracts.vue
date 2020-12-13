@@ -9,6 +9,7 @@
         <td class="w-200px">Deposited money</td>
         <td class="w-120px">Start date</td>
         <td class="w-120px">End date</td>
+        <td class="w-100px">Extend</td>
         <td class="w-100px">Details</td>
         <td class="w-100px">Terminate</td>
         <td class="w-100px">Status</td>
@@ -17,6 +18,7 @@
     <RowContract :contract="contract" :odd="(index % 2) != 0" v-for="(contract, index) in contracts" :key="index" />
     <DetailContract ref="detail_contract"/>
     <TerminateContract />
+    <ExtendContract />
   </table>
 </template>
 
@@ -24,12 +26,14 @@
 import RowContract from './rowContract'
 import DetailContract from './detailContract'
 import TerminateContract from './terminateContract'
+import ExtendContract from './extendContract'
 
 export default {
   components: {
     RowContract,
     DetailContract,
-    TerminateContract
+    TerminateContract,
+    ExtendContract
   },
   props: {
     contracts: {

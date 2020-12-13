@@ -1,13 +1,16 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLable]">{{lableText}}</label>
+    <label :for="inputId" :class="['col-form-label', colLable]" v-if="lableText">{{lableText}}</label>
     <div :class="[colInput]">
-      <input type="number" class="form-control" :id="inputId" v-model="inputVal">
+      <input type="number" class="form-control"  ref="input_number" :id="inputId" :max="max" v-model="inputVal">
+      <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import max_value_mixins from '../mixins/max_value'
+
 export default {
   data: function() {
     return {
@@ -20,8 +23,7 @@ export default {
       required: true
     },
     lableText: {
-      type: String,
-      required: true
+      type: String
     },
     valueInput: {
       type: [Number, String]
@@ -33,6 +35,12 @@ export default {
     colInput: {
       type: String,
       default: "col-lg-10"
+    },
+    eMsg: {
+      type: String
+    },
+    max: {
+      type: String
     }
   },
   watch: {
@@ -40,8 +48,9 @@ export default {
       return this.$emit('input', val)
     },
     valueInput: function(val) {
-      return this.inputVal = val
+      return this.inputVal = this.max_value(val, this.$refs.input_number.max)
     }
-  }
+  },
+  mixins: [max_value_mixins]
 }
 </script>
