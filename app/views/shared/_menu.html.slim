@@ -9,6 +9,11 @@ nav.navbar.navbar-inverse.navbar-dark.bg-primary
         = link_to t(".floors"), floors_path, class: "p-2 text-light #{active_for(controller: "floors")}"
       li.w-100px.text-center
         = link_to t(".contracts"), contracts_path, class: "p-2 text-light #{active_for(controller: "contracts")}"
+      li.w-100px.text-center.dropdown
+        = link_to t(".downloads"), "#", class: "text-light", data: { toggle: "dropdown"}
+        .dropdown-menu.position-absolute
+          .dropdown-item
+            = link_to t(".import_user"), t(".link_import_user"), target: "_blank", class: "text-dark"
     ul.nav.navbar-nav.navbar-right
       li
         = link_to t(".log_out"), destroy_admin_session_path, method: "delete" , class: "text-light font-weight-bold"
