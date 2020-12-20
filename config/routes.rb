@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   resources :users
   resources :floors
   resources :contracts
+
+  namespace :batch_create do
+    resources :users, only: :create
+  end
 end

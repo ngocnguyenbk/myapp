@@ -1,6 +1,7 @@
 const messages = {
   en: {
     user: {
+      no: 'No.',
       new_user: 'New user',
       add_user: 'Add user',
       delete: 'Delete',
@@ -25,6 +26,9 @@ const messages = {
       self: 'User',
       deleted: 'deleted!',
       info: 'Info',
+      errors: 'Errors',
+      import_user: 'Import user',
+      not_errors: 'Not errors',
       confirmation: {
         perform_delete_user: 'Do you want delete user',
         yes: 'Yes',
@@ -70,6 +74,11 @@ const messages = {
       submit: 'Submit',
       number_of_month: 'Number of months',
       or_input: 'or input',
+    },
+    upload_file: {
+      import_file: 'Import file',
+      close: 'Close',
+      upload: 'Upload'
     }
   }
 }

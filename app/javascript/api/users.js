@@ -58,5 +58,14 @@ export default {
     }).catch(function (error) {
       console.log(error.response)
     });
+  },
+  importFile (params, cb) {
+    axios.post('/batch_create/users.json', params,
+      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+    ).then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    });
   }
 }

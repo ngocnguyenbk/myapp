@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     tty: true
-    restart: always
     depends_on:
       - db
     ports:

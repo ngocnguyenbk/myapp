@@ -13,6 +13,8 @@ import '../stylesheets/application.scss'
 import $ from 'jquery'
 import 'select2'
 import 'select2/dist/css/select2.css'
+import 'bootstrap-fileinput/js/fileinput.min.js'
+import 'bootstrap-fileinput/css/fileinput.min.css'
 import FlashMessage from '@smartweb/vue-flash-message'
 
 import Vue from 'vue'

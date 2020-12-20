@@ -22,7 +22,9 @@ const state = {
       room_id: ''
     }
   ],
-  errorMessages: {}
+  errorMessages: {},
+  importUsers: {},
+  errorsImportUsers: {}
 }
 
 const actions = {
@@ -73,6 +75,15 @@ const actions = {
   },
   deleteNewUser({ commit }, index) {
     commit('deleteNewUser', index)
+  },
+  importFile({ commit }, payload) {
+    user.importFile(payload, data => {
+      if (data.status === 'ok') {
+        window.location.href = '/users'
+      } else {
+        commit('setResultImport', data)
+      }
+    })
   }
 }
 
@@ -118,6 +129,10 @@ const mutations = {
   },
   setErrors(state, errorMessages) {
     state.errorMessages = errorMessages
+  },
+  setResultImport(state, data) {
+    state.importUsers = data.users
+    state.errorsImportUsers = data.errors
   }
 }
 
