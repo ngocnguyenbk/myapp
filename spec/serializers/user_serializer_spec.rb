@@ -16,7 +16,7 @@ RSpec.describe UserSerializer do
       "birth_day" => "01/01/1999",
       "created_date" => "01/01/2020",
       "status_active" => true,
-      "room_id" => 1,
+      "room_number" => 1,
       "identity_card" => "987654321" }
   end
   let(:serializer) { UserSerializer.new(user) }

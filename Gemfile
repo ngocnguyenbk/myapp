@@ -45,6 +45,7 @@ group :development do
   gem "capistrano-yarn"
   gem "capistrano-bundler", require: false
   gem "capistrano-rvm"
+  gem "bullet"
 end
 
 group :test do
