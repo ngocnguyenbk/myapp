@@ -2,17 +2,17 @@
   <table class="table table-multi-body table-bordered">
     <thead class="table-header">
       <tr class="table-head">
-        <td class="w-120px">Contract id</td>
-        <td class="w-200px">Holder name</td>
-        <td class="w-150px">Room number</td>
-        <td>Room price</td>
-        <td class="w-200px">Deposited money</td>
-        <td class="w-120px">Start date</td>
-        <td class="w-120px">End date</td>
-        <td class="w-100px">Extend</td>
-        <td class="w-100px">Details</td>
-        <td class="w-100px">Terminate</td>
-        <td class="w-100px">Status</td>
+        <td class="w-120px">{{ $t('contract.contract_id') }}</td>
+        <td class="w-200px">{{ $t('contract.holder_name') }}</td>
+        <td class="w-150px">{{ $t('contract.room_number') }}</td>
+        <td>{{ $t('contract.room_price') }}</td>
+        <td class="w-200px">{{ $t('contract.deposited_money') }}</td>
+        <td class="w-120px">{{ $t('contract.start_date') }}</td>
+        <td class="w-120px">{{ $t('contract.end_date') }}</td>
+        <td class="w-100px">{{ $t('contract.extend') }}</td>
+        <td class="w-100px">{{ $t('contract.details') }}</td>
+        <td class="w-100px">{{ $t('contract.terminate') }}</td>
+        <td class="w-100px">{{ $t('contract.status') }}</td>
       </tr>
     </thead>
     <RowContract :contract="contract" :odd="(index % 2) != 0" v-for="(contract, index) in contracts" :key="index" />

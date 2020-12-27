@@ -1,21 +1,21 @@
 <template>
   <table class="table table-multi-body table-bordered" @contextmenu.prevent="$refs.menu.open($event)">
     <ContextMenu ref="menu">
-      <ContextMenuItem @click.native="editUser()">Edit user</ContextMenuItem>
-      <ContextMenuItem @click.native="deleteUser()">Delete user</ContextMenuItem>
+      <ContextMenuItem @click.native="editUser()">{{ $t('user.edit_user') }}</ContextMenuItem>
+      <ContextMenuItem @click.native="deleteUser()">{{ $t('user.delete_user') }}</ContextMenuItem>
     </ContextMenu>
     <thead class="table-header">
       <tr class="table-head">
-        <td class="w-100px">User id</td>
-        <td class="w-200px">First name</td>
-        <td class="w-200px">Last name</td>
-        <td class="w-150px">Room number</td>
-        <td>Email</td>
-        <td class="w-200px">Phone</td>
-        <td class="w-120px">Birthday</td>
-        <td class="w-120px">Created at</td>
-        <td class="w-120px">Edit / Delete</td>
-        <td class="w-60px">Active</td>
+        <td class="w-100px">{{ $t('user.user_id') }}</td>
+        <td class="w-200px">{{ $t('user.first_name') }}</td>
+        <td class="w-200px">{{ $t('user.last_name') }}</td>
+        <td class="w-150px">{{ $t('user.room_number') }}</td>
+        <td>{{ $t('user.email') }}</td>
+        <td class="w-200px">{{ $t('user.phone') }}</td>
+        <td class="w-120px">{{ $t('user.birthday') }}</td>
+        <td class="w-120px">{{ $t('user.created_at') }}</td>
+        <td class="w-120px">{{ $t('user.edit_or_delete') }}</td>
+        <td class="w-60px">{{ $t('user.active') }}</td>
       </tr>
     </thead>
     <RowUser :user="user" :odd="(index % 2) != 0" v-for="(user, index) in users" :key="index" />

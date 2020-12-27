@@ -3,37 +3,37 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Edit Room {{currentRoom.room_number}}</h5>
+          <h5 class="modal-title">{{ $t('floor.edit_room') }} {{currentRoom.room_number}}</h5>
         </div>
         <div v-show="isRegistration">
           <div class="modal-body">
-            <InputNumber inputId="room_number" labelText="Room number" :valueInput="params.room_number" v-model="params.room_number"/>
-            <InputNumber inputId="area" labelText="Room area" :valueInput="params.area" v-model="params.area"/>
-            <InputSelect2 inputId="holder_id" labelText="Room holder"
+            <InputNumber inputId="room_number" :labelText="$t('floor.room_number')" :valueInput="params.room_number" v-model="params.room_number"/>
+            <InputNumber inputId="area" :labelText="$t('floor.room_area')" :valueInput="params.area" v-model="params.area"/>
+            <InputSelect2 inputId="holder_id" :labelText="$t('floor.room_holder')"
               :options="collectionUsers"
               :selected="params.holder_id"
               v-model="params.holder_id"
-              placeHolder="Select holder"
+              :placeHolder="$t('floor.select_holder')"
               typeSelect="single_select"
             />
-            <InputRadioButtons inputId="status" labelText="Room status" :options="roomStatus" :valueInput="params.status" v-model="params.status"/>
+            <InputRadioButtons inputId="status" :labelText="$t('floor.room_status')" :options="roomStatus" :valueInput="params.status" v-model="params.status"/>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="submitConfirm">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('floor.close') }}</button>
+            <button type="button" class="btn btn-primary" @click="submitConfirm">{{ $t('floor.submit') }}</button>
           </div>
         </div>
 
         <div v-show="isConfirm">
           <div class="modal-body">
-            <FieldConfirm labelText="Room number" :value="params.room_number"/>
-            <FieldConfirm labelText="Area" :value="params.area"/>
-            <FieldConfirm labelText="House holder" :value="collectionUsers[params.holder_id]"/>
-            <FieldConfirm labelText="Room status" :value="roomStatus[params.status]"/>
+            <FieldConfirm :labelText="$t('floor.room_number')" :value="params.room_number"/>
+            <FieldConfirm :labelText="$t('floor.room_area')" :value="params.area"/>
+            <FieldConfirm :labelText="$t('floor.room_holder')" :value="collectionUsers[params.holder_id]"/>
+            <FieldConfirm :labelText="$t('floor.room_status')" :value="roomStatus[params.status]"/>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="backToRegistration">Back</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitForm">Save changes</button>
+            <button type="button" class="btn btn-secondary" @click="backToRegistration">{{ $t('floor.back') }}</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitForm">{{ $t('floor.save_change') }}</button>
           </div>
         </div>
       </div>
