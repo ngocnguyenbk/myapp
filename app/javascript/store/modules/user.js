@@ -22,7 +22,7 @@ const state = {
       room_id: ''
     }
   ],
-  errorMessases: {}
+  errorMessages: {}
 }
 
 const actions = {
@@ -116,8 +116,8 @@ const mutations = {
   deleteNewUser(state, index) {
     state.newUsers.splice(index, 1)
   },
-  setErrors(state, errorMessases) {
-    state.errorMessases = errorMessases
+  setErrors(state, errorMessages) {
+    state.errorMessages = errorMessages
   }
 }
 

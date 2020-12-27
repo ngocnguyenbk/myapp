@@ -12,44 +12,44 @@
       <div class="form-input p-2">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputSelect2 inputId="holder_id" placeHolder="Select holder" lableText="Holder name" typeSelect="single_select"
+            <InputSelect2 inputId="holder_id" placeHolder="Select holder" labelText="Holder name" typeSelect="single_select"
                           :options="collectionUsers"
                           :selected="holder_id"
                           v-model="holder_id"
-                          :eMsg="errorMessases['holder_id']? errorMessases['holder_id'] : ''"
+                          :eMsg="errorMessages['holder_id']? errorMessages['holder_id'] : ''"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputSelect2 inputId="room_id" placeHolder="Select room" lableText="Room number" typeSelect="single_select"
+            <InputSelect2 inputId="room_id" placeHolder="Select room" labelText="Room number" typeSelect="single_select"
                           :options="collectionRooms"
                           :selected="room_id"
                           v-model="room_id"
-                          :eMsg="errorMessases['room_id']? errorMessases['room_id'] : ''"
+                          :eMsg="errorMessages['room_id']? errorMessages['room_id'] : ''"
             />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputNumberCurrency inputId="room_price" lableText="Room price" v-model="room_price"
+            <InputNumberCurrency inputId="room_price" labelText="Room price" v-model="room_price"
                        :valueInput="room_price"
-                       :eMsg="errorMessases['room_price']? errorMessases['room_price'] : ''"
+                       :eMsg="errorMessages['room_price']? errorMessages['room_price'] : ''"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputNumberCurrency inputId="deposited_money" lableText="Deposited" v-model="deposited_money"
+            <InputNumberCurrency inputId="deposited_money" labelText="Deposited" v-model="deposited_money"
                                  :valueInput="deposited_money"
             />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputText inputId="started_date" lableText="Started date" v-model="started_date" typeInput="date"
-                       :eMsg="errorMessases['started_date']? errorMessases['started_date'] : ''"
+            <InputText inputId="started_date" labelText="Started date" v-model="started_date" typeInput="date"
+                       :eMsg="errorMessages['started_date']? errorMessages['started_date'] : ''"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputText inputId="ended_date" lableText="Ended date" v-model="ended_date" typeInput="date"
-                       :eMsg="errorMessases['ended_date']? errorMessases['ended_date'] : ''"
+            <InputText inputId="ended_date" labelText="Ended date" v-model="ended_date" typeInput="date"
+                       :eMsg="errorMessages['ended_date']? errorMessages['ended_date'] : ''"
             />
           </div>
         </div>
@@ -85,7 +85,7 @@ export default {
     ...mapState({
       collectionRooms: state => state.contract.rooms,
       collectionUsers: state => state.contract.users,
-      errorMessases: state => state.contract.errorMessases,
+      errorMessages: state => state.contract.errorMessages,
       isIndex: state => state.contract.isIndex
     })
   },

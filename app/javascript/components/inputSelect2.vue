@@ -1,6 +1,6 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLable]">{{lableText}}</label>
+    <label :for="inputId" :class="['col-form-label', colLable]">{{labelText}}</label>
     <div :class="[colInput]">
       <select class="form-control" :id="inputId" :ref="typeSelect">
         <option></option>
@@ -23,7 +23,7 @@ export default {
       type: String,
       required: true
     },
-    lableText: {
+    labelText: {
       type: String,
       required: true
     },

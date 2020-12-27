@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  before_action :contract, only: [:show, :destroy]
+  before_action :contract, only: [:show, :destroy, :update]
 
   def index
     @presenter = ContractsPresenter.new(params)
@@ -40,10 +40,26 @@ class ContractsController < ApplicationController
     @form.destroy
   end
 
+  def update
+    @form = ExtendContractForm.new(extend_params)
+    @form.record = @contract
+    if @form.save
+      render json: {
+        status: :ok
+      }
+    else
+      render json: { status: :unprocessable_entity, errors: @form.errors }
+    end
+  end
+
   private
 
   def contract_params
     params.require(:contract).permit(:holder_id, :room_id, :room_price, :deposited_money, :started_date, :ended_date)
+  end
+
+  def extend_params
+    params.require(:contract).permit(:step, :number_months)
   end
 
   def contract

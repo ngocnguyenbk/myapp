@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <FlashMessage :position="'right top'"></FlashMessage>
     <div class="table-contract" v-if="isIndex">
       <div class="d-flex">
         <div :class="['btn-new-contract', { 'mb-2': !showPaginate }]">

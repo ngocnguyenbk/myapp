@@ -9,6 +9,13 @@
       <td>{{contract.start_date}}</td>
       <td>{{contract.end_date}}</td>
       <td class="text-center">
+        <i :class="['fas fa-expand-arrows-alt text-primary pointer', contract.active ? 'pointer' : 'pointer_disable']"
+          data-toggle="modal"
+          data-target="#extendContract"
+          @click="getDetailContract"
+        />
+      </td>
+      <td class="text-center">
         <i class="far fa-eye text-primary pointer"
            data-toggle="modal"
            data-target="#detailContract"
