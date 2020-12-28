@@ -4,54 +4,54 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
-            Detail contract
+            {{ $t('contract.detail_contract') }}
             <strong>
-              Room number
+              {{ $t('contract.room_number') }}
               {{contract.room_number}}
             </strong>
           </h5>
         </div>
         <div class="modal-body">
           <div class="form-row">
-            <FieldOnlyView id="id" labelText="ID" colField="col-md-6"
+            <FieldOnlyView id="id" :labelText="$t('contract.id')" colField="col-md-6"
               :value="contract.id"
             />
-            <FieldOnlyView id="holder" labelText="Holder" colField="col-md-6"
+            <FieldOnlyView id="holder" :labelText="$t('contract.holder_name')" colField="col-md-6"
               :value="contract.holder_name"
             />
           </div>
           <div class="form-row">
-            <FieldOnlyView id="room_price" labelText="Room price" colField="col-md-6"
+            <FieldOnlyView id="room_price" :labelText="$t('contract.room_price')" colField="col-md-6"
               :value="contract.room_price | formatNumber"
             />
-            <FieldOnlyView id="deposited" labelText="Deposited money" colField="col-md-6"
+            <FieldOnlyView id="deposited" :labelText="$t('contract.deposited_money')" colField="col-md-6"
               :value="contract.deposited_money | formatNumber"
             />
           </div>
           <div class="form-row">
-            <FieldOnlyView id="start_date" labelText="Start date" colField="col-md-6"
+            <FieldOnlyView id="start_date" :labelText="$t('contract.start_date')" colField="col-md-6"
               :value="contract.start_date"
             />
-            <FieldOnlyView id="end_date" labelText="End date" colField="col-md-6"
+            <FieldOnlyView id="end_date" :labelText="$t('contract.end_date')" colField="col-md-6"
               :value="contract.end_date"
             />
           </div>
           <div class="form-row">
-            <FieldOnlyView id="months_rented" labelText="Months rented" colField="col-md-6"
+            <FieldOnlyView id="months_rented" :labelText="$t('contract.month_rented')" colField="col-md-6"
               :value="detail.months_rented"
             />
-            <FieldOnlyView id="months_remaining" labelText="Months remaining" colField="col-md-6"
+            <FieldOnlyView id="months_remaining" :labelText="$t('contract.month_remain')" colField="col-md-6"
               :value="detail.months_remaining"
             />
           </div>
           <div class="form-row">
-            <FieldOnlyView id="total_moneys" labelText="Total moneys"
+            <FieldOnlyView id="total_moneys" :labelText="$t('contract.total_money')"
               :value="detail.total_moneys | formatNumber"
             />
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('contract.close') }}</button>
         </div>
       </div>
     </div>

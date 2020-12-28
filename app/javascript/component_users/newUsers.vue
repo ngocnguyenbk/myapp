@@ -2,10 +2,10 @@
   <div class="new-users">
     <div  class="d-flex">
       <div class="align-self-center">
-        <h3>New user</h3>
+        <h3>{{ $t('user.new_user') }}</h3>
       </div>
       <div class="d-flex ml-auto p-3">
-        <button class="btn btn-primary" @click="addNewUser">Add user</button>
+        <button class="btn btn-primary" @click="addNewUser">{{ $t('user.add_user') }}</button>
       </div>
     </div>
     <hr/>
@@ -14,52 +14,52 @@
         <div class="one-user">
           <div class="d-flex p-2">
             <h4 class="user-number">User {{i + 1}}</h4>
-            <button class="btn btn-danger ml-auto" type="button" @click="deleteNewUser(i)" v-if="i > 0">Delete</button>
+            <button class="btn btn-danger ml-auto" type="button" @click="deleteNewUser(i)" v-if="i > 0">{{ $t('user.delete_user') }}</button>
           </div>
           <div class="form-input p-2">
-            <InputText :inputId="'first_name_' + i" labelText="First name"
+            <InputText :inputId="'first_name_' + i" :labelText="$t('user.first_name')"
                        v-model="newUser.first_name"
                        :valueInput="newUser.first_name"
                        :eMsg="errorMessages[i]? errorMessages[i]['first_name'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'last_name_' + i" labelText="Last name"
+            <InputText :inputId="'last_name_' + i" :labelText="$t('user.last_name')"
                        v-model="newUser.last_name"
                        :valueInput="newUser.last_name"
                        :eMsg="errorMessages[i]? errorMessages[i]['last_name'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'email_' + i" labelText="Email"
+            <InputText :inputId="'email_' + i" :labelText="$t('user.email')"
                        v-model="newUser.email"
                        :valueInput="newUser.email"
                        :eMsg="errorMessages[i]? errorMessages[i]['email'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'phone_' + i" labelText="Phone"
+            <InputText :inputId="'phone_' + i" :labelText="$t('user.phone')"
                        v-model="newUser.phone"
                        :valueInput="newUser.phone"
                        :eMsg="errorMessages[i]? errorMessages[i]['phone'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'birthday_' + i" labelText="Birthday"
+            <InputText :inputId="'birthday_' + i" :labelText="$t('user.birthday')"
                        v-model="newUser.birthday"
                        :valueInput="newUser.birthday"
                        :eMsg="errorMessages[i]? errorMessages[i]['birthday'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputText :inputId="'identity_card_' + i" labelText="Identity card"
+            <InputText :inputId="'identity_card_' + i" :labelText="$t('user.identity_card')"
                        v-model="newUser.identity_card"
                        :valueInput="newUser.identity_card"
                        :eMsg="errorMessages[i]? errorMessages[i]['identity_card'] : ''"
                        colLable="col-lg-1" colInput="col-lg-11"
             />
-            <InputSelect2 :inputId="'room_id_' + i" labelText="Room number"
+            <InputSelect2 :inputId="'room_id_' + i" :labelText="$t('user.room_number')"
               :options="collectionRooms"
               :selected="newUser.holder_id"
               typeSelect="single_select"
               v-model="newUser.room_id"
-              placeHolder="Select room"
-              :eMsg="errorMessages[i]? errorMessages[i]['room_id'] : ''"
+              :placeHolder="$t('user.select_room')"
+              :eMsg="errorMessases[i]? errorMessases[i]['room_id'] : ''"
               colLable="col-lg-1" colInput="col-lg-11"
             />
           </div>

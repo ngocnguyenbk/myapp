@@ -3,7 +3,7 @@
     <div  class="d-flex">
       <FlashMessage :position="'left top'"></FlashMessage>
       <div :class="['new-user', { 'mb-2': !showPaginate }]">
-        <a class="btn btn-primary" href="/users/new">New user</a>
+        <a class="btn btn-primary" href="/users/new">{{ $t('user.new_user') }}</a>
       </div>
       <div class="ml-auto">
         <Paginator

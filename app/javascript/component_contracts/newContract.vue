@@ -5,14 +5,14 @@
     </div>
     <hr/>
     <div class="d-flex">
-      <h3>New contract</h3>
+      <h3>{{ $t('contract.new_contract') }}</h3>
     </div>
     <hr/>
     <form id="new-contract" class="w-90 ml-auto mr-auto" @submit.prevent="submitForm">
       <div class="form-input p-2">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputSelect2 inputId="holder_id" placeHolder="Select holder" labelText="Holder name" typeSelect="single_select"
+            <InputSelect2 inputId="holder_id" :placeHolder="$t('contract.select_holder')" labelText="Holder name" typeSelect="single_select"
                           :options="collectionUsers"
                           :selected="holder_id"
                           v-model="holder_id"
@@ -20,7 +20,7 @@
             />
           </div>
           <div class="form-group col-md-6">
-            <InputSelect2 inputId="room_id" placeHolder="Select room" labelText="Room number" typeSelect="single_select"
+            <InputSelect2 inputId="room_id" :placeHolder="$t('contract.select_room')" :labelText="$t('contract.room_number')" typeSelect="single_select"
                           :options="collectionRooms"
                           :selected="room_id"
                           v-model="room_id"
@@ -30,31 +30,31 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputNumberCurrency inputId="room_price" labelText="Room price" v-model="room_price"
+            <InputNumberCurrency inputId="room_price" :labelText="$t('contract.room_price')" v-model="room_price"
                        :valueInput="room_price"
                        :eMsg="errorMessages['room_price']? errorMessages['room_price'] : ''"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputNumberCurrency inputId="deposited_money" labelText="Deposited" v-model="deposited_money"
+            <InputNumberCurrency inputId="deposited_money" :labelText="$t('contract.deposited')" v-model="deposited_money"
                                  :valueInput="deposited_money"
             />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputText inputId="started_date" labelText="Started date" v-model="started_date" typeInput="date"
+            <InputText inputId="started_date" :labelText="$t('contract.start_date')" v-model="started_date" typeInput="date"
                        :eMsg="errorMessages['started_date']? errorMessages['started_date'] : ''"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputText inputId="ended_date" labelText="Ended date" v-model="ended_date" typeInput="date"
+            <InputText inputId="ended_date" :labelText="$t('contract.end_date')" v-model="ended_date" typeInput="date"
                        :eMsg="errorMessages['ended_date']? errorMessages['ended_date'] : ''"
             />
           </div>
         </div>
       </div>
-      <button class="btn btn-primary float-right mt-2">Submit</button>
+      <button class="btn btn-primary float-right mt-2">{{ $t('contract.submit') }}</button>
     </form>
   </div>
 </template>

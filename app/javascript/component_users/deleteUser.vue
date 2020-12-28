@@ -3,27 +3,27 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content" v-if="currentUser.status_active">
         <div class="modal-header">
-          <h5 class="modal-title">Delete user <strong>{{ currentUser.full_name }}</strong></h5>
+          <h5 class="modal-title">{{ $t('user.delete_user') }} <strong>{{ currentUser.full_name }}</strong></h5>
         </div>
         <div class="modal-body">
-          <span>Do you want delete user <span class="text-danger">{{ currentUser.full_name }}</span>?</span>
+          <span>{{ $t('user.confirmation.perform_delete_user') }} <span class="text-danger">{{ currentUser.full_name }}</span>?</span>
           <hr/>
-          <InputToggleSwitch labelText="Yes" inputId="confirm" v-model="confirm" @checked="confirm = $event"/>
+          <InputToggleSwitch :labelText="$t('user.confirmation.yes')" inputId="confirm" v-model="confirm" @checked="confirm = $event"/>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger btn-delete" data-dismiss="modal" @click="submitDelete">Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('user.confirmation.close') }}</button>
+          <button type="button" class="btn btn-danger btn-delete" data-dismiss="modal" @click="submitDelete">{{ $t('user.delete') }}</button>
         </div>
       </div>
       <div class="modal-content" v-else>
         <div class="modal-header">
-          <h5 class="modal-title">Info</h5>
+          <h5 class="modal-title">{{ $t('user.info') }}</h5>
         </div>
         <div class="modal-body">
-          <span>User <strong class="text-danger">{{ currentUser.full_name }}</strong> deleted!</span>
+          <span>{{ $t('user.self') }} <strong class="text-danger">{{ currentUser.full_name }}</strong> {{ $t('user.deleted') }}</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('user.confirmation.close') }}</button>
         </div>
       </div>
     </div>

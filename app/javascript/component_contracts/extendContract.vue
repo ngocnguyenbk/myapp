@@ -6,7 +6,7 @@
           <h5 class="modal-title">Extend contract <strong>{{ contract.id }}</strong></h5>
         </div>
         <div class="modal-body">
-          <span>Number of months</span>
+          <span>{{ $t('contract.number_of_month') }}</span>
           <hr/>
           <InputRadioButtons inputId="choose_month" colInput="col-lg-12"
             :hasLabel="false"
@@ -15,7 +15,7 @@
             v-model="params.number_months"
           />
           <div class="form-group">
-            <span>or input</span>
+            <span>{{ $t('contract.or_input') }}</span>
           </div>
           <InputNumber inputId="input_month" colInput="col-lg-12" max="12" min="0"
             :valueInput="params.number_months"
@@ -24,7 +24,7 @@
           />
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('contract.close') }}</button>
           <button type="button" class="btn btn-danger" @click="submitConfirm">Extend contract</button>
         </div>
       </div>
@@ -33,7 +33,7 @@
           <h5 class="modal-title">Extend contract <strong>{{ contract.id }}</strong></h5>
         </div>
         <div class="modal-body">
-          <FieldOnlyView id="number_months" labelText="Number of months" colField="col-md-12"
+          <FieldOnlyView id="number_months" :labelText="$t('contract.number_of_month')" colField="col-md-12"
             :value="params.number_months"
           />
         </div>
