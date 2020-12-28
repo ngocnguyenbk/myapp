@@ -3,16 +3,16 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Terminate contract <strong>{{ contract.id }}</strong></h5>
+          <h5 class="modal-title">{{ $t('contract.terminate_contract') }} <strong>{{ contract.id }}</strong></h5>
         </div>
         <div class="modal-body">
-          <span>Do you want terminate contract <span class="text-danger">{{ contract.id }}</span>?</span>
+          <span>{{ $t('contract.confirmation.perform_terminate_contract') }} <span class="text-danger">{{ contract.id }}</span>?</span>
           <hr/>
-          <InputToggleSwitch labelText="Yes" inputId="confirm" v-model="confirm" @checked="confirm = $event"/>
+          <InputToggleSwitch :labelText="$t('contract.confirmation.yes')" inputId="confirm" v-model="confirm" @checked="confirm = $event"/>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger btn-delete" data-dismiss="modal" @click="submitDelete">Terminate</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('contract.confirmation.close') }}</button>
+          <button type="button" class="btn btn-danger btn-delete" data-dismiss="modal" @click="submitDelete">{{ $t('contract.confirmation.yes') }}</button>
         </div>
       </div>
     </div>

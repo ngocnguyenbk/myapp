@@ -1,0 +1,11 @@
+vi:
+  registrations:
+    create:
+      failure: "Tạo admin thất bại!"
+      success: "Tạo admin thành công!"
+  users:
+    create:
+      success: "Tạo khách hàng thành công!"
+  contracts:
+    create:
+      success: "Tạo hợp đồng thành công!"

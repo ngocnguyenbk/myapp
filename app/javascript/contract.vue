@@ -4,7 +4,7 @@
     <div class="table-contract" v-if="isIndex">
       <div class="d-flex">
         <div :class="['btn-new-contract', { 'mb-2': !showPaginate }]">
-          <button class="btn btn-primary" @click="createForm">New contract</button>
+          <button class="btn btn-primary" @click="createForm">{{ $t('contract.new_contract') }}</button>
         </div>
         <div class="ml-auto">
           <Paginator

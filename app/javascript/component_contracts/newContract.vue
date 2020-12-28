@@ -1,7 +1,7 @@
 <template>
   <div class="bd-example w-100">
     <div class="btn-new-contract">
-      <button class="btn btn-primary" @click="backToIndex">Back</button>
+      <button class="btn btn-primary" @click="backToIndex">{{ $t('contract.back') }}</button>
     </div>
     <hr/>
     <div class="d-flex">
@@ -12,7 +12,7 @@
       <div class="form-input p-2">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputSelect2 inputId="holder_id" :placeHolder="$t('contract.select_holder')" labelText="Holder name" typeSelect="single_select"
+            <InputSelect2 inputId="holder_id" :placeHolder="$t('contract.select_holder')" :labelText="$t('contract.holder_name')" typeSelect="single_select"
                           :options="collectionUsers"
                           :selected="holder_id"
                           v-model="holder_id"

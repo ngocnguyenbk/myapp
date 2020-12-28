@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content" v-show="isConfirm">
         <div class="modal-header">
-          <h5 class="modal-title">Extend contract <strong>{{ contract.id }}</strong></h5>
+          <h5 class="modal-title">{{ $t('contract.extend_contract') }} <strong>{{ contract.id }}</strong></h5>
         </div>
         <div class="modal-body">
           <span>{{ $t('contract.number_of_month') }}</span>
@@ -25,12 +25,12 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('contract.close') }}</button>
-          <button type="button" class="btn btn-danger" @click="submitConfirm">Extend contract</button>
+          <button type="button" class="btn btn-danger" @click="submitConfirm">{{ $t('contract.confirm') }}</button>
         </div>
       </div>
       <div class="modal-content" v-show="isDone">
         <div class="modal-header">
-          <h5 class="modal-title">Extend contract <strong>{{ contract.id }}</strong></h5>
+          <h5 class="modal-title">{{ $t('contract.extend_contract') }} <strong>{{ contract.id }}</strong></h5>
         </div>
         <div class="modal-body">
           <FieldOnlyView id="number_months" :labelText="$t('contract.number_of_month')" colField="col-md-12"
@@ -38,8 +38,8 @@
           />
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="backToEdit">Back</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" @click="submitDone">Confirm</button>
+          <button type="button" class="btn btn-secondary" @click="backToEdit">{{ $t('contract.back') }}</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" @click="submitDone">{{ $t('contract.submit') }}</button>
         </div>
       </div>
     </div>

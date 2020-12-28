@@ -19,7 +19,7 @@ import FlashMessage from '@smartweb/vue-flash-message'
 
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import messages from '../locales/modules/en.js'
+import messages from '../locales/modules/vi.js'
 import store from '../store'
 import Users from '../user.vue'
 import NewUser from '../newUser.vue'
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const elementContract = document.getElementById('contractApp')
 
   const i18n = new VueI18n({
-    locale: 'en',
+    locale: 'vi',
     messages,
   })
 

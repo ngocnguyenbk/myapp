@@ -1,0 +1,10 @@
+activerecord:
+  attributes:
+    user:
+      email: "Địa chỉ email"
+  errors:
+    models:
+      user:
+        attributes:
+          email:
+            blank: "bắt buộc"
