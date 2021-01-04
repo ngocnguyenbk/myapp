@@ -1,0 +1,10 @@
+import_users:
+  line_start: 4
+  header:
+    first_name: 1
+    last_name: 2
+    email: 3
+    phone: 4
+    birthday: 5
+    identity_card: 6
+    room_number: 7

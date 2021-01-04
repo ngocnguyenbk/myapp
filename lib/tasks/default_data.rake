@@ -12,10 +12,10 @@ unless Rails.env.production?
       rooms = []
       j = 0
       Floor.all.each do |floor|
-        5.times do |_i|
-          j += 1
+        j += 100
+        5.times do |i|
           rooms << floor.rooms.build(
-            room_number: j,
+            room_number: j + i,
             status: rand(0..2),
             area: rand(25..40),
             floor_id: floor.id

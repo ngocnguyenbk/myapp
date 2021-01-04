@@ -1,34 +1,32 @@
 en:
-  activerecord:
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      invalid: " is invalid"
+      blank: " can't be blank"
+      taken: " is already connected to an account"
+      too_short: " minimum is %{count} characters"
+      too_long: " maximum is %{count} characters"
+      not_a_number: " not a number"
+      confirmation: "doesn't match"
+  activemodel:
+    attributes:
+      user:
+        email: "Email"
+        phone: "Phone"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        first_name: "First name"
+        last_name: "Last name"
+        room_id: "Room number"
+      admin:
+        email: "Email"
+        phone: "Phone"
+        password: "Password"
+        password_confirmation: "Password confirmation"
     errors:
       models:
-        user:
+        batch_create/user_import:
           attributes:
-            email:
-              blank: " can't be blank"
-              taken: " is already connected to an account"
-            phone:
-              too_short: " minimum is %{count} characters"
-              too_long: " maximum is %{count} characters"
-              not_a_number: " not a number"
-              taken: " is already connected to an account"
-            password:
-              blank: " can't be blank"
-              too_short: " minimum is %{count} characters"
-            password_confirmation:
-              confirmation: "doesn't match"
-        admin:
-          attributes:
-            email:
-              blank: " can't be blank"
-              taken: " is already connected to an account"
-            phone:
-              too_short: " minimum is %{count} characters"
-              too_long: " maximum is %{count} characters"
-              not_a_number: " not a number"
-              taken: " is already connected to an account"
-            password:
-              blank: " can't be blank"
-              too_short: " minimum is %{count} characters"
-            password_confirmation:
-              confirmation: "doesn't match"
+            file:
+              content_file: "File content has errors"

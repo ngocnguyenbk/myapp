@@ -9,7 +9,8 @@ class UsersForm < BaseForm
   attribute :room_id, Integer
 
   validates :birthday, presence: true
-  validates :email, presence: true, uniqueness: { case_sensitive: true, model: User }, email: true
+  validates :email, presence: true, uniqueness: { case_sensitive: true, model: User }, email: true,
+                    format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :phone, presence: true, uniqueness: { case_sensitive: true, model: User },

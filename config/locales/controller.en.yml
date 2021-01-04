@@ -9,3 +9,7 @@ en:
   contracts:
     create:
       success: "Create contract success!"
+  batch_create:
+    users:
+      create:
+        success: "Import users success!"
