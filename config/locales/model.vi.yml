@@ -1,0 +1,34 @@
+vi:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: " không được bỏ trống"
+              taken: " đã tồn tại"
+            phone:
+              too_short: " tối thiểu %{count} kí tự"
+              too_long: " tối đa %{count} kí tự"
+              not_a_number: " not a number"
+              taken: " đã tồn tại"
+            password:
+              blank: " không được bỏ trống"
+              too_short: " tối thiểu %{count} kí tự"
+            password_confirmation:
+              confirmation: "không đúng"
+        admin:
+          attributes:
+            email:
+              blank: " không được bỏ trống"
+              taken: " đã tồn tại"
+            phone:
+              too_short: " tối thiểu %{count} kí tự"
+              too_long: " tối đa %{count} kí tự"
+              not_a_number: " not a number"
+              taken: " đã tồn tại"
+            password:
+              blank: " không được bỏ trống"
+              too_short: " tối thiểu %{count} kí tự"
+            password_confirmation:
+              confirmation: "không đúng"

@@ -79,6 +79,15 @@ const messages = {
       import_file: 'Import file',
       close: 'Close',
       upload: 'Upload'
+      back: 'Back',
+      extend_contract: 'Extend contract',
+      confirm: 'Confirm',
+      terminate_contract: 'Terminate contract',
+      confirmation: {
+        perform_terminate_contract: 'Do you want terminate contract',
+        yes: 'Yes',
+        close: 'Close',
+      },
     }
   }
 }
