@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#upload-file" @click='uploadFile'>Import user</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#upload-file" @click='uploadFile'>{{ btnTitle }}</button>
     <div class="modal fade" id="upload-file" role="dialog" aria-modal="true" aria-hidden="true" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -34,16 +34,20 @@ export default {
   props: {
     accept: {
       type: String,
-      required: true
+      required: true,
     },
     action: {
       type: String,
-      required: true
+      required: true,
+    },
+    btnTitle: {
+      type: String,
+      required: true,
     },
   },
   data: function() {
     return {
-      form: {}
+      form: {},
     }
   },
   methods: {

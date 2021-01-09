@@ -1,34 +1,39 @@
 vi:
-  activerecord:
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      invalid: " không hợp lệ"
+      blank: " không được bỏ trống"
+      taken: " đã tồn tại"
+      too_short: " tối thiểu %{count} kí tự"
+      too_long: " tối đa %{count} kí tự"
+      not_a_number: " không là số"
+      confirmation: " không khớp"
+  activemodel:
+    attributes:
+      user:
+        email: "Email"
+        phone: "Số điện thoại"
+        password: "Mật khẩu"
+        password_confirmation: "Xác nhận mật khẩu"
+        first_name: "Họ và tên đệm"
+        last_name: "Tên"
+        room_id: "Số phòng"
+        birthday: "Ngày sinh"
+      admin:
+        email: "Email"
+        phone: "Số điện thoại"
+        password: "Mật khẩu"
+        password_confirmation: "Xác nhận mật khẩu"
+      contract:
+        holder_id: "Mã KH"
+        room_id: "Mã phòng"
+        room_price: "Giá phòng"
+        started_date: "Ngày bắt đầu"
+        ended_date: "Ngày trả phòng"
     errors:
       models:
-        user:
+        batch_create/user_import:
           attributes:
-            email:
-              blank: " không được bỏ trống"
-              taken: " đã tồn tại"
-            phone:
-              too_short: " tối thiểu %{count} kí tự"
-              too_long: " tối đa %{count} kí tự"
-              not_a_number: " not a number"
-              taken: " đã tồn tại"
-            password:
-              blank: " không được bỏ trống"
-              too_short: " tối thiểu %{count} kí tự"
-            password_confirmation:
-              confirmation: "không đúng"
-        admin:
-          attributes:
-            email:
-              blank: " không được bỏ trống"
-              taken: " đã tồn tại"
-            phone:
-              too_short: " tối thiểu %{count} kí tự"
-              too_long: " tối đa %{count} kí tự"
-              not_a_number: " not a number"
-              taken: " đã tồn tại"
-            password:
-              blank: " không được bỏ trống"
-              too_short: " tối thiểu %{count} kí tự"
-            password_confirmation:
-              confirmation: "không đúng"
+            file:
+              content_file: "Nội dung file bị lỗi"

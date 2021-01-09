@@ -1,6 +1,7 @@
 const messages = {
   vi: {
     user: {
+      no: 'STT',
       new_user: 'Thêm khách hàng mới',
       add_user: 'Thêm',
       delete: 'Xóa khách hàng',
@@ -25,6 +26,9 @@ const messages = {
       self: 'Khách hàng',
       deleted: 'Đã xóa!',
       info: 'Thông tin',
+      errors: 'Lỗi',
+      import_user: 'Nhập hàng loạt',
+      not_errors: 'Không lỗi',
       confirmation: {
         perform_delete_user: 'Bạn có muốn xóa khách hàng ',
         yes: 'Có',
@@ -79,7 +83,12 @@ const messages = {
         yes: 'Có',
         close: 'Không',
       },
-    }
+    },
+    upload_file: {
+      import_file: 'Nhập hàng loạt',
+      close: 'Đóng',
+      upload: 'Upload',
+    },
   }
 }
 
