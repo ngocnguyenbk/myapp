@@ -13,7 +13,7 @@ class ContractsController < ApplicationController
   end
 
   def create
-    @form = ContractsForm.new(contract_params)
+    @form = ContractsForm.new(contract_params, current_admin)
     if @form.save
       flash[:success] = t(".success")
       render json: { status: :ok }
