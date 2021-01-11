@@ -74,11 +74,6 @@ const messages = {
       submit: 'Submit',
       number_of_month: 'Number of months',
       or_input: 'or input',
-    },
-    upload_file: {
-      import_file: 'Import file',
-      close: 'Close',
-      upload: 'Upload'
       back: 'Back',
       extend_contract: 'Extend contract',
       confirm: 'Confirm',
@@ -88,7 +83,12 @@ const messages = {
         yes: 'Yes',
         close: 'Close',
       },
-    }
+    },
+    upload_file: {
+      import_file: 'Import file',
+      close: 'Close',
+      upload: 'Upload',
+    },
   }
 }
 

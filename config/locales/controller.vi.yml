@@ -9,3 +9,7 @@ vi:
   contracts:
     create:
       success: "Tạo hợp đồng thành công!"
+  batch_create:
+    users:
+      create:
+        success: "Tạo khách hàng thành công!"
