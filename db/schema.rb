@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_083450) do
+ActiveRecord::Schema.define(version: 2021_01_09_014731) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "full_name"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 2020_11_17_083450) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["phone"], name: "index_admins_on_phone", unique: true
+  end
+
+  create_table "contract_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.datetime "date_changed"
+    t.json "description"
+    t.integer "code"
+    t.bigint "admin_id"
+    t.bigint "contract_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_contract_histories_on_admin_id"
+    t.index ["contract_id"], name: "index_contract_histories_on_contract_id"
   end
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|

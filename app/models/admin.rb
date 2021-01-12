@@ -4,6 +4,8 @@ class Admin < ApplicationRecord
 
   include SoftDeletable
 
+  has_many :contract_histories
+
   enum role: { admin: 0, accountant: 1 }
 
   validates :full_name, presence: true

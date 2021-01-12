@@ -12,10 +12,18 @@ class ContractsForm < BaseForm
   validates :started_date, presence: true
   validates :ended_date, presence: true
 
+  attr_reader :current_admin
+
   delegate :persisted?, :destroy, :id, to: :contract
 
   def self.name
     "Contract"
+  end
+
+  def initialize(params, current_admin)
+    @current_admin = current_admin
+
+    super params
   end
 
   def save
@@ -25,6 +33,7 @@ class ContractsForm < BaseForm
       contract.update!(attributes)
 
       contract.room.update!(status: "deposited")
+      CreateContractHistoryService.new(contract, current_admin, attributes, "add").perform
     end
 
     true

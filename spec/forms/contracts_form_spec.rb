@@ -7,6 +7,10 @@ RSpec.describe ContractsForm, type: :model do
   end
 
   describe "Validation" do
+    let(:params) { {} }
+    let(:admin) { double(:admin, id: 1) }
+    subject { described_class.new(params, admin) }
+
     it { should validate_presence_of(:holder_id).with_message(:blank) }
     it { should validate_presence_of(:room_id).with_message(:blank) }
     it { should validate_presence_of(:room_price).with_message(:blank) }
@@ -15,11 +19,16 @@ RSpec.describe ContractsForm, type: :model do
   end
 
   describe "Delegate" do
+    let(:params) { {} }
+    let(:admin) { double(:admin, id: 1) }
+    subject { described_class.new(params, admin) }
+
     it { should delegate_method(:persisted?).to(:contract) }
   end
 
   describe "#save" do
-    let(:contract_form) { described_class.new(params) }
+    let(:admin) { FactoryBot.create :admin }
+    let(:contract_form) { described_class.new(params, admin) }
     let(:user) { FactoryBot.create :user, id: 2 }
     let(:room) { FactoryBot.create :room, id: 2 }
 
