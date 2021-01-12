@@ -10,7 +10,7 @@
           <hr/>
           <InputRadioButtons inputId="choose_month" colInput="col-lg-12"
             :hasLabel="false"
-            :options="defaultMonth"
+            :options="months"
             :valueInput="params.number_months"
             v-model="params.number_months"
           />
@@ -65,7 +65,15 @@ export default {
       defaultMonth: state => state.contract.defaultMonth,
       errorMessages: state => state.contract.errorMessages,
       isValid: state => state.contract.isValid
-    })
+    }),
+    months: function() {
+      const self = this
+      return this.defaultMonth.reduce(function(months, num) {
+          months[num] = self.$tc('contract.defaultMonth.month', num)
+          return months
+        }
+      , {} )
+    }
   },
   data: function() {
     return {
