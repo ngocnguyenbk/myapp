@@ -26,6 +26,7 @@ gem "seed-fu"
 gem "carrierwave"
 gem "rubyXL"
 gem "config"
+gem "pundit"
 
 group :development, :test do
   gem "pry-rails"

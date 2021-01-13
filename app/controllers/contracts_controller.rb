@@ -35,7 +35,9 @@ class ContractsController < ApplicationController
   end
 
   def destroy
-    @form = ContractsForm.new
+    authorize @contract
+
+    @form = ContractsForm.new({}, current_admin)
     @form.record = @contract
     @form.destroy
   end
