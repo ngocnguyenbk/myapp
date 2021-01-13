@@ -30,7 +30,6 @@ const actions = {
   async editRoom({ commit, dispatch }, payload) {
     await floor.updateRoom(payload.params, data => {
       if (data.status === 'ok') {
-        commit('setCurrentRoom', data.room)
         commit('setStatusResponse', true)
       } else {
         commit('setStatusResponse', false)
