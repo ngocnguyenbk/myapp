@@ -6,13 +6,19 @@ RSpec.describe ExtendContractForm, type: :model do
   end
 
   describe "Validation" do
+    let(:params) { {} }
+    let(:admin) { double(:admin, id: 1) }
+    subject { described_class.new(params, admin) }
+
     it { should validate_presence_of(:number_months).with_message(:blank) }
   end
 
   describe "#save" do
     let(:contract) { FactoryBot.create :contract, ended_date: "13/12/2020" }
     let(:params) { { number_months: "3" } }
-    let(:contract_form) { described_class.new(params) }
+    let(:admin) { FactoryBot.create :admin }
+
+    let(:contract_form) { described_class.new(params, admin) }
 
     subject { contract_form.save }
 

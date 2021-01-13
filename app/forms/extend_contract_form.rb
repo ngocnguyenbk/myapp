@@ -6,6 +6,14 @@ class ExtendContractForm < BaseForm
 
   validates :number_months, presence: true, numericality: { only_integer: true }
 
+  attr_reader :current_admin
+
+  def initialize(params, current_admin)
+    @current_admin = current_admin
+
+    super params
+  end
+
   def self.name
     "ExtendContract"
   end
@@ -23,6 +31,9 @@ class ExtendContractForm < BaseForm
 
     ActiveRecord::Base.transaction do
       contract.update!(ended_date: extend_ended_date)
+
+      descriptions = attributes.merge(ended_date: contract.ended_date).except(:step)
+      CreateContractHistoryService.new(contract, current_admin, descriptions, "extend").perform
     end
 
     true
