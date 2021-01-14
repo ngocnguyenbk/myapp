@@ -41,7 +41,7 @@ class ContractsController < ApplicationController
   end
 
   def update
-    @form = ExtendContractForm.new(extend_params)
+    @form = ExtendContractForm.new(extend_params, current_admin)
     @form.record = @contract
     if @form.save
       render json: {
