@@ -16,7 +16,7 @@
               :placeHolder="$t('floor.select_holder')"
               typeSelect="single_select"
             />
-            <InputRadioButtons inputId="status" :labelText="$t('floor.room_status')" :options="roomStatus" :valueInput="params.status" v-model="params.status"/>
+            <InputRadioButtons inputId="status" :labelText="$t('floor.room_status')" :options="status" :valueInput="params.status" v-model="params.status"/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('floor.close') }}</button>
@@ -29,7 +29,7 @@
             <FieldConfirm :labelText="$t('floor.room_number')" :value="params.room_number"/>
             <FieldConfirm :labelText="$t('floor.room_area')" :value="params.area"/>
             <FieldConfirm :labelText="$t('floor.room_holder')" :value="collectionUsers[params.holder_id]"/>
-            <FieldConfirm :labelText="$t('floor.room_status')" :value="roomStatus[params.status]"/>
+            <FieldConfirm :labelText="$t('floor.room_status')" :value="status[params.status]"/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="backToRegistration">{{ $t('floor.back') }}</button>
@@ -63,7 +63,16 @@ export default {
       roomStatus: state => state.floor.roomStatus,
       collectionUsers: state => state.floor.users,
       isValid: state => state.floor.isValid
-    })
+    }),
+    status: function() {
+      const self = this
+
+      return this.roomStatus.reduce(function(status, el) {
+          status[el] = self.$t(`floor.${el}`)
+          return status
+        }
+      , {} )
+    }
   },
   data: function() {
     return {

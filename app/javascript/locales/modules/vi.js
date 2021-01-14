@@ -48,6 +48,8 @@ const messages = {
       back: 'Trở về',
       save_change: 'Lưu thay đổi',
       hired: 'Đã thuê',
+      empty: 'Còn trống',
+      deposited: 'Đã đặt cọc',
     },
     contract: {
       contract_id: 'Mã hợp đồng',
@@ -83,11 +85,18 @@ const messages = {
         yes: 'Có',
         close: 'Không',
       },
+      defaultMonth: {
+        month: '{count} tháng'
+      },
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',
       close: 'Đóng',
       upload: 'Upload',
+    },
+    flash: {
+      success: 'Thành công!',
+      unsuccess: 'Không thành công!',
     },
   }
 }

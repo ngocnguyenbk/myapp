@@ -5,11 +5,7 @@ const state = {
   floors: [],
   currentRoom: {},
   users: {},
-  roomStatus: {
-    'hired': 'Hired',
-    'deposited': 'Deposited',
-    'empty': 'Empty'
-  },
+  roomStatus: ['hired', 'deposited', 'empty'],
   isValid: true
 }
 

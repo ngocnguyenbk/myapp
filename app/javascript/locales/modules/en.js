@@ -48,6 +48,8 @@ const messages = {
       back: 'Back',
       save_change: 'Save changes',
       hired: 'Hired',
+      empty: 'Empty',
+      deposited: 'Deposited',
     },
     contract: {
       contract_id: 'Contract id',
@@ -83,11 +85,18 @@ const messages = {
         yes: 'Yes',
         close: 'Close',
       },
+      defaultMonth: {
+        month: '{count} months'
+      },
     },
     upload_file: {
       import_file: 'Import file',
       close: 'Close',
       upload: 'Upload',
+    },
+    flash: {
+      success: 'Success!',
+      unsuccess: 'Unsuccess!',
     },
   }
 }

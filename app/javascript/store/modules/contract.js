@@ -11,13 +11,8 @@ const state = {
   errorMessages: {},
   isIndex: true,
   detailContract: {},
-  defaultMonth: {
-    3: "3 months",
-    6: "6 months",
-    9: "9 months",
-    12: "12 months"
-  },
-  isValid: true
+  defaultMonth: [3, 6, 9, 12],
+  isValid: true,
 }
 
 const actions = {
