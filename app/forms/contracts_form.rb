@@ -39,7 +39,15 @@ class ContractsForm < BaseForm
     true
   end
 
-  delegate :destroy, to: :contract
+  def destroy
+    ActiveRecord::Base.transaction do
+      contract.destroy
+
+      assign_from_model
+      description = attributes.slice(:holder_id, :room_id).merge(time_release: Time.zone.now)
+      CreateContractHistoryService.new(contract, current_admin, description, "terminate").perform
+    end
+  end
 
   private
 
