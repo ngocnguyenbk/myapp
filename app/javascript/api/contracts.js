@@ -44,8 +44,8 @@ export default {
       console.log(error)
     })
   },
-  deleteContract (params, cb) {
-    axios.delete(`/contracts/${params.id}.json`,
+  async deleteContract (params, cb) {
+    await axios.delete(`/contracts/${params.id}.json`,
       { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
     ).then(function(response) {
       cb(response.data)

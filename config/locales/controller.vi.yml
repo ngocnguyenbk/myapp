@@ -9,6 +9,8 @@ vi:
   contracts:
     create:
       success: "Tạo hợp đồng thành công!"
+    destroy:
+      not_allow_delete: "Bạn không thể  xóa contract này."
   batch_create:
     users:
       create:

@@ -40,6 +40,8 @@ class ContractsController < ApplicationController
     @form = ContractsForm.new({}, current_admin)
     @form.record = @contract
     @form.destroy
+  rescue Pundit::NotAuthorizedError => e
+    render json: { status: :unprocessable_entity, errors: t(".#{e.message}") }
   end
 
   def update

@@ -5,12 +5,12 @@ export default {
       if (isValid) {
         this.flashMessage.success({
           time: 3000,
-          message: self.$t('flash.success'),
+          message: self.flashMsg || self.$t('flash.success'),
         })
       } else {
         this.flashMessage.error({
           time: 3000,
-          message: self.$t('flash.unsuccess')
+          message: self.flashMsg || self.$t('flash.unsuccess')
         })
       }
     }
