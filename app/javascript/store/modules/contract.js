@@ -69,10 +69,15 @@ const actions = {
     await contract.extendContract(payload.params, data => {
       if (data.status === 'ok') {
         commit('setStatusResponse', true)
+        commit('setFlashMessage')
         dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
-      } else {
+      } else if (data.status === 'unprocessable_entity') {
         commit('setStatusResponse', false)
+        commit('setFlashMessage')
         commit('setErrors', mixin.methods.handle_single_error(data.errors))
+      } else if ((data.status === 'not_allow')) {
+        commit('setStatusResponse', false)
+        commit('setFlashMessage', data.errors)
       }
     })
   }

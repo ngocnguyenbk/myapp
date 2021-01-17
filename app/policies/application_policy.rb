@@ -22,8 +22,10 @@ class ApplicationPolicy
     create?
   end
 
-  def update?
-    false
+  def update?(record)
+    raise Pundit::NotAuthorizedError, "not_allow_update" unless record.active?
+
+    true
   end
 
   def edit?
