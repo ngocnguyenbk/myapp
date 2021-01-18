@@ -30,8 +30,10 @@ class ApplicationPolicy
     update?
   end
 
-  def destroy?
-    false
+  def destroy?(record)
+    raise Pundit::NotAuthorizedError, "not_allow_delete" unless record.active?
+
+    true
   end
 
   class Scope

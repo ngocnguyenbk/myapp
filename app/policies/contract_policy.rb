@@ -7,6 +7,6 @@ class ContractPolicy < ApplicationPolicy
   end
 
   def destroy?
-    contract.active
+    super contract
   end
 end

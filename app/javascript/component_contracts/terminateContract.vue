@@ -22,6 +22,7 @@
 <script>
 import { mapState } from 'vuex'
 import InputToggleSwitch from '../components/inputToggleSwitch'
+import show_flash_mixins from '../mixins/show_flash'
 
 export default {
   components: {
@@ -29,14 +30,16 @@ export default {
   },
   computed: {
     ...mapState({
-      currentContract: state => state.contract.detailContract
+      currentContract: state => state.contract.detailContract,
+      flashMsg: state => state.contract.flashMsg,
+      isValid: state => state.contract.isValid,
     })
   },
   data: function() {
     return {
       params: {},
       contract: {},
-      confirm : false
+      confirm : false,
     }
   },
   watch: {
@@ -49,14 +52,17 @@ export default {
     }
   },
   methods: {
-    submitDelete: function() {
+    submitDelete: async function() {
       if (!this.confirm) return
-      this.$store.dispatch('contract/deleteContract', { params: this.params })
+      await this.$store.dispatch('contract/deleteContract', { params: this.params })
+
+      this.show_flash(this.isValid)
     }
   },
   updated: function() {
     $('.btn-delete').prop('disabled', !this.confirm)
-  }
+  },
+  mixins: [show_flash_mixins]
 }
 </script>
 
