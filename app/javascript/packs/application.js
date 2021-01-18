@@ -19,7 +19,6 @@ import FlashMessage from '@smartweb/vue-flash-message'
 
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import messages from '../locales/modules/vi.js'
 import store from '../store'
 import Users from '../user.vue'
 import NewUser from '../newUser.vue'
@@ -38,10 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const elementNewUser = document.getElementById('newUserApp')
   const elementFloor = document.getElementById('floorApp')
   const elementContract = document.getElementById('contractApp')
-
   const i18n = new VueI18n({
-    locale: 'vi',
-    messages,
+    locale: locale,
+    messages: loadLocaleMessages(),
   })
 
   if(elementUser != null) {
@@ -80,6 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 })
+
+function loadLocaleMessages() {
+  return require(`../locales/modules/${locale}`).default
+}
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

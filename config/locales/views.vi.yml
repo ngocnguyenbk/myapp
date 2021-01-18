@@ -9,3 +9,6 @@ vi:
       downloads: "Tải về"
       import_user: "Nhập hàng loạt khách hàng"
       link_import_user: "https://docs.google.com/spreadsheets/d/1iCKvk3EDAxFvQGrv2IOoSHkPRFXegjX2/edit#gid=142028446"
+    footer:
+      vi: "Tiếng Việt"
+      en: "English"
