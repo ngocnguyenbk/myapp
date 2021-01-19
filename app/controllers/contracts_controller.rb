@@ -45,6 +45,8 @@ class ContractsController < ApplicationController
   end
 
   def update
+    authorize @contract
+
     @form = ExtendContractForm.new(extend_params, current_admin)
     @form.record = @contract
     if @form.save
@@ -54,6 +56,8 @@ class ContractsController < ApplicationController
     else
       render json: { status: :unprocessable_entity, errors: @form.errors }
     end
+  rescue Pundit::NotAuthorizedError => e
+    render json: { status: :not_allow, errors: t(".#{e.message}") }
   end
 
   private

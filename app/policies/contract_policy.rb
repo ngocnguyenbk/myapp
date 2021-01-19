@@ -6,6 +6,10 @@ class ContractPolicy < ApplicationPolicy
     @contract = contract
   end
 
+  def update?
+    super contract
+  end
+
   def destroy?
     super contract
   end

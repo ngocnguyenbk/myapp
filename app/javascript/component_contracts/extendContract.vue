@@ -64,7 +64,8 @@ export default {
       currentContract: state => state.contract.detailContract,
       defaultMonth: state => state.contract.defaultMonth,
       errorMessages: state => state.contract.errorMessages,
-      isValid: state => state.contract.isValid
+      isValid: state => state.contract.isValid,
+      flashMsg: state => state.contract.flashMsg,
     }),
     months: function() {
       const self = this
@@ -104,6 +105,11 @@ export default {
         this.isConfirm = false
         this.isDone = true
       }
+
+      if (!this.flashMsg) return
+
+      $('#extendContract').modal('toggle')
+      this.show_flash(this.isValid)
     },
     submitDone: async function() {
       this.params.step = 'done'
