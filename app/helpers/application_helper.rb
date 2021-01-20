@@ -8,4 +8,12 @@ module ApplicationHelper
 
     ACTIVE_CLASS
   end
+
+  def active_locale(options)
+    name_of_locale = options.fetch(:locale) { nil }
+
+    return unless name_of_locale == I18n.locale.to_s
+
+    ACTIVE_CLASS
+  end
 end

@@ -15,3 +15,7 @@ html
       = render "shared/flash"
       main.main
         = yield
+    = render "shared/footer"
+  javascript:
+    const defaultLocale = "#{I18n.default_locale}"
+    const locale = "#{I18n.locale || I18n.default_locale}"
