@@ -7,30 +7,30 @@
         </div>
         <div v-show="isRegistration">
           <div class="modal-body">
-              <InputText inputId="first_name" lableText="First name" :valueInput="params.first_name" v-model="params.first_name"/>
-              <InputText inputId="last_name" lableText="Last name" :valueInput="params.last_name" v-model="params.last_name"/>
-              <InputText inputId="email" lableText="Email" :valueInput="params.email" v-model="params.email"/>
-              <InputText inputId="birthday" lableText="Birthday" :valueInput="params.birthday" v-model="params.birthday"/>
-              <InputText inputId="phone" lableText="Phone" :valueInput="params.phone" v-model="params.phone"/>
-              <InputText :inputId="'identity_card'" lableText="Identity card" v-model="params.identity_card" :valueInput="params.identity_card"/>
+              <InputText inputId="first_name" :labelText="$t('user.first_name')" :valueInput="params.first_name" v-model="params.first_name"/>
+              <InputText inputId="last_name" :labelText="$t('user.last_name')" :valueInput="params.last_name" v-model="params.last_name"/>
+              <InputText inputId="email" :labelText="$t('user.email')" :valueInput="params.email" v-model="params.email"/>
+              <InputText inputId="birthday" :labelText="$t('user.birthday')" :valueInput="params.birthday" v-model="params.birthday"/>
+              <InputText inputId="phone" :labelText="$t('user.phone')" :valueInput="params.phone" v-model="params.phone"/>
+              <InputText :inputId="'identity_card'" :labelText="$t('user.identity_card')" v-model="params.identity_card" :valueInput="params.identity_card"/>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="submitConfirm">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('user.close') }}</button>
+            <button type="button" class="btn btn-primary" @click="submitConfirm">{{ $t('user.submit') }}</button>
           </div>
         </div>
         <div v-show="isConfirm">
           <div class="modal-body">
-              <FieldConfirm lableText="First name" :value="params.first_name"/>
-              <FieldConfirm lableText="Last name" :value="params.last_name"/>
-              <FieldConfirm lableText="Email" :value="params.email"/>
-              <FieldConfirm lableText="Birthday" :value="params.birthday"/>
-              <FieldConfirm lableText="Phone" :value="params.phone"/>
-              <FieldConfirm lableText="Identity card" :value="params.identity_card"/>
+              <FieldConfirm :labelText="$t('user.first_name')" :value="params.first_name"/>
+              <FieldConfirm :labelText="$t('user.last_name')" :value="params.last_name"/>
+              <FieldConfirm :labelText="$t('user.email')" :value="params.email"/>
+              <FieldConfirm :labelText="$t('user.birthday')" :value="params.birthday"/>
+              <FieldConfirm :labelText="$t('user.phone')" :value="params.phone"/>
+              <FieldConfirm :labelText="$t('user.identity_card')" :value="params.identity_card"/>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="backToRegistration">Back</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitForm">Save changes</button>
+            <button type="button" class="btn btn-secondary" @click="backToRegistration">{{ $t('user.back') }}</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitForm">{{ $t('user.save_change')}}</button>
           </div>
         </div>
       </div>

@@ -5,11 +5,7 @@ const state = {
   floors: [],
   currentRoom: {},
   users: {},
-  roomStatus: {
-    'hired': 'Hired',
-    'deposited': 'Deposited',
-    'empty': 'Empty'
-  },
+  roomStatus: ['hired', 'deposited', 'empty'],
   isValid: true
 }
 
@@ -30,7 +26,6 @@ const actions = {
   async editRoom({ commit, dispatch }, payload) {
     await floor.updateRoom(payload.params, data => {
       if (data.status === 'ok') {
-        commit('setCurrentRoom', data.room)
         commit('setStatusResponse', true)
       } else {
         commit('setStatusResponse', false)

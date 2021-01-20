@@ -1,6 +1,6 @@
 <template>
   <div class="form-group row">
-    <label :class="['col-form-label', colLable]">{{lableText}}</label>
+    <label :class="['col-form-label', colLable]">{{labelText}}</label>
     <div :class="[colInput]">
       <input class="form-control border-0" :value="value" readonly>
     </div>
@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    lableText: {
+    labelText: {
       type: String,
       required: true
     },

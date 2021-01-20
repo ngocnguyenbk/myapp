@@ -8,9 +8,12 @@ const state = {
   currentPage: 0,
   rooms: {},
   users: {},
-  errorMessases: {},
+  errorMessages: {},
   isIndex: true,
-  detailContract: {}
+  detailContract: {},
+  defaultMonth: [3, 6, 9, 12],
+  isValid: true,
+  flashMsg: '',
 }
 
 const actions = {
@@ -50,9 +53,32 @@ const actions = {
       commit('setDetailContract', data)
     })
   },
-  deleteContract({ dispatch, state }, payload ) {
-    contract.deleteContract(payload.params, data => {
-      dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
+  async deleteContract({ commit, dispatch, state }, payload ) {
+    await contract.deleteContract(payload.params, data => {
+      if (data.status === 'unprocessable_entity') {
+        commit('setStatusResponse', false)
+        commit('setFlashMessage', data.errors)
+      } else {
+        commit('setStatusResponse', true)
+        commit('setFlashMessage')
+        dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
+      }
+    })
+  },
+  async extendContract({ state, commit, dispatch }, payload ) {
+    await contract.extendContract(payload.params, data => {
+      if (data.status === 'ok') {
+        commit('setStatusResponse', true)
+        commit('setFlashMessage')
+        dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
+      } else if (data.status === 'unprocessable_entity') {
+        commit('setStatusResponse', false)
+        commit('setFlashMessage')
+        commit('setErrors', mixin.methods.handle_single_error(data.errors))
+      } else if ((data.status === 'not_allow')) {
+        commit('setStatusResponse', false)
+        commit('setFlashMessage', data.errors)
+      }
     })
   }
 }
@@ -77,15 +103,21 @@ const mutations = {
   setCurrentPage(state, page) {
     state.currentPage = Number(page)
   },
-  setErrors(state, errorMessases) {
-    state.errorMessases = errorMessases
+  setErrors(state, errorMessages) {
+    state.errorMessages = errorMessages
   },
   setIsIndex(state, isIndex) {
     state.isIndex = isIndex
   },
   setDetailContract(state, detailContract) {
     state.detailContract = detailContract
-  }
+  },
+  setStatusResponse(state, status) {
+    state.isValid = status
+  },
+  setFlashMessage(state, msg = '') {
+    state.flashMsg = msg
+  },
 }
 
 export default {

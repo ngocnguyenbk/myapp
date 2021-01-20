@@ -12,10 +12,18 @@ class ContractsForm < BaseForm
   validates :started_date, presence: true
   validates :ended_date, presence: true
 
+  attr_reader :current_admin
+
   delegate :persisted?, :destroy, :id, to: :contract
 
   def self.name
     "Contract"
+  end
+
+  def initialize(params, current_admin)
+    @current_admin = current_admin
+
+    super params
   end
 
   def save
@@ -25,12 +33,21 @@ class ContractsForm < BaseForm
       contract.update!(attributes)
 
       contract.room.update!(status: "deposited")
+      CreateContractHistoryService.new(contract, current_admin, attributes, "add").perform
     end
 
     true
   end
 
-  delegate :destroy, to: :contract
+  def destroy
+    ActiveRecord::Base.transaction do
+      contract.destroy
+
+      assign_from_model
+      description = attributes.slice(:holder_id, :room_id).merge(time_release: Time.zone.now)
+      CreateContractHistoryService.new(contract, current_admin, description, "terminate").perform
+    end
+  end
 
   private
 

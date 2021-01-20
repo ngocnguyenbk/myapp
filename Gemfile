@@ -23,6 +23,10 @@ gem "rack-dev-mark"
 gem "virtus"
 gem "email_validator"
 gem "seed-fu"
+gem "carrierwave"
+gem "rubyXL"
+gem "config"
+gem "pundit"
 
 group :development, :test do
   gem "pry-rails"

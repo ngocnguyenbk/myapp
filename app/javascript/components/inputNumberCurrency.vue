@@ -1,6 +1,6 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLable]">{{lableText}}</label>
+    <label :for="inputId" :class="['col-form-label', colLable]">{{labelText}}</label>
     <div :class="[colInput]">
       <input type="text" class="form-control" :id="inputId" v-model="inputVal" autocomplete="off">
       <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
@@ -20,7 +20,7 @@ export default {
       type: String,
       required: true
     },
-    lableText: {
+    labelText: {
       type: String,
       required: true
     },

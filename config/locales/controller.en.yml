@@ -9,3 +9,11 @@ en:
   contracts:
     create:
       success: "Create contract success!"
+    destroy:
+      not_allow_delete: "You can't delete this contract."
+    update:
+      not_allow_update: "You can't update this contract."
+  batch_create:
+    users:
+      create:
+        success: "Import users success!"

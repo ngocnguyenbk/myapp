@@ -1,0 +1,27 @@
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.site-footer {
+  .container {
+    padding: 1em 0px;
+  }
+
+  a, p {
+    color: white;
+    margin-bottom: 0px;
+    text-decoration: none;
+  }
+
+}
+
+footer .is-active {
+  font-weight: bold;
+}
+
+.copyright-text {
+  font-size: 1em;
+}

@@ -1,60 +1,60 @@
 <template>
   <div class="bd-example w-100">
     <div class="btn-new-contract">
-      <button class="btn btn-primary" @click="backToIndex">Back</button>
+      <button class="btn btn-primary" @click="backToIndex">{{ $t('contract.back') }}</button>
     </div>
     <hr/>
     <div class="d-flex">
-      <h3>New contract</h3>
+      <h3>{{ $t('contract.new_contract') }}</h3>
     </div>
     <hr/>
     <form id="new-contract" class="w-90 ml-auto mr-auto" @submit.prevent="submitForm">
       <div class="form-input p-2">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputSelect2 inputId="holder_id" placeHolder="Select holder" lableText="Holder name" typeSelect="single_select"
+            <InputSelect2 inputId="holder_id" :placeHolder="$t('contract.select_holder')" :labelText="$t('contract.holder_name')" typeSelect="single_select"
                           :options="collectionUsers"
                           :selected="holder_id"
                           v-model="holder_id"
-                          :eMsg="errorMessases['holder_id']? errorMessases['holder_id'] : ''"
+                          :eMsg="errorMessages['holder_id']? errorMessages['holder_id'] : ''"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputSelect2 inputId="room_id" placeHolder="Select room" lableText="Room number" typeSelect="single_select"
+            <InputSelect2 inputId="room_id" :placeHolder="$t('contract.select_room')" :labelText="$t('contract.room_number')" typeSelect="single_select"
                           :options="collectionRooms"
                           :selected="room_id"
                           v-model="room_id"
-                          :eMsg="errorMessases['room_id']? errorMessases['room_id'] : ''"
+                          :eMsg="errorMessages['room_id']? errorMessages['room_id'] : ''"
             />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputNumberCurrency inputId="room_price" lableText="Room price" v-model="room_price"
+            <InputNumberCurrency inputId="room_price" :labelText="$t('contract.room_price')" v-model="room_price"
                        :valueInput="room_price"
-                       :eMsg="errorMessases['room_price']? errorMessases['room_price'] : ''"
+                       :eMsg="errorMessages['room_price']? errorMessages['room_price'] : ''"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputNumberCurrency inputId="deposited_money" lableText="Deposited" v-model="deposited_money"
+            <InputNumberCurrency inputId="deposited_money" :labelText="$t('contract.deposited')" v-model="deposited_money"
                                  :valueInput="deposited_money"
             />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputText inputId="started_date" lableText="Started date" v-model="started_date" typeInput="date"
-                       :eMsg="errorMessases['started_date']? errorMessases['started_date'] : ''"
+            <InputText inputId="started_date" :labelText="$t('contract.start_date')" v-model="started_date" typeInput="date"
+                       :eMsg="errorMessages['started_date']? errorMessages['started_date'] : ''"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputText inputId="ended_date" lableText="Ended date" v-model="ended_date" typeInput="date"
-                       :eMsg="errorMessases['ended_date']? errorMessases['ended_date'] : ''"
+            <InputText inputId="ended_date" :labelText="$t('contract.end_date')" v-model="ended_date" typeInput="date"
+                       :eMsg="errorMessages['ended_date']? errorMessages['ended_date'] : ''"
             />
           </div>
         </div>
       </div>
-      <button class="btn btn-primary float-right mt-2">Submit</button>
+      <button class="btn btn-primary float-right mt-2">{{ $t('contract.submit') }}</button>
     </form>
   </div>
 </template>
@@ -85,7 +85,7 @@ export default {
     ...mapState({
       collectionRooms: state => state.contract.rooms,
       collectionUsers: state => state.contract.users,
-      errorMessases: state => state.contract.errorMessases,
+      errorMessages: state => state.contract.errorMessages,
       isIndex: state => state.contract.isIndex
     })
   },

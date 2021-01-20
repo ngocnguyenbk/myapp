@@ -3,7 +3,7 @@
     <div  class="d-flex">
       <FlashMessage :position="'left top'"></FlashMessage>
       <div :class="['new-user', { 'mb-2': !showPaginate }]">
-        <a class="btn btn-primary" href="/users/new">New user</a>
+        <a class="btn btn-primary" :href="newUserPath">{{ $t('user.new_user') }}</a>
       </div>
       <div class="ml-auto">
         <Paginator
@@ -31,6 +31,11 @@ export default {
     TableUser,
     Paginator
   },
+  data: function() {
+    return {
+      newUserPath: `/${locale}/users/new`,
+    }
+  },
   computed: {
     ...mapState({
       params: state => state.user.params,
@@ -53,7 +58,7 @@ export default {
   methods: {
     loadUsers: function(current_page) {
       this.$store.dispatch('user/submitFormSearch', {params: this.params, page: current_page })
-    }
+    },
   }
 }
 </script>

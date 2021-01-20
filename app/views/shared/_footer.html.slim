@@ -1,0 +1,11 @@
+footer.site-footer.bg-primary
+  .container
+    .row
+      .col-md-8.col-sm-6.col-xs-12
+        p.copyright-text Copyright &copy; 2020 All Rights Reserved by t-manh and nv-ngoc
+      .col-md-4.col-sm-6.col-xs-12
+        .row
+          .col-md-6.col-sm-6.col-xs-12.text-center
+            = link_to t(".vi"), url_for( locale: "vi" ), class: "text-light #{active_locale(locale: "vi")}"
+          .col-md-6.col-sm-6.col-xs-12.text-center
+            = link_to t(".en"), url_for( locale: "en" ), class: "text-light #{active_locale(locale: "en")}"

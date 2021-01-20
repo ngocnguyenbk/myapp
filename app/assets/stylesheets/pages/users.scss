@@ -1,5 +1,6 @@
 body[data-controller="users"] {
-  &[data-action="index"]{
+  &[data-action="index"],
+  &[data-action="new"] {
     .table{
       .table-header{
         background-color: #3c88f0;

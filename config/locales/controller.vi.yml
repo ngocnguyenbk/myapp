@@ -1,0 +1,19 @@
+vi:
+  registrations:
+    create:
+      failure: "Tạo admin thất bại!"
+      success: "Tạo admin thành công!"
+  users:
+    create:
+      success: "Tạo khách hàng thành công!"
+  contracts:
+    create:
+      success: "Tạo hợp đồng thành công!"
+    destroy:
+      not_allow_delete: "Bạn không thể  xóa hợp đồng này."
+    update:
+      not_allow_update: "Bạn không thể  xóa hợp đồng này."
+  batch_create:
+    users:
+      create:
+        success: "Tạo khách hàng thành công!"
