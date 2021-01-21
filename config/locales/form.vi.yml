@@ -1,4 +1,4 @@
-en:
+vi:
   users_import_form:
     duplicated_email: "Trùng email với dòng %{dup_line}"
     duplicated_phone: "Trùng số điện thoại với phòng %{dup_line}"
