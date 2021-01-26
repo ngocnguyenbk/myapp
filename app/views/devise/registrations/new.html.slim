@@ -1,0 +1,16 @@
+h2.row.justify-content-center
+  = t(".sign_up")
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = f.input :full_name, autofocus: true
+  = f.input :email
+  = f.input :birthday, as: :date, start_year: Date.today.year - 50,
+                              end_year: Date.today.year - 12,
+                              order: [:year, :month, :day]
+  = f.input :phone
+  = f.input :role, as: :radio_buttons, collection: [["admin", "#{t('simple_form.labels.admin')}"], ["accountant", "#{t('simple_form.labels.accountant')}"]],
+                   label_method: :second, value_method: :first, lable: false
+  = f.input :password
+  = f.input :password_confirmation
+  .form-group.row.justify-content-center
+    = f.submit t(".sign_up"), class: "btn btn-primary mr-1"
+    = render "devise/shared/links"

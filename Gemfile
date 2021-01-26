@@ -8,16 +8,31 @@ gem "mysql2"
 gem "puma", "~> 4.1"
 gem "sass-rails", ">= 6"
 gem "webpacker", "~> 4.0"
-gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "dotenv-rails"
-
-
+gem "slim"
 gem "bootsnap", ">= 1.4.2", require: false
+gem "paranoia"
+gem "devise"
+gem "simple_form"
+gem "active_model_serializers"
+gem "faker"
+gem "kaminari"
+gem "activerecord-import"
+gem "rack-dev-mark"
+gem "virtus"
+gem "email_validator"
+gem "seed-fu"
+gem "carrierwave"
+gem "rubyXL"
+gem "config"
+gem "pundit"
 
 group :development, :test do
   gem "pry-rails"
   gem "pry", "0.13.1"
+  gem "factory_bot_rails"
+  gem "rspec-rails"
 end
 
 group :development do
@@ -34,12 +49,16 @@ group :development do
   gem "capistrano-yarn"
   gem "capistrano-bundler", require: false
   gem "capistrano-rvm"
+  gem "bullet"
 end
 
 group :test do
   gem "capybara", ">= 2.15"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "database_cleaner"
+  gem "shoulda-matchers"
+  gem "simplecov", require: false
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

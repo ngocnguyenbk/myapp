@@ -1,0 +1,5 @@
+en:
+  users_import_form:
+    duplicated_email: "Duplicated email with line %{dup_line}"
+    duplicated_phone: "Duplicated phone with line %{dup_line}"
+    exists_room: "Room %{room_number} not exists"

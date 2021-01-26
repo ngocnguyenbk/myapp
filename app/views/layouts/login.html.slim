@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title
+      | Myapp - Login
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", media: "all"
+  body.app.flex-row
+    .container.mt-5
+      = render "shared/flash"
+      .row.justify-content-center
+        .col-md-6
+          .card-group
+            .card-body.p-4
+              .card-body.border.border-secondary
+                = yield

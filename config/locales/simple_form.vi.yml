@@ -1,0 +1,61 @@
+vi:
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+    day_names: [Chủ nhật, Thứ hai, Thứ Ba, Thứ tư, Thứ năm, Thứ sáu, Thứ bảy]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, Tháng một, Tháng hai, Tháng ba, Tháng tư, Tháng năm, Tháng sáu, Tháng bảy, Tháng tám, Tháng chín, Tháng mười, Tháng mừoi một, Tháng mừoi hai]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    # Used in date_select and datetime_select.
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+    am: "am"
+    pm: "pm"
+  simple_form:
+    "yes": 'Có'
+    "no": 'Không'
+    required:
+      text: ' bắt buộc'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Hãy xem lại các vấn đề sau:"
+    labels:
+      defaults:
+        password: 'Mật khẩu'
+        full_name: 'Họ và tên'
+        email: 'Email'
+        birthday: 'Ngày sinh'
+        phone: 'Số điện thoại'
+        password_confirmation: 'Nhập lại mật khẩu'
+        role: 'Vai trò'
+      admin: 'Chủ'
+      accountant: 'Kế toán'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    # include_blanks:
+    #   defaults:
+    #     age: 'Rather not say'
+    # prompts:
+    #   defaults:
+    #     age: 'Select your age'

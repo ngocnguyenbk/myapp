@@ -1,0 +1,55 @@
+body{
+  background-color: white;
+}
+.icon-color{
+  color: #005b80;
+}
+
+$red-color: #D9534F;
+$green-color: #449D44;
+$origin-color: #F0AD4E;
+
+.dot{
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #EEE;
+
+  &.hired{
+    background-color: $green-color;
+  }
+  &.empty{
+    animation:blinkingText 2s infinite;
+    background-color: $red-color;
+  }
+  &.deposited{
+    background-color: $origin-color;
+  }
+  &.active{
+    background-color: $green-color;
+  }
+  &.inactive{
+    background-color: $red-color;
+  }
+  &.dot-sm{
+    margin: 4px 4px;
+    height: 10px;
+    width: 10px;
+  }
+  &.dot-lg{
+    margin: 4px 4px;
+    height: 15px;
+    width: 15px;
+  }
+}
+
+@keyframes blinkingText{
+  0%{ background-color: $red-color; }
+  49%{ background-color: $red-color; }
+  60%{ background-color: transparent; }
+  99%{ background-color: transparent; }
+  100%{ background-color: $red-color; }
+}
+
+main.main {
+  margin-bottom: 80px;
+}

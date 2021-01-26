@@ -125,3 +125,10 @@ vi /var/www/myapp/shared/config/database.yml # add config database
 # Ruby Dev server
 bundle exec cap development deploy
 ```
+
+5. Create admin
+
+```
+cp myapp/.env.sample myapp/.env
+bundle exec rails db:seed_fu
+```

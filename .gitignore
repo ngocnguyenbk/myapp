@@ -24,6 +24,7 @@
 /config/master.key
 
 /public/packs
+/public/uploads
 /public/packs-test
 /node_modules
 /yarn-error.log
@@ -31,3 +32,11 @@ yarn-debug.log*
 .yarn-integrity
 /config/database.yml
 .ssh/
+.env
+
+# Ignore "simplecov" coverage
+coverage/
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

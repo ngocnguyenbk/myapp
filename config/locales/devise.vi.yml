@@ -1,0 +1,22 @@
+# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+
+vi:
+  devise:
+    shared:
+      links:
+        log_in: "Đăng nhập"
+        sign_up: "Đăng kí"
+    failure:
+      invalid: "Sai email hoặc mật khẩu"
+      not_found_in_database: "Sai email hoặc mật khẩu"
+      unauthenticated: "Bạn cần đăng nhập trước khi sử dụng dịch vụ"
+    registrations:
+      new:
+        sign_up: "Đăng kí"
+    sessions:
+      new:
+        log_in: "Đăng nhập"
+      admin:
+        email_blank: "Email bị bỏ trống"
+        password_blank: "Password bị bỏ trống"
+        success: "Đăng nhập thành công"

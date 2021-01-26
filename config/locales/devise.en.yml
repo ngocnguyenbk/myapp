@@ -1,0 +1,22 @@
+# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+
+en:
+  devise:
+    shared:
+      links:
+        log_in: "Log in"
+        sign_up: "Sign up"
+    failure:
+      invalid: "Invalid email or password"
+      not_found_in_database: "Invalid email or password"
+      unauthenticated: "You need to sign in before continuing"
+    registrations:
+      new:
+        sign_up: "Sign up"
+    sessions:
+      new:
+        log_in: "Log in"
+      admin:
+        email_blank: "Email is not blank"
+        password_blank: "Password is not blank"
+        success: "You are already signed in"
