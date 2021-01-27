@@ -35,21 +35,31 @@
 #
 # Global options
 # --------------
-#  set :ssh_options, {
-#    keys: %w(/home/user_name/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-# server "example.com",
-#   user: "user_name",
-#   roles: %w{web app},
-#   ssh_options: {
-#     user: "user_name", # overrides user setting above
-#     keys: %w(/home/user_name/.ssh/id_rsa),
-#     forward_agent: false,
-#     auth_methods: %w(publickey password)
-#     # password: "please use keys"
-#   }
+set :stage, :production
+set :rails_env, :production
+set :user, :deploy
+set :deploy_to, "/var/www/myapp_prd"
+
+server "107.167.80.122", user: fetch(:user), roles: %w[web app db]
+
+set :branch, :master
+
+set :application, "myapp_prd"
+set :ssh_options,
+    keys: %w[.ssh/deploy_stg_bms.pem],
+    forward_agent: true,
+    user: fetch(:user),
+    port: 28_301
+
+namespace :deploy do
+  desc "link dotenv"
+  task :link_dotenv do
+    on roles(:app) do
+      execute "ln -s /home/deploy/.env #{release_path}/.env"
+    end
+  end
+  before "deploy:assets:precompile", "deploy:link_dotenv"
+end

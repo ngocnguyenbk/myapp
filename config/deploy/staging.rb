@@ -58,6 +58,7 @@ set :stage, :staging
 set :rails_env, :staging
 set :user, :deploy
 set :deploy_to, "/var/www/myapp"
+set :application, "my_app"
 
 server "107.167.80.122", user: fetch(:user), roles: %w[app db batch]
 
