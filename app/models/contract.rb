@@ -3,6 +3,8 @@ class Contract < ApplicationRecord
 
   NUMBER_MONTHS = 12
 
+  has_many :invoices
+
   belongs_to :holder, class_name: User.name, optional: true
   belongs_to :room, class_name: Room.name, optional: true
 
