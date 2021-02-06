@@ -8,3 +8,9 @@ import_users:
     birthday: 5
     identity_card: 6
     room_number: 7
+unit_price:
+  electric: 4_000
+  water: 25_000
+  parking_fee: 150_000
+  internet: 100_000
+  service: 200_000

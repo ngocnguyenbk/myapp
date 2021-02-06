@@ -24,6 +24,7 @@ import Users from '../user.vue'
 import NewUser from '../newUser.vue'
 import Floors from '../floor.vue'
 import Contracts from '../contract.vue'
+import Invoices from '../invoice.vue'
 
 Vue.use(FlashMessage)
 Vue.use(VueI18n)
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const elementNewUser = document.getElementById('newUserApp')
   const elementFloor = document.getElementById('floorApp')
   const elementContract = document.getElementById('contractApp')
+  const elementInvoice = document.getElementById('invoiceApp')
   const i18n = new VueI18n({
     locale: locale,
     messages: loadLocaleMessages(),
@@ -75,6 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
       store,
       i18n,
       render: h => h(Contracts, {})
+    })
+  }
+
+  if(elementInvoice != null) {
+    var invoiceApp = new Vue({
+      el: '#invoiceApp',
+      store,
+      i18n,
+      render: h => h(Invoices, {})
     })
   }
 })
