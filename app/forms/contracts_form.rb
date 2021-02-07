@@ -41,6 +41,9 @@ class ContractsForm < BaseForm
 
   def destroy
     ActiveRecord::Base.transaction do
+      room = contract.room
+      room.update!(status: "empty", holder_id: nil)
+      room.users.destroy_all
       contract.destroy
 
       assign_from_model
