@@ -1,5 +1,5 @@
 <template>
-  <div :id="contentRoom" class="d-flex flex-column" data-toggle="modal" data-target="#editRoom" @click="setCurrentRoom">
+  <div :id="contentRoom" class="mw-20 col d-flex flex-column" data-toggle="modal" data-target="#editRoom" @click="setCurrentRoom">
     <div :class="['dot dot-lg ml-auto', statusRoom]"></div>
     <div class="text-center">{{room.room_number}}</div>
     <div class="d-flex mt-auto">
@@ -41,4 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .mw-20 {
+    max-width: 20% !important;
+  }
 </style>
