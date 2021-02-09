@@ -1,9 +1,15 @@
 class Invoice < ApplicationRecord
-  has_one :item_electrics, class_name: Item::Electric.name
-  has_one :item_internets, class_name: Item::Internet.name
-  has_one :item_parking_fees, class_name: Item::ParkingFee.name
-  has_one :item_services, class_name: Item::Service.name
-  has_one :item_waters, class_name: Item::Water.name
+  has_one :item_electric, class_name: Item::Electric.name
+  has_one :item_internet, class_name: Item::Internet.name
+  has_one :item_parking_fee, class_name: Item::ParkingFee.name
+  has_one :item_service, class_name: Item::Service.name
+  has_one :item_water, class_name: Item::Water.name
+
+  has_many :item_electrics, class_name: Item::Electric.name
+  has_many :item_internets, class_name: Item::Internet.name
+  has_many :item_parking_fees, class_name: Item::ParkingFee.name
+  has_many :item_services, class_name: Item::Service.name
+  has_many :item_waters, class_name: Item::Water.name
 
   belongs_to :contract
 

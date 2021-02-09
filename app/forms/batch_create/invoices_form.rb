@@ -13,8 +13,9 @@ module BatchCreate
       "BatchCreate::Invoices"
     end
 
-    def initialize
+    def initialize(invoice_attributes = {})
       @current_date = Time.zone.now
+      @invoice_attributes = invoice_attributes
     end
 
     def build_form
@@ -35,11 +36,39 @@ module BatchCreate
       invoice_detail
     end
 
+    # rubocop:disable Metrics/AbcSize
+    def save
+      unit_price_electric = Settings.unit_price.electric
+      unit_price_water = Settings.unit_price.water
+      unit_price_internet = Settings.unit_price.internet
+      unit_price_parking_fee = Settings.unit_price.parking_fee
+      unit_price_service = Settings.unit_price.service
+
+      resource_item = []
+      service_item = []
+
+      ActiveRecord::Base.transaction do
+        invoice_attributes.to_h.each_with_object({}) do |(_room_number, item)|
+          invoice = Invoice.create! item[:invoice]
+          resource_item.push invoice.item_electrics.new item[:electric].merge(unit: "ele_unit", unit_price: unit_price_electric)
+          resource_item.push invoice.item_waters.new item[:water].merge(unit: "wat_unit", unit_price: unit_price_water)
+          service_item.push invoice.item_internets.new item[:internet].merge(unit: "int_unit", unit_price: unit_price_internet)
+          service_item.push invoice.item_parking_fees.new item[:parking_fee].merge(unit: "paf_unit",
+                                                                                   unit_price: unit_price_parking_fee)
+          service_item.push invoice.item_services.new item[:service].merge(unit: "ser_unit", unit_price: unit_price_service)
+        end
+        ResourceItem.import! resource_item
+        ServiceItem.import! service_item
+      end
+    end
+    # rubocop:enable Metrics/AbcSize
+
     private
 
     def add_contract(contract)
       {
         contract: {
+          contract_id: contract.id,
           deposited_money: contract.deposited_money,
           room_price: contract.room_price
         }
@@ -61,8 +90,8 @@ module BatchCreate
       wat_start = 0
 
       if invoice_month_ago.present?
-        electric = invoice_month_ago.item_electrics
-        water = invoice_month_ago.item_waters
+        electric = invoice_month_ago.item_electric
+        water = invoice_month_ago.item_water
 
         ele_start = electric.end_number
         wat_start = water.end_number
@@ -94,7 +123,7 @@ module BatchCreate
     end
 
     def rooms
-      @rooms ||= Room.all.includes(contract_active: [:holder, invoice_month_ago: [:item_electrics, :item_waters]])
+      @rooms ||= Room.all.includes(contract_active: [:holder, invoice_month_ago: [:item_electric, :item_water]])
     end
   end
 end
