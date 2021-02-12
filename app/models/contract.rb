@@ -4,6 +4,7 @@ class Contract < ApplicationRecord
   NUMBER_MONTHS = 12
 
   has_many :invoices
+  has_one :invoice_month_ago, -> { month_ago }, class_name: Invoice.name
 
   belongs_to :holder, class_name: User.name, optional: true
   belongs_to :room, class_name: Room.name, optional: true
