@@ -90,6 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
       render: h => h(BatchCreateNewInvoices, {})
     })
   }
+
+  if(elementInvoice != null) {
+    var invoiceApp = new Vue({
+      el: '#invoiceApp',
+      store,
+      i18n,
+      render: h => h(Invoices, {})
+    })
+  }
 })
 
 function loadLocaleMessages() {

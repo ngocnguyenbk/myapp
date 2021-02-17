@@ -8,7 +8,7 @@
           <td rowspan="2">{{ $t('invoice.room') }}</td>
           <td rowspan="2">{{ $t('invoice.deposited') }}</td>
           <td rowspan="2" class="w-100px">{{ $t('invoice.price') }}</td>
-          <td colspan="4">{{ $t('invoice.elecitric') }}</td>
+          <td colspan="4">{{ $t('invoice.electric') }}</td>
           <td colspan="4">{{ $t('invoice.water') }}</td>
           <td rowspan="2">{{ $t('invoice.internet') }}</td>
           <td rowspan="2">{{ $t('invoice.parking_fee') }}</td>

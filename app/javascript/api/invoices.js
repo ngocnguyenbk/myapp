@@ -19,5 +19,14 @@ export default {
     }).catch(function (error) {
       console.log(error.response)
     });
-  }
+  },
+  loadWithCondition (params, cb) {
+    axios.get('/invoices.json', {
+      params: params
+    }).then(function(response) {
+      cb(response.data)
+    }).catch(function(error) {
+      console.log(error.response)
+    })
+  },
 }

@@ -93,7 +93,7 @@ const messages = {
       room: 'Phòng',
       deposited: 'Đặt cọc',
       price: 'Tiền phòng',
-      elecitric: 'Điện',
+      electric: 'Điện',
       water: 'Nước',
       internet: 'Internet',
       parking_fee: 'Gửi xe',
@@ -111,7 +111,12 @@ const messages = {
       check_form: 'Kiểm tra',
       submit_form: 'Lưu lại',
       error_msg: 'Vui lòng kiểm tra lại dữ liệu phòng {room}',
-      success_msg: 'Dữ liệu thỏa mãn'
+      success_msg: 'Dữ liệu thỏa mãn',
+      batch_create: 'Tạo mới hàng loạt',
+      invoice_id: 'Mã hóa đơn',
+      month: 'Tháng',
+      total_income: 'Tổng thu',
+      export_print: 'Xuất/In',
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',
