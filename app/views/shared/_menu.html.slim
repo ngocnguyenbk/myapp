@@ -10,7 +10,7 @@ nav.navbar.navbar-inverse.navbar-dark.bg-primary
       li.w-100px.text-center
         = link_to t(".contracts"), contracts_path, class: "p-2 text-light #{active_for(controller: "contracts")}"
       li.w-150px.text-center
-        = link_to t(".invoices"), new_invoice_path, class: "p-2 text-light #{active_for(controller: "invoices")}"
+        = link_to t(".invoices"), invoices_path, class: "p-2 text-light #{active_for(controller: "invoices")}"
       li.w-100px.text-center.dropdown
         = link_to t(".downloads"), "#", class: "text-light", data: { toggle: "dropdown"}
         .dropdown-menu.position-absolute
