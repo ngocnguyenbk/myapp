@@ -5,6 +5,7 @@ vi:
       user: "Khách"
       floors: "Tầng"
       contracts: "Hợp đồng"
+      invoices: "Hóa đơn"
       log_out: "Đăng xuất"
       downloads: "Tải về"
       import_user: "Nhập hàng loạt khách hàng"

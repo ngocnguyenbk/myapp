@@ -5,6 +5,7 @@ en:
       user: "Users"
       floors: "Floors"
       contracts: "Contracts"
+      invoices: "Invoices"
       log_out: "Log out"
       downloads: "Downloads"
       import_user: "Import user"
