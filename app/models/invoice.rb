@@ -14,4 +14,5 @@ class Invoice < ApplicationRecord
   belongs_to :contract
 
   scope :month_ago, -> { where(date_export: 1.month.ago.beginning_of_month..1.month.ago.end_of_month) }
+  scope :ordered, -> { includes(contract: :room).order(date_export: :DESC).order("rooms.room_number ASC") }
 end

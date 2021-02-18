@@ -1,4 +1,12 @@
 class InvoicesPresenter
+  PRELOAD_TABLE = [
+    :item_electric,
+    :item_internet,
+    :item_parking_fee,
+    :item_service,
+    :item_water
+  ].freeze
+
   def initialize(params)
     @params = params
     @limit = Kaminari.config.default_per_page
