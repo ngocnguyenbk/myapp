@@ -93,7 +93,7 @@ const messages = {
       room: 'Room',
       deposited: 'Deposited',
       price: 'Room price',
-      elecitric: 'Elecitric',
+      electric: 'Electric',
       water: 'Water',
       internet: 'Internet',
       parking_fee: 'Parking fee',
@@ -111,7 +111,12 @@ const messages = {
       check_form: 'Check data',
       submit_form: 'Submit',
       error_msg: 'Please check data for room {room} again',
-      success_msg: 'Data is valid'
+      success_msg: 'Data is valid',
+      batch_create: 'Batch create invoices',
+      invoice_id: 'Invoice ID',
+      month: 'Month',
+      total_income: 'Total income',
+      export_print: 'Export/Print',
     },
     upload_file: {
       import_file: 'Import file',

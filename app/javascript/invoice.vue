@@ -1,16 +1,64 @@
 <template>
   <div id="app">
-    <FlashMessage :position="'right top'"></FlashMessage>
-    <NewInvoices />
+    <div class="d-flex mb-2">
+      <FlashMessage :position="'right top'"></FlashMessage>
+      <div>
+        <a class="btn btn-primary" :href="batchCreateInvoicePath">{{ $t('invoice.batch_create') }}</a>
+      </div>
+      <div class="ml-auto">
+        <Paginator
+          :currentPage="currentPage"
+          :showPaginate="showPaginate"
+          :totalPages="totalPages"
+          :loadObjects="loadInvoices"
+        />
+      </div>
+      <br>
+    </div>
+    <TableInvoice
+      :invoices="invoices"
+    />
   </div>
 </template>
 
 <script>
-import NewInvoices from './component_invoices/newInvoices'
+  import { mapState, mapActions } from 'vuex'
+  import TableInvoice from './component_invoices/tableInvoices.vue'
+  import Paginator from './components/paginator.vue'
 
-export default {
-  components: {
-    NewInvoices
+  export default  {
+    components: {
+      TableInvoice,
+      Paginator,
+    },
+    data: function() {
+      return {
+        batchCreateInvoicePath: `/${locale}/batch_create/invoices/new`,
+      }
+    },
+    computed: {
+      ...mapState({
+        params: state => state.invoice.params,
+        totalPages: state => state.invoice.totalPages,
+        showPaginate: state => state.invoice.showPaginate,
+        invoices: state => state.invoice.invoices,
+      }),
+      currentPage: {
+        get() {
+          return this.$store.state.invoice.currentPage
+        },
+        set(val) {
+          this.$store.commit('invoice/setCurrentPage', val)
+        }
+      }
+    },
+    created: function() {
+      this.$store.dispatch('invoice/getInvoices')
+    },
+    methods: {
+      loadInvoices: function(current_page) {
+        this.$store.dispatch('invoice/submitFormSearch', { params: this.params, page: current_page })
+      }
+    }
   }
-}
 </script>
