@@ -65,7 +65,7 @@ export default {
         pafQty: this.item.parking_fee.quantity,
         serTotal: this.item.service.total,
         invReduce: this.item.invoice.reduce,
-        total: 0
+        total: 0,
       }
     }
   },

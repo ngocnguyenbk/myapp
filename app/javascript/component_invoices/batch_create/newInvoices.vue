@@ -43,7 +43,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import show_flash_mixins from '../mixins/show_flash'
+import show_flash_mixins from '../../mixins/show_flash'
 
 import RowInvoiceForm from './rowInvoiceForm'
 
