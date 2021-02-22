@@ -1,4 +1,5 @@
 import invoice from '../../api/invoices'
+import mixin from '../../mixins/handle_errors'
 
 const state = {
   params: {},
@@ -8,6 +9,26 @@ const state = {
   currentPage: 0,
   invoicesForm: {},
   inputForm: {},
+  rooms: {},
+  newInvoice: {
+    month: '',
+    room_id: '',
+    room_price: '',
+    day_used_per_month: '',
+    electric_start: '',
+    electric_end: '',
+    water_start: '',
+    water_end: '',
+    unit_price_internet: '',
+    unit_price_parking_fee: '',
+    quantity_parking: '',
+    unit_price_service_fee: '',
+    reduce: '',
+    total: '',
+    electric_unit_price: 0,
+    water_unit_price: 0,
+  },
+  errorMessages: {},
 }
 
 const actions = {
@@ -31,8 +52,38 @@ const actions = {
   createInvoices({ commit }, payload) {
     invoice.createInvoices(payload.params, data => {
       if (data.status === 'ok') {
-        window.location.href = '/contracts'
+        window.location.href = '/invoices'
       }
+    })
+  },
+  getRooms({ commit }) {
+    invoice.loadRooms({}, rooms => {
+      commit('setRooms', rooms)
+    })
+  },
+  createInvoice({ commit }, payload) {
+    invoice.createInvoice(payload, data => {
+      if (data.status == 'ok') {
+        window.location.href = '/invoices'
+      } else {
+        commit('setErrors', mixin.methods.handle_errors({ 0: data.errors }))
+      }
+    })
+  },
+  getRoom({ commit }, payload) {
+    invoice.loadOneRoom(payload, data => {
+      if (data.status == 'ok') {
+        console.log(data)
+        commit('setInputNewInvoice', data.data)
+      }
+    })
+  },
+  setInputNewInvoiceForm({ commit }, payload) {
+    commit('setInputNewInvoice', payload)
+  },
+  getResoursePrice({ commit }) {
+    invoice.getResourcePrice({}, data => {
+      commit('setResourceUnitPrice', data)
     })
   }
 }
@@ -53,6 +104,21 @@ const mutations = {
     state.totalPages = data.total_pages
     state.showPaginate = data.total_pages > 1
     state.invoices = data.data
+  },
+  setRooms(state, rooms) {
+    state.rooms = rooms
+  },
+  setErrors(state, errorMessages) {
+    state.errorMessages = errorMessages
+  },
+  setInputNewInvoice(state, payload) {
+    for (const key in payload) {
+      state.newInvoice[key] = payload[key]
+    }
+  },
+  setResourceUnitPrice(state, payload) {
+    state.newInvoice.electric_unit_price = payload.build.electric_unit_price
+    state.newInvoice.water_unit_price = payload.build.water_unit_price
   },
 }
 

@@ -2,24 +2,39 @@
   <div class="form-group row">
     <label :for="inputId" :class="['col-form-label', colLabel]">{{ labelText }}</label>
     <div :class="[colInput]">
-      <input :type="typeInput" class="form-control" :id="inputId" v-model="inputVal" :disabled="disabled">
+      <Datepicker
+        v-model="inputVal"
+        name="month_export-invoice"
+        :id="inputId"
+        :language="locale[language]"
+        :format="dateFormat"
+        :minimum-view="minimumView" 
+        :maximum-view="maximumView"
+      >
+      </Datepicker>
       <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker'
+import { en, vi } from 'vuejs-datepicker/dist/locale'
+
 export default {
   data: function() {
     return {
-      inputVal: this.valueInput
+      inputVal: this.valueInput,
+      locale: {
+        "en": en,
+        "vi": vi,
+      }
     }
   },
+  components: {
+    Datepicker,
+  },
   props: {
-    typeInput: {
-      type: String,
-      default: 'text'
-    },
     inputId: {
       type: String,
       required: true
@@ -42,9 +57,19 @@ export default {
       type: String,
       default: "col-lg-10"
     },
-    disabled: {
-      type: Boolean,
-      default: false,
+    language: {
+      type: String,
+      default: "vi",
+    },
+    dateFormat: {
+      type: String,
+      default: "dd/MM/yyyy",
+    },
+    minimumView: {
+      type: String,
+    },
+    maximumView: {
+      type: String,
     }
   },
   watch: {

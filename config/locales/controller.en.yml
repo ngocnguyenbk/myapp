@@ -17,3 +17,7 @@ en:
     users:
       create:
         success: "Import users success!"
+  invoices:
+    create:
+      success: "Create invoice success!"
+      failure: "Create invoice failure!"

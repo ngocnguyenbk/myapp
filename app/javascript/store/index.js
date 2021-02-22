@@ -12,6 +12,6 @@ export default new Vuex.Store({
     user,
     floor,
     contract,
-    invoice
+    invoice,
   }
 })

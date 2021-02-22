@@ -9,6 +9,7 @@ en:
       too_long: " maximum is %{count} characters"
       not_a_number: " not a number"
       confirmation: "doesn't match"
+      greater_than_or_equal_to: "Must be greater or equal to %{count}"
   activemodel:
     attributes:
       user:
