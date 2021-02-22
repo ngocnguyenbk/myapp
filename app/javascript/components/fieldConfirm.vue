@@ -1,6 +1,6 @@
 <template>
   <div class="form-group row">
-    <label :class="['col-form-label', colLable]">{{labelText}}</label>
+    <label :class="['col-form-label', colLabel]">{{ labelText }}</label>
     <div :class="[colInput]">
       <input class="form-control border-0" :value="value" readonly>
     </div>
@@ -17,7 +17,7 @@ export default {
     value: {
       type: [Number, String]
     },
-    colLable: {
+    colLabel: {
       type: String,
       default: "col-lg-2"
     },
