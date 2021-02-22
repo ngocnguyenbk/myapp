@@ -1,10 +1,10 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLable]" v-if="hasLabel">{{labelText}}</label>
+    <label :for="inputId" :class="['col-form-label', colLabel]" v-if="hasLabel">{{ labelText }}</label>
     <div :class="['align-self-center', colInput]">
       <div class="form-check form-check-inline" v-for="(val, key) in options" :key="key">
         <input type="radio" class="form-check-input" :id="inputId+'_'+key" :name="inputId" :checked="valueInput == key" :value="key" v-model="radioVal">
-        <label class="form-check-label" :for="inputId+'_'+key">{{val}}</label>
+        <label class="form-check-label" :for="inputId+'_'+key">{{ val }}</label>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@ export default {
     valueInput: {
       type: String
     },
-    colLable: {
+    colLabel: {
       type: String,
       default: "col-lg-2"
     },
