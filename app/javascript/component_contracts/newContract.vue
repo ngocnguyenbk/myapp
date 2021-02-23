@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import InputText from '../components/inputText'
 import InputSelect2 from '../components/inputSelect2'
 import InputNumberCurrency from '../components/inputNumberCurrency'

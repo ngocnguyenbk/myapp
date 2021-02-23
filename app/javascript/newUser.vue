@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mapState, mapActions } from 'vuex'
 import NewUsers from './component_users/newUsers.vue'
 
 export default {
