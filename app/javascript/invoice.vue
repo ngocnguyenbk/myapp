@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex'
+  import { mapState } from 'vuex'
   import TableInvoice from './component_invoices/tableInvoices.vue'
   import Paginator from './components/paginator.vue'
 

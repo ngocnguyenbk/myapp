@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :users
     resources :floors
     resources :contracts
-    resources :invoices, only: :index
+    resources :invoices, only: [:index, :show]
 
     namespace :batch_create do
       resources :users, only: :create

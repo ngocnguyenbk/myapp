@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    title Boarding House
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_pack_tag "application"
+    = stylesheet_pack_tag "application", media: "all"
+    = favicon_link_tag "favicon.png"
+  body
+    .app-body
+      .card.h-full.mb-2
+        .card-body
+          #printInvoiceApp
+  javascript:
+    const defaultLocale = "#{I18n.default_locale}"
+    const locale = "#{I18n.locale || I18n.default_locale}"
+    const invoiceID = "#{@invoice.id}"

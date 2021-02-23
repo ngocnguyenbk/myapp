@@ -26,6 +26,7 @@ import Floors from '../floor.vue'
 import Contracts from '../contract.vue'
 import Invoices from '../invoice.vue'
 import BatchCreateNewInvoices from '../batchCreateNewInvoice.vue'
+import PrintInvoice from '../printInvoice.vue'
 
 Vue.use(FlashMessage)
 Vue.use(VueI18n)
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const elementContract = document.getElementById('contractApp')
   const elementInvoice = document.getElementById('invoiceApp')
   const elementBatchCreateNewInvoiceApp = document.getElementById('batchCreateNewInvoiceApp')
+  const elementprintInvoiceApp = document.getElementById('printInvoiceApp')
   const i18n = new VueI18n({
     locale: locale,
     messages: loadLocaleMessages(),
@@ -97,6 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
       store,
       i18n,
       render: h => h(Invoices, {})
+    })
+  }
+
+  if(elementprintInvoiceApp != null) {
+    var printInvoiceApp = new Vue({
+      el: '#printInvoiceApp',
+      store,
+      i18n,
+      render: h => h(PrintInvoice, {})
     })
   }
 })

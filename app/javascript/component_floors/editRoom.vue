@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import InputNumber from '../components/inputNumber.vue'
 import InputRadioButtons from '../components/inputRadioButtons'
 import InputSelect2 from '../components/inputSelect2.vue'

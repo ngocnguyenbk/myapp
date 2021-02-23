@@ -12,27 +12,35 @@
       <td>{{ invoice.total_service | formatNumber }}</td>
       <td>{{ invoice.reduce | formatNumber }}</td>
       <td>{{ invoice.total | formatNumber }}</td>
-      <td></td>
+      <td>
+        <a target="_blank" :href="show_invoice">
+          <i class="fas fa-print"></i>
+        </a>
+      </td>
     </tr>
   </tbody>
 </template>
 
 <script>
-  export default {
-    props: {
-      invoice: {
-        type: Object,
-        required: true,
-      },
-      odd: {
-        type: Boolean,
-        required: true,
-      }
+
+export default {
+  props: {
+    invoice: {
+      type: Object,
+      required: true,
     },
-    computed: {
-      background_row_invoice: function() {
-        return this.odd ? 'odd-bg' : 'even-bg'
-      }
+    odd: {
+      type: Boolean,
+      required: true,
+    }
+  },
+  computed: {
+    background_row_invoice: function() {
+      return this.odd ? 'odd-bg' : 'even-bg'
     },
-  }
+    show_invoice: function() {
+      return `/${locale}/invoices/${this.invoice.id}`
+    }
+  },
+}
 </script>
