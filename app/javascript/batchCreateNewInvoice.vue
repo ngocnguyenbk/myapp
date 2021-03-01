@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import NewInvoices from './component_invoices/newInvoices'
+import NewInvoices from './component_invoices/batch_create/newInvoices'
 
 export default {
   components: {

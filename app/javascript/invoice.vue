@@ -4,6 +4,7 @@
       <FlashMessage :position="'right top'"></FlashMessage>
       <div>
         <a class="btn btn-primary" :href="batchCreateInvoicePath">{{ $t('invoice.batch_create') }}</a>
+        <a class="btn btn-primary ml-2" :href="newInvoicePath">{{ $t('invoice.add_invoice') }}</a>
       </div>
       <div class="ml-auto">
         <Paginator
@@ -34,6 +35,7 @@
     data: function() {
       return {
         batchCreateInvoicePath: `/${locale}/batch_create/invoices/new`,
+        newInvoicePath: `/${locale}/invoices/new`,
       }
     },
     computed: {

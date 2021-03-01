@@ -27,6 +27,7 @@ import Contracts from '../contract.vue'
 import Invoices from '../invoice.vue'
 import BatchCreateNewInvoices from '../batchCreateNewInvoice.vue'
 import PrintInvoice from '../printInvoice.vue'
+import NewInvoice from '../newInvoice.vue'
 
 Vue.use(FlashMessage)
 Vue.use(VueI18n)
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const elementInvoice = document.getElementById('invoiceApp')
   const elementBatchCreateNewInvoiceApp = document.getElementById('batchCreateNewInvoiceApp')
   const elementprintInvoiceApp = document.getElementById('printInvoiceApp')
+  const elementNewInvoice = document.getElementById('newInvoiceApp')
   const i18n = new VueI18n({
     locale: locale,
     messages: loadLocaleMessages(),
@@ -108,6 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
       store,
       i18n,
       render: h => h(PrintInvoice, {})
+    })
+  }
+
+  if(elementNewInvoice != null) {
+    const newInvoiceApp = new Vue({
+      el: '#newInvoiceApp',
+      store,
+      i18n,
+      render: h => h(NewInvoice, {})
     })
   }
 })

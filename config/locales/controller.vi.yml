@@ -17,3 +17,7 @@ vi:
     users:
       create:
         success: "Tạo khách hàng thành công!"
+  invoices:
+    create:
+      success: "Tạo hóa đơn thành công!"
+      failure: "Tạo hóa đơn thất bại!"

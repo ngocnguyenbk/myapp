@@ -9,6 +9,7 @@ vi:
       too_long: " tối đa %{count} kí tự"
       not_a_number: " không là số"
       confirmation: " không khớp"
+      greater_than_or_equal_to: "Cần lớn hoặc bằng %{count}"
   activemodel:
     attributes:
       user:
