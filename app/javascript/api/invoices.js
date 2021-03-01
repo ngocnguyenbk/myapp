@@ -65,5 +65,13 @@ export default {
     }).catch(function (error) {
       console.log(error.response)
     })
+  },
+  loadDetailInvoice(id, cb) {
+    axios.get(`/invoices/${id}.json`, {})
+    .then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    })
   }
 }

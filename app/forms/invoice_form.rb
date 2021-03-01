@@ -127,7 +127,7 @@ class InvoiceForm < BaseForm
       unit: "ser_unit",
       unit_price: unit_price_service_fee,
       quantity: 1,
-      total: unit_price_service_fee * quantity_parking * calculate_ratio_day_lived
+      total: unit_price_service_fee * calculate_ratio_day_lived
     }
   end
 

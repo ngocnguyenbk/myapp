@@ -163,6 +163,9 @@ const messages = {
       reduce: 'Giảm trừ',
       total: 'Tổng tiền',
       select_room: 'Chọn phòng',
+      details: 'Chi tiết',
+      close: 'Đóng',
+      detail_invoice: 'Chi tiết hóa đơn',
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',
