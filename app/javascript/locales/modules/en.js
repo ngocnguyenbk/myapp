@@ -163,6 +163,9 @@ const messages = {
       reduce: 'Reduce',
       total: 'Total',
       select_room: 'Select room',
+      details: 'Details',
+      close: 'Close',
+      detail_invoice: 'Detail invoice',
     },
     upload_file: {
       import_file: 'Import file',

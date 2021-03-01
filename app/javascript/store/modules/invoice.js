@@ -28,6 +28,7 @@ const state = {
     electric_unit_price: 0,
     water_unit_price: 0,
   },
+  detailInvoice: {},
   errorMessages: {},
 }
 
@@ -85,7 +86,12 @@ const actions = {
     invoice.getResourcePrice({}, data => {
       commit('setResourceUnitPrice', data)
     })
-  }
+  },
+  getDetailInvoice({ commit }, id) {
+    invoice.loadDetailInvoice(id, data => {
+      commit('setDetailInvoice', data)
+    })
+  },
 }
 
 const mutations = {
@@ -119,6 +125,9 @@ const mutations = {
   setResourceUnitPrice(state, payload) {
     state.newInvoice.electric_unit_price = payload.build.electric_unit_price
     state.newInvoice.water_unit_price = payload.build.water_unit_price
+  },
+  setDetailInvoice(state, data) {
+    state.detailInvoice = data.invoice
   },
 }
 
