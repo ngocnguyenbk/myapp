@@ -96,7 +96,7 @@ unless Rails.env.production?
           quantity: qty,
           unit_price: unit_price_parking_fee,
           total: unit_price_parking_fee * qty,
-          unit: "x"
+          unit: Settings.unit.parking_fee
         )
 
         internets << Item::Internet.new(
@@ -104,7 +104,7 @@ unless Rails.env.production?
           quantity: qty,
           unit_price: unit_price_internet,
           total: unit_price_internet * qty,
-          unit: "x"
+          unit: Settings.unit.internet
         )
 
         services << Item::Service.new(
@@ -112,7 +112,7 @@ unless Rails.env.production?
           quantity: qty,
           unit_price: unit_price_service,
           total: unit_price_service * qty,
-          unit: "x"
+          unit: Settings.unit.service
         )
       end
 
@@ -137,7 +137,7 @@ unless Rails.env.production?
           quantity: qty,
           total: unit_price_electric * qty,
           unit_price: unit_price_electric,
-          unit: "x"
+          unit: Settings.unit.electric
         )
 
         waters << Item::Water.new(
@@ -147,7 +147,7 @@ unless Rails.env.production?
           quantity: qty,
           total: unit_price_water * qty,
           unit_price: unit_price_water,
-          unit: "x"
+          unit: Settings.unit.water
         )
 
         begin_number = end_number + 1

@@ -14,3 +14,9 @@ unit_price:
   parking_fee: 150_000
   internet: 100_000
   service: 200_000
+unit:
+  electric: "number"
+  water: "number"
+  parking_fee: "piece"
+  internet: "month"
+  service: "month"

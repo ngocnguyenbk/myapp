@@ -74,23 +74,23 @@ class InvoiceSerializer < ActiveModel::Serializer
   end
 
   def unit_electric
-    object.item_electric.unit
+    object.item_electric.x_unit
   end
 
   def unit_water
-    object.item_water.unit
+    object.item_water.x_unit
   end
 
   def unit_internet
-    object.item_internet.unit
+    object.item_internet.x_unit
   end
 
   def unit_parking_fee
-    object.item_parking_fee.unit
+    object.item_parking_fee.x_unit
   end
 
   def unit_service
-    object.item_service.unit
+    object.item_service.x_unit
   end
 
   def unit_price_electric

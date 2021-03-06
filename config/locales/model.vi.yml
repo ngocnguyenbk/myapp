@@ -38,3 +38,7 @@ vi:
           attributes:
             file:
               content_file: "Nội dung file bị lỗi"
+  unit:
+    number: "Số"
+    month: "Tháng"
+    piece: "Chiếc"
