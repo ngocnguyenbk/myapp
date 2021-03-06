@@ -8,4 +8,8 @@ class ServiceItem < ApplicationRecord
   def self.type
     %w[Item::Internet Item::ParkingFee Item::Service]
   end
+
+  def x_unit
+    I18n.t(".unit.#{unit}")
+  end
 end

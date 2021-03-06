@@ -84,7 +84,7 @@ class InvoiceForm < BaseForm
 
   def electric_item
     {
-      unit: "ele_unit",
+      unit: Settings.unit.electric,
       unit_price: Settings.unit_price.electric,
       begin_number: electric_start,
       end_number: electric_end,
@@ -95,7 +95,7 @@ class InvoiceForm < BaseForm
 
   def water_item
     {
-      unit: "wat_unit",
+      unit: Settings.unit.water,
       unit_price: Settings.unit_price.water,
       begin_number: water_start,
       end_number: water_end,
@@ -106,7 +106,7 @@ class InvoiceForm < BaseForm
 
   def internet_item
     {
-      unit: "int_unit",
+      unit: Settings.unit.internet,
       unit_price: unit_price_internet,
       quantity: 1,
       total: unit_price_internet * calculate_ratio_day_lived
@@ -115,7 +115,7 @@ class InvoiceForm < BaseForm
 
   def parking_fee_item
     {
-      unit: "paf_unit",
+      unit: Settings.unit.parking_fee,
       unit_price: unit_price_parking_fee,
       quantity: quantity_parking,
       total: unit_price_parking_fee * quantity_parking * calculate_ratio_day_lived
@@ -124,7 +124,7 @@ class InvoiceForm < BaseForm
 
   def service_fee_item
     {
-      unit: "ser_unit",
+      unit: Settings.unit.service,
       unit_price: unit_price_service_fee,
       quantity: 1,
       total: unit_price_service_fee * calculate_ratio_day_lived

@@ -7,4 +7,8 @@ class ResourceItem < ApplicationRecord
   def self.type
     %w[Item::Electric Item::Water]
   end
+
+  def x_unit
+    I18n.t(".unit.#{unit}")
+  end
 end

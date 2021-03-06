@@ -38,3 +38,7 @@ en:
           attributes:
             file:
               content_file: "File content has errors"
+  unit:
+    number: "Number"
+    month: "Month"
+    piece: "Piece"

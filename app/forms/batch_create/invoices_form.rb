@@ -44,18 +44,24 @@ module BatchCreate
       unit_price_parking_fee = Settings.unit_price.parking_fee
       unit_price_service = Settings.unit_price.service
 
+      ele_unit = Settings.unit.electric
+      wat_unit = Settings.unit.water
+      int_unit = Settings.unit.internet
+      paf_unit = Settings.unit.parking_fee
+      ser_unit = Settings.unit.service
+
       resource_item = []
       service_item = []
 
       ActiveRecord::Base.transaction do
         invoice_attributes.to_h.each_with_object({}) do |(_room_number, item)|
           invoice = Invoice.create! item[:invoice]
-          resource_item.push invoice.item_electrics.new item[:electric].merge(unit: "ele_unit", unit_price: unit_price_electric)
-          resource_item.push invoice.item_waters.new item[:water].merge(unit: "wat_unit", unit_price: unit_price_water)
-          service_item.push invoice.item_internets.new item[:internet].merge(unit: "int_unit", unit_price: unit_price_internet)
-          service_item.push invoice.item_parking_fees.new item[:parking_fee].merge(unit: "paf_unit",
+          resource_item.push invoice.item_electrics.new item[:electric].merge(unit: ele_unit, unit_price: unit_price_electric)
+          resource_item.push invoice.item_waters.new item[:water].merge(unit: wat_unit, unit_price: unit_price_water)
+          service_item.push invoice.item_internets.new item[:internet].merge(unit: int_unit, unit_price: unit_price_internet)
+          service_item.push invoice.item_parking_fees.new item[:parking_fee].merge(unit: paf_unit,
                                                                                    unit_price: unit_price_parking_fee)
-          service_item.push invoice.item_services.new item[:service].merge(unit: "ser_unit", unit_price: unit_price_service)
+          service_item.push invoice.item_services.new item[:service].merge(unit: ser_unit, unit_price: unit_price_service)
         end
         ResourceItem.import! resource_item
         ServiceItem.import! service_item
