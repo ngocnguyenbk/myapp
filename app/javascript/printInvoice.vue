@@ -95,7 +95,7 @@
           </tr>
           <tr class="row_reduce_1">
             <td>1</td>
-            <td class="text-left">{{ $t('invoice.reduce_1', { month_ago: invoice.month_ago }) }}</td>
+            <td class="text-left">{{ $t('invoice.reduce_1') }}</td>
             <td></td>
             <td></td>
             <td></td>

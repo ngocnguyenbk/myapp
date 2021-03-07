@@ -5,16 +5,16 @@ module BatchCreate
 
     DEFAULT_QUANTITY = 1
 
-    attr_reader :current_date
-
     attribute :invoice_attributes, Array
+    attribute :date_export, String
+
+    validates :date_export, presence: true
 
     def self.name
       "BatchCreate::Invoices"
     end
 
     def initialize(invoice_attributes = {})
-      @current_date = Time.zone.now
       @invoice_attributes = invoice_attributes
     end
 
@@ -84,7 +84,7 @@ module BatchCreate
     def add_invoice
       {
         invoice: {
-          date_export: current_date.strftime("%d/%m/%Y %H:%M:%S"),
+          date_export: date_export,
           reduce: 0
         }
       }

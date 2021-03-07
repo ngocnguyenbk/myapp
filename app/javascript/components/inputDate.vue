@@ -5,13 +5,13 @@
       <Datepicker
         v-model="inputVal"
         name="month_export-invoice"
+        input-class="form-control"
         :id="inputId"
         :language="locale[language]"
         :format="dateFormat"
-        :minimum-view="minimumView" 
+        :minimum-view="minimumView"
         :maximum-view="maximumView"
-      >
-      </Datepicker>
+      />
       <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
   </div>
@@ -44,7 +44,7 @@ export default {
       required: true
     },
     valueInput: {
-      type: [Number, String]
+      type: [String, Date]
     },
     eMsg: {
       type: String

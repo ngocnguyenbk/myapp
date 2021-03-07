@@ -40,6 +40,9 @@ export default {
     room_number: {
       type: String,
       required: true
+    },
+    month: {
+      type: Date
     }
   },
   data: function() {
@@ -166,7 +169,7 @@ export default {
     buildForm: function() {
       let form = {
         invoice: {
-          date_export: this.item.invoice.date_export,
+          date_export: this.month,
           reduce: this.invReduce,
           total: this.total,
           contract_id: this.item.contract.contract_id
