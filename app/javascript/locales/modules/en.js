@@ -132,7 +132,7 @@ const messages = {
       ser_price: 'Service charge',
       total_1: 'Total (1)',
       reduce_or_increase: 'Reduced or increased expenses (if any)',
-      reduce_1: 'Reduce excess money M{month_ago}',
+      reduce_1: 'Reduce excess money',
       total_2: 'Total (2)',
       print_total: 'Total (1-2)',
       num_month: '1',
@@ -166,6 +166,7 @@ const messages = {
       details: 'Details',
       close: 'Close',
       detail_invoice: 'Detail invoice',
+      input_month: 'Please enter month',
     },
     upload_file: {
       import_file: 'Import file',

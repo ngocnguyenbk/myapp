@@ -132,7 +132,7 @@ const messages = {
       ser_price: 'Phí dịch vụ',
       total_1: 'Cộng (1)',
       reduce_or_increase: 'Chi phí giảm trừ hoặc tăng thêm (nếu có)',
-      reduce_1: 'Giảm trừ tiền thừa T{month_ago}',
+      reduce_1: 'Giảm trừ',
       total_2: 'Cộng (2)',
       print_total: 'Tổng cộng (1-2)',
       num_month: '1',
@@ -166,6 +166,7 @@ const messages = {
       details: 'Chi tiết',
       close: 'Đóng',
       detail_invoice: 'Chi tiết hóa đơn',
+      input_month: 'Vui lòng nhập tháng',
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',

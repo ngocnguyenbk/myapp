@@ -2,6 +2,18 @@
   <form id="new-invoices" @submit.prevent="checkForm">
     <button class="btn btn-primary float-right mb-2" v-if="isValid">{{ $t('invoice.submit_form') }}</button>
     <button class="btn btn-primary float-right mb-2" v-else>{{ $t('invoice.check_form') }}</button>
+    <InputDate
+      inputId="month-invoice"
+      :labelText="$t('invoice.month')"
+      :language="$i18n.locale"
+      :dateFormat="'MM/yyyy'"
+      :minimumView="'month'"
+      :maximumView="'year'"
+      :valueInput="month"
+      colLabel="mr-3"
+      colInput="form-inline text-center"
+      v-model="month"
+    />
     <table class="table table-multi-body table-bordered">
       <thead class="table-header">
         <tr class="table-head text-center">
@@ -33,6 +45,7 @@
       <RowInvoiceForm
         :item="item"
         :room_number="room_number"
+        :month="month"
         v-for="(item, room_number) in invoicesForm" :key="room_number"
       />
     </table>
@@ -46,15 +59,18 @@ import { mapState } from 'vuex'
 import show_flash_mixins from '../../mixins/show_flash'
 
 import RowInvoiceForm from './rowInvoiceForm'
+import InputDate from '../../components/inputDate'
 
 export default {
   components: {
-    RowInvoiceForm
+    RowInvoiceForm,
+    InputDate
   },
   data: function() {
     return {
       flashMsg: '',
-      isValid: false
+      isValid: false,
+      month: new Date()
     }
   },
   computed: {
@@ -76,6 +92,14 @@ export default {
     },
     validForm: function() {
       let self = this
+      if (this.month === "") {
+        this.isValid = false
+        this.flashMsg = this.$t('invoice.input_month')
+        this.show_flash(false)
+        return
+      } else {
+        this.isValid = true
+      }
       $.each(this.inputForm, function(key, item) {
         let validEle = item.electric.end_number > item.electric.begin_number
         let validWat = item.water.end_number > item.water.begin_number
