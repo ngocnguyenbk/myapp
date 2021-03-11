@@ -72,7 +72,9 @@ unless Rails.env.production?
           invoices << contract.invoices.build(
             date_export: i.month.ago,
             reduce: 300_000,
-            total: 5_000_000
+            total: 5_000_000,
+            day_lived: rand(20..i.month.ago.end_of_month.day),
+            day_in_month: i.month.ago.end_of_month.day
           )
         end
       end
@@ -95,7 +97,7 @@ unless Rails.env.production?
           invoice_id: invoice.id,
           quantity: qty,
           unit_price: unit_price_parking_fee,
-          total: unit_price_parking_fee * qty,
+          total: unit_price_parking_fee * qty * invoice.day_lived.to_f / invoice.day_in_month,
           unit: Settings.unit.parking_fee
         )
 
@@ -103,7 +105,7 @@ unless Rails.env.production?
           invoice_id: invoice.id,
           quantity: qty,
           unit_price: unit_price_internet,
-          total: unit_price_internet * qty,
+          total: unit_price_internet * qty * invoice.day_lived.to_f / invoice.day_in_month,
           unit: Settings.unit.internet
         )
 
@@ -111,7 +113,7 @@ unless Rails.env.production?
           invoice_id: invoice.id,
           quantity: qty,
           unit_price: unit_price_service,
-          total: unit_price_service * qty,
+          total: unit_price_service * qty * invoice.day_lived.to_f / invoice.day_in_month,
           unit: Settings.unit.service
         )
       end
@@ -155,6 +157,21 @@ unless Rails.env.production?
       end
 
       ResourceItem.import!(electrics + waters)
+    end
+
+    task update_invoice: :environment do
+      Invoice.all.each do |invoice|
+        calculate_by_day = invoice.contract.room_price +
+                           invoice.item_internet.quantity * invoice.item_internet.unit_price +
+                           invoice.item_parking_fee.quantity * invoice.item_parking_fee.unit_price +
+                           invoice.item_service.quantity * invoice.item_service.unit_price
+
+        total = calculate_by_day * invoice.day_lived.to_f / invoice.day_in_month +
+                invoice.item_electric.total +
+                invoice.item_water.total -
+                invoice.reduce
+        invoice.update!(total: total)
+      end
     end
   end
 end

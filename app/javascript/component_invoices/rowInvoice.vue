@@ -20,8 +20,13 @@
         />
       </td>
       <td>
-        <a target="_blank" :href="show_invoice">
+        <a target="_blank" :href="show_invoice" class="btn btn-primary mr-2">
           <i class="fas fa-print"></i>
+          <span>{{ $t('invoice.print_x') }}</span>
+        </a>
+        <a target="_blank" :href="download_invoice" class="btn btn-info">
+          <i class="fa fa-download"></i>
+          <span>{{ $t('invoice.download') }}</span>
         </a>
       </td>
     </tr>
@@ -49,6 +54,9 @@ export default {
     },
     show_invoice: function() {
       return `/${locale}/invoices/${this.invoice.id}`
+    },
+    download_invoice: function() {
+      return `/${locale}/download/invoices/${this.invoice.id}`
     }
   },
   methods: {

@@ -27,6 +27,7 @@ gem "carrierwave"
 gem "rubyXL"
 gem "config"
 gem "pundit"
+gem "docx"
 
 group :development, :test do
   gem "pry-rails"

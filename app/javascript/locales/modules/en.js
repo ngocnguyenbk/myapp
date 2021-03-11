@@ -167,6 +167,8 @@ const messages = {
       close: 'Close',
       detail_invoice: 'Detail invoice',
       input_month: 'Please enter month',
+      print_x: 'Print',
+      download: 'Download'
     },
     upload_file: {
       import_file: 'Import file',
