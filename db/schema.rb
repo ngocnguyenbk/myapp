@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_020948) do
+ActiveRecord::Schema.define(version: 2021_03_14_082348) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "full_name"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 2021_01_31_020948) do
     t.bigint "contract_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "day_lived", default: 1, null: false
+    t.integer "day_in_month", default: 1, null: false
     t.index ["contract_id"], name: "index_invoices_on_contract_id"
     t.index ["date_export"], name: "index_invoices_on_date_export"
   end

@@ -78,7 +78,9 @@ class InvoiceForm < BaseForm
       date_export: Date.parse(month).to_datetime,
       reduce: reduce,
       total: total,
-      contract_id: id
+      contract_id: id,
+      day_lived: day_used_per_month,
+      day_in_month: Date.parse(month).end_of_month.day
     }
   end
 

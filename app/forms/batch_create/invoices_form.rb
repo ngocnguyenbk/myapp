@@ -36,7 +36,7 @@ module BatchCreate
       invoice_detail
     end
 
-    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     def save
       unit_price_electric = Settings.unit_price.electric
       unit_price_water = Settings.unit_price.water
@@ -49,13 +49,14 @@ module BatchCreate
       int_unit = Settings.unit.internet
       paf_unit = Settings.unit.parking_fee
       ser_unit = Settings.unit.service
+      num_day_in_month = date_export.end_of_month.day
 
       resource_item = []
       service_item = []
 
       ActiveRecord::Base.transaction do
         invoice_attributes.to_h.each_with_object({}) do |(_room_number, item)|
-          invoice = Invoice.create! item[:invoice]
+          invoice = Invoice.create! item[:invoice].merge(day_lived: num_day_in_month, day_in_month: num_day_in_month)
           resource_item.push invoice.item_electrics.new item[:electric].merge(unit: ele_unit, unit_price: unit_price_electric)
           resource_item.push invoice.item_waters.new item[:water].merge(unit: wat_unit, unit_price: unit_price_water)
           service_item.push invoice.item_internets.new item[:internet].merge(unit: int_unit, unit_price: unit_price_internet)
@@ -67,7 +68,7 @@ module BatchCreate
         ServiceItem.import! service_item
       end
     end
-    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
     private
 
