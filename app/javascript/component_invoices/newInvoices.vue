@@ -113,7 +113,7 @@
               <div class="form-group col-md-6">
                 <InputText
                   :inputId="'unit_price_parking_fee'"
-                  :labelText="$t('invoice.parking_fee')"
+                  :labelText="$t('invoice.unit_price_parking_fee')"
                   :valueInput="newInvoice.unit_price_parking_fee | formatNumber"
                   :eMsg="deliverErrors('unit_price_parking_fee')"
                   v-model="unitParkingFee"
@@ -148,7 +148,7 @@
               <div class="form-group col-md-6">
                 <InputText
                   :inputId="'unit_price_service_fee'"
-                  :labelText="$t('invoice.service_fee')"
+                  :labelText="$t('invoice.unit_price_service_fee')"
                   :valueInput="newInvoice.unit_price_service_fee | formatNumber"
                   :eMsg="deliverErrors('unit_price_service_fee')"
                   v-model="serviceFee"

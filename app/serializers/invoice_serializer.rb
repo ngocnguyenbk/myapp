@@ -3,7 +3,8 @@ class InvoiceSerializer < ActiveModel::Serializer
              :total_service, :reduce, :total, :month_ago, :qty_electric, :qty_water, :qty_internet, :qty_parking_fee,
              :qty_service, :unit_electric, :unit_water, :unit_internet, :unit_parking_fee, :unit_service, :unit_price_electric,
              :unit_price_water, :unit_price_internet, :unit_price_parking_fee, :unit_price_service, :begin_number_ele,
-             :end_number_ele, :begin_number_wat, :end_number_wat, :total_cost, :total_reduce, :total_revenue, :total_room_price
+             :end_number_ele, :begin_number_wat, :end_number_wat, :total_cost, :total_reduce, :total_revenue, :total_room_price,
+             :day_lived
 
   def room_number
     object.contract.room.room_number
@@ -18,7 +19,7 @@ class InvoiceSerializer < ActiveModel::Serializer
   end
 
   def total_room_price
-    room_price * object.day_lived.to_f / object.day_in_month
+    room_price * day_lived.to_f / object.day_in_month
   end
 
   def total_electric
@@ -134,4 +135,6 @@ class InvoiceSerializer < ActiveModel::Serializer
   def end_number_wat
     object.item_water.end_number
   end
+
+  delegate :day_lived, to: :object
 end

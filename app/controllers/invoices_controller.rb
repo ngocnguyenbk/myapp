@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :invoice, only: [:show]
+  before_action :invoice, only: [:show, :update]
 
   def index
     @presenter = InvoicesPresenter.new(params)
@@ -45,6 +45,16 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def update
+    @form = EditInvoiceForm.new(edit_invoice_params)
+    @form.record = @invoice
+    if @form.update
+      render json: { status: :ok, message: "Success", step: edit_invoice_params[:step] }
+    else
+      render json: { status: :unprocessable_entity, errors: @form.errors, step: edit_invoice_params[:step] }
+    end
+  end
+
   private
 
   def invoice
@@ -55,5 +65,11 @@ class InvoicesController < ApplicationController
     params.require(:invoices).permit(:month, :room_id, :room_price, :day_used_per_month, :electric_start, :electric_end,
                                      :water_start, :water_end, :unit_price_internet, :unit_price_parking_fee, :quantity_parking,
                                      :unit_price_service_fee, :electric_unit_price, :water_unit_price, :reduce, :total)
+  end
+
+  def edit_invoice_params
+    params.require(:invoices).permit(:step, :room_price, :day_used_per_month, :electric_start, :electric_end,
+                                     :water_start, :water_end, :unit_price_internet, :unit_price_parking_fee, :quantity_parking,
+                                     :unit_price_service_fee, :reduce, :total)
   end
 end
