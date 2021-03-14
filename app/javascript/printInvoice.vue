@@ -24,7 +24,7 @@
             <td>{{ $t('invoice.month') }}</td>
             <td>{{ $t('invoice.num_month') }}</td>
             <td>{{ invoice.room_price | formatNumber }}</td>
-            <td>{{ invoice.room_price | formatNumber }}</td>
+            <td>{{ invoice.total_room_price | formatNumber }}</td>
             <td></td>
           </tr>
           <tr class="row_electric">

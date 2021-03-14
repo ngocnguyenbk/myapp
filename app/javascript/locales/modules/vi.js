@@ -167,6 +167,8 @@ const messages = {
       close: 'Đóng',
       detail_invoice: 'Chi tiết hóa đơn',
       input_month: 'Vui lòng nhập tháng',
+      print_x: 'In',
+      download: 'Tải xuống'
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',

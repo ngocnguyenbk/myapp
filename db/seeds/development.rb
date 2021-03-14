@@ -13,3 +13,4 @@ ActiveRecord::Base.connection.execute("TRUNCATE #{ServiceItem.table_name}")
 Rake::Task["default_data:create_service_items"].invoke
 ActiveRecord::Base.connection.execute("TRUNCATE #{ResourceItem.table_name}")
 Rake::Task["default_data:create_resource_items"].invoke
+Rake::Task["default_data:update_invoice"].invoke
