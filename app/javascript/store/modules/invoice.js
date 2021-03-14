@@ -28,6 +28,7 @@ const state = {
     electric_unit_price: 0,
     water_unit_price: 0,
   },
+  currentInvoice: {},
   detailInvoice: {},
   errorMessages: {},
 }
@@ -92,6 +93,9 @@ const actions = {
       commit('setDetailInvoice', data)
     })
   },
+  setCurrentInvoice({ commit }, payload) {
+    commit('setCurrentInvoice', payload)
+  },
 }
 
 const mutations = {
@@ -129,6 +133,9 @@ const mutations = {
   setDetailInvoice(state, data) {
     state.detailInvoice = data.invoice
   },
+  setCurrentInvoice(state, data) {
+    state.currentInvoice = data
+  }
 }
 
 export default {

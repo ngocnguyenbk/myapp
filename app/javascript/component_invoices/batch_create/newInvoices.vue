@@ -23,7 +23,7 @@
           <td colspan="4">{{ $t('invoice.electric') }}</td>
           <td colspan="4">{{ $t('invoice.water') }}</td>
           <td rowspan="2">{{ $t('invoice.internet') }}</td>
-          <td rowspan="2">{{ $t('invoice.parking_fee') }}</td>
+          <td rowspan="2">{{ $t('invoice.unit_price_parking_fee') }}</td>
           <td rowspan="2">{{ $t('invoice.num') }}</td>
           <td rowspan="2">{{ $t('invoice.service') }}</td>
           <td rowspan="2" class="w-180px">{{ $t('invoice.total') }}</td>

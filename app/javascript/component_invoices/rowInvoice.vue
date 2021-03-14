@@ -19,6 +19,13 @@
            @click="getDetailInvoice"
         />
       </td>
+      <td class="text-center">
+        <i class="fas fa-edit text-primary pointer mr-2"
+           data-toggle="modal"
+           data-target="#editInvoice"
+           @click="setCurrentInvoice"
+        />
+      </td>
       <td>
         <a target="_blank" :href="show_invoice" class="btn btn-primary mr-2">
           <i class="fas fa-print"></i>
@@ -35,7 +42,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('invoice')
+const { mapActions } = createNamespacedHelpers('invoice')
 
 export default {
   props: {
@@ -60,10 +67,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions({ getInvoiceInfo: 'getDetailInvoice' }),
+    ...mapActions({
+      getInvoiceInfo: 'getDetailInvoice',
+      setInvoice: 'setCurrentInvoice',
+    }),
     getDetailInvoice: function() {
       this.getInvoiceInfo(this.invoice.id)
-    }
+    },
+    setCurrentInvoice: function() {
+      this.setInvoice(this.invoice)
+    },
   }
 }
 </script>
