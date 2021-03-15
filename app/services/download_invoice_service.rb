@@ -66,7 +66,7 @@ class DownloadInvoiceService
 
   def total_room_price
     cost = invoice.contract.room_price * invoice.day_lived.to_f / invoice.day_in_month
-    number_with_delimiter(cost)
+    number_with_delimiter(cost.round(0))
   end
 
   def total_electric
@@ -92,7 +92,7 @@ class DownloadInvoiceService
   def total_cost
     total_cost = calculate_by_day * invoice.day_lived.to_f / invoice.day_in_month +
                  invoice.item_electric.total + invoice.item_water.total
-    number_with_delimiter(total_cost)
+    number_with_delimiter(total_cost.round(0))
   end
 
   def calculate_by_day
