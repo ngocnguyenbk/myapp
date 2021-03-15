@@ -33,6 +33,7 @@ class InvoiceForm < BaseForm
   attr_reader :invoice_attributes
 
   delegate :id, to: :contract
+  delegate :destroy, to: :invoice
 
   def initialize(invoice_attributes = {})
     super invoice_attributes
@@ -139,5 +140,9 @@ class InvoiceForm < BaseForm
 
   def water_quantity
     (water_end - water_start).to_f
+  end
+
+  def invoice
+    @invoice ||= record || Invoice.new
   end
 end

@@ -25,6 +25,11 @@
            data-target="#editInvoice"
            @click="setCurrentInvoice"
         />
+        <i :class="['far fa-stop-circle text-danger ml-2', invoice.active ? 'pointer' : 'pointer_disable']"
+           data-toggle="modal"
+           data-target="#deleteInvoice"
+           @click="setCurrentInvoice"
+        />
       </td>
       <td>
         <a target="_blank" :href="show_invoice" class="btn btn-primary mr-2">
@@ -84,5 +89,10 @@ export default {
 <style lang="scss" scoped>
   .pointer {
     cursor: pointer;
+  }
+
+  .pointer_disable {
+    pointer-events: none;
+    color: gray !important;
   }
 </style>

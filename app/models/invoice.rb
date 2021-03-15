@@ -1,4 +1,6 @@
 class Invoice < ApplicationRecord
+  include SoftDeletable
+
   has_one :item_electric, class_name: Item::Electric.name
   has_one :item_internet, class_name: Item::Internet.name
   has_one :item_parking_fee, class_name: Item::ParkingFee.name

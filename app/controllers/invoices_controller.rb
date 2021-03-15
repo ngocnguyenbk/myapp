@@ -45,6 +45,12 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def destroy
+    @form = InvoiceForm.new
+    @form.record = @invoice
+    @form.destroy
+  end
+
   private
 
   def invoice

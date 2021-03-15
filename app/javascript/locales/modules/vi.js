@@ -171,6 +171,15 @@ const messages = {
       edit_or_delete: 'Sửa / Xóa',
       edit_invoice: 'Sửa hóa đơn',
       submit: 'Lưu lại',
+      self: 'Hóa đơn',
+      info: 'Thông tin',
+      delete_invoice: 'Xóa hóa đơn',
+      deleted: 'Đã xóa',
+      confirmation: {
+        perform_delete_invoice: 'Bạn có muốn xóa hóa đơn',
+        yes: 'Có',
+        close: 'Đóng',
+      }
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',
