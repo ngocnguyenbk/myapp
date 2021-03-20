@@ -26,7 +26,7 @@ class InvoicesController < ApplicationController
   end
 
   def new
-    @form = InvoiceForm.new
+    @form = InvoiceForm::New.new
     respond_to do |format|
       format.html
       format.json do
@@ -36,7 +36,7 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    @form = InvoiceForm.new(invoice_params)
+    @form = InvoiceForm::New.new(invoice_params)
     if @form.save
       flash[:success] = t(".success")
       render json: { status: :ok }
@@ -46,12 +46,12 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    @form = EditInvoiceForm.new(edit_invoice_params)
+    @form = InvoiceForm::Edit.new(update_invoice_params)
     @form.record = @invoice
     if @form.update
-      render json: { status: :ok, message: "Success", step: edit_invoice_params[:step] }
+      render json: { status: :ok, message: "Success", step: update_invoice_params[:step] }
     else
-      render json: { status: :unprocessable_entity, errors: @form.errors, step: edit_invoice_params[:step] }
+      render json: { status: :unprocessable_entity, errors: @form.errors, step: update_invoice_params[:step] }
     end
   end
 
@@ -67,8 +67,8 @@ class InvoicesController < ApplicationController
                                      :unit_price_service_fee, :electric_unit_price, :water_unit_price, :reduce, :total)
   end
 
-  def edit_invoice_params
-    params.require(:invoices).permit(:step, :room_price, :day_used_per_month, :electric_start, :electric_end,
+  def update_invoice_params
+    params.require(:invoices).permit(:id, :step, :room_price, :day_used_per_month, :electric_start, :electric_end,
                                      :water_start, :water_end, :unit_price_internet, :unit_price_parking_fee, :quantity_parking,
                                      :unit_price_service_fee, :reduce, :total)
   end
