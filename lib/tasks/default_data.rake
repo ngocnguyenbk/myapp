@@ -103,17 +103,17 @@ unless Rails.env.production?
 
         internets << Item::Internet.new(
           invoice_id: invoice.id,
-          quantity: qty,
+          quantity: 1,
           unit_price: unit_price_internet,
-          total: unit_price_internet * qty * invoice.day_lived.to_f / invoice.day_in_month,
+          total: unit_price_internet * 1 * invoice.day_lived.to_f / invoice.day_in_month,
           unit: Settings.unit.internet
         )
 
         services << Item::Service.new(
           invoice_id: invoice.id,
-          quantity: qty,
+          quantity: 1,
           unit_price: unit_price_service,
-          total: unit_price_service * qty * invoice.day_lived.to_f / invoice.day_in_month,
+          total: unit_price_service * 1 * invoice.day_lived.to_f / invoice.day_in_month,
           unit: Settings.unit.service
         )
       end
