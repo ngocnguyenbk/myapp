@@ -134,6 +134,11 @@ const actions = {
   clearErrorMessages({commit}, _payload) {
     commit('clearErrorMessages')
   },
+  deleteInvoice({ commit, dispatch, state }, payload) {
+    invoice.deleteInvoice(payload.params, data => {
+      dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
+    })
+  }
 }
 
 const mutations = {

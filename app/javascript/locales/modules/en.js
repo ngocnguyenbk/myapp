@@ -173,6 +173,15 @@ const messages = {
       submit: 'Submit',
       back: 'Back',
       save_change: 'Save changes',
+      self: 'Invoice',
+      info: 'Info',
+      delete_invoice: 'Delete invoice',
+      deleted: 'Deleted',
+      confirmation: {
+        perform_delete_invoice: 'Do you want delete invoice',
+        yes: 'Yes',
+        close: 'Close',
+      }
     },
     upload_file: {
       import_file: 'Import file',

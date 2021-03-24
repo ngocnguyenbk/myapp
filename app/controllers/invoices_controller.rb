@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :invoice, only: [:show, :update]
+  before_action :invoice, only: [:show, :update, :destroy]
 
   def index
     @presenter = InvoicesPresenter.new(params)
@@ -53,6 +53,12 @@ class InvoicesController < ApplicationController
     else
       render json: { status: :unprocessable_entity, errors: @form.errors, step: update_invoice_params[:step] }
     end
+  end
+
+  def destroy
+    @form = InvoiceForm::Destroy.new
+    @form.record = @invoice
+    @form.destroy
   end
 
   private
