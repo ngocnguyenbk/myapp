@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_14_082348) do
+ActiveRecord::Schema.define(version: 2021_03_24_142329) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "full_name"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 2021_03_14_082348) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "day_lived", default: 1, null: false
     t.integer "day_in_month", default: 1, null: false
+    t.datetime "deleted_at"
+    t.boolean "active", default: true, null: false
     t.index ["contract_id"], name: "index_invoices_on_contract_id"
     t.index ["date_export"], name: "index_invoices_on_date_export"
   end
@@ -85,6 +87,8 @@ ActiveRecord::Schema.define(version: 2021_03_14_082348) do
     t.bigint "invoice_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.boolean "active", default: true, null: false
     t.index ["invoice_id"], name: "index_resource_items_on_invoice_id"
   end
 
@@ -110,6 +114,8 @@ ActiveRecord::Schema.define(version: 2021_03_14_082348) do
     t.bigint "invoice_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.boolean "active", default: true, null: false
     t.index ["invoice_id"], name: "index_service_items_on_invoice_id"
   end
 

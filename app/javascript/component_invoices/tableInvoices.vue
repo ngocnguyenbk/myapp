@@ -22,6 +22,7 @@
       <RowInvoice :invoice="invoice" :odd="(index % 2) != 0" v-for="(invoice, index) in invoices" :key="index" />
       <EditInvoice ref="modal_edit"/>
       <DetailInvoice/>
+      <DeleteInvoice/>
     </table>
   </div>
 </template>
@@ -30,12 +31,14 @@
   import RowInvoice from './rowInvoice'
   import DetailInvoice from './detailInvoice'
   import EditInvoice from './editInvoice'
+  import DeleteInvoice from './deleteInvoice'
 
   export default {
     components: {
       RowInvoice,
       DetailInvoice,
       EditInvoice,
+      DeleteInvoice
     },
     props: {
       invoices: {

@@ -84,4 +84,13 @@ export default {
       console.log(error.response)
     });
   },
+  deleteInvoice (params, cb) {
+    axios.delete(`/invoices/${params.id}.json`,
+      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+    ).then(function(response) {
+      cb(response.data)
+    }).catch(function (error) {
+      console.log(error.response)
+    })
+  }
 }

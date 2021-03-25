@@ -1,4 +1,6 @@
 class ServiceItem < ApplicationRecord
+  include SoftDeletable
+
   belongs_to :invoice
 
   scope :internets, -> { where(type: "Item::Internet") }

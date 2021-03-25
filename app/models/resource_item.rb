@@ -1,4 +1,6 @@
 class ResourceItem < ApplicationRecord
+  include SoftDeletable
+
   belongs_to :invoice
 
   scope :electrics, -> { where(type: "Item::Electric") }
