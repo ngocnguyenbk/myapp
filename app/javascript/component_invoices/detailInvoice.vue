@@ -20,13 +20,13 @@
             <FieldOnlyView
               :labelText="$t('invoice.invoice_id')"
               :value="invoice.id"
-              id="id"
+              :id="'id_' + invoice.id"
               colField="col-md-6"
             />
             <FieldOnlyView
               :labelText="$t('invoice.room_price')"
               :value="invoice.room_price | formatNumber"
-              id="room_price"
+              :id="'room_price_' + invoice.id "
               colField="col-md-6"
             />
           </div>
@@ -34,13 +34,13 @@
             <FieldOnlyView
               :labelText="$t('invoice.electric_start')"
               :value="invoice.begin_number_ele | formatNumber"
-              id="electric_start"
+              :id="'electric_start_' + invoice.id"
               colField="col-md-6"
             />
             <FieldOnlyView
               :labelText="$t('invoice.electric_end')"
               :value="invoice.end_number_ele | formatNumber"
-              id="electric_end"
+              :id="'electric_end_' + invoice.id"
               colField="col-md-6"
             />
           </div>
@@ -48,13 +48,13 @@
             <FieldOnlyView
               :labelText="$t('invoice.water_start')"
               :value="invoice.begin_number_wat | formatNumber"
-              id="water_start"
+              :id="'water_start_'+ invoice.id"
               colField="col-md-6"
             />
             <FieldOnlyView
               :labelText="$t('invoice.water_end')"
               :value="invoice.end_number_wat | formatNumber"
-              id="water_end"
+              :id="'water_end_'+ invoice.id"
               colField="col-md-6"
             />
           </div>
@@ -62,13 +62,13 @@
             <FieldOnlyView
               :labelText="$t('invoice.int_price')"
               :value="invoice.total_internet | formatNumber"
-              id="total_internet"
+              :id="'total_internet_'+ invoice.id"
               colField="col-md-6"
             />
             <FieldOnlyView
               :labelText="$t('invoice.paf_price')"
               :value="invoice.total_parking_fee | formatNumber"
-              id="total_parking_fee"
+              :id="'total_parking_fee'+ invoice.id"
               colField="col-md-6"
             />
           </div>
@@ -76,13 +76,13 @@
             <FieldOnlyView
               :labelText="$t('invoice.ser_price')"
               :value="invoice.total_service | formatNumber"
-              id="total_service"
+              :id="'total_service_'+ invoice.id"
               colField="col-md-6"
             />
             <FieldOnlyView
               :labelText="$t('invoice.reduce')"
               :value="invoice.total_reduce | formatNumber"
-              id="total_reduce"
+              :id="'total_reduce_'+ invoice.id"
               colField="col-md-6"
             />
           </div>
@@ -90,7 +90,7 @@
             <FieldOnlyView
               :labelText="$t('invoice.total_income')"
               :value="invoice.total_revenue | formatNumber"
-              id="total_revenue"
+              :id="'total_revenue_'+ invoice.id"
               colField="col-md-12"
             />
           </div>
