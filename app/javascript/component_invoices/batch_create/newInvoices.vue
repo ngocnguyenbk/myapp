@@ -13,6 +13,7 @@
       colLabel="mr-3"
       colInput="form-inline text-center"
       v-model="month"
+      @selectedDate="selectedDate"
     />
     <table class="table table-multi-body table-bordered">
       <thead class="table-header">
@@ -46,7 +47,7 @@
         :item="item"
         :room_number="room_number"
         :month="month"
-        v-for="(item, room_number) in invoicesForm" :key="room_number"
+        v-for="(item, room_number) in dataDefault" :key="room_number"
       />
     </table>
     <button class="btn btn-primary float-right mb-2" v-if="isValid">{{ $t('invoice.submit_form') }}</button>
@@ -70,7 +71,8 @@ export default {
     return {
       flashMsg: '',
       isValid: false,
-      month: new Date()
+      month: new Date(),
+      dataDefault: this.invoicesForm
     }
   },
   computed: {
@@ -80,7 +82,12 @@ export default {
     })
   },
   created: function() {
-    this.$store.dispatch('invoice/getInvoiceForm')
+    this.$store.dispatch('invoice/getInvoiceForm', { date: new Date() })
+  },
+  watch: {
+    invoicesForm: function(val) {
+      this.dataDefault = val
+    }
   },
   methods: {
     checkForm: function() {
@@ -121,6 +128,9 @@ export default {
       if (!this.isValid) return
 
       this.$store.dispatch('invoice/createInvoices', { params: this.inputForm })
+    },
+    selectedDate: function (val) {
+      this.$store.dispatch('invoice/getInvoiceForm', { date: val })
     }
   },
   mixins: [show_flash_mixins]

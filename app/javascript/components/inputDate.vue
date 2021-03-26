@@ -11,6 +11,7 @@
         :format="dateFormat"
         :minimum-view="minimumView"
         :maximum-view="maximumView"
+        @input="inputDate()"
       />
       <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
@@ -78,6 +79,11 @@ export default {
     },
     valueInput: function(val) {
       return this.inputVal = val
+    }
+  },
+  methods: {
+    inputDate: function() {
+      return this.$emit('selectedDate', this.inputVal)
     }
   }
 }

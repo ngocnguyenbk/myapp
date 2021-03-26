@@ -59,8 +59,8 @@ const actions = {
       commit('setInvoices', invoices)
     })
   },
-  getInvoiceForm({ commit }) {
-    invoice.loadInvoiceForm({}, invoicesForm => {
+  getInvoiceForm({ commit }, payload) {
+    invoice.loadInvoiceForm({date: payload.date}, invoicesForm => {
       commit('setInvoiceForm', invoicesForm)
     })
   },

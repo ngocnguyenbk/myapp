@@ -5,6 +5,8 @@ module BatchCreate
 
     DEFAULT_QUANTITY = 1
 
+    attr_reader :date
+
     attribute :invoice_attributes, Array
     attribute :date_export, String
 
@@ -14,8 +16,9 @@ module BatchCreate
       "BatchCreate::Invoices"
     end
 
-    def initialize(invoice_attributes = {})
+    def initialize(invoice_attributes = {}, date)
       @invoice_attributes = invoice_attributes
+      @date = date
     end
 
     def build_form
@@ -24,7 +27,7 @@ module BatchCreate
         contract = room.contract_active
 
         invoice_detail[room.room_number] = {}
-        next if contract.blank?
+        next if contract.blank? || contract.invoices.in_month(date).exists?
 
         invoice_detail[room.room_number] = add_contract(contract)
         invoice_detail[room.room_number].merge! add_invoice
@@ -85,14 +88,16 @@ module BatchCreate
     def add_invoice
       {
         invoice: {
-          date_export: date_export,
+          date_export: date,
           reduce: 0
         }
       }
     end
 
     def add_resource_item(contract)
-      invoice_month_ago = contract.invoice_month_ago
+      month_ago = date.to_date.months_ago(1)
+
+      invoice_month_ago = contract.invoices.in_month(month_ago).first
       ele_start = 0
       wat_start = 0
 
@@ -130,7 +135,7 @@ module BatchCreate
     end
 
     def rooms
-      @rooms ||= Room.all.includes(contract_active: [:holder, invoice_month_ago: [:item_electric, :item_water]])
+      @rooms ||= Room.all.includes(:contract_active)
     end
   end
 end

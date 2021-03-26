@@ -1,8 +1,7 @@
 module BatchCreate
   class InvoicesController < ApplicationController
     def new
-      @form = BatchCreate::InvoicesForm.new
-
+      @form = BatchCreate::InvoicesForm.new({}, params[:date])
       respond_to do |format|
         format.html
         format.json do
