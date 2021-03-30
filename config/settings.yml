@@ -9,7 +9,7 @@ import_users:
     identity_card: 6
     room_number: 7
 unit_price:
-  electric: 4_000
+  electric: 3_000
   water: 25_000
   parking_fee: 150_000
   internet: 100_000
