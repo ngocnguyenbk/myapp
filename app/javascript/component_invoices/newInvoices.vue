@@ -197,6 +197,8 @@ import InputText from '../components/inputText'
 import InputNumber from '../components/inputNumber'
 import InputSelect2 from '../components/inputSelect2'
 import InputDate from '../components/inputDate'
+import show_flash_mixins from '../mixins/show_flash'
+
 export default {
   data: function() {
     return {
@@ -221,6 +223,7 @@ export default {
       collectionRooms: state => state.rooms,
       newInvoice: state => state.newInvoice,
       errorMessages: state => state.errorMessages,
+      flashMsg: state => state.flashMsg
     }),
     eleTotal: function() {
       let electricQuantity = this.newInvoice.electric_end - this.newInvoice.electric_start
@@ -314,8 +317,12 @@ export default {
   },
   methods: {
     ...mapActions(['createInvoice', 'getRoom', 'setInputNewInvoiceForm', 'getResoursePrice']),
-    submitForm: function() {
-      this.createInvoice(this.newInvoice)
+    submitForm: async function() {
+      await this.createInvoice(this.newInvoice)
+
+      if (!this.flashMsg) return
+
+      this.show_flash(false)
     },
     deliverErrors: function(attribute) {
       if (!this.errorMessages[0]) return
@@ -326,6 +333,7 @@ export default {
       this.total = this.roomPriceTotal + this.eleTotal + this.watTotal + this.intTotal + this.pafTotal + this.serTotal - this.newInvoice.reduce
     }
   },
+  mixins: [show_flash_mixins]
 }
 </script>
 

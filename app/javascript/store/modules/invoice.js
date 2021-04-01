@@ -47,6 +47,7 @@ const state = {
   detailInvoice: {},
   errorMessages: {},
   isValid: true,
+  flashMsg: ''
 }
 
 const actions = {
@@ -79,10 +80,12 @@ const actions = {
       commit('setRooms', rooms)
     })
   },
-  createInvoice({ commit }, payload) {
-    invoice.createInvoice(payload, data => {
+  async createInvoice({ commit }, payload) {
+    await invoice.createInvoice(payload, data => {
       if (data.status == 'ok') {
         window.location.href = '/invoices'
+      } else if (data.status === 'not_allow') {
+        commit('setFlashMessage', data.errors)
       } else {
         commit('setErrors', mixin.methods.handle_errors({ 0: data.errors }))
       }
@@ -189,6 +192,9 @@ const mutations = {
   },
   clearErrorMessages(state, _payload) {
     state.errorMessages = ''
+  },
+  setFlashMessage(state, msg = '') {
+    state.flashMsg = msg
   },
 }
 
