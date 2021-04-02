@@ -12,6 +12,8 @@ class Contract < ApplicationRecord
   delegate :room_number, to: :room, prefix: true, allow_nil: true
   delegate :full_name, to: :holder, prefix: true, allow_nil: true
 
+  scope :order_by_started_date, -> { order(active: :desc, started_date: :desc) }
+
   def start_date
     DateFormat.new(started_date)
   end
