@@ -32,7 +32,7 @@ class ContractsForm < BaseForm
     ActiveRecord::Base.transaction do
       contract.update!(attributes)
 
-      contract.room.update!(status: "deposited")
+      contract.room.update!(status: :hired)
       CreateContractHistoryService.new(contract, current_admin, attributes, "add").perform
     end
 
@@ -42,7 +42,7 @@ class ContractsForm < BaseForm
   def destroy
     ActiveRecord::Base.transaction do
       room = contract.room
-      room.update!(status: "empty", holder_id: nil)
+      room.update!(status: :empty, holder_id: nil)
       room.users.destroy_all
       contract.destroy
 
