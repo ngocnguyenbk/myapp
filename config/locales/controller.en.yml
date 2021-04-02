@@ -21,3 +21,4 @@ en:
     create:
       success: "Create invoice success!"
       failure: "Create invoice failure!"
+      had_invoice: "Invoice for %{room_number} month %{month} has been created, please edit it."

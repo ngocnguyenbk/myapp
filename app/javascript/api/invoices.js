@@ -38,8 +38,8 @@ export default {
       console.log(error.response)
     });
   },
-  createInvoice (params, cb) {
-    axios.post('/invoices.json',
+  async createInvoice (params, cb) {
+    await axios.post('/invoices.json',
       { invoices: params },
       { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
     ).then(function(response) {

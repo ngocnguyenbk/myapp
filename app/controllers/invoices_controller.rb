@@ -37,12 +37,18 @@ class InvoicesController < ApplicationController
 
   def create
     @form = InvoiceForm::New.new(invoice_params)
+
+    authorize @form if @form.valid?
+
     if @form.save
       flash[:success] = t(".success")
       render json: { status: :ok }
     else
       render json: { status: :unprocessable_entity, errors: @form.errors }
     end
+  rescue Pundit::NotAuthorizedError => _e
+    render json: { status: :not_allow,
+                   errors: t(".had_invoice", room_number: @form.contract.room_room_number, month: @form.month) }
   end
 
   def update

@@ -34,11 +34,15 @@ module InvoiceForm
       end
     end
 
-    private
+    def invoice_in_month?
+      contract.invoices.in_month(month).exists?
+    end
 
     def contract
       @contract ||= Room.find(room_id).contract_active
     end
+
+    private
 
     def calculate_ratio_day_lived
       @calculate_ratio_day_lived ||= day_used_per_month.to_f / Date.parse(month).end_of_month.day

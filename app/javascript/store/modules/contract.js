@@ -75,7 +75,7 @@ const actions = {
         commit('setStatusResponse', false)
         commit('setFlashMessage')
         commit('setErrors', mixin.methods.handle_single_error(data.errors))
-      } else if ((data.status === 'not_allow')) {
+      } else if (data.status === 'not_allow') {
         commit('setStatusResponse', false)
         commit('setFlashMessage', data.errors)
       }
