@@ -77,6 +77,21 @@ RSpec.describe ContractsForm, type: :model do
         end.to change(room, :status).from("empty").to("hired")
       end
     end
+
+    context "when ended_date before started date" do
+      let(:params) do
+        {
+          started_date: "19/11/2020", ended_date: "19/10/2020"
+        }
+      end
+
+      it "raises an error if ended_date is lower than started_date" do
+        contract_form.valid?
+        expect(contract_form.errors[:ended_date]).to include(I18n.t(".contracts_form.must_be_greater_than",
+                                                                    start: Date.parse(params[:started_date])
+                                                                    .strftime(ContractsForm::DISPLAY_DATE)))
+      end
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength
