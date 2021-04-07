@@ -12,12 +12,9 @@
         </div>
         <div v-show="isRegistration">
           <div class="modal-body">
-            <InputText
-              inputId="room_price"
+            <FieldConfirm
               :labelText="$t('invoice.room_price')"
-              :valueInput="currentInvoice.room_price | formatNumber"
-              :eMsg="deliverErrors('room_price')"
-              v-model="roomPrice"
+              :value="currentInvoice.room_price | formatNumber"
               colLabel="col-md-3"
               colInput="col-md-9"
             />
@@ -130,7 +127,7 @@
         </div>
         <div v-show="isConfirm">
           <div class="modal-body">
-            <FieldConfirm :labelText="$t('invoice.room_price')" :value="editInvoice.room_price | formatNumber" colLabel="col-md-3" colInput="col-md-9"/>
+            <FieldConfirm :labelText="$t('invoice.room_price')" :value="currentInvoice.room_price | formatNumber" colLabel="col-md-3" colInput="col-md-9"/>
             <FieldConfirm :labelText="$t('invoice.day_used_per_month')" :value="editInvoice.day_used_per_month" colLabel="col-md-3" colInput="col-md-9"/>
             <FieldConfirm :labelText="$t('invoice.electric_start')" :value="editInvoice.electric_start | formatNumber" colLabel="col-md-3" colInput="col-md-9"/>
             <FieldConfirm :labelText="$t('invoice.electric_end')" :value="editInvoice.electric_end | formatNumber" colLabel="col-md-3" colInput="col-md-9"/>
@@ -215,15 +212,11 @@ export default {
       return ((this.editInvoice.unit_price_service_fee * this.editInvoice.day_used_per_month) / this.totalDayInMonth);
     },
     roomPriceTotal: function () {
-      return ((this.editInvoice.room_price * this.editInvoice.day_used_per_month) / this.totalDayInMonth);
+      return ((this.currentInvoice.room_price * this.editInvoice.day_used_per_month) / this.totalDayInMonth);
     },
   },
   mixins: [show_flash_mixins],
   watch: {
-    roomPrice: function (val) {
-      this.setInputEditInvoiceForm({ room_price: numeral(val).value() });
-      this.calculateTotal();
-    },
     dayUsedPerMonth: function (val) {
       this.setInputEditInvoiceForm({ day_used_per_month: numeral(val).value() });
       this.calculateTotal();

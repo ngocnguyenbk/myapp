@@ -74,13 +74,13 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoices).permit(:month, :room_id, :room_price, :day_used_per_month, :electric_start, :electric_end,
+    params.require(:invoices).permit(:month, :room_id, :day_used_per_month, :electric_start, :electric_end,
                                      :water_start, :water_end, :unit_price_internet, :unit_price_parking_fee, :quantity_parking,
                                      :unit_price_service_fee, :electric_unit_price, :water_unit_price, :reduce, :total)
   end
 
   def update_invoice_params
-    params.require(:invoices).permit(:id, :step, :room_price, :day_used_per_month, :electric_start, :electric_end,
+    params.require(:invoices).permit(:id, :step, :day_used_per_month, :electric_start, :electric_end,
                                      :water_start, :water_end, :unit_price_internet, :unit_price_parking_fee, :quantity_parking,
                                      :unit_price_service_fee, :reduce, :total)
   end
