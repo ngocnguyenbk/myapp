@@ -1,4 +1,6 @@
 class ContractsForm < BaseForm
+  DISPLAY_DATE = "%d/%m/%Y".freeze
+
   attribute :holder_id, Integer
   attribute :room_id, Integer
   attribute :room_price, String
@@ -11,6 +13,8 @@ class ContractsForm < BaseForm
   validates :room_price, presence: true
   validates :started_date, presence: true
   validates :ended_date, presence: true
+
+  validate :ended_date_must_greater_than_started_date, if: -> { started_date.present? }
 
   attr_reader :current_admin
 
@@ -56,5 +60,12 @@ class ContractsForm < BaseForm
 
   def contract
     @contract ||= record || Contract.new
+  end
+
+  def ended_date_must_greater_than_started_date
+    return true if Date.parse(started_date) < Date.parse(ended_date)
+
+    errors.add(:ended_date, I18n.t(".contracts_form.must_be_greater_than",
+                                   start: Date.parse(started_date).strftime(DISPLAY_DATE)))
   end
 end
