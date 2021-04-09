@@ -23,14 +23,11 @@
                 />
               </div>
               <div class="form-group col-md-6">
-                <InputText
-                  :inputId="'input_room_price'"
+                <FieldConfirm
                   :labelText="$t('invoice.room_price')"
-                  :valueInput="newInvoice.room_price | formatNumber"
-                  :eMsg="deliverErrors('room_price')"
-                  v-model="roomPrice"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :value="newInvoice.room_price | formatNumber"
+                  colLabel="col-md-4"
+                  colInput="col-md-6"
                 />
               </div>
             </div>
@@ -197,6 +194,7 @@ import InputText from '../components/inputText'
 import InputNumber from '../components/inputNumber'
 import InputSelect2 from '../components/inputSelect2'
 import InputDate from '../components/inputDate'
+import FieldConfirm from '../components/fieldConfirm'
 import show_flash_mixins from '../mixins/show_flash'
 
 export default {
@@ -311,6 +309,7 @@ export default {
     InputNumber,
     InputSelect2,
     InputDate,
+    FieldConfirm,
   },
   created: function(){
     this.getResoursePrice()

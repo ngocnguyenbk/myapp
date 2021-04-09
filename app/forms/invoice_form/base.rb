@@ -1,6 +1,5 @@
 module InvoiceForm
   class Base < BaseForm
-    attribute :room_price, Integer
     attribute :day_used_per_month, Integer
     attribute :electric_start, Integer
     attribute :electric_end, Integer
@@ -13,7 +12,6 @@ module InvoiceForm
     attribute :reduce, Integer
     attribute :total, Integer
 
-    validates :room_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
     validates :electric_start, presence: true, numericality: { greater_than_or_equal_to: 0 }
     validates :electric_end, presence: true, numericality: { greater_than_or_equal_to: proc { |base| base.electric_start.to_i } }
     validates :water_start, presence: true, numericality: { greater_than_or_equal_to: 0 }

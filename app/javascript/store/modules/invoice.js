@@ -30,7 +30,6 @@ const state = {
   },
   editInvoice: {
     id: null,
-    room_price: 0,
     day_used_per_month: 0,
     electric_start: 0,
     electric_end: 0,
@@ -81,7 +80,9 @@ const actions = {
     })
   },
   async createInvoice({ commit }, payload) {
-    await invoice.createInvoice(payload, data => {
+    let requestPayload = Object.assign({}, payload)
+    delete requestPayload['room_price']
+    await invoice.createInvoice(requestPayload, data => {
       if (data.status == 'ok') {
         window.location.href = '/invoices'
       } else if (data.status === 'not_allow') {
