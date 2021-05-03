@@ -250,10 +250,12 @@ export default {
   watch: {
     month: function(val) {
       this.setInputNewInvoiceForm({ month: `${new Date(val).getMonth() + 1}/${new Date(val).getFullYear()}`, day_used_per_month: this.totalDayInMonth })
+      this.getResourceInfo({ month: val, room_id: this.roomId })
       this.calculateTotal()
     },
     roomId: function(val) {
-      this.getRoom({ id: val })
+      this.setInputNewInvoiceForm({ room_id: val })
+      this.getResourceInfo({ month: this.month, room_id: val })
       this.calculateTotal()
     },
     roomPrice: function(val) {
@@ -312,10 +314,10 @@ export default {
     FieldConfirm,
   },
   created: function(){
-    this.getResoursePrice()
+    this.getResourceInfo({})
   },
   methods: {
-    ...mapActions(['createInvoice', 'getRoom', 'setInputNewInvoiceForm', 'getResoursePrice']),
+    ...mapActions(['createInvoice', 'setInputNewInvoiceForm', 'getResourceInfo']),
     submitForm: async function() {
       await this.createInvoice(this.newInvoice)
 

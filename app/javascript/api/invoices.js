@@ -8,7 +8,7 @@ export default {
       cb(response.data)
     }).catch(function (error) {
       console.log(error.response)
-    });
+    })
   },
   createInvoices (params, cb) {
     axios.post('/batch_create/invoices.json',
@@ -18,7 +18,7 @@ export default {
       cb(response.data)
     }).catch(function (error) {
       console.log(error.response)
-    });
+    })
   },
   loadWithCondition (params, cb) {
     axios.get('/invoices.json', {
@@ -36,7 +36,7 @@ export default {
       cb(response.data)
     }).catch(function (error) {
       console.log(error.response)
-    });
+    })
   },
   async createInvoice (params, cb) {
     await axios.post('/invoices.json',
@@ -46,20 +46,14 @@ export default {
       cb(response.data)
     }).catch(function (error) {
       console.log(error.response)
-    });
+    })
   },
-  loadOneRoom (params, cb) {
-    axios.get(`/api/invoices/rooms/${params.id}.json`, {
-      params: params
-    }).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
-    });
-  },
-  getResourcePrice(params, cb) {
+  getResourceInfo (params, cb) {
+    let payload = {}
+    payload['invoice[room_id]'] = params.room_id
+    payload['invoice[month]'] = params.month
     axios.get(`/invoices/new.json`, {
-      params: params
+      params: payload
     }).then(function(response) {
       cb(response.data)
     }).catch(function (error) {
@@ -82,7 +76,7 @@ export default {
       cb(response.data)
     }).catch(function (error) {
       console.log(error.response)
-    });
+    })
   },
   deleteInvoice (params, cb) {
     axios.delete(`/invoices/${params.id}.json`,

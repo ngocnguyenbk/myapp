@@ -14,6 +14,6 @@ namespace :api, defaults: { format: :json } do
   end
 
   namespace :invoices, defaults: { format: :json } do
-    resources :rooms, only: [:index, :show]
+    resources :rooms, only: [:index]
   end
 end
