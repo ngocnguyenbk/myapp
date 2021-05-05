@@ -87,25 +87,15 @@ const actions = {
         window.location.href = '/invoices'
       } else if (data.status === 'not_allow') {
         commit('setFlashMessage', data.errors)
+        dispatch('clearErrorMessages')
       } else {
+        commit('setFlashMessage')
         commit('setErrors', mixin.methods.handle_errors({ 0: data.errors }))
-      }
-    })
-  },
-  getRoom({ commit }, payload) {
-    invoice.loadOneRoom(payload, data => {
-      if (data.status == 'ok') {
-        commit('setInputNewInvoice', data.data)
       }
     })
   },
   setInputNewInvoiceForm({ commit }, payload) {
     commit('setInputNewInvoice', payload)
-  },
-  getResoursePrice({ commit }) {
-    invoice.getResourcePrice({}, data => {
-      commit('setResourceUnitPrice', data)
-    })
   },
   getDetailInvoice({ commit }, id) {
     invoice.loadDetailInvoice(id, data => {
@@ -135,12 +125,17 @@ const actions = {
   setInputEditInvoiceForm({ commit }, payload) {
     commit('setInputEditInvoice', payload)
   },
-  clearErrorMessages({commit}, _payload) {
+  clearErrorMessages({ commit }, _payload) {
     commit('clearErrorMessages')
   },
   deleteInvoice({ commit, dispatch, state }, payload) {
     invoice.deleteInvoice(payload.params, data => {
       dispatch('submitFormSearch', { params: state.params, page: state.currentPage })
+    })
+  },
+  getResourceInfo({ dispatch }, payload) {
+    invoice.getResourceInfo(payload, data => {
+      dispatch('setInputNewInvoiceForm', data.build)
     })
   }
 }
@@ -172,10 +167,6 @@ const mutations = {
     for (const key in payload) {
       state.newInvoice[key] = payload[key]
     }
-  },
-  setResourceUnitPrice(state, payload) {
-    state.newInvoice.electric_unit_price = payload.build.electric_unit_price
-    state.newInvoice.water_unit_price = payload.build.water_unit_price
   },
   setDetailInvoice(state, data) {
     state.detailInvoice = data.invoice

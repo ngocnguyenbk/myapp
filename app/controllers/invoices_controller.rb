@@ -26,7 +26,7 @@ class InvoicesController < ApplicationController
   end
 
   def new
-    @form = InvoiceForm::New.new
+    @form = InvoiceForm::New.new(new_invoice_params)
     respond_to do |format|
       format.html
       format.json do
@@ -37,7 +37,6 @@ class InvoicesController < ApplicationController
 
   def create
     @form = InvoiceForm::New.new(invoice_params)
-
     authorize @form if @form.valid?
 
     if @form.save
@@ -83,5 +82,9 @@ class InvoicesController < ApplicationController
     params.require(:invoices).permit(:id, :step, :day_used_per_month, :electric_start, :electric_end,
                                      :water_start, :water_end, :unit_price_internet, :unit_price_parking_fee, :quantity_parking,
                                      :unit_price_service_fee, :reduce, :total)
+  end
+
+  def new_invoice_params
+    params.require(:invoice).permit(:room_id, :month) if params.key?(:invoice)
   end
 end
