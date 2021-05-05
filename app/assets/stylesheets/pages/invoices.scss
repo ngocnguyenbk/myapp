@@ -1,0 +1,27 @@
+body[data-controller="batch_create/invoices"],
+body[data-controller="invoices"] {
+  &[data-action="index"],
+  &[data-action="new"] {
+    .table{
+      .table-header{
+        background-color: #3c88f0;
+        color: white;
+        tr > td{
+          vertical-align: middle;
+        }
+      }
+      .odd-bg{
+        background-color: white;
+        td input{
+          background-color: white;
+        }
+      }
+      .even-bg{
+        background-color: whitesmoke;
+        td input{
+          background-color: whitesmoke;
+        }
+      }
+    }
+  }
+}

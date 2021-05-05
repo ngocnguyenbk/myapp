@@ -15,9 +15,15 @@ Rails.application.routes.draw do
     resources :users
     resources :floors
     resources :contracts
+    resources :invoices
 
     namespace :batch_create do
       resources :users, only: :create
+      resources :invoices, only: [:new, :create]
+    end
+
+    namespace :download do
+      resources :invoices, only: :show, format: "docx"
     end
   end
 end

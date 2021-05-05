@@ -8,7 +8,7 @@ h2.row.justify-content-center
                               order: [:year, :month, :day]
   = f.input :phone
   = f.input :role, as: :radio_buttons, collection: [["admin", "#{t('simple_form.labels.admin')}"], ["accountant", "#{t('simple_form.labels.accountant')}"]],
-                   label_method: :second, value_method: :first, lable: false
+                   label_method: :second, value_method: :first, label: false
   = f.input :password
   = f.input :password_confirmation
   .form-group.row.justify-content-center

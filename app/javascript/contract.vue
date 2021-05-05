@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import TableContract from './component_contracts/tableContracts'
 import NewContract from './component_contracts/newContract'
 import Paginator from './components/paginator'

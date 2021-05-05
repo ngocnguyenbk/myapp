@@ -17,3 +17,8 @@ vi:
     users:
       create:
         success: "Tạo khách hàng thành công!"
+  invoices:
+    create:
+      success: "Tạo hóa đơn thành công!"
+      failure: "Tạo hóa đơn thất bại!"
+      had_invoice: "Hóa đơn phòng %{room_number} tháng %{month} đã được tạo, vui lòng chỉnh sửa."

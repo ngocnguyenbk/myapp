@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     ports:
-      - "3000:3000"
+      - "4001:3000"
     volumes:
       - .:/myapp
       - gem_cache:/usr/local/bundle/gems

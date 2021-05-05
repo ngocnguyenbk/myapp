@@ -43,13 +43,22 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <InputText inputId="started_date" :labelText="$t('contract.start_date')" v-model="started_date" typeInput="date"
-                       :eMsg="errorMessages['started_date']? errorMessages['started_date'] : ''"
+            <InputDate
+              :inputId="'started_date'"
+              :labelText="$t('contract.start_date')"
+              :language="$i18n.locale"
+              :eMsg="errorMessages['started_date']? errorMessages['started_date'] : ''"
+              v-model="started_date"
             />
           </div>
           <div class="form-group col-md-6">
-            <InputText inputId="ended_date" :labelText="$t('contract.end_date')" v-model="ended_date" typeInput="date"
-                       :eMsg="errorMessages['ended_date']? errorMessages['ended_date'] : ''"
+            <InputDate
+              :inputId="'ended_date'"
+              :labelText="$t('contract.end_date')"
+              :language="$i18n.locale"
+              :valueInput="ended_date"
+              :eMsg="errorMessages['ended_date']? errorMessages['ended_date'] : ''"
+              v-model="ended_date"
             />
           </div>
         </div>
@@ -60,10 +69,10 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-import InputText from '../components/inputText'
+import { mapState } from 'vuex'
 import InputSelect2 from '../components/inputSelect2'
 import InputNumberCurrency from '../components/inputNumberCurrency'
+import InputDate from '../components/inputDate'
 
 export default {
   data: function() {
@@ -77,9 +86,9 @@ export default {
     }
   },
   components: {
-    InputText,
     InputSelect2,
-    InputNumberCurrency
+    InputNumberCurrency,
+    InputDate
   },
   computed: {
     ...mapState({
@@ -88,6 +97,17 @@ export default {
       errorMessages: state => state.contract.errorMessages,
       isIndex: state => state.contract.isIndex
     })
+  },
+  watch: {
+    room_price: function(val) {
+      this.deposited_money = val
+    },
+    started_date: function(val) {
+      const SIX_MONTH = 6
+      let target = new Date(val)
+      target.setMonth(target.getMonth() + SIX_MONTH)
+      this.ended_date = target
+    }
   },
   methods: {
     submitForm: function() {

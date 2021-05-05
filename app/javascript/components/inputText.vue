@@ -1,8 +1,8 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLable]">{{labelText}}</label>
+    <label :for="inputId" :class="['col-form-label', colLabel]">{{ labelText }}</label>
     <div :class="[colInput]">
-      <input :type="typeInput" class="form-control" :id="inputId" v-model="inputVal">
+      <input :type="typeInput" class="form-control" :id="inputId" v-model="inputVal" :disabled="disabled">
       <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
     </div>
   </div>
@@ -34,13 +34,17 @@ export default {
     eMsg: {
       type: String
     },
-    colLable: {
+    colLabel: {
       type: String,
       default: "col-lg-2"
     },
     colInput: {
       type: String,
       default: "col-lg-10"
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     }
   },
   watch: {

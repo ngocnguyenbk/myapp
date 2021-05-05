@@ -1,6 +1,6 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLable]" v-if="labelText">{{labelText}}</label>
+    <label :for="inputId" :class="['col-form-label', colLabel]" v-if="labelText">{{ labelText }}</label>
     <div :class="[colInput]">
       <input type="number" class="form-control"  ref="input_number" :id="inputId" :max="max" :min="min" v-model="inputVal">
       <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
@@ -28,7 +28,7 @@ export default {
     valueInput: {
       type: [Number, String]
     },
-    colLable: {
+    colLabel: {
       type: String,
       default: "col-lg-2"
     },

@@ -21,8 +21,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import TableUser from './component_users/tableUsers.vue'
 import Paginator from './components/paginator.vue'
 

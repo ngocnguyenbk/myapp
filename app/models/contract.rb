@@ -3,11 +3,16 @@ class Contract < ApplicationRecord
 
   NUMBER_MONTHS = 12
 
+  has_many :invoices
+  has_one :invoice_month_ago, -> { month_ago }, class_name: Invoice.name
+
   belongs_to :holder, class_name: User.name, optional: true
   belongs_to :room, class_name: Room.name, optional: true
 
   delegate :room_number, to: :room, prefix: true, allow_nil: true
   delegate :full_name, to: :holder, prefix: true, allow_nil: true
+
+  scope :order_by_started_date, -> { order(active: :desc, started_date: :desc) }
 
   def start_date
     DateFormat.new(started_date)

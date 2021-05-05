@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_09_014731) do
+ActiveRecord::Schema.define(version: 2021_03_24_142329) do
 
-  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
     t.string "phone"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_014731) do
     t.index ["phone"], name: "index_admins_on_phone", unique: true
   end
 
-  create_table "contract_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+  create_table "contract_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "date_changed"
     t.json "description"
     t.integer "code"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_014731) do
     t.index ["contract_id"], name: "index_contract_histories_on_contract_id"
   end
 
-  create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+  create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "holder_id"
     t.integer "room_id"
     t.decimal "room_price", precision: 10
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_014731) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "floors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+  create_table "floors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "floor_number"
     t.datetime "deleted_at"
     t.boolean "active", default: true, null: false
@@ -61,7 +61,38 @@ ActiveRecord::Schema.define(version: 2021_01_09_014731) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+  create_table "invoices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.datetime "date_export", null: false
+    t.decimal "reduce", precision: 10
+    t.decimal "total", precision: 10, null: false
+    t.bigint "contract_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "day_lived", default: 1, null: false
+    t.integer "day_in_month", default: 1, null: false
+    t.datetime "deleted_at"
+    t.boolean "active", default: true, null: false
+    t.index ["contract_id"], name: "index_invoices_on_contract_id"
+    t.index ["date_export"], name: "index_invoices_on_date_export"
+  end
+
+  create_table "resource_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.float "begin_number", null: false
+    t.float "end_number", null: false
+    t.float "quantity", null: false
+    t.string "unit", null: false
+    t.decimal "total", precision: 10, null: false
+    t.decimal "unit_price", precision: 10, null: false
+    t.string "type", null: false
+    t.bigint "invoice_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.boolean "active", default: true, null: false
+    t.index ["invoice_id"], name: "index_resource_items_on_invoice_id"
+  end
+
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "room_number"
     t.datetime "deleted_at"
     t.boolean "active", default: true, null: false
@@ -74,7 +105,21 @@ ActiveRecord::Schema.define(version: 2021_01_09_014731) do
     t.index ["floor_id"], name: "index_rooms_on_floor_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+  create_table "service_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "quantity", null: false
+    t.string "unit", null: false
+    t.decimal "total", precision: 10, null: false
+    t.decimal "unit_price", precision: 10, null: false
+    t.string "type", null: false
+    t.bigint "invoice_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.boolean "active", default: true, null: false
+    t.index ["invoice_id"], name: "index_service_items_on_invoice_id"
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"

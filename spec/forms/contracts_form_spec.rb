@@ -61,7 +61,7 @@ RSpec.describe ContractsForm, type: :model do
       it { is_expected.to eq true }
     end
 
-    context "update status room to deposited" do
+    context "update status room to hired" do
       let(:params) do
         {
           holder_id: 2, room_id: 2, room_price: "1000", started_date: "19/11/2020", ended_date: "19/02/2021"
@@ -74,7 +74,22 @@ RSpec.describe ContractsForm, type: :model do
         expect do
           contract_form.save
           room.reload
-        end.to change(room, :status).from("empty").to("deposited")
+        end.to change(room, :status).from("empty").to("hired")
+      end
+    end
+
+    context "when ended_date before started date" do
+      let(:params) do
+        {
+          started_date: "19/11/2020", ended_date: "19/10/2020"
+        }
+      end
+
+      it "raises an error if ended_date is lower than started_date" do
+        contract_form.valid?
+        expect(contract_form.errors[:ended_date]).to include(I18n.t(".contracts_form.must_be_greater_than",
+                                                                    start: Date.parse(params[:started_date])
+                                                                    .strftime(ContractsForm::DISPLAY_DATE)))
       end
     end
   end

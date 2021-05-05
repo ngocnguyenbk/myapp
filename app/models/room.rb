@@ -4,6 +4,8 @@ class Room < ApplicationRecord
   enum status: { hired: 0, empty: 1, deposited: 2 }
 
   has_many :users
+  has_one :contract_active, -> { without_deleted }, class_name: Contract.name
+
   belongs_to :floor
 
   scope :with_count_users, -> {

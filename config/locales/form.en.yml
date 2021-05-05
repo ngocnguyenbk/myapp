@@ -3,3 +3,5 @@ en:
     duplicated_email: "Duplicated email with line %{dup_line}"
     duplicated_phone: "Duplicated phone with line %{dup_line}"
     exists_room: "Room %{room_number} not exists"
+  contracts_form:
+    must_be_greater_than: "Must be after %{start}"

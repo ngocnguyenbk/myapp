@@ -64,6 +64,115 @@ unless Rails.env.production?
         )
       end
     end
+
+    task create_invoices: :environment do
+      invoices = []
+      Contract.all.each do |contract|
+        5.times do |i|
+          invoices << contract.invoices.build(
+            date_export: i.month.ago,
+            reduce: 300_000,
+            total: 5_000_000,
+            day_lived: rand(20..i.month.ago.end_of_month.day),
+            day_in_month: i.month.ago.end_of_month.day
+          )
+        end
+      end
+
+      Invoice.import! invoices
+    end
+
+    task create_service_items: :environment do
+      parking_fees = []
+      internets = []
+      services = []
+
+      Invoice.all.each do |invoice|
+        qty = rand(1..3)
+        unit_price_parking_fee = Settings.unit_price.parking_fee
+        unit_price_internet = Settings.unit_price.internet
+        unit_price_service = Settings.unit_price.service
+
+        parking_fees << Item::ParkingFee.new(
+          invoice_id: invoice.id,
+          quantity: qty,
+          unit_price: unit_price_parking_fee,
+          total: unit_price_parking_fee * qty * invoice.day_lived.to_f / invoice.day_in_month,
+          unit: Settings.unit.parking_fee
+        )
+
+        internets << Item::Internet.new(
+          invoice_id: invoice.id,
+          quantity: 1,
+          unit_price: unit_price_internet,
+          total: unit_price_internet * 1 * invoice.day_lived.to_f / invoice.day_in_month,
+          unit: Settings.unit.internet
+        )
+
+        services << Item::Service.new(
+          invoice_id: invoice.id,
+          quantity: 1,
+          unit_price: unit_price_service,
+          total: unit_price_service * 1 * invoice.day_lived.to_f / invoice.day_in_month,
+          unit: Settings.unit.service
+        )
+      end
+
+      ServiceItem.import!(parking_fees + internets + services)
+    end
+
+    task create_resource_items: :environment do
+      electrics = []
+      waters = []
+      begin_number = 0
+      end_number = 100
+
+      Invoice.all.each do |invoice|
+        qty = end_number - begin_number
+        unit_price_electric = Settings.unit_price.electric
+        unit_price_water = Settings.unit_price.water
+
+        electrics << Item::Electric.new(
+          invoice_id: invoice.id,
+          begin_number: begin_number,
+          end_number: end_number,
+          quantity: qty,
+          total: unit_price_electric * qty,
+          unit_price: unit_price_electric,
+          unit: Settings.unit.electric
+        )
+
+        waters << Item::Water.new(
+          invoice_id: invoice.id,
+          begin_number: begin_number,
+          end_number: end_number,
+          quantity: qty,
+          total: unit_price_water * qty,
+          unit_price: unit_price_water,
+          unit: Settings.unit.water
+        )
+
+        begin_number = end_number + 1
+        end_number = begin_number + rand(50..70)
+      end
+
+      ResourceItem.import!(electrics + waters)
+    end
+
+    task update_invoice: :environment do
+      Invoice.all.each do |invoice|
+        calculate_by_day = invoice.contract.room_price +
+                           invoice.item_internet.quantity * invoice.item_internet.unit_price +
+                           invoice.item_parking_fee.quantity * invoice.item_parking_fee.unit_price +
+                           invoice.item_service.quantity * invoice.item_service.unit_price
+
+        total = calculate_by_day * invoice.day_lived.to_f / invoice.day_in_month +
+                invoice.item_electric.total +
+                invoice.item_water.total -
+                invoice.reduce
+        invoice.update!(total: total)
+      end
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength

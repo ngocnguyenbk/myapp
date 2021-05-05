@@ -8,8 +8,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import TableFloor from './component_floors/tableFloors.vue'
 
 export default {
