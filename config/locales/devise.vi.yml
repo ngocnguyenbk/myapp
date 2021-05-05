@@ -10,6 +10,8 @@ vi:
       invalid: "Sai email hoặc mật khẩu"
       not_found_in_database: "Sai email hoặc mật khẩu"
       unauthenticated: "Bạn cần đăng nhập trước khi sử dụng dịch vụ"
+      admin:
+        already_authenticated: "Đã đăng nhập"
     registrations:
       new:
         sign_up: "Đăng kí"
