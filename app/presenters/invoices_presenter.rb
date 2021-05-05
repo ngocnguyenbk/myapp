@@ -9,7 +9,7 @@ class InvoicesPresenter
 
   def initialize(params)
     @params = params
-    @limit = Kaminari.config.default_per_page
+    @limit = Settings.per_page.invoices
   end
 
   def invoices
