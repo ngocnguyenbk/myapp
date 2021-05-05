@@ -101,7 +101,10 @@ module InvoiceForm
                     electric_end: current_invoice.item_electric.end_number,
                     water_start: current_invoice.item_water.begin_number,
                     water_end: current_invoice.item_water.end_number,
-                    quantity_parking: current_invoice.item_parking_fee.quantity
+                    quantity_parking: current_invoice.item_parking_fee.quantity,
+                    unit_price_parking_fee: current_invoice.item_parking_fee.unit_price,
+                    unit_price_internet: current_invoice.item_internet.unit_price,
+                    unit_price_service_fee: current_invoice.item_service.unit_price
                   })
     end
 
@@ -111,7 +114,10 @@ module InvoiceForm
                     electric_end: 0,
                     water_start: current_invoice_ago.item_water.end_number,
                     water_end: 0,
-                    quantity_parking: current_invoice_ago.item_parking_fee.quantity
+                    quantity_parking: current_invoice_ago.item_parking_fee.quantity,
+                    unit_price_parking_fee: current_invoice_ago.item_parking_fee.unit_price,
+                    unit_price_internet: current_invoice_ago.item_internet.unit_price,
+                    unit_price_service_fee: current_invoice_ago.item_service.unit_price
                   })
     end
   end
