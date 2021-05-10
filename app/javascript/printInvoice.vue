@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="w-40 ml-auto mr-auto">
-    <div ref="print_invoice">
+    <FlashMessage :position="'right top'"></FlashMessage>
+    <div ref="invoice" class="p-4">
       <div class="text-center d-flex flex-column mb-4">
         <strong>{{ $t('invoice.print_title') }}</strong>
         <span>{{ $t('invoice.month') + ' ' + invoice.month }} - {{ $t('invoice.room_no') + ' ' + invoice.room_number }}</span>
@@ -154,18 +155,25 @@
       </div>
     </div>
     <div class="footer mb-5">
-      <button class="btn btn-danger float-right" type="button" @click="printInvoice">{{ $t('invoice.print') }}</button>
+      <button class="btn btn-danger float-right" type="button" @click="printInvoice">
+        {{ $t('invoice.print') }}
+      </button>
+      <button class="btn btn-primary float-right mr-1" type="button" @click="copyInvoice">
+        {{ $t("invoice.copy") }}
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'api/axios.js'
+import show_flash_mixins from 'mixins/show_flash'
 
 export default {
   data: function() {
     return {
-      invoice: {}
+      invoice: {},
+      flashMsg: this.$t('invoice.copy_success')
     }
   },
   created: function() {
@@ -179,7 +187,7 @@ export default {
   },
   methods: {
     printInvoice: function() {
-      const prtHtml = this.$refs.print_invoice.innerHTML
+      const prtHtml = this.$refs.invoice.innerHTML
 
       let stylesHtml = ''
       for (const node of [...document.querySelectorAll('link[rel="stylesheet"], style')]) {
@@ -201,8 +209,33 @@ export default {
       WinPrint.document.close()
       WinPrint.focus()
       WinPrint.print()
-    }
-  }
+    },
+    copyInvoice() {
+      const self = this
+      const node = this.$refs.invoice
+
+      html2canvas(node, {
+        scrollY: -window.scrollY,
+        width: node.scrollWidth,
+      }).then(function (canvas) {
+        canvas.toBlob(function(blob) {
+          navigator.clipboard
+            .write([
+              new ClipboardItem(
+                Object.defineProperty({}, blob.type, {
+                  value: blob,
+                  enumerable: true
+                })
+              )
+            ])
+            .then(function() {
+              self.show_flash(true)
+            })
+        })
+      })
+    },
+  },
+  mixins: [show_flash_mixins],
 }
 </script>
 

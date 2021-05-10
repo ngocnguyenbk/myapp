@@ -146,6 +146,8 @@ const messages = {
       payer: 'Người nộp',
       receiptor: 'Người thu',
       print: 'In hóa đơn',
+      copy: 'Sao chép',
+      copy_success: 'Sao chép thành công',
       add_invoice: 'Tạo hóa đơn',
       new_invoice: 'Tạo hóa đơn mới',
       room_number: 'Phòng số',

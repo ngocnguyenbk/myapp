@@ -146,6 +146,8 @@ const messages = {
       payer: 'Payer',
       receiptor: 'Receiptor',
       print: 'Invoice printing',
+      copy: 'Copy',
+      copy_success: 'Copied to clipboard',
       add_invoice: 'Add invoice',
       new_invoice: 'New invoice',
       room_number: 'Room number',
