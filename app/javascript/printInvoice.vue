@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="w-40 ml-auto mr-auto">
+  <div id="app" class="w-50 ml-auto mr-auto">
     <FlashMessage :position="'right top'"></FlashMessage>
     <div ref="invoice" class="p-4">
       <div class="text-center d-flex flex-column mb-4">
@@ -162,6 +162,15 @@
         {{ $t("invoice.copy") }}
       </button>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="imgInvoice" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog mw-60" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center" id="divImgInvoice">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -211,28 +220,21 @@ export default {
       WinPrint.print()
     },
     copyInvoice() {
-      const self = this
       const node = this.$refs.invoice
-
-      html2canvas(node, {
-        scrollY: -window.scrollY,
-        width: node.scrollWidth,
-      }).then(function (canvas) {
-        canvas.toBlob(function(blob) {
-          navigator.clipboard
-            .write([
-              new ClipboardItem(
-                Object.defineProperty({}, blob.type, {
-                  value: blob,
-                  enumerable: true
-                })
-              )
-            ])
-            .then(function() {
-              self.show_flash(true)
-            })
+      const divImgInvoice = document.getElementById('divImgInvoice')
+      if (!divImgInvoice.innerHTML) {
+        domtoimage.toPng(node, { bgcolor: 'white' }).then(function (dataUrl) {
+          const img = new Image()
+          img.src = dataUrl
+          divImgInvoice.appendChild(img)
+          $('#imgInvoice').modal('toggle')
         })
-      })
+        .catch(function (error) {
+            console.error(error)
+        });
+      } else {
+        $('#imgInvoice').modal('toggle')
+      }
     },
   },
   mixins: [show_flash_mixins],
@@ -251,5 +253,8 @@ export default {
 }
 .text-indent-a {
   text-indent: 30px;
+}
+.mw-60 {
+  max-width: 60% !important;
 }
 </style>

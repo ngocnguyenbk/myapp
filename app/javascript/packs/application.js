@@ -7,7 +7,7 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 window.numeral = require("numeral")
-window.html2canvas = require("html2canvas")
+window.domtoimage = require("dom-to-image")
 
 import 'bootstrap'
 import '../stylesheets/application.scss'

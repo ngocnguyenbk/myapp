@@ -148,6 +148,7 @@ const messages = {
       print: 'Invoice printing',
       copy: 'Copy',
       copy_success: 'Copied to clipboard',
+      generate_success: 'Generate image success',
       add_invoice: 'Add invoice',
       new_invoice: 'New invoice',
       room_number: 'Room number',

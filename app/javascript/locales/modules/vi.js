@@ -148,6 +148,7 @@ const messages = {
       print: 'In hóa đơn',
       copy: 'Sao chép',
       copy_success: 'Sao chép thành công',
+      generate_success: 'Tạo ảnh thành công',
       add_invoice: 'Tạo hóa đơn',
       new_invoice: 'Tạo hóa đơn mới',
       room_number: 'Phòng số',
