@@ -1,6 +1,7 @@
 <template>
-  <div id="app" class="w-40 ml-auto mr-auto">
-    <div ref="print_invoice">
+  <div id="app" class="w-50 ml-auto mr-auto">
+    <FlashMessage :position="'right top'"></FlashMessage>
+    <div ref="invoice" class="p-4">
       <div class="text-center d-flex flex-column mb-4">
         <strong>{{ $t('invoice.print_title') }}</strong>
         <span>{{ $t('invoice.month') + ' ' + invoice.month }} - {{ $t('invoice.room_no') + ' ' + invoice.room_number }}</span>
@@ -154,18 +155,34 @@
       </div>
     </div>
     <div class="footer mb-5">
-      <button class="btn btn-danger float-right" type="button" @click="printInvoice">{{ $t('invoice.print') }}</button>
+      <button class="btn btn-danger float-right" type="button" @click="printInvoice">
+        {{ $t('invoice.print') }}
+      </button>
+      <button class="btn btn-primary float-right mr-1" type="button" @click="copyInvoice">
+        {{ $t("invoice.copy") }}
+      </button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="imgInvoice" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog mw-60" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center" id="divImgInvoice">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'api/axios.js'
+import show_flash_mixins from 'mixins/show_flash'
 
 export default {
   data: function() {
     return {
-      invoice: {}
+      invoice: {},
+      flashMsg: this.$t('invoice.copy_success')
     }
   },
   created: function() {
@@ -179,7 +196,7 @@ export default {
   },
   methods: {
     printInvoice: function() {
-      const prtHtml = this.$refs.print_invoice.innerHTML
+      const prtHtml = this.$refs.invoice.innerHTML
 
       let stylesHtml = ''
       for (const node of [...document.querySelectorAll('link[rel="stylesheet"], style')]) {
@@ -201,8 +218,26 @@ export default {
       WinPrint.document.close()
       WinPrint.focus()
       WinPrint.print()
-    }
-  }
+    },
+    copyInvoice() {
+      const node = this.$refs.invoice
+      const divImgInvoice = document.getElementById('divImgInvoice')
+      if (!divImgInvoice.innerHTML) {
+        domtoimage.toPng(node, { bgcolor: 'white' }).then(function (dataUrl) {
+          const img = new Image()
+          img.src = dataUrl
+          divImgInvoice.appendChild(img)
+          $('#imgInvoice').modal('toggle')
+        })
+        .catch(function (error) {
+            console.error(error)
+        });
+      } else {
+        $('#imgInvoice').modal('toggle')
+      }
+    },
+  },
+  mixins: [show_flash_mixins],
 }
 </script>
 
@@ -218,5 +253,8 @@ export default {
 }
 .text-indent-a {
   text-indent: 30px;
+}
+.mw-60 {
+  max-width: 60% !important;
 }
 </style>
