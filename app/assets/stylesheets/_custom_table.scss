@@ -1,3 +1,10 @@
 table.table > thead {
   font-weight: bold;
 }
+
+table.table {
+  font-size: 13px;
+  .btn {
+    font-size: 13px;
+  }
+}

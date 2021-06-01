@@ -6,15 +6,16 @@ module BatchCreate
     DEFAULT_QUANTITY = 1
 
     attribute :invoice_attributes, Array
-    attribute :date_export, String
+    attribute :month, String
 
-    validates :date_export, presence: true
+    validates :month, presence: true
 
     def self.name
       "BatchCreate::Invoices"
     end
 
-    def initialize(invoice_attributes = {})
+    def initialize(month = "", invoice_attributes = {})
+      @month = month
       @invoice_attributes = invoice_attributes
     end
 
@@ -49,8 +50,7 @@ module BatchCreate
       int_unit = Settings.unit.internet
       paf_unit = Settings.unit.parking_fee
       ser_unit = Settings.unit.service
-      num_day_in_month = date_export.end_of_month.day
-
+      num_day_in_month = Date.parse(month).end_of_month.day
       resource_item = []
       service_item = []
 
@@ -85,7 +85,7 @@ module BatchCreate
     def add_invoice
       {
         invoice: {
-          date_export: date_export,
+          date_export: month,
           reduce: 0
         }
       }
