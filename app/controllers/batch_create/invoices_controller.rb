@@ -12,7 +12,7 @@ module BatchCreate
     end
 
     def create
-      @form = BatchCreate::InvoicesForm.new(multi_invoices[:multi_invoices])
+      @form = BatchCreate::InvoicesForm.new(multi_invoices[:month], multi_invoices[:multi_invoices])
       @form.save
 
       render json: { status: :ok }
@@ -21,7 +21,7 @@ module BatchCreate
     private
 
     def multi_invoices
-      params.require(:invoices).permit(multi_invoices: {})
+      params.require(:invoices).permit(:month, multi_invoices: {})
     end
   end
 end
