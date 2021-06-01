@@ -101,10 +101,10 @@ export default {
         this.isValid = true
       }
       $.each(this.inputForm, function(key, item) {
-        let validEle = item.electric.end_number > item.electric.begin_number
-        let validWat = item.water.end_number > item.water.begin_number
-        self.isValid = item.electric.total > 0 && item.water.total > 0 &&
-                      item.invoice.total > 0 && validEle && validWat
+        let validEle = item.electric.end_number >= item.electric.begin_number
+        let validWat = item.water.end_number >= item.water.begin_number
+        self.isValid = item.electric.total >= 0 && item.water.total >= 0 &&
+                      item.invoice.total >= 0 && validEle && validWat
         if (!self.isValid) {
           self.flashMsg = self.$t('invoice.error_msg', { room: key })
           return false
@@ -120,7 +120,7 @@ export default {
     submitForm: function() {
       if (!this.isValid) return
 
-      this.$store.dispatch('invoice/createInvoices', { params: this.inputForm })
+      this.$store.dispatch('invoice/createInvoices', { params: this.inputForm, month: this.month })
     }
   },
   mixins: [show_flash_mixins]

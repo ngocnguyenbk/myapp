@@ -68,7 +68,7 @@ const actions = {
     commit('setInputForm', payload)
   },
   createInvoices({ commit }, payload) {
-    invoice.createInvoices(payload.params, data => {
+    invoice.createInvoices({ params: payload.params, month: payload.month }, data => {
       if (data.status === 'ok') {
         window.location.href = '/invoices'
       }

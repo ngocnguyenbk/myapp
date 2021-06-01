@@ -10,9 +10,9 @@ export default {
       console.log(error.response)
     })
   },
-  createInvoices (params, cb) {
+  createInvoices ({ params, month }, cb) {
     axios.post('/batch_create/invoices.json',
-      { invoices: { multi_invoices: params } },
+      { invoices: { multi_invoices: params, month: month } },
       { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
     ).then(function(response) {
       cb(response.data)
