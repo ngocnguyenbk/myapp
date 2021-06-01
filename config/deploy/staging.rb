@@ -59,7 +59,7 @@ set :rails_env, :staging
 set :user, :deploy
 set :deploy_to, "/var/www/myapp"
 
-server "103.68.69.129", user: fetch(:user), roles: %w[app db batch]
+server "107.178.64.36", user: fetch(:user), roles: %w[app db batch]
 
 set :deploy_ref, ENV["DEPLOY_REF"]
 if fetch(:deploy_ref)
@@ -71,5 +71,4 @@ end
 set :ssh_options,
     keys: %w[.ssh/deploy_stg_bms.pem],
     forward_agent: true,
-    user: fetch(:user),
-    port: 21_901
+    user: fetch(:user)
