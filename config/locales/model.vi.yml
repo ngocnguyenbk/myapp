@@ -10,6 +10,7 @@ vi:
       not_a_number: " không là số"
       confirmation: " không khớp"
       greater_than_or_equal_to: "Cần lớn hoặc bằng %{count}"
+      less_than_or_equal_to: "Cần nhỏ hơn hoặc bằng %{count}"
   activemodel:
     attributes:
       user:
