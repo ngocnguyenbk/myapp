@@ -17,6 +17,9 @@ en:
     users:
       create:
         success: "Import users success!"
+    invoices:
+      create:
+        success: "Create invoice success room: %{room_numbers}"
   invoices:
     create:
       success: "Create invoice success!"
