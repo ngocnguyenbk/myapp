@@ -23,29 +23,30 @@
               <label class="form-check-label" for="check-all"></label>
             </div>
           </td>
-          <td rowspan="2">{{ $t('invoice.room') }}</td>
-          <td rowspan="2">{{ $t('invoice.deposited') }}</td>
-          <td rowspan="2" class="w-100px">{{ $t('invoice.price') }}</td>
-          <td colspan="4">{{ $t('invoice.electric') }}</td>
-          <td colspan="4">{{ $t('invoice.water') }}</td>
-          <td rowspan="2">{{ $t('invoice.internet') }}</td>
-          <td rowspan="2">{{ $t('invoice.unit_price_parking_fee') }}</td>
-          <td rowspan="2">{{ $t('invoice.num') }}</td>
-          <td rowspan="2">{{ $t('invoice.service') }}</td>
-          <td rowspan="2" class="w-180px">{{ $t('invoice.total') }}</td>
-          <td rowspan="2">{{ $t('invoice.reduce') }}</td>
-          <td rowspan="2" class="w-160px">{{ $t('invoice.holder') }}</td>
-          <td rowspan="2" class="w-180px">{{ $t('invoice.note') }}</td>
+          <th rowspan="2">{{ $t('invoice.room') }}</th>
+          <th rowspan="2">{{ $t('invoice.deposited') }}</th>
+          <th rowspan="2" class="w-100px">{{ $t('invoice.price') }}</th>
+          <th rowspan="2">{{ $t('invoice.day_used_per_month') }}</th>
+          <th colspan="4">{{ $t('invoice.electric') }}</th>
+          <th colspan="4">{{ $t('invoice.water') }}</th>
+          <th rowspan="2">{{ $t('invoice.internet') }}</th>
+          <th rowspan="2">{{ $t('invoice.unit_price_parking_fee') }}</th>
+          <th rowspan="2">{{ $t('invoice.num') }}</th>
+          <th rowspan="2">{{ $t('invoice.service') }}</th>
+          <th rowspan="2" class="w-180px">{{ $t('invoice.total') }}</th>
+          <th rowspan="2">{{ $t('invoice.reduce') }}</th>
+          <th rowspan="2" class="w-160px">{{ $t('invoice.holder') }}</th>
+          <th rowspan="2" class="w-180px">{{ $t('invoice.note') }}</th>
         </tr>
         <tr>
-          <td class="w-70px">{{ $t('invoice.begin_number') }}</td>
-          <td class="w-70px">{{ $t('invoice.end_number') }}</td>
-          <td>{{ $t('invoice.use') }}</td>
-          <td class="w-75px">{{ $t('invoice.into_money') }}</td>
-          <td class="w-70px">{{ $t('invoice.begin_number') }}</td>
-          <td class="w-70px">{{ $t('invoice.end_number') }}</td>
-          <td>{{ $t('invoice.use') }}</td>
-          <td class="w-75px">{{ $t('invoice.into_money') }}</td>
+          <th class="w-70px">{{ $t('invoice.begin_number') }}</th>
+          <th class="w-70px">{{ $t('invoice.end_number') }}</th>
+          <th>{{ $t('invoice.use') }}</th>
+          <th class="w-75px">{{ $t('invoice.into_money') }}</th>
+          <th class="w-70px">{{ $t('invoice.begin_number') }}</th>
+          <th class="w-70px">{{ $t('invoice.end_number') }}</th>
+          <th>{{ $t('invoice.use') }}</th>
+          <th class="w-75px">{{ $t('invoice.into_money') }}</th>
         </tr>
       </thead>
       <RowInvoiceForm
@@ -88,11 +89,12 @@ export default {
   computed: {
     ...mapState({
       invoicesForm: state => state.invoice.invoicesForm,
-      inputForm: state => state.invoice.inputForm
+      inputForm: state => state.invoice.inputForm,
+      flashStateMsg: state => state.invoice.flashMsg
     })
   },
   created: function() {
-    this.$store.dispatch('invoice/getInvoiceForm')
+    this.$store.dispatch('invoice/getInvoiceForm', { month: `${this.month.getMonth() + 1}/${this.month.getFullYear()}` })
   },
   watch: {
     listChecked(_val) {
@@ -100,6 +102,7 @@ export default {
     },
     month(_val) {
       this.isValid = false
+      this.$store.dispatch('invoice/getInvoiceForm', { month: `${this.month.getMonth() + 1}/${this.month.getFullYear()}` })
     },
     checkAll(_val) {
       this.isValid = false
@@ -149,7 +152,7 @@ export default {
         this.show_flash(false)
       }
     },
-    submitForm: function() {
+    submitForm: async function() {
       const self = this
       const submitForm = {}
       if (!this.isValid) return
@@ -160,7 +163,11 @@ export default {
         submitForm[roomNumber] = item
       })
 
-      this.$store.dispatch('invoice/createInvoices', { params: submitForm, month: this.month })
+      await this.$store.dispatch('invoice/createInvoices', { params: submitForm, month: this.month })
+      if (!self.flashStateMsg) return
+
+      self.flashMsg = self.flashStateMsg
+      self.show_flash(false)
     },
     handleCheck(event) {
       this.listChecked[event.roomNumber] = event.check

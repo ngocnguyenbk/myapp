@@ -2,8 +2,10 @@ import axios from './axios.js'
 
 export default {
   loadInvoiceForm (params, cb) {
+    let payload = {}
+    payload['invoices[month]'] = params.month
     axios.get('/batch_create/invoices/new.json', {
-      params: params
+      params: payload
     }).then(function(response) {
       cb(response.data)
     }).catch(function (error) {
