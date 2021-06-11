@@ -7,4 +7,20 @@ table.table {
   .btn {
     font-size: 13px;
   }
+  .check-all {
+    background-color: white;
+    input {
+      text-align: center;
+      position: absolute;
+      display: block;
+      top:0;
+      left:0;
+      height: 100%;
+      width: 100%;
+      border: none;
+    }
+  }
+  .form-check-input {
+    margin-left: 0;
+  }
 }

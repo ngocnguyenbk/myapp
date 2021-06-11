@@ -1,12 +1,24 @@
 <template>
   <tbody :class="background_row">
     <tr class="table-head text-center" v-if="is_empty">
+      <td>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" disabled>
+          <label class="form-check-label"></label>
+        </div>
+      </td>
       <td>{{ room_number }}</td>
       <td v-for="index in sameCell" :key="index"></td>
       <td>{{ $t('invoice.not_contract') }}</td>
     </tr>
 
     <tr class="table-head text-center js-input" v-else>
+      <td>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" :id="`check-${room_number}`" v-model="checked">
+          <label class="form-check-label" :for="`check-${room_number}`"></label>
+        </div>
+      </td>
       <td><input readonly :id="room_number" v-model="roomNumber"></td>
       <td><input readonly :id="`deposited_money_${room_number}`" :value="depMoney.toLocaleString()"></td>
       <td><input type="text" :id="`room_price_${room_number}`" class="input_border" v-model="roomPrice"></td>
@@ -43,6 +55,10 @@ export default {
     },
     month: {
       type: Date
+    },
+    checkAll: {
+      type: Boolean,
+      required: true,
     }
   },
   data: function() {
@@ -69,6 +85,7 @@ export default {
         serTotal: this.item.service.total,
         invReduce: this.item.invoice.reduce,
         total: 0,
+        checked: false,
       }
     }
   },
@@ -142,7 +159,13 @@ export default {
       let newVal = this.isNumeric(val) ? val : 0
       this.invReduce = parseInt(newVal)
       this.calculateTotal()
-    }
+    },
+    checkAll(val) {
+      this.checked = val
+    },
+    checked(val) {
+      this.$emit('checked', { check: val, roomNumber: this.roomNumber })
+    },
   },
   methods: {
     findClosestTr: function(tBody, arrow) {
@@ -153,7 +176,7 @@ export default {
         rowContinue = tBody.next('tbody')
       }
       if (rowContinue.length == 0) return
-      if (rowContinue.find('input').length == 0) {
+      if (rowContinue.find('input').length <= 1) {
         return this.findClosestTr(rowContinue, arrow)
       } else {
         return rowContinue.find('tr')
@@ -252,6 +275,10 @@ export default {
           input.select()
         })
       }
+    })
+
+    $('.js-input').find(':input').on('input', (e) => {
+      this.$emit('input')
     })
   }
 }

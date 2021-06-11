@@ -8,6 +8,8 @@ module BatchCreate
     attribute :invoice_attributes, Array
     attribute :month, String
 
+    attr_reader :room_numbers
+
     validates :month, presence: true
 
     def self.name
@@ -55,7 +57,10 @@ module BatchCreate
       service_item = []
 
       ActiveRecord::Base.transaction do
-        invoice_attributes.to_h.each_with_object({}) do |(_room_number, item)|
+        invoice_attributes.to_h.each_with_object({}) do |(room_number, item)|
+          @room_numbers ||= []
+          @room_numbers.push(room_number)
+
           invoice = Invoice.create! item[:invoice].merge(day_lived: num_day_in_month, day_in_month: num_day_in_month)
           resource_item.push invoice.item_electrics.new item[:electric].merge(unit: ele_unit, unit_price: unit_price_electric)
           resource_item.push invoice.item_waters.new item[:water].merge(unit: wat_unit, unit_price: unit_price_water)

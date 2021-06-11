@@ -14,6 +14,7 @@ module BatchCreate
     def create
       @form = BatchCreate::InvoicesForm.new(multi_invoices[:month], multi_invoices[:multi_invoices])
       @form.save
+      flash[:success] = t(".success", room_numbers: @form.room_numbers.join(", "))
 
       render json: { status: :ok }
     end
