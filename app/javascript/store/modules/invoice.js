@@ -59,18 +59,20 @@ const actions = {
       commit('setInvoices', invoices)
     })
   },
-  getInvoiceForm({ commit }) {
-    invoice.loadInvoiceForm({}, invoicesForm => {
+  getInvoiceForm({ commit }, payload) {
+    invoice.loadInvoiceForm(payload, invoicesForm => {
       commit('setInvoiceForm', invoicesForm)
     })
   },
   setInputForm({ commit }, payload){
     commit('setInputForm', payload)
   },
-  createInvoices({ commit }, payload) {
-    invoice.createInvoices({ params: payload.params, month: payload.month }, data => {
+  async createInvoices({ commit }, payload) {
+    await invoice.createInvoices({ params: payload.params, month: payload.month }, data => {
       if (data.status === 'ok') {
         window.location.href = '/invoices'
+      } else if (data.status === 'not_allow') {
+        commit('setFlashMessage', data.errors)
       }
     })
   },

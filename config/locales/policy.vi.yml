@@ -1,0 +1,6 @@
+vi:
+  pundit:
+    errors:
+      batch_create:
+        invoices_form:
+          has_invoice_already_exist: "Hóa đơn phòng %{room_number} đã tồn tại"
