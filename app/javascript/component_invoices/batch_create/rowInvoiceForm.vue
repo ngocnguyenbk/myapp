@@ -1,29 +1,42 @@
 <template>
   <tbody :class="background_row">
     <tr class="table-head text-center" v-if="is_empty">
+      <td>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" disabled>
+          <label class="form-check-label"></label>
+        </div>
+      </td>
       <td>{{ room_number }}</td>
       <td v-for="index in sameCell" :key="index"></td>
       <td>{{ $t('invoice.not_contract') }}</td>
     </tr>
 
     <tr class="table-head text-center js-input" v-else>
+      <td>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" :id="`check-${room_number}`" v-model="checked">
+          <label class="form-check-label" :for="`check-${room_number}`"></label>
+        </div>
+      </td>
       <td><input readonly :id="room_number" v-model="roomNumber"></td>
       <td><input readonly :id="`deposited_money_${room_number}`" :value="depMoney.toLocaleString()"></td>
-      <td><input type="text" :id="`room_price_${room_number}`" class="input_border" v-model="roomPrice"></td>
-      <td><input type="text" :id="`electric_begin_number_${room_number}`" class="input_border" v-model="eleBegin"></td>
-      <td><input type="text" :id="`electric_end_number_${room_number}`" class="input_border" v-model="eleEnd"></td>
+      <td><input readonly :id="`room_price_${room_number}`" :value="roomPrice.toLocaleString()"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`day_used_per_month_${room_number}`" class="input_border" v-model="dayUsedPerMonth" ></td>
+      <td><input type="text" pattern="[0-9]+" :id="`electric_begin_number_${room_number}`" class="input_border" v-model="eleBegin"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`electric_end_number_${room_number}`" class="input_border" v-model="eleEnd"></td>
       <td><input readonly :id="`electric_quantity_${room_number}`" :value="eleQty.toLocaleString()"></td>
       <td><input readonly :id="`electric_total_${room_number}`" :value="eleTotal.toLocaleString()"></td>
-      <td><input type="text" :id="`water_begin_number_${room_number}`" class="input_border" v-model="watBegin"></td>
-      <td><input type="text" :id="`water_end_number_${room_number}`" class="input_border" v-model="watEnd"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`water_begin_number_${room_number}`" class="input_border" v-model="watBegin"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`water_end_number_${room_number}`" class="input_border" v-model="watEnd"></td>
       <td><input readonly :id="`water_quantity_${room_number}`" :value="watQty.toLocaleString()"></td>
       <td><input readonly :id="`water_total_${room_number}`" :value="watTotal.toLocaleString()"></td>
-      <td><input type="text" :id="`internet_total_${room_number}`" class="input_border" v-model="intTotal"></td>
-      <td><input readonly :id="`parking_fee_total_${room_number}`" :value="pafTotal.toLocaleString()"></td>
-      <td><input type="text" :id="`parking_fee_quantity_${room_number}`" class="input_border" v-model="pafQty"></td>
-      <td><input type="text" :id="`service_total_${room_number}`" class="input_border" v-model="serTotal"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`internet_unit_${room_number}`" class="input_border" v-model="intUnit"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`parking_fee_unit_${room_number}`" class="input_border" v-model="pafUnit"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`parking_fee_quantity_${room_number}`" class="input_border" v-model="pafQty"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`service_unit_${room_number}`" class="input_border" v-model="serUnit"></td>
       <td><input readonly :id="`total_${room_number}`" :value="total.toLocaleString()"></td>
-      <td><input type="text" :id="`reduce_${room_number}`" class="input_border" v-model="invReduce"></td>
+      <td><input type="text" pattern="[0-9]+" :id="`reduce_${room_number}`" class="input_border" v-model="invReduce"></td>
       <td>{{ item.extend_data.holder_name }}</td>
       <td></td>
     </tr>
@@ -43,6 +56,10 @@ export default {
     },
     month: {
       type: Date
+    },
+    checkAll: {
+      type: Boolean,
+      required: true,
     }
   },
   data: function() {
@@ -57,18 +74,15 @@ export default {
         roomPrice: this.item.contract.room_price,
         eleBegin: this.item.electric.begin_number,
         eleEnd: this.item.electric.end_number,
-        eleQty: this.item.electric.quantity,
-        eleTotal: this.item.electric.total,
         watBegin: this.item.water.begin_number,
         watEnd: this.item.water.end_number,
-        watQty: this.item.water.quantity,
-        watTotal: this.item.water.total,
-        intTotal: this.item.internet.total,
-        pafTotal: this.item.parking_fee.total,
+        intUnit: this.item.internet.unit_price,
+        pafUnit: this.item.parking_fee.unit_price,
         pafQty: this.item.parking_fee.quantity,
-        serTotal: this.item.service.total,
+        serUnit: this.item.service.unit_price,
         invReduce: this.item.invoice.reduce,
-        total: 0,
+        dayUsedPerMonth: this.item.invoice.day_used_per_month,
+        checked: false,
       }
     }
   },
@@ -78,71 +92,94 @@ export default {
     },
     is_empty: function() {
       return Object.keys(this.item).length == 0
+    },
+    eleQty: function() {
+      return (this.eleEnd > this.eleBegin) ? (this.eleEnd - this.eleBegin) : 0
+    },
+    eleTotal: function() {
+      return this.eleQty * this.item.electric.unit_price
+    },
+    watQty: function() {
+      return (this.watEnd > this.watBegin) ? (this.watEnd - this.watBegin) : 0
+    },
+    watTotal: function() {
+      return this.watQty * this.item.water.unit_price
+    },
+    totalDayInMonth: function() {
+      return new Date(new Date(this.month).getFullYear(), new Date(this.month).getMonth() + 1, 0).getDate()
+    },
+    intTotal: function() {
+      return this.intUnit * this.dayUsedPerMonth / this.totalDayInMonth
+    },
+    pafTotal: function() {
+      return this.pafQty * this.pafUnit * this.dayUsedPerMonth / this.totalDayInMonth
+    },
+    serTotal: function() {
+      return this.serUnit * this.dayUsedPerMonth / this.totalDayInMonth
+    },
+    roomPriceTotal: function() {
+      return this.roomPrice * this.dayUsedPerMonth / this.totalDayInMonth
+    },
+    total: function() {
+      return Math.floor(this.roomPriceTotal + this.eleTotal + this.watTotal + this.intTotal + this.pafTotal + this.serTotal - this.invReduce)
     }
   },
   watch: {
-    eleBegin: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      let qty = this.eleEnd - parseInt(newVal)
-      qty = qty > 0 ? qty : 0
-      this.eleBegin = parseInt(newVal)
-      this.eleQty = qty
-      this.eleTotal = this.eleQty * this.item.electric.unit_price
-      this.calculateTotal()
+    item: function(val) {
+      if (JSON.stringify(val) === JSON.stringify({})) return
+
+      this.depMoney = val.contract.deposited_money
+      this.roomPrice = val.contract.room_price
+      this.eleBegin = val.electric.begin_number
+      this.eleEnd = val.electric.end_number
+      this.watBegin = val.water.begin_number
+      this.watEnd = val.water.end_number
+      this.intUnit = val.internet.unit_price
+      this.pafUnit = val.parking_fee.unit_price
+      this.pafQty = val.parking_fee.quantity
+      this.serUnit = val.service.unit_price
+      this.invReduce = val.invoice.reduce
+      this.dayUsedPerMonth = val.invoice.day_used_per_month
     },
-    eleEnd: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      let qty = parseInt(newVal) - this.eleBegin
-      qty = qty > 0 ? qty : 0
-      this.eleEnd = parseInt(newVal)
-      this.eleQty = qty
-      this.eleTotal = this.eleQty * this.item.electric.unit_price
-      this.calculateTotal()
+    eleBegin: function(_val) {
+      this.buildForm()
     },
-    watBegin: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      let qty = this.watEnd - parseInt(newVal)
-      qty = qty > 0 ? qty : 0
-      this.watBegin = parseInt(newVal)
-      this.watQty = qty
-      this.watTotal = this.watQty * this.item.water.unit_price
-      this.calculateTotal()
+    eleEnd: function(_val) {
+      this.buildForm()
     },
-    watEnd: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      let qty = parseInt(newVal) - this.watBegin
-      qty = qty > 0 ? qty : 0
-      this.watEnd = parseInt(newVal)
-      this.watQty = qty
-      this.watTotal = this.watQty * this.item.water.unit_price
-      this.calculateTotal()
+    watBegin: function(_val) {
+      this.buildForm()
     },
-    pafQty: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      this.pafQty = parseInt(newVal)
-      this.pafTotal = parseInt(newVal) * this.item.parking_fee.unit_price
-      this.calculateTotal()
+    watEnd: function(_val) {
+      this.buildForm()
     },
-    roomPrice: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      this.roomPrice = parseInt(newVal)
-      this.calculateTotal()
+    dayUsedPerMonth: function(_val) {
+      this.buildForm()
     },
-    intTotal: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      this.intTotal = parseInt(newVal)
-      this.calculateTotal()
+    pafQty: function(_val) {
+      this.buildForm()
     },
-    serTotal: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      this.serTotal = parseInt(newVal)
-      this.calculateTotal()
+    pafUnit: function(_val) {
+      this.buildForm()
     },
-    invReduce: function(val) {
-      let newVal = this.isNumeric(val) ? val : 0
-      this.invReduce = parseInt(newVal)
-      this.calculateTotal()
-    }
+    roomPrice: function(_val) {
+      this.buildForm()
+    },
+    intUnit: function(_val) {
+      this.buildForm()
+    },
+    serUnit: function(_val) {
+      this.buildForm()
+    },
+    invReduce: function(_val) {
+      this.buildForm()
+    },
+    checkAll(val) {
+      this.checked = val
+    },
+    checked(val) {
+      this.$emit('checked', { check: val, roomNumber: this.roomNumber })
+    },
   },
   methods: {
     findClosestTr: function(tBody, arrow) {
@@ -153,15 +190,11 @@ export default {
         rowContinue = tBody.next('tbody')
       }
       if (rowContinue.length == 0) return
-      if (rowContinue.find('input').length == 0) {
+      if (rowContinue.find('input').length <= 1) {
         return this.findClosestTr(rowContinue, arrow)
       } else {
         return rowContinue.find('tr')
       }
-    },
-    calculateTotal: function() {
-      this.total = this.roomPrice + this.eleTotal + this.watTotal + this.intTotal + this.pafTotal + this.serTotal - this.invReduce
-      this.buildForm()
     },
     isNumeric: function (val) {
       return !isNaN(parseFloat(val)) && isFinite(val)
@@ -172,34 +205,36 @@ export default {
           date_export: this.month,
           reduce: this.invReduce,
           total: this.total,
-          contract_id: this.item.contract.contract_id
+          contract_id: this.item.contract.contract_id,
+          day_used_per_month: this.dayUsedPerMonth,
+          room_id: this.item.contract.room_id,
         },
         electric: {
           begin_number: this.eleBegin,
           end_number: this.eleEnd,
           quantity: this.eleQty,
-          total: this.eleTotal
+          total: this.eleTotal,
         },
         water: {
           begin_number: this.watBegin,
           end_number: this.watEnd,
           quantity: this.watQty,
-          total: this.watTotal
+          total: this.watTotal,
         },
         internet: {
-          quantity: this.item.internet.quantity,
+          quantity: 1,
           total: this.intTotal,
-          unit_price: this.item.internet.unit_price
+          unit_price: this.intUnit,
         },
         parking_fee: {
           quantity: this.pafQty,
           total: this.pafTotal,
-          unit_price: this.item.parking_fee.unit_price
+          unit_price: this.pafUnit,
         },
         service: {
-          quantity: this.item.service.quantity,
+          quantity: 1,
           total: this.serTotal,
-          unit_price: this.item.service.unit_price
+          unit_price: this.serUnit,
         }
       }
       this.$store.dispatch('invoice/setInputForm', { roomNumber: parseInt(this.roomNumber), form: form })
@@ -253,7 +288,11 @@ export default {
         })
       }
     })
-  }
+
+    $('.js-input').find(':input').on('input', (e) => {
+      this.$emit('input')
+    })
+  },
 }
 </script>
 

@@ -1,0 +1,6 @@
+en:
+  pundit:
+    errors:
+      batch_create:
+        invoices_form:
+          has_invoice_already_exist: "Invoice of room %{room_number} already exist"

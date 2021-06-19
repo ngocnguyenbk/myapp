@@ -111,6 +111,7 @@ const messages = {
       submit_form: 'Lưu lại',
       error_msg: 'Vui lòng kiểm tra lại dữ liệu phòng {room}',
       success_msg: 'Dữ liệu thỏa mãn',
+      choose_room: 'Vui lòng chọn phòng',
       batch_create: 'Tạo mới hàng loạt',
       invoice_id: 'Mã hóa đơn',
       month: 'Tháng',

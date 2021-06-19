@@ -52,13 +52,13 @@ module InvoiceForm
       contract.invoices.in_month(month).exists?
     end
 
-    private
-
-    attr_reader :current_invoice, :current_invoice_ago
-
     def contract
       @contract ||= Room.find(room_id).contract_active
     end
+
+    private
+
+    attr_reader :current_invoice, :current_invoice_ago
 
     def calculate_ratio_day_lived
       @calculate_ratio_day_lived ||= day_used_per_month.to_f / Date.parse(month).end_of_month.day
@@ -91,7 +91,9 @@ module InvoiceForm
                     electric_end: 0,
                     water_start: 0,
                     water_end: 0,
-                    quantity_parking: 0
+                    quantity_parking: 0,
+                    day_used_per_month: Date.parse(month).end_of_month.day,
+                    reduce: 0
                   })
     end
 
@@ -104,7 +106,9 @@ module InvoiceForm
                     quantity_parking: current_invoice.item_parking_fee.quantity,
                     unit_price_parking_fee: current_invoice.item_parking_fee.unit_price,
                     unit_price_internet: current_invoice.item_internet.unit_price,
-                    unit_price_service_fee: current_invoice.item_service.unit_price
+                    unit_price_service_fee: current_invoice.item_service.unit_price,
+                    day_used_per_month: current_invoice.day_lived,
+                    reduce: current_invoice.reduce
                   })
     end
 
@@ -117,7 +121,9 @@ module InvoiceForm
                     quantity_parking: current_invoice_ago.item_parking_fee.quantity,
                     unit_price_parking_fee: current_invoice_ago.item_parking_fee.unit_price,
                     unit_price_internet: current_invoice_ago.item_internet.unit_price,
-                    unit_price_service_fee: current_invoice_ago.item_service.unit_price
+                    unit_price_service_fee: current_invoice_ago.item_service.unit_price,
+                    day_used_per_month: Date.parse(month).end_of_month.day,
+                    reduce: 0
                   })
     end
   end

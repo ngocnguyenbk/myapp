@@ -111,6 +111,7 @@ const messages = {
       submit_form: 'Submit',
       error_msg: 'Please check data for room {room} again',
       success_msg: 'Data is valid',
+      choose_room: 'Please choose rooms',
       batch_create: 'Batch create invoices',
       invoice_id: 'Invoice ID',
       month: 'Month',
