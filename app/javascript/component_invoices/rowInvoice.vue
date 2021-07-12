@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapActions } = createNamespacedHelpers('invoice')
+import {createNamespacedHelpers} from 'vuex';
+const {mapActions} = createNamespacedHelpers('invoice');
 
 export default {
   props: {
@@ -56,18 +56,18 @@ export default {
     odd: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   computed: {
     background_row_invoice: function() {
-      return this.odd ? 'odd-bg' : 'even-bg'
+      return this.odd ? 'odd-bg' : 'even-bg';
     },
     show_invoice: function() {
-      return `/${locale}/invoices/${this.invoice.id}`
+      return `/${locale}/invoices/${this.invoice.id}`;
     },
     download_invoice: function() {
-      return `/${locale}/download/invoices/${this.invoice.id}`
-    }
+      return `/${locale}/download/invoices/${this.invoice.id}`;
+    },
   },
   methods: {
     ...mapActions({
@@ -76,14 +76,14 @@ export default {
       clearErrorMessages: 'clearErrorMessages',
     }),
     getDetailInvoice: function() {
-      this.getInvoiceInfo(this.invoice.id)
+      this.getInvoiceInfo(this.invoice.id);
     },
     setCurrentInvoice: function() {
-      this.setInvoice(this.invoice)
-      this.clearErrorMessages()
+      this.setInvoice(this.invoice);
+      this.clearErrorMessages();
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -104,9 +104,9 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState } = createNamespacedHelpers('invoice')
-import FieldOnlyView from '../components/fieldOnlyView'
+import {createNamespacedHelpers} from 'vuex';
+const {mapState} = createNamespacedHelpers('invoice');
+import FieldOnlyView from '../components/fieldOnlyView';
 
 export default {
   components: {
@@ -115,17 +115,17 @@ export default {
   data: function() {
     return {
       invoice: {},
-    }
+    };
   },
   computed: {
     ...mapState({
-      detailInvoice: state => state.detailInvoice,
+      detailInvoice: (state) => state.detailInvoice,
     }),
   },
   watch: {
     detailInvoice: function(val) {
-      this.invoice = val
-    }
-  }
-}
+      this.invoice = val;
+    },
+  },
+};
 </script>

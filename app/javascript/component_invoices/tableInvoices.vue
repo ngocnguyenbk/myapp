@@ -28,23 +28,23 @@
 </template>
 
 <script>
-  import RowInvoice from './rowInvoice'
-  import DetailInvoice from './detailInvoice'
-  import EditInvoice from './editInvoice'
-  import DeleteInvoice from './deleteInvoice'
+import RowInvoice from './rowInvoice';
+import DetailInvoice from './detailInvoice';
+import EditInvoice from './editInvoice';
+import DeleteInvoice from './deleteInvoice';
 
-  export default {
-    components: {
-      RowInvoice,
-      DetailInvoice,
-      EditInvoice,
-      DeleteInvoice
+export default {
+  components: {
+    RowInvoice,
+    DetailInvoice,
+    EditInvoice,
+    DeleteInvoice,
+  },
+  props: {
+    invoices: {
+      type: Array,
+      required: true,
     },
-    props: {
-      invoices: {
-        type: Array,
-        required: true,
-      },
-    }
-  }
+  },
+};
 </script>

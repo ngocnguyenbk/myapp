@@ -20,35 +20,35 @@
   </div>
 </template>
 <script>
-import Paginate from 'vuejs-paginate'
+import Paginate from 'vuejs-paginate';
 
 export default {
   components: {
-    Paginate
+    Paginate,
   },
   data: function() {
     return {
       pageNo: this.currentPage,
-    }
+    };
   },
   props: {
     showPaginate: {
-      type: Boolean
+      type: Boolean,
     },
     currentPage: {
-      type: Number
+      type: Number,
     },
     totalPages: {
-      type: Number
+      type: Number,
     },
     loadObjects: {
-      type: Function
-    }
+      type: Function,
+    },
   },
   watch: {
     currentPage: function(value) {
-      this.pageNo = value
-    }
+      this.pageNo = value;
+    },
   },
-}
+};
 </script>

@@ -6,14 +6,14 @@
 </template>
 
 <script>
-import NewInvoices from './component_invoices/newInvoices'
+import NewInvoices from './component_invoices/newInvoices';
 
 export default {
   components: {
     NewInvoices,
   },
   created: function() {
-    this.$store.dispatch('invoice/getRooms')
+    this.$store.dispatch('invoice/getRooms');
   },
-}
+};
 </script>

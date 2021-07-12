@@ -14,44 +14,44 @@
 export default {
   data: function() {
     return {
-      radioVal: this.valueInput
-    }
+      radioVal: this.valueInput,
+    };
   },
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
-      type: String
+      type: String,
     },
     options: {
       type: Object,
-      required: true
+      required: true,
     },
     valueInput: {
-      type: String
+      type: String,
     },
     colLabel: {
       type: String,
-      default: "col-lg-2"
+      default: 'col-lg-2',
     },
     colInput: {
       type: String,
-      default: "col-lg-10"
+      default: 'col-lg-10',
     },
     hasLabel: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   watch: {
     radioVal: function(val) {
-      this.$emit('input', val)
+      this.$emit('input', val);
     },
     valueInput: function(val) {
-      return this.radioVal = val
-    }
-  }
-}
+      return this.radioVal = val;
+    },
+  },
+};
 </script>

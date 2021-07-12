@@ -113,29 +113,29 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import InputText from '../components/inputText.vue'
-import InputNumber from '../components/inputNumber.vue'
-import InputRadioButtons from '../components/inputRadioButtons'
-import InputSelect2 from '../components/inputSelect2.vue'
-import FieldConfirm from '../components/fieldConfirm.vue'
-import UploadFile from '../components/uploadFile'
+import {mapState} from 'vuex';
+import InputText from '../components/inputText.vue';
+import InputNumber from '../components/inputNumber.vue';
+import InputRadioButtons from '../components/inputRadioButtons';
+import InputSelect2 from '../components/inputSelect2.vue';
+import FieldConfirm from '../components/fieldConfirm.vue';
+import UploadFile from '../components/uploadFile';
 
 export default {
   data: function() {
     return {
       params: {},
-      isRegisterNormal: true
-    }
+      isRegisterNormal: true,
+    };
   },
   computed: {
     ...mapState({
-      collectionRooms: state => state.user.rooms,
-      newUsers: state => state.user.newUsers,
-      errorMessages: state => state.user.errorMessages,
-      importUsers: state => state.user.importUsers,
-      errorsImportUsers: state => state.user.errorsImportUsers
-    })
+      collectionRooms: (state) => state.user.rooms,
+      newUsers: (state) => state.user.newUsers,
+      errorMessages: (state) => state.user.errorMessages,
+      importUsers: (state) => state.user.importUsers,
+      errorsImportUsers: (state) => state.user.errorsImportUsers,
+    }),
   },
   components: {
     InputText,
@@ -143,50 +143,52 @@ export default {
     InputRadioButtons,
     InputSelect2,
     FieldConfirm,
-    UploadFile
+    UploadFile,
   },
   methods: {
     submitForm: function() {
-      this.$store.dispatch('user/createUsers', { params: this.handleParams() })
+      this.$store.dispatch('user/createUsers', {params: this.handleParams()});
     },
     submitFormImport: function() {
-      if (Object.keys(this.errorsImportUsers).length != 0) return
+      if (Object.keys(this.errorsImportUsers).length != 0) return;
 
-      let users = this.importUsers
-      Object.values(users).forEach(function(user){ delete user.room_number })
+      const users = this.importUsers;
+      Object.values(users).forEach(function(user) {
+        delete user.room_number;
+      });
 
-      this.$store.dispatch('user/importFile', { users: { import_users: users, step: 'done' }})
+      this.$store.dispatch('user/importFile', {users: {import_users: users, step: 'done'}});
     },
     addNewUser: function() {
-      this.$store.dispatch('user/setNewUser')
+      this.$store.dispatch('user/setNewUser');
     },
     deleteNewUser: function(index) {
-      this.$store.dispatch('user/deleteNewUser', index)
+      this.$store.dispatch('user/deleteNewUser', index);
     },
     handleParams: function() {
-      let self = this
-      this.newUsers.forEach(function (value, index) {
-        self.params[index] = value
-      })
-      return self.params
+      const self = this;
+      this.newUsers.forEach(function(value, index) {
+        self.params[index] = value;
+      });
+      return self.params;
     },
     backToNormal: function() {
-      this.isRegisterNormal = true
-    }
+      this.isRegisterNormal = true;
+    },
   },
   watch: {
     importUsers: function(val) {
-      this.isRegisterNormal = false
-    }
+      this.isRegisterNormal = false;
+    },
   },
   updated: function() {
     if (Object.keys(this.errorsImportUsers).length == 0) {
-      $('#submit-import').prop('disabled', false)
+      $('#submit-import').prop('disabled', false);
     } else {
-      $('#submit-import').prop('disabled', true)
+      $('#submit-import').prop('disabled', true);
     }
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

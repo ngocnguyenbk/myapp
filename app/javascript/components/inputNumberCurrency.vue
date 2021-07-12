@@ -12,40 +12,40 @@
 export default {
   data: function() {
     return {
-      inputVal: this.valueInput
-    }
+      inputVal: this.valueInput,
+    };
   },
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     valueInput: {
-      type: [Number, String]
+      type: [Number, String],
     },
     eMsg: {
-      type: String
+      type: String,
     },
     colLabel: {
       type: String,
-      default: "col-lg-2"
+      default: 'col-lg-2',
     },
     colInput: {
       type: String,
-      default: "col-lg-10"
-    }
+      default: 'col-lg-10',
+    },
   },
   watch: {
     inputVal: function(val) {
-      return this.$emit('input', val)
+      return this.$emit('input', val);
     },
     valueInput: function(val) {
-      return this.inputVal = numeral(val).format('0,0')
-    }
-  }
-}
+      return this.inputVal = numeral(val).format('0,0');
+    },
+  },
+};
 </script>

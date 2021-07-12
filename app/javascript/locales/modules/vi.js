@@ -86,7 +86,7 @@ const messages = {
         close: 'Không',
       },
       defaultMonth: {
-        month: '{count} tháng'
+        month: '{count} tháng',
       },
     },
     invoice: {
@@ -185,7 +185,7 @@ const messages = {
         perform_delete_invoice: 'Bạn có muốn xóa hóa đơn',
         yes: 'Có',
         close: 'Đóng',
-      }
+      },
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',
@@ -196,7 +196,7 @@ const messages = {
       success: 'Thành công!',
       unsuccess: 'Không thành công!',
     },
-  }
-}
+  },
+};
 
-export default messages
+export default messages;

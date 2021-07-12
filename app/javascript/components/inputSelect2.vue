@@ -15,58 +15,58 @@
 export default {
   data: function() {
     return {
-      valSelect: this.selected
-    }
+      valSelect: this.selected,
+    };
   },
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     options: {
       type: Object,
-      required: true
+      required: true,
     },
     selected: {
-      type: [Number, String]
+      type: [Number, String],
     },
     typeSelect: {
       type: String,
-      required: true
+      required: true,
     },
     eMsg: {
-      type: String
+      type: String,
     },
     placeHolder: {
-      type: String
+      type: String,
     },
     colLabel: {
       type: String,
-      default: "col-lg-2"
+      default: 'col-lg-2',
     },
     colInput: {
       type: String,
-      default: "col-lg-10"
-    }
+      default: 'col-lg-10',
+    },
   },
   mounted: function() {
-    let vm = this
+    const vm = this;
     return $(`#${vm.inputId}`).select2({
       width: '100%',
       allowClear: true,
       placeholder: vm.placeHolder,
     }).on('select2:select select2:unselect', function() {
-      vm.$emit('input', this.value)
-    })
+      vm.$emit('input', this.value);
+    });
   },
   updated: function() {
-    $(`#${this.inputId}`).val(this.selected || []).trigger('change')
+    $(`#${this.inputId}`).val(this.selected || []).trigger('change');
   },
-}
+};
 </script>
 <style lang="scss" scoped>
 .form {

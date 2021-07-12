@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import RowUser from './rowUser.vue'
-import EditUser from './editUser.vue'
-import DeleteUser from './deleteUser.vue'
-import ContextMenu from '../components/contextMenu/contextMenu.vue'
-import ContextMenuItem from '../components/contextMenu/contextMenuItem.vue'
+import RowUser from './rowUser.vue';
+import EditUser from './editUser.vue';
+import DeleteUser from './deleteUser.vue';
+import ContextMenu from '../components/contextMenu/contextMenu.vue';
+import ContextMenuItem from '../components/contextMenu/contextMenuItem.vue';
 
 export default {
   components: {
@@ -37,23 +37,23 @@ export default {
     EditUser,
     DeleteUser,
     ContextMenu,
-    ContextMenuItem
+    ContextMenuItem,
   },
   props: {
     users: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     editUser: function() {
-      let element = this.$refs.modal_edit.$el
-      $(element).modal('show')
+      const element = this.$refs.modal_edit.$el;
+      $(element).modal('show');
     },
     deleteUser: function() {
-      let element = this.$refs.modal_delete.$el
-      $(element).modal('show')
-    }
-  }
-}
+      const element = this.$refs.modal_delete.$el;
+      $(element).modal('show');
+    },
+  },
+};
 </script>

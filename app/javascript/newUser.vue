@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import NewUsers from './component_users/newUsers.vue'
+import NewUsers from './component_users/newUsers.vue';
 
 export default {
   components: {
-    NewUsers
+    NewUsers,
   },
   created: function() {
-    this.$store.dispatch('user/getRooms')
+    this.$store.dispatch('user/getRooms');
   },
-}
+};
 </script>

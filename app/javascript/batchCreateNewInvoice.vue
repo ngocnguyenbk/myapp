@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import NewInvoices from './component_invoices/batch_create/newInvoices'
+import NewInvoices from './component_invoices/batch_create/newInvoices';
 
 export default {
   components: {
-    NewInvoices
-  }
-}
+    NewInvoices,
+  },
+};
 </script>

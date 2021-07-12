@@ -8,18 +8,18 @@
 </template>
 
 <script>
-import RowRoom from './rowRoom.vue'
+import RowRoom from './rowRoom.vue';
 export default {
   components: {
-    RowRoom
+    RowRoom,
   },
   props: {
     floor: {
       type: Object,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

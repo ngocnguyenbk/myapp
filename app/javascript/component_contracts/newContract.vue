@@ -69,10 +69,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import InputSelect2 from '../components/inputSelect2'
-import InputNumberCurrency from '../components/inputNumberCurrency'
-import InputDate from '../components/inputDate'
+import {mapState} from 'vuex';
+import InputSelect2 from '../components/inputSelect2';
+import InputNumberCurrency from '../components/inputNumberCurrency';
+import InputDate from '../components/inputDate';
 
 export default {
   data: function() {
@@ -82,51 +82,51 @@ export default {
       room_price: '',
       deposited_money: '',
       started_date: '',
-      ended_date: ''
-    }
+      ended_date: '',
+    };
   },
   components: {
     InputSelect2,
     InputNumberCurrency,
-    InputDate
+    InputDate,
   },
   computed: {
     ...mapState({
-      collectionRooms: state => state.contract.rooms,
-      collectionUsers: state => state.contract.users,
-      errorMessages: state => state.contract.errorMessages,
-      isIndex: state => state.contract.isIndex
-    })
+      collectionRooms: (state) => state.contract.rooms,
+      collectionUsers: (state) => state.contract.users,
+      errorMessages: (state) => state.contract.errorMessages,
+      isIndex: (state) => state.contract.isIndex,
+    }),
   },
   watch: {
     room_price: function(val) {
-      this.deposited_money = val
+      this.deposited_money = val;
     },
     started_date: function(val) {
-      const SIX_MONTH = 6
-      let target = new Date(val)
-      target.setMonth(target.getMonth() + SIX_MONTH)
-      this.ended_date = target
-    }
+      const SIX_MONTH = 6;
+      const target = new Date(val);
+      target.setMonth(target.getMonth() + SIX_MONTH);
+      this.ended_date = target;
+    },
   },
   methods: {
     submitForm: function() {
-      let params = {
+      const params = {
         holder_id: this.holder_id,
         room_id: this.room_id,
         room_price: numeral(this.room_price).value(),
         deposited_money: numeral(this.deposited_money).value(),
         started_date: this.started_date,
-        ended_date: this.ended_date
-      }
+        ended_date: this.ended_date,
+      };
 
-      this.$store.dispatch('contract/createContract', { params: params })
+      this.$store.dispatch('contract/createContract', {params: params});
     },
     backToIndex: function() {
-      this.$store.dispatch('contract/setIsIndex', true)
-    }
-  }
-}
+      this.$store.dispatch('contract/setIsIndex', true);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

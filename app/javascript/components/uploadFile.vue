@@ -45,37 +45,37 @@ export default {
   data: function() {
     return {
       form: {},
-    }
+    };
   },
   methods: {
     uploadFile: function() {
-      this.createFile($('#input_file'))
+      this.createFile($('#input_file'));
     },
     createFile: function(input) {
-      let self = this
+      const self = this;
 
       input.fileinput({
         showUpload: false,
-        showBrowse: false
-      }).on('fileselect', function(e){
-        self.handleFileUpload(e)
-      })
+        showBrowse: false,
+      }).on('fileselect', function(e) {
+        self.handleFileUpload(e);
+      });
     },
     submitForm: function() {
-      let formUpload = $('#input_file').parents('form')
-      let action = formUpload.attr('action')
+      const formUpload = $('#input_file').parents('form');
+      const action = formUpload.attr('action');
 
-      let formData = new FormData()
-      formData.append('users[file]', this.form)
-      formData.append('users[step]', 'confirmation')
+      const formData = new FormData();
+      formData.append('users[file]', this.form);
+      formData.append('users[step]', 'confirmation');
 
-      this.$store.dispatch(action, formData)
+      this.$store.dispatch(action, formData);
     },
     handleFileUpload: function(e) {
-      const file = e.target.files[0]
+      const file = e.target.files[0];
 
-      this.form = file
-    }
+      this.form = file;
+    },
   },
-}
+};
 </script>

@@ -39,34 +39,34 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import InputText from '../components/inputText.vue'
-import InputNumber from '../components/inputNumber.vue'
-import InputRadioButtons from '../components/inputRadioButtons'
-import InputSelect2 from '../components/inputSelect2.vue'
-import FieldConfirm from '../components/fieldConfirm.vue'
+import {mapState} from 'vuex';
+import InputText from '../components/inputText.vue';
+import InputNumber from '../components/inputNumber.vue';
+import InputRadioButtons from '../components/inputRadioButtons';
+import InputSelect2 from '../components/inputSelect2.vue';
+import FieldConfirm from '../components/fieldConfirm.vue';
 
-import show_flash_mixins from '../mixins/show_flash'
+import show_flash_mixins from '../mixins/show_flash';
 
 export default {
   components: {
     InputText,
     InputRadioButtons,
     InputSelect2,
-    FieldConfirm
+    FieldConfirm,
   },
   computed: {
     ...mapState({
-      currentUser: state => state.user.currentUser,
-      isValid: state => state.user.isValid
-    })
+      currentUser: (state) => state.user.currentUser,
+      isValid: (state) => state.user.isValid,
+    }),
   },
   data: function() {
     return {
       isRegistration: true,
       isConfirm: false,
-      params: {}
-    }
+      params: {},
+    };
   },
   watch: {
     currentUser: function(val) {
@@ -77,29 +77,29 @@ export default {
         first_name: val.first_name,
         last_name: val.last_name,
         phone: val.phone,
-        identity_card: val.identity_card
-      }
-    }
+        identity_card: val.identity_card,
+      };
+    },
   },
   methods: {
     submitForm: async function() {
-      await this.$store.dispatch('user/editUser', { params: this.params })
-      this.isRegistration = true
-      this.isConfirm = false
+      await this.$store.dispatch('user/editUser', {params: this.params});
+      this.isRegistration = true;
+      this.isConfirm = false;
 
-      this.show_flash(this.isValid)
+      this.show_flash(this.isValid);
     },
     submitConfirm: function() {
-      this.isRegistration = false
-      this.isConfirm = true
+      this.isRegistration = false;
+      this.isConfirm = true;
     },
     backToRegistration: function() {
-      this.isConfirm = false
-      this.isRegistration = true
-    }
+      this.isConfirm = false;
+      this.isRegistration = true;
+    },
   },
-  mixins: [show_flash_mixins]
-}
+  mixins: [show_flash_mixins],
+};
 </script>
 
 <style>

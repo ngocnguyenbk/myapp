@@ -18,18 +18,18 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
-import { en, vi } from 'vuejs-datepicker/dist/locale'
+import Datepicker from 'vuejs-datepicker';
+import {en, vi} from 'vuejs-datepicker/dist/locale';
 
 export default {
   data: function() {
     return {
       inputVal: this.valueInput,
       locale: {
-        "en": en,
-        "vi": vi,
-      }
-    }
+        'en': en,
+        'vi': vi,
+      },
+    };
   },
   components: {
     Datepicker,
@@ -37,48 +37,48 @@ export default {
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     valueInput: {
-      type: [String, Date]
+      type: [String, Date],
     },
     eMsg: {
-      type: String
+      type: String,
     },
     colLabel: {
       type: String,
-      default: "col-lg-2"
+      default: 'col-lg-2',
     },
     colInput: {
       type: String,
-      default: "col-lg-10"
+      default: 'col-lg-10',
     },
     language: {
       type: String,
-      default: "vi",
+      default: 'vi',
     },
     dateFormat: {
       type: String,
-      default: "dd/MM/yyyy",
+      default: 'dd/MM/yyyy',
     },
     minimumView: {
       type: String,
     },
     maximumView: {
       type: String,
-    }
+    },
   },
   watch: {
     inputVal: function(val) {
-      return this.$emit('input', val)
+      return this.$emit('input', val);
     },
     valueInput: function(val) {
-      return this.inputVal = val
-    }
-  }
-}
+      return this.inputVal = val;
+    },
+  },
+};
 </script>

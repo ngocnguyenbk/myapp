@@ -31,39 +31,39 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import InputToggleSwitch from '../components/inputToggleSwitch'
+import {mapState} from 'vuex';
+import InputToggleSwitch from '../components/inputToggleSwitch';
 export default {
   components: {
-    InputToggleSwitch
+    InputToggleSwitch,
   },
   computed: {
     ...mapState({
-      currentInvoice: state => state.invoice.currentInvoice
-    })
+      currentInvoice: (state) => state.invoice.currentInvoice,
+    }),
   },
   data: function() {
     return {
       params: {},
-      confirm : false
-    }
+      confirm: false,
+    };
   },
   watch: {
     currentInvoice: function(val) {
-      this.confirm = false
+      this.confirm = false;
       this.params = {
-        id: val.id
-      }
-    }
+        id: val.id,
+      };
+    },
   },
   methods: {
     submitDelete: function() {
-      if (!this.confirm) return
-      this.$store.dispatch('invoice/deleteInvoice', { params: this.params })
-    }
+      if (!this.confirm) return;
+      this.$store.dispatch('invoice/deleteInvoice', {params: this.params});
+    },
   },
   updated: function() {
-    $('.btn-delete').prop('disabled', !this.confirm)
-  }
-}
+    $('.btn-delete').prop('disabled', !this.confirm);
+  },
+};
 </script>

@@ -12,19 +12,19 @@ export default {
   props: {
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
-      type: [Number, String]
+      type: [Number, String],
     },
     colLabel: {
       type: String,
-      default: "col-lg-2"
+      default: 'col-lg-2',
     },
     colInput: {
       type: String,
-      default: "col-lg-10"
-    }
-  }
-}
+      default: 'col-lg-10',
+    },
+  },
+};
 </script>

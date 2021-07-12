@@ -188,14 +188,14 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('invoice')
-import InputText from '../components/inputText'
-import InputNumber from '../components/inputNumber'
-import InputSelect2 from '../components/inputSelect2'
-import InputDate from '../components/inputDate'
-import FieldConfirm from '../components/fieldConfirm'
-import show_flash_mixins from '../mixins/show_flash'
+import {createNamespacedHelpers} from 'vuex';
+const {mapState, mapActions} = createNamespacedHelpers('invoice');
+import InputText from '../components/inputText';
+import InputNumber from '../components/inputNumber';
+import InputSelect2 from '../components/inputSelect2';
+import InputDate from '../components/inputDate';
+import FieldConfirm from '../components/fieldConfirm';
+import show_flash_mixins from '../mixins/show_flash';
 
 export default {
   data: function() {
@@ -214,96 +214,96 @@ export default {
       serviceFee: 0,
       reduce: 0,
       total: 0,
-    }
+    };
   },
   computed: {
     ...mapState({
-      collectionRooms: state => state.rooms,
-      newInvoice: state => state.newInvoice,
-      errorMessages: state => state.errorMessages,
-      flashMsg: state => state.flashMsg
+      collectionRooms: (state) => state.rooms,
+      newInvoice: (state) => state.newInvoice,
+      errorMessages: (state) => state.errorMessages,
+      flashMsg: (state) => state.flashMsg,
     }),
     eleTotal: function() {
-      let electricQuantity = this.newInvoice.electric_end - this.newInvoice.electric_start
-      return electricQuantity > 0 ? electricQuantity * this.newInvoice.electric_unit_price : 0
+      const electricQuantity = this.newInvoice.electric_end - this.newInvoice.electric_start;
+      return electricQuantity > 0 ? electricQuantity * this.newInvoice.electric_unit_price : 0;
     },
     watTotal: function() {
-      let waterQuantity = this.newInvoice.water_end - this.newInvoice.water_start
-      return waterQuantity > 0 ? waterQuantity * this.newInvoice.water_unit_price : 0
+      const waterQuantity = this.newInvoice.water_end - this.newInvoice.water_start;
+      return waterQuantity > 0 ? waterQuantity * this.newInvoice.water_unit_price : 0;
     },
     totalDayInMonth: function() {
-      return new Date(new Date(this.month).getFullYear(), new Date(this.month).getMonth() + 1, 0).getDate()
+      return new Date(new Date(this.month).getFullYear(), new Date(this.month).getMonth() + 1, 0).getDate();
     },
     intTotal: function() {
-      return this.newInvoice.unit_price_internet * this.newInvoice.day_used_per_month / this.totalDayInMonth
+      return this.newInvoice.unit_price_internet * this.newInvoice.day_used_per_month / this.totalDayInMonth;
     },
     pafTotal: function() {
-      return this.newInvoice.unit_price_parking_fee * this.newInvoice.day_used_per_month * this.newInvoice.quantity_parking / this.totalDayInMonth
+      return this.newInvoice.unit_price_parking_fee * this.newInvoice.day_used_per_month * this.newInvoice.quantity_parking / this.totalDayInMonth;
     },
     serTotal: function() {
-      return this.newInvoice.unit_price_service_fee * this.newInvoice.day_used_per_month / this.totalDayInMonth
+      return this.newInvoice.unit_price_service_fee * this.newInvoice.day_used_per_month / this.totalDayInMonth;
     },
     roomPriceTotal: function() {
-      return this.newInvoice.room_price * this.newInvoice.day_used_per_month / this.totalDayInMonth
-    }
+      return this.newInvoice.room_price * this.newInvoice.day_used_per_month / this.totalDayInMonth;
+    },
   },
   watch: {
     month: function(val) {
-      this.setInputNewInvoiceForm({ month: `${new Date(val).getMonth() + 1}/${new Date(val).getFullYear()}`, day_used_per_month: this.totalDayInMonth })
-      this.getResourceInfo({ month: this.newInvoice.month, room_id: this.roomId })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({month: `${new Date(val).getMonth() + 1}/${new Date(val).getFullYear()}`, day_used_per_month: this.totalDayInMonth});
+      this.getResourceInfo({month: this.newInvoice.month, room_id: this.roomId});
+      this.calculateTotal();
     },
     roomId: function(val) {
-      this.setInputNewInvoiceForm({ room_id: val })
-      this.getResourceInfo({ month: this.newInvoice.month, room_id: val })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({room_id: val});
+      this.getResourceInfo({month: this.newInvoice.month, room_id: val});
+      this.calculateTotal();
     },
     roomPrice: function(val) {
-      this.setInputNewInvoiceForm({ room_price: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({room_price: numeral(val).value()});
+      this.calculateTotal();
     },
     dayUsedPerMonth: function(val) {
-      this.setInputNewInvoiceForm({ day_used_per_month: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({day_used_per_month: numeral(val).value()});
+      this.calculateTotal();
     },
     electricStart: function(val) {
-      this.setInputNewInvoiceForm({ electric_start: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({electric_start: numeral(val).value()});
+      this.calculateTotal();
     },
     electricEnd: function(val) {
-      this.setInputNewInvoiceForm({ electric_end: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({electric_end: numeral(val).value()});
+      this.calculateTotal();
     },
     waterStart: function(val) {
-      this.setInputNewInvoiceForm({ water_start: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({water_start: numeral(val).value()});
+      this.calculateTotal();
     },
     waterEnd: function(val) {
-      this.setInputNewInvoiceForm({ water_end: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({water_end: numeral(val).value()});
+      this.calculateTotal();
     },
     unitPriceInternet: function(val) {
-      this.setInputNewInvoiceForm({ unit_price_internet: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({unit_price_internet: numeral(val).value()});
+      this.calculateTotal();
     },
     unitParkingFee: function(val) {
-      this.setInputNewInvoiceForm({ unit_price_parking_fee: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({unit_price_parking_fee: numeral(val).value()});
+      this.calculateTotal();
     },
     quantityParking: function(val) {
-      this.setInputNewInvoiceForm({ quantity_parking: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({quantity_parking: numeral(val).value()});
+      this.calculateTotal();
     },
     serviceFee: function(val) {
-      this.setInputNewInvoiceForm({ unit_price_service_fee: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({unit_price_service_fee: numeral(val).value()});
+      this.calculateTotal();
     },
     reduce: function(val) {
-      this.setInputNewInvoiceForm({ reduce: numeral(val).value() })
-      this.calculateTotal()
+      this.setInputNewInvoiceForm({reduce: numeral(val).value()});
+      this.calculateTotal();
     },
     total: function(val) {
-      this.setInputNewInvoiceForm({ total: numeral(val).value() })
+      this.setInputNewInvoiceForm({total: numeral(val).value()});
     },
   },
   components: {
@@ -313,29 +313,29 @@ export default {
     InputDate,
     FieldConfirm,
   },
-  created: function(){
-    this.getResourceInfo({})
+  created: function() {
+    this.getResourceInfo({});
   },
   methods: {
     ...mapActions(['createInvoice', 'setInputNewInvoiceForm', 'getResourceInfo']),
     submitForm: async function() {
-      await this.createInvoice(this.newInvoice)
+      await this.createInvoice(this.newInvoice);
 
-      if (!this.flashMsg) return
+      if (!this.flashMsg) return;
 
-      this.show_flash(false)
+      this.show_flash(false);
     },
     deliverErrors: function(attribute) {
-      if (!this.errorMessages[0]) return
+      if (!this.errorMessages[0]) return;
 
-      return this.errorMessages[0][attribute]
+      return this.errorMessages[0][attribute];
     },
     calculateTotal: function() {
-      this.total = this.roomPriceTotal + this.eleTotal + this.watTotal + this.intTotal + this.pafTotal + this.serTotal - this.newInvoice.reduce
-    }
+      this.total = this.roomPriceTotal + this.eleTotal + this.watTotal + this.intTotal + this.pafTotal + this.serTotal - this.newInvoice.reduce;
+    },
   },
-  mixins: [show_flash_mixins]
-}
+  mixins: [show_flash_mixins],
+};
 </script>
 
 <style lang="scss" scoped>

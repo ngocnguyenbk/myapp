@@ -9,51 +9,51 @@
 </template>
 
 <script>
-import max_min_value_mixins from '../mixins/max_min_value'
+import max_min_value_mixins from '../mixins/max_min_value';
 
 export default {
   data: function() {
     return {
-      inputVal: this.valueInput
-    }
+      inputVal: this.valueInput,
+    };
   },
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
-      type: String
+      type: String,
     },
     valueInput: {
-      type: [Number, String]
+      type: [Number, String],
     },
     colLabel: {
       type: String,
-      default: "col-lg-2"
+      default: 'col-lg-2',
     },
     colInput: {
       type: String,
-      default: "col-lg-10"
+      default: 'col-lg-10',
     },
     eMsg: {
-      type: String
+      type: String,
     },
     max: {
-      type: String
+      type: String,
     },
     min: {
-      type: String
-    }
+      type: String,
+    },
   },
   watch: {
     inputVal: function(val) {
-      return this.$emit('input', val)
+      return this.$emit('input', val);
     },
     valueInput: function(val) {
-      return this.inputVal = this.max_min_value(val, this.$refs.input_number.max, this.$refs.input_number.min)
-    }
+      return this.inputVal = this.max_min_value(val, this.$refs.input_number.max, this.$refs.input_number.min);
+    },
   },
-  mixins: [max_min_value_mixins]
-}
+  mixins: [max_min_value_mixins],
+};
 </script>

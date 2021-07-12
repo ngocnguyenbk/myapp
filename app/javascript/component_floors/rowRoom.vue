@@ -20,24 +20,24 @@ export default {
   props: {
     room: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     contentRoom: function() {
-      return `content_room_${this.room.room_number}`
+      return `content_room_${this.room.room_number}`;
     },
     statusRoom: function() {
-      return this.room.status
-    }
+      return this.room.status;
+    },
   },
   methods: {
     setCurrentRoom: function() {
-      this.$store.dispatch('floor/setCurrentRoom', this.room)
-      this.$store.dispatch('floor/getUsers', {params: {room_id: this.room.id}})
-    }
-  }
-}
+      this.$store.dispatch('floor/setCurrentRoom', this.room);
+      this.$store.dispatch('floor/getUsers', {params: {room_id: this.room.id}});
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

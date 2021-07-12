@@ -33,27 +33,27 @@ export default {
   props: {
     user: {
       type: Object,
-      required: true
+      required: true,
     },
     odd: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     background_row_user: function() {
-      return this.odd ? 'odd-bg' : 'even-bg'
+      return this.odd ? 'odd-bg' : 'even-bg';
     },
     status_user: function() {
-      return this.user.status_active ? 'active' : 'inactive'
-    }
+      return this.user.status_active ? 'active' : 'inactive';
+    },
   },
   methods: {
     setCurrentUser: function() {
-      this.$store.dispatch('user/setCurrentUser', this.user)
-    }
-  }
-}
+      this.$store.dispatch('user/setCurrentUser', this.user);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -20,50 +20,50 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import InputToggleSwitch from '../components/inputToggleSwitch'
-import show_flash_mixins from '../mixins/show_flash'
+import {mapState} from 'vuex';
+import InputToggleSwitch from '../components/inputToggleSwitch';
+import show_flash_mixins from '../mixins/show_flash';
 
 export default {
   components: {
-    InputToggleSwitch
+    InputToggleSwitch,
   },
   computed: {
     ...mapState({
-      currentContract: state => state.contract.detailContract,
-      flashMsg: state => state.contract.flashMsg,
-      isValid: state => state.contract.isValid,
-    })
+      currentContract: (state) => state.contract.detailContract,
+      flashMsg: (state) => state.contract.flashMsg,
+      isValid: (state) => state.contract.isValid,
+    }),
   },
   data: function() {
     return {
       params: {},
       contract: {},
-      confirm : false,
-    }
+      confirm: false,
+    };
   },
   watch: {
     currentContract: function(val) {
-      this.confirm = false
-      this.contract = val.contract
+      this.confirm = false;
+      this.contract = val.contract;
       this.params = {
-        id: this.contract.id
-      }
-    }
+        id: this.contract.id,
+      };
+    },
   },
   methods: {
     submitDelete: async function() {
-      if (!this.confirm) return
-      await this.$store.dispatch('contract/deleteContract', { params: this.params })
+      if (!this.confirm) return;
+      await this.$store.dispatch('contract/deleteContract', {params: this.params});
 
-      this.show_flash(this.isValid)
-    }
+      this.show_flash(this.isValid);
+    },
   },
   updated: function() {
-    $('.btn-delete').prop('disabled', !this.confirm)
+    $('.btn-delete').prop('disabled', !this.confirm);
   },
-  mixins: [show_flash_mixins]
-}
+  mixins: [show_flash_mixins],
+};
 </script>
 
 <style>

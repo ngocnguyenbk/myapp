@@ -10,19 +10,19 @@ export default {
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
-      type: [Number, String]
+      type: [Number, String],
     },
     colField: {
       type: String,
-      default: 'col-md-12'
-    }
-  }
-}
+      default: 'col-md-12',
+    },
+  },
+};
 </script>

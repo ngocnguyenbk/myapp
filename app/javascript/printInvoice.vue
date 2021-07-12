@@ -175,35 +175,35 @@
 </template>
 
 <script>
-import axios from 'api/axios.js'
-import show_flash_mixins from 'mixins/show_flash'
+import axios from 'api/axios.js';
+import show_flash_mixins from 'mixins/show_flash';
 
 export default {
   data: function() {
     return {
       invoice: {},
-      flashMsg: this.$t('invoice.copy_success')
-    }
+      flashMsg: this.$t('invoice.copy_success'),
+    };
   },
   created: function() {
-    const self = this
-    axios.get(`/invoices/${invoiceID}.json`, {}
+    const self = this;
+    axios.get(`/invoices/${invoiceID}.json`, {},
     ).then(function(response) {
-      self.invoice = response.data.invoice
+      self.invoice = response.data.invoice;
     }).catch(function(error) {
-      console.log(error.response)
-    })
+      console.log(error.response);
+    });
   },
   methods: {
     printInvoice: function() {
-      const prtHtml = this.$refs.invoice.innerHTML
+      const prtHtml = this.$refs.invoice.innerHTML;
 
-      let stylesHtml = ''
+      let stylesHtml = '';
       for (const node of [...document.querySelectorAll('link[rel="stylesheet"], style')]) {
-        stylesHtml += node.outerHTML
+        stylesHtml += node.outerHTML;
       }
 
-      const WinPrint = window.open('', '', 'scrollbars=0,status=0,fullscreen=0')
+      const WinPrint = window.open('', '', 'scrollbars=0,status=0,fullscreen=0');
       WinPrint.document.write(`<!DOCTYPE html>
                                 <html>
                                   <head>
@@ -212,33 +212,33 @@ export default {
                                   <body>
                                     ${prtHtml}
                                   </body>
-                                </html>`
-                              )
+                                </html>`,
+      );
 
-      WinPrint.document.close()
-      WinPrint.focus()
-      WinPrint.print()
+      WinPrint.document.close();
+      WinPrint.focus();
+      WinPrint.print();
     },
     copyInvoice() {
-      const node = this.$refs.invoice
-      const divImgInvoice = document.getElementById('divImgInvoice')
+      const node = this.$refs.invoice;
+      const divImgInvoice = document.getElementById('divImgInvoice');
       if (!divImgInvoice.innerHTML) {
-        domtoimage.toPng(node, { bgcolor: 'white' }).then(function (dataUrl) {
-          const img = new Image()
-          img.src = dataUrl
-          divImgInvoice.appendChild(img)
-          $('#imgInvoice').modal('toggle')
+        domtoimage.toPng(node, {bgcolor: 'white'}).then(function(dataUrl) {
+          const img = new Image();
+          img.src = dataUrl;
+          divImgInvoice.appendChild(img);
+          $('#imgInvoice').modal('toggle');
         })
-        .catch(function (error) {
-            console.error(error)
-        });
+            .catch(function(error) {
+              console.error(error);
+            });
       } else {
-        $('#imgInvoice').modal('toggle')
+        $('#imgInvoice').modal('toggle');
       }
     },
   },
   mixins: [show_flash_mixins],
-}
+};
 </script>
 
 <style lang="scss" scoped>

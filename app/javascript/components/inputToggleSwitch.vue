@@ -14,29 +14,29 @@
 export default {
   data: function() {
     return {
-      checked: this.value
-    }
+      checked: this.value,
+    };
   },
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   watch: {
     checked: function(val) {
-      return this.$emit('checked', val)
+      return this.$emit('checked', val);
     },
     value: function(val) {
-      return this.checked = val
-    }
-  }
-}
+      return this.checked = val;
+    },
+  },
+};
 </script>

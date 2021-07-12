@@ -60,3 +60,10 @@ jobs:
       run: |
         bundle exec rails db:migrate
         bundle exec rspec spec
+    - name: Eslint and Stylelint
+      run: |
+        yarn install
+        yarn add eslint-config-airbnb
+        yarn add eslint-plugin-jsx-a11y@latest
+        yarn lint:js
+        yarn lint:style

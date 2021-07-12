@@ -65,17 +65,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import show_flash_mixins from '../../mixins/show_flash'
-import { some, forEach } from 'lodash'
+import {mapState} from 'vuex';
+import show_flash_mixins from '../../mixins/show_flash';
+import {some, forEach} from 'lodash';
 
-import RowInvoiceForm from './rowInvoiceForm'
-import InputDate from '../../components/inputDate'
+import RowInvoiceForm from './rowInvoiceForm';
+import InputDate from '../../components/inputDate';
 
 export default {
   components: {
     RowInvoiceForm,
-    InputDate
+    InputDate,
   },
   data: function() {
     return {
@@ -84,98 +84,100 @@ export default {
       month: new Date(),
       checkAll: false,
       listChecked: {},
-    }
+    };
   },
   computed: {
     ...mapState({
-      invoicesForm: state => state.invoice.invoicesForm,
-      inputForm: state => state.invoice.inputForm,
-      flashStateMsg: state => state.invoice.flashMsg
-    })
+      invoicesForm: (state) => state.invoice.invoicesForm,
+      inputForm: (state) => state.invoice.inputForm,
+      flashStateMsg: (state) => state.invoice.flashMsg,
+    }),
   },
   created: function() {
-    this.$store.dispatch('invoice/getInvoiceForm', { month: `${this.month.getMonth() + 1}/${this.month.getFullYear()}` })
+    this.$store.dispatch('invoice/getInvoiceForm', {month: `${this.month.getMonth() + 1}/${this.month.getFullYear()}`});
   },
   watch: {
     listChecked(_val) {
-      this.isValid = false
+      this.isValid = false;
     },
     month(_val) {
-      this.isValid = false
-      this.$store.dispatch('invoice/getInvoiceForm', { month: `${this.month.getMonth() + 1}/${this.month.getFullYear()}` })
+      this.isValid = false;
+      this.$store.dispatch('invoice/getInvoiceForm', {month: `${this.month.getMonth() + 1}/${this.month.getFullYear()}`});
     },
     checkAll(_val) {
-      this.isValid = false
-    }
+      this.isValid = false;
+    },
   },
   methods: {
     checkForm: function() {
       if (this.isValid) {
-        this.submitForm()
+        this.submitForm();
       } else {
-        this.validForm()
+        this.validForm();
       }
     },
     validForm: function() {
-      let self = this
-      if (this.month === "") {
-        this.flashMsg = this.$t('invoice.input_month')
-        this.show_flash(false)
+      const self = this;
+      if (this.month === '') {
+        this.flashMsg = this.$t('invoice.input_month');
+        this.show_flash(false);
 
-        return
-      } else if (some(this.listChecked, (val) => { return val })) {
-        this.isValid = true
+        return;
+      } else if (some(this.listChecked, (val) => {
+        return val;
+      })) {
+        this.isValid = true;
       } else {
-        this.flashMsg = this.$t('invoice.choose_room')
-        this.show_flash(false)
+        this.flashMsg = this.$t('invoice.choose_room');
+        this.show_flash(false);
 
-        return
+        return;
       }
 
       forEach(this.inputForm, function(item, roomNumber) {
-        if (!self.listChecked[roomNumber]) return
+        if (!self.listChecked[roomNumber]) return;
 
-        let validEle = item.electric.end_number >= item.electric.begin_number
-        let validWat = item.water.end_number >= item.water.begin_number
+        const validEle = item.electric.end_number >= item.electric.begin_number;
+        const validWat = item.water.end_number >= item.water.begin_number;
         self.isValid = item.electric.total >= 0 && item.water.total >= 0 &&
-                      item.invoice.total >= 0 && validEle && validWat
+                      item.invoice.total >= 0 && validEle && validWat;
         if (!self.isValid) {
-          self.flashMsg = self.$t('invoice.error_msg', { room: roomNumber })
-          return false
+          self.flashMsg = self.$t('invoice.error_msg', {room: roomNumber});
+          return false;
         }
-      })
+      });
 
-      if (this.isValid){
-        this.flashMsg = this.$t('invoice.success_msg')
-        this.show_flash(true)
+      if (this.isValid) {
+        this.flashMsg = this.$t('invoice.success_msg');
+        this.show_flash(true);
       } else {
-        this.show_flash(false)
+        this.show_flash(false);
       }
     },
     submitForm: async function() {
-      const self = this
-      const submitForm = {}
-      if (!this.isValid) return
+      const self = this;
+      const submitForm = {};
+      if (!this.isValid) return;
 
       forEach(this.inputForm, function(item, roomNumber) {
-        if (!self.listChecked[roomNumber]) return
+        if (!self.listChecked[roomNumber]) return;
 
-        submitForm[roomNumber] = item
-      })
+        submitForm[roomNumber] = item;
+      });
 
-      await this.$store.dispatch('invoice/createInvoices', { params: submitForm, month: this.month })
-      if (!self.flashStateMsg) return
+      await this.$store.dispatch('invoice/createInvoices', {params: submitForm, month: this.month});
+      if (!self.flashStateMsg) return;
 
-      self.flashMsg = self.flashStateMsg
-      self.show_flash(false)
+      self.flashMsg = self.flashStateMsg;
+      self.show_flash(false);
     },
     handleCheck(event) {
-      this.listChecked[event.roomNumber] = event.check
+      this.listChecked[event.roomNumber] = event.check;
     },
     handleInput() {
-      this.isValid = false
-    }
+      this.isValid = false;
+    },
   },
-  mixins: [show_flash_mixins]
-}
+  mixins: [show_flash_mixins],
+};
 </script>

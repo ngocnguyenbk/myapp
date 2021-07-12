@@ -155,18 +155,18 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("invoice");
-import InputText from "../components/inputText.vue";
-import FieldConfirm from "../components/fieldConfirm.vue";
+import {createNamespacedHelpers} from 'vuex';
+const {mapState, mapActions} = createNamespacedHelpers('invoice');
+import InputText from '../components/inputText.vue';
+import FieldConfirm from '../components/fieldConfirm.vue';
 
-import show_flash_mixins from "../mixins/show_flash";
+import show_flash_mixins from '../mixins/show_flash';
 export default {
   components: {
     InputText,
     FieldConfirm,
   },
-  data: function () {
+  data: function() {
     return {
       isRegistration: true,
       isConfirm: false,
@@ -182,7 +182,7 @@ export default {
       unitPriceServiceFee: 0,
       reduce: 0,
       total: 0,
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -191,102 +191,102 @@ export default {
       errorMessages: (state) => state.errorMessages,
       editInvoice: (state) => state.editInvoice,
     }),
-    eleTotal: function () {
-      let electricQuantity = this.editInvoice.electric_end - this.editInvoice.electric_start;
+    eleTotal: function() {
+      const electricQuantity = this.editInvoice.electric_end - this.editInvoice.electric_start;
       return electricQuantity > 0 ? electricQuantity * this.currentInvoice.unit_price_electric : 0;
     },
-    watTotal: function () {
-      let waterQuantity = this.editInvoice.water_end - this.editInvoice.water_start;
+    watTotal: function() {
+      const waterQuantity = this.editInvoice.water_end - this.editInvoice.water_start;
       return waterQuantity > 0 ? waterQuantity * this.currentInvoice.unit_price_water : 0;
     },
-    totalDayInMonth: function () {
-      return new Date(this.currentInvoice.month.split("/")[1], this.currentInvoice.month.split("/")[0], 0).getDate();
+    totalDayInMonth: function() {
+      return new Date(this.currentInvoice.month.split('/')[1], this.currentInvoice.month.split('/')[0], 0).getDate();
     },
-    intTotal: function () {
+    intTotal: function() {
       return ((this.editInvoice.unit_price_internet * this.editInvoice.day_used_per_month) / this.totalDayInMonth);
     },
-    pafTotal: function () {
+    pafTotal: function() {
       return ((this.editInvoice.unit_price_parking_fee * this.editInvoice.day_used_per_month * this.editInvoice.quantity_parking) / this.totalDayInMonth);
     },
-    serTotal: function () {
+    serTotal: function() {
       return ((this.editInvoice.unit_price_service_fee * this.editInvoice.day_used_per_month) / this.totalDayInMonth);
     },
-    roomPriceTotal: function () {
+    roomPriceTotal: function() {
       return ((this.currentInvoice.room_price * this.editInvoice.day_used_per_month) / this.totalDayInMonth);
     },
   },
   mixins: [show_flash_mixins],
   watch: {
-    dayUsedPerMonth: function (val) {
-      this.setInputEditInvoiceForm({ day_used_per_month: numeral(val).value() });
+    dayUsedPerMonth: function(val) {
+      this.setInputEditInvoiceForm({day_used_per_month: numeral(val).value()});
       this.calculateTotal();
     },
-    electricStart: function (val) {
-      this.setInputEditInvoiceForm({ electric_start: numeral(val).value() });
+    electricStart: function(val) {
+      this.setInputEditInvoiceForm({electric_start: numeral(val).value()});
       this.calculateTotal();
     },
-    electricEnd: function (val) {
-      this.setInputEditInvoiceForm({ electric_end: numeral(val).value() });
+    electricEnd: function(val) {
+      this.setInputEditInvoiceForm({electric_end: numeral(val).value()});
       this.calculateTotal();
     },
-    waterStart: function (val) {
-      this.setInputEditInvoiceForm({ water_start: numeral(val).value() });
+    waterStart: function(val) {
+      this.setInputEditInvoiceForm({water_start: numeral(val).value()});
       this.calculateTotal();
     },
-    waterEnd: function (val) {
-      this.setInputEditInvoiceForm({ water_end: numeral(val).value() });
+    waterEnd: function(val) {
+      this.setInputEditInvoiceForm({water_end: numeral(val).value()});
       this.calculateTotal();
     },
-    unitPriceInternet: function (val) {
-      this.setInputEditInvoiceForm({ unit_price_internet: numeral(val).value() });
+    unitPriceInternet: function(val) {
+      this.setInputEditInvoiceForm({unit_price_internet: numeral(val).value()});
       this.calculateTotal();
     },
-    unitPriceParkingFee: function (val) {
-      this.setInputEditInvoiceForm({ unit_price_parking_fee: numeral(val).value() });
+    unitPriceParkingFee: function(val) {
+      this.setInputEditInvoiceForm({unit_price_parking_fee: numeral(val).value()});
       this.calculateTotal();
     },
-    quantityParking: function (val) {
-      this.setInputEditInvoiceForm({ quantity_parking: numeral(val).value() });
+    quantityParking: function(val) {
+      this.setInputEditInvoiceForm({quantity_parking: numeral(val).value()});
       this.calculateTotal();
     },
-    unitPriceServiceFee: function (val) {
-      this.setInputEditInvoiceForm({ unit_price_service_fee: numeral(val).value() });
+    unitPriceServiceFee: function(val) {
+      this.setInputEditInvoiceForm({unit_price_service_fee: numeral(val).value()});
       this.calculateTotal();
     },
-    reduce: function (val) {
-      this.setInputEditInvoiceForm({ reduce: numeral(val).value() });
+    reduce: function(val) {
+      this.setInputEditInvoiceForm({reduce: numeral(val).value()});
       this.calculateTotal();
     },
     total: function(val) {
-      this.setInputEditInvoiceForm({ total: Math.round(numeral(val).value()) })
+      this.setInputEditInvoiceForm({total: Math.round(numeral(val).value())});
     },
   },
   methods: {
-    ...mapActions(["updateInvoice", "setInputEditInvoiceForm"]),
-    submitConfirm: async function () {
-      this.setInputEditInvoiceForm({ id: this.currentInvoice.id });
-      await this.updateInvoice({ step: "confirmation" });
-      if (!this.isValid) return
+    ...mapActions(['updateInvoice', 'setInputEditInvoiceForm']),
+    submitConfirm: async function() {
+      this.setInputEditInvoiceForm({id: this.currentInvoice.id});
+      await this.updateInvoice({step: 'confirmation'});
+      if (!this.isValid) return;
 
       this.isRegistration = false;
       this.isConfirm = true;
     },
-    submitForm: async function () {
-      await this.updateInvoice({ step: "done" });
+    submitForm: async function() {
+      await this.updateInvoice({step: 'done'});
       this.isRegistration = true;
       this.isConfirm = false;
       this.show_flash(this.isValid);
     },
-    backToRegistration: function () {
+    backToRegistration: function() {
       this.isConfirm = false;
       this.isRegistration = true;
     },
-    deliverErrors: function (attribute) {
+    deliverErrors: function(attribute) {
       if (!this.errorMessages[0]) return;
 
       return this.errorMessages[0][attribute];
     },
-    calculateTotal: function () {
+    calculateTotal: function() {
       this.total = this.roomPriceTotal + this.eleTotal + this.watTotal + this.intTotal + this.pafTotal + this.serTotal - this.editInvoice.reduce;
     },
   },

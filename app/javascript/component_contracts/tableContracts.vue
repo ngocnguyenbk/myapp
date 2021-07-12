@@ -23,23 +23,23 @@
 </template>
 
 <script>
-import RowContract from './rowContract'
-import DetailContract from './detailContract'
-import TerminateContract from './terminateContract'
-import ExtendContract from './extendContract'
+import RowContract from './rowContract';
+import DetailContract from './detailContract';
+import TerminateContract from './terminateContract';
+import ExtendContract from './extendContract';
 
 export default {
   components: {
     RowContract,
     DetailContract,
     TerminateContract,
-    ExtendContract
+    ExtendContract,
   },
   props: {
     contracts: {
       type: Array,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>

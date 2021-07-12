@@ -41,31 +41,31 @@ export default {
   props: {
     contract: {
       type: Object,
-      required: true
+      required: true,
     },
     odd: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     background_row_contract: function() {
-      return this.odd ? 'odd-bg' : 'even-bg'
+      return this.odd ? 'odd-bg' : 'even-bg';
     },
     statusContract: function() {
-      return this.contract.active ? 'active' : 'inactive'
-    }
+      return this.contract.active ? 'active' : 'inactive';
+    },
   },
   methods: {
     getDetailContract: function() {
-      this.$store.dispatch('contract/getDetailContract', this.contract)
+      this.$store.dispatch('contract/getDetailContract', this.contract);
     },
     dbclickShowContract: function() {
-      this.getDetailContract()
-      $('#detailContract').modal('toggle')
-    }
-  }
-}
+      this.getDetailContract();
+      $('#detailContract').modal('toggle');
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

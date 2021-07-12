@@ -59,29 +59,29 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import FieldOnlyView from '../components/fieldOnlyView'
+import {mapState} from 'vuex';
+import FieldOnlyView from '../components/fieldOnlyView';
 
 export default {
   components: {
-    FieldOnlyView
+    FieldOnlyView,
   },
   data: function() {
     return {
       contract: {},
-      detail: {}
-    }
+      detail: {},
+    };
   },
   computed: {
     ...mapState({
-      detailContract: state => state.contract.detailContract,
-    })
+      detailContract: (state) => state.contract.detailContract,
+    }),
   },
   watch: {
     detailContract: function(val) {
-      this.contract = val.contract
-      this.detail = val.detail
-    }
-  }
-}
+      this.contract = val.contract;
+      this.detail = val.detail;
+    },
+  },
+};
 </script>

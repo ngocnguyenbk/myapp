@@ -47,85 +47,85 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import InputRadioButtons from '../components/inputRadioButtons'
-import InputNumber from '../components/inputNumber'
-import FieldOnlyView from '../components/fieldOnlyView'
-import show_flash_mixins from '../mixins/show_flash'
+import {mapState} from 'vuex';
+import InputRadioButtons from '../components/inputRadioButtons';
+import InputNumber from '../components/inputNumber';
+import FieldOnlyView from '../components/fieldOnlyView';
+import show_flash_mixins from '../mixins/show_flash';
 
 export default {
   components: {
     InputRadioButtons,
     InputNumber,
-    FieldOnlyView
+    FieldOnlyView,
   },
   computed: {
     ...mapState({
-      currentContract: state => state.contract.detailContract,
-      defaultMonth: state => state.contract.defaultMonth,
-      errorMessages: state => state.contract.errorMessages,
-      isValid: state => state.contract.isValid,
-      flashMsg: state => state.contract.flashMsg,
+      currentContract: (state) => state.contract.detailContract,
+      defaultMonth: (state) => state.contract.defaultMonth,
+      errorMessages: (state) => state.contract.errorMessages,
+      isValid: (state) => state.contract.isValid,
+      flashMsg: (state) => state.contract.flashMsg,
     }),
     months: function() {
-      const self = this
+      const self = this;
       return this.defaultMonth.reduce(function(months, num) {
-          months[num] = self.$tc('contract.defaultMonth.month', num)
-          return months
-        }
-      , {} )
-    }
+        months[num] = self.$tc('contract.defaultMonth.month', num);
+        return months;
+      }
+      , {} );
+    },
   },
   data: function() {
     return {
       params: {},
       contract: {},
       isConfirm: true,
-      isDone: false
-    }
+      isDone: false,
+    };
   },
   watch: {
     currentContract: function(val) {
-      this.$store.commit('contract/setErrors', {})
+      this.$store.commit('contract/setErrors', {});
 
-      this.contract = val.contract
+      this.contract = val.contract;
       this.params = {
         id: this.contract.id,
         number_months: '',
-        step: ''
-      }
-    }
+        step: '',
+      };
+    },
   },
   methods: {
     submitConfirm: async function() {
-      this.params.step = 'confirmation'
-      await this.$store.dispatch('contract/extendContract', { params: this.params })
+      this.params.step = 'confirmation';
+      await this.$store.dispatch('contract/extendContract', {params: this.params});
 
       if (this.isValid) {
-        this.isConfirm = false
-        this.isDone = true
+        this.isConfirm = false;
+        this.isDone = true;
       }
 
-      if (!this.flashMsg) return
+      if (!this.flashMsg) return;
 
-      $('#extendContract').modal('toggle')
-      this.show_flash(this.isValid)
+      $('#extendContract').modal('toggle');
+      this.show_flash(this.isValid);
     },
     submitDone: async function() {
-      this.params.step = 'done'
-      await this.$store.dispatch('contract/extendContract', { params: this.params })
+      this.params.step = 'done';
+      await this.$store.dispatch('contract/extendContract', {params: this.params});
 
-      this.isConfirm = true
-      this.isDone = false
-      this.show_flash(this.isValid)
+      this.isConfirm = true;
+      this.isDone = false;
+      this.show_flash(this.isValid);
     },
     backToEdit: function() {
-      this.isConfirm = true
-      this.isDone = false
-    }
+      this.isConfirm = true;
+      this.isDone = false;
+    },
   },
-  mixins: [show_flash_mixins]
-}
+  mixins: [show_flash_mixins],
+};
 </script>
 
 <style>
