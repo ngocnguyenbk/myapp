@@ -1,26 +1,58 @@
 <template>
-  <table class="table table-multi-body table-bordered" @contextmenu.prevent="$refs.menu.open($event)">
+  <table
+    class="table table-multi-body table-bordered"
+    @contextmenu.prevent="$refs.menu.open($event)"
+  >
     <ContextMenu ref="menu">
-      <ContextMenuItem @click.native="editUser()">{{ $t('user.edit_user') }}</ContextMenuItem>
-      <ContextMenuItem @click.native="deleteUser()">{{ $t('user.delete_user') }}</ContextMenuItem>
+      <ContextMenuItem @click.native="editUser()">
+        {{ $t('user.edit_user') }}
+      </ContextMenuItem>
+      <ContextMenuItem @click.native="deleteUser()">
+        {{ $t('user.delete_user') }}
+      </ContextMenuItem>
     </ContextMenu>
     <thead class="table-header">
       <tr class="table-head text-center">
-        <td class="w-100px align-middle">{{ $t('user.user_id') }}</td>
-        <td class="w-200px align-middle">{{ $t('user.first_name') }}</td>
-        <td class="w-200px align-middle">{{ $t('user.last_name') }}</td>
-        <td class="w-150px align-middle">{{ $t('user.room_number') }}</td>
-        <td class="align-middle">{{ $t('user.email') }}</td>
-        <td class="w-200px align-middle">{{ $t('user.phone') }}</td>
-        <td class="w-120px align-middle">{{ $t('user.birthday') }}</td>
-        <td class="w-120px align-middle">{{ $t('user.created_at') }}</td>
-        <td class="w-120px align-middle">{{ $t('user.edit_or_delete') }}</td>
-        <td class="w-60px align-middle">{{ $t('user.active') }}</td>
+        <td class="w-100px align-middle">
+          {{ $t('user.user_id') }}
+        </td>
+        <td class="w-200px align-middle">
+          {{ $t('user.first_name') }}
+        </td>
+        <td class="w-200px align-middle">
+          {{ $t('user.last_name') }}
+        </td>
+        <td class="w-150px align-middle">
+          {{ $t('user.room_number') }}
+        </td>
+        <td class="align-middle">
+          {{ $t('user.email') }}
+        </td>
+        <td class="w-200px align-middle">
+          {{ $t('user.phone') }}
+        </td>
+        <td class="w-120px align-middle">
+          {{ $t('user.birthday') }}
+        </td>
+        <td class="w-120px align-middle">
+          {{ $t('user.created_at') }}
+        </td>
+        <td class="w-120px align-middle">
+          {{ $t('user.edit_or_delete') }}
+        </td>
+        <td class="w-60px align-middle">
+          {{ $t('user.active') }}
+        </td>
       </tr>
     </thead>
-    <RowUser :user="user" :odd="(index % 2) != 0" v-for="(user, index) in users" :key="index" />
-    <EditUser ref="modal_edit"/>
-    <DeleteUser ref="modal_delete"/>
+    <RowUser
+      v-for="(user, index) in users"
+      :key="index"
+      :user="user"
+      :odd="(index % 2) != 0"
+    />
+    <EditUser ref="modal_edit" />
+    <DeleteUser ref="modal_delete" />
   </table>
 </template>
 

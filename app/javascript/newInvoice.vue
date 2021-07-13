@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <FlashMessage :position="'right top'"></FlashMessage>
+    <FlashMessage :position="'right top'" />
     <NewInvoices />
   </div>
 </template>

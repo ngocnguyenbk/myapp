@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <div  class="d-flex">
-      <FlashMessage :position="'left top'"></FlashMessage>
+    <div class="d-flex">
+      <FlashMessage :position="'left top'" />
       <div :class="['new-user', { 'mb-2': !showPaginate }]">
-        <a class="btn btn-primary" :href="newUserPath">{{ $t('user.new_user') }}</a>
+        <a
+          class="btn btn-primary"
+          :href="newUserPath"
+        >{{ $t('user.new_user') }}</a>
       </div>
       <div class="ml-auto">
         <Paginator
-          :currentPage="currentPage"
-          :showPaginate="showPaginate"
-          :totalPages="totalPages"
-          :loadObjects="loadUsers"
+          :current-page="currentPage"
+          :show-paginate="showPaginate"
+          :total-pages="totalPages"
+          :load-objects="loadUsers"
         />
       </div>
     </div>

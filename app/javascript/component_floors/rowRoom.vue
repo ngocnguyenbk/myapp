@@ -1,15 +1,23 @@
 <template>
-  <div :id="contentRoom" class="mw-20 col d-flex flex-column" data-toggle="modal" data-target="#editRoom" @click="setCurrentRoom">
-    <div :class="['dot dot-lg ml-auto', statusRoom]"></div>
-    <div class="text-center">{{room.room_number}}</div>
+  <div
+    :id="contentRoom"
+    class="mw-20 col d-flex flex-column"
+    data-toggle="modal"
+    data-target="#editRoom"
+    @click="setCurrentRoom"
+  >
+    <div :class="['dot dot-lg ml-auto', statusRoom]" />
+    <div class="text-center">
+      {{ room.room_number }}
+    </div>
     <div class="d-flex mt-auto">
       <div class="mr-auto p-2 w-100px">
-        <i class="fas fa-home icon-color"></i>
-        {{room.area}} m<sup>2</sup>
+        <i class="fas fa-home icon-color" />
+        {{ room.area }} m<sup>2</sup>
       </div>
       <div class="p-2">
-        <i class="fas fa-users icon-color"></i>
-        {{room.total_users}}
+        <i class="fas fa-users icon-color" />
+        {{ room.total_users }}
       </div>
     </div>
   </div>

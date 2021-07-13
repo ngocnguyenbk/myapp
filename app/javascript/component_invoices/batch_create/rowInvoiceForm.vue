@@ -1,44 +1,193 @@
 <template>
   <tbody :class="background_row">
-    <tr class="table-head text-center" v-if="is_empty">
+    <tr
+      v-if="is_empty"
+      class="table-head text-center"
+    >
       <td>
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" disabled>
-          <label class="form-check-label"></label>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            disabled
+          >
+          <label class="form-check-label" />
         </div>
       </td>
-      <td>{{ room_number }}</td>
-      <td v-for="index in sameCell" :key="index"></td>
+      <td>{{ roomName }}</td>
+      <td
+        v-for="index in sameCell"
+        :key="index"
+      />
       <td>{{ $t('invoice.not_contract') }}</td>
     </tr>
 
-    <tr class="table-head text-center js-input" v-else>
+    <tr
+      v-else
+      class="table-head text-center js-input"
+    >
       <td>
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" :id="`check-${room_number}`" v-model="checked">
-          <label class="form-check-label" :for="`check-${room_number}`"></label>
+          <input
+            :id="`check-${roomName}`"
+            v-model="checked"
+            type="checkbox"
+            class="form-check-input"
+          >
+          <label
+            class="form-check-label"
+            :for="`check-${roomName}`"
+          />
         </div>
       </td>
-      <td><input readonly :id="room_number" v-model="roomNumber"></td>
-      <td><input readonly :id="`deposited_money_${room_number}`" :value="depMoney.toLocaleString()"></td>
-      <td><input readonly :id="`room_price_${room_number}`" :value="roomPrice.toLocaleString()"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`day_used_per_month_${room_number}`" class="input_border" v-model="dayUsedPerMonth" ></td>
-      <td><input type="text" pattern="[0-9]+" :id="`electric_begin_number_${room_number}`" class="input_border" v-model="eleBegin"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`electric_end_number_${room_number}`" class="input_border" v-model="eleEnd"></td>
-      <td><input readonly :id="`electric_quantity_${room_number}`" :value="eleQty.toLocaleString()"></td>
-      <td><input readonly :id="`electric_total_${room_number}`" :value="eleTotal.toLocaleString()"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`water_begin_number_${room_number}`" class="input_border" v-model="watBegin"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`water_end_number_${room_number}`" class="input_border" v-model="watEnd"></td>
-      <td><input readonly :id="`water_quantity_${room_number}`" :value="watQty.toLocaleString()"></td>
-      <td><input readonly :id="`water_total_${room_number}`" :value="watTotal.toLocaleString()"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`internet_unit_${room_number}`" class="input_border" v-model="intUnit"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`parking_fee_unit_${room_number}`" class="input_border" v-model="pafUnit"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`parking_fee_quantity_${room_number}`" class="input_border" v-model="pafQty"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`service_unit_${room_number}`" class="input_border" v-model="serUnit"></td>
-      <td><input readonly :id="`total_${room_number}`" :value="total.toLocaleString()"></td>
-      <td><input type="text" pattern="[0-9]+" :id="`reduce_${room_number}`" class="input_border" v-model="invReduce"></td>
+      <td>
+        <input
+          :id="roomName"
+          v-model="roomNumber"
+          readonly
+        >
+      </td>
+      <td>
+        <input
+          :id="`deposited_money_${roomName}`"
+          readonly
+          :value="depMoney.toLocaleString()"
+        >
+      </td>
+      <td>
+        <input
+          :id="`room_price_${roomName}`"
+          readonly
+          :value="roomPrice.toLocaleString()"
+        >
+      </td>
+      <td>
+        <input
+          :id="`day_used_per_month_${roomName}`"
+          v-model="dayUsedPerMonth"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`electric_begin_number_${roomName}`"
+          v-model="eleBegin"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`electric_end_number_${roomName}`"
+          v-model="eleEnd"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`electric_quantity_${roomName}`"
+          readonly
+          :value="eleQty.toLocaleString()"
+        >
+      </td>
+      <td>
+        <input
+          :id="`electric_total_${roomName}`"
+          readonly
+          :value="eleTotal.toLocaleString()"
+        >
+      </td>
+      <td>
+        <input
+          :id="`water_begin_number_${roomName}`"
+          v-model="watBegin"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`water_end_number_${roomName}`"
+          v-model="watEnd"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`water_quantity_${roomName}`"
+          readonly
+          :value="watQty.toLocaleString()"
+        >
+      </td>
+      <td>
+        <input
+          :id="`water_total_${roomName}`"
+          readonly
+          :value="watTotal.toLocaleString()"
+        >
+      </td>
+      <td>
+        <input
+          :id="`internet_unit_${roomName}`"
+          v-model="intUnit"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`parking_fee_unit_${roomName}`"
+          v-model="pafUnit"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`parking_fee_quantity_${roomName}`"
+          v-model="pafQty"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`service_unit_${roomName}`"
+          v-model="serUnit"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
+      <td>
+        <input
+          :id="`total_${roomName}`"
+          readonly
+          :value="total.toLocaleString()"
+        >
+      </td>
+      <td>
+        <input
+          :id="`reduce_${roomName}`"
+          v-model="invReduce"
+          type="text"
+          pattern="[0-9]+"
+          class="input_border"
+        >
+      </td>
       <td>{{ item.extend_data.holder_name }}</td>
-      <td></td>
+      <td />
     </tr>
   </tbody>
 </template>
@@ -50,12 +199,13 @@ export default {
       type: Object,
       required: true,
     },
-    room_number: {
+    roomName: {
       type: String,
       required: true,
     },
     month: {
       type: Date,
+      default: new Date(),
     },
     checkAll: {
       type: Boolean,
@@ -69,7 +219,7 @@ export default {
       };
     } else {
       return {
-        roomNumber: this.room_number,
+        roomNumber: this.roomName,
         depMoney: this.item.contract.deposited_money,
         roomPrice: this.item.contract.room_price,
         eleBegin: this.item.electric.begin_number,
@@ -121,7 +271,13 @@ export default {
       return this.roomPrice * this.dayUsedPerMonth / this.totalDayInMonth;
     },
     total: function() {
-      return Math.floor(this.roomPriceTotal + this.eleTotal + this.watTotal + this.intTotal + this.pafTotal + this.serTotal - this.invReduce);
+      return Math.floor(this.roomPriceTotal
+        + this.eleTotal
+        + this.watTotal
+        + this.intTotal
+        + this.pafTotal
+        + this.serTotal
+        - this.invReduce);
     },
   },
   watch: {
@@ -181,6 +337,59 @@ export default {
       this.$emit('checked', {check: val, roomNumber: this.roomNumber});
     },
   },
+  mounted: function() {
+    if (!this.is_empty) {
+      this.buildForm();
+    }
+    const self = this;
+    $('.js-input').find(':input').on('click', function(e) {
+      $(this).select();
+    });
+
+    $('.js-input').find(':input').on('keyup', function(e) {
+      const arrow = {left: 37, up: 38, right: 39, down: 40};
+      if ($.inArray(e.keyCode, [arrow.left, arrow.up, arrow.right, arrow.down]) < 0) return;
+
+      const td = $(this).closest('td');
+      let moveTo = null;
+      switch (e.keyCode) {
+        case arrow.left:
+          moveTo = td.prev('td');
+          break;
+        case arrow.right:
+          moveTo = td.next('td');
+          break;
+        case arrow.up:
+        case arrow.down:
+          const tBody = td.closest('tbody');
+          const pos = td[0].cellIndex;
+          let moveToRow = null;
+
+          if (e.keyCode == arrow.down) {
+            moveToRow = self.findClosestTr(tBody, 'down');
+          } else if (e.keyCode == arrow.up) {
+            moveToRow = self.findClosestTr(tBody, 'up');
+          }
+          if (typeof moveToRow === 'undefined') return;
+          if (moveToRow.length) {
+            moveTo = $(moveToRow[0].cells[pos]);
+          }
+          break;
+      }
+
+      if (moveTo && moveTo.length) {
+        e.preventDefault();
+        moveTo.find('input').each(function(i, input) {
+          input.focus();
+          input.select();
+        });
+      }
+    });
+
+    $('.js-input').find(':input').on('input', (e) => {
+      this.$emit('input');
+    });
+  },
   methods: {
     findClosestTr: function(tBody, arrow) {
       let rowContinue = null;
@@ -239,59 +448,6 @@ export default {
       };
       this.$store.dispatch('invoice/setInputForm', {roomNumber: parseInt(this.roomNumber), form: form});
     },
-  },
-  mounted: function() {
-    if (!this.is_empty) {
-      this.buildForm();
-    }
-    const self = this;
-    $('.js-input').find(':input').on('click', function(e) {
-      $(this).select();
-    });
-
-    $('.js-input').find(':input').on('keyup', function(e) {
-      const arrow = {left: 37, up: 38, right: 39, down: 40};
-      if ($.inArray(e.keyCode, [arrow.left, arrow.up, arrow.right, arrow.down]) < 0) return;
-
-      const td = $(this).closest('td');
-      let moveTo = null;
-      switch (e.keyCode) {
-        case arrow.left:
-          moveTo = td.prev('td');
-          break;
-        case arrow.right:
-          moveTo = td.next('td');
-          break;
-        case arrow.up:
-        case arrow.down:
-          const tBody = td.closest('tbody');
-          const pos = td[0].cellIndex;
-          let moveToRow = null;
-
-          if (e.keyCode == arrow.down) {
-            moveToRow = self.findClosestTr(tBody, 'down');
-          } else if (e.keyCode == arrow.up) {
-            moveToRow = self.findClosestTr(tBody, 'up');
-          }
-          if (typeof moveToRow === 'undefined') return;
-          if (moveToRow.length) {
-            moveTo = $(moveToRow[0].cells[pos]);
-          }
-          break;
-      }
-
-      if (moveTo && moveTo.length) {
-        e.preventDefault();
-        moveTo.find('input').each(function(i, input) {
-          input.focus();
-          input.select();
-        });
-      }
-    });
-
-    $('.js-input').find(':input').on('input', (e) => {
-      this.$emit('input');
-    });
   },
 };
 </script>

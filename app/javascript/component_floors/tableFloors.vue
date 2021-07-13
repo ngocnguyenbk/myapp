@@ -1,7 +1,9 @@
 <template>
   <div>
     <RowFloor
-      :floor="floor" v-for="(floor, index) in floors" :key="index"
+      v-for="(floor, index) in floors"
+      :key="index"
+      :floor="floor"
     />
     <EditRoom />
   </div>

@@ -1,11 +1,13 @@
 module.exports = {
+  'root': true,
   'env': {
     'browser': true,
     'es2021': true,
   },
   'extends': [
     'plugin:vue/essential',
-    'google',
+    'plugin:vue/strongly-recommended',
+    'plugin:vue/recommended'
   ],
   'parserOptions': {
     'ecmaVersion': 12,

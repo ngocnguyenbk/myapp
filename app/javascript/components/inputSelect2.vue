@@ -1,23 +1,34 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLabel]">{{ labelText }}</label>
+    <label
+      :for="inputId"
+      :class="['col-form-label', colLabel]"
+    >{{ labelText }}</label>
     <div :class="[colInput]">
-      <select class="form-control" :id="inputId" :ref="typeSelect">
-        <option></option>
-        <option v-for="(value, key) in options" :value="key" :key="key">{{ value }}</option>
+      <select
+        :id="inputId"
+        :ref="typeSelect"
+        class="form-control"
+      >
+        <option />
+        <option
+          v-for="(value, key) in options"
+          :key="key"
+          :value="key"
+        >
+          {{ value }}
+        </option>
       </select>
-      <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
+      <span
+        v-if="eMsg"
+        class="text-danger"
+      >{{ eMsg }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data: function() {
-    return {
-      valSelect: this.selected,
-    };
-  },
   props: {
     inputId: {
       type: String,
@@ -33,6 +44,7 @@ export default {
     },
     selected: {
       type: [Number, String],
+      default: 0,
     },
     typeSelect: {
       type: String,
@@ -40,9 +52,11 @@ export default {
     },
     eMsg: {
       type: String,
+      default: ""
     },
     placeHolder: {
       type: String,
+      default: '',
     },
     colLabel: {
       type: String,
@@ -52,6 +66,11 @@ export default {
       type: String,
       default: 'col-lg-10',
     },
+  },
+  data: function() {
+    return {
+      valSelect: this.selected,
+    };
   },
   mounted: function() {
     const vm = this;

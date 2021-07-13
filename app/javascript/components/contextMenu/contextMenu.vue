@@ -1,43 +1,45 @@
 <template>
   <div
-    class="context-menu"
-    ref="popper"
     v-show="isVisible"
-    tabindex="-1"
+    ref="popper"
     v-click-outside="close"
-    @contextmenu.capture.prevent>
+    class="context-menu"
+    tabindex="-1"
+    @contextmenu.capture.prevent
+  >
     <ul>
-      <slot/>
+      <slot />
     </ul>
   </div>
 </template>
 
 <script>
-import Popper from 'popper.js';
 import ClickOutside from 'vue-click-outside';
 
 export default {
+  directives: {
+    ClickOutside,
+  },
   props: {
     boundariesElement: {
       type: String,
       default: 'body',
     },
   },
-  components: {
-    Popper,
-  },
   data() {
     return {
       opened: false,
     };
   },
-  directives: {
-    ClickOutside,
-  },
   computed: {
     isVisible() {
       return this.opened;
     },
+  },
+  beforeDestroy() {
+    if (this.popper !== undefined) {
+      this.popper.destroy();
+    }
   },
   methods: {
     open(evt) {
@@ -91,11 +93,6 @@ export default {
       return obj;
     },
   },
-  beforeDestroy() {
-    if (this.popper !== undefined) {
-      this.popper.destroy();
-    }
-  },
 };
 
 </script>
@@ -113,8 +110,8 @@ export default {
     }
 
     ul {
-      padding:0px;
-      margin:0px;
+      padding: 0;
+      margin: 0;
     }
   }
 </style>

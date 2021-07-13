@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <FlashMessage :position="'right top'"></FlashMessage>
-    <div class="table-contract" v-if="isIndex">
+    <FlashMessage :position="'right top'" />
+    <div
+      v-if="isIndex"
+      class="table-contract"
+    >
       <div class="d-flex">
         <div :class="['btn-new-contract', { 'mb-2': !showPaginate }]">
-          <button class="btn btn-primary" @click="createForm">{{ $t('contract.new_contract') }}</button>
+          <button
+            class="btn btn-primary"
+            @click="createForm"
+          >
+            {{ $t('contract.new_contract') }}
+          </button>
         </div>
         <div class="ml-auto">
           <Paginator
-            :currentPage="currentPage"
-            :showPaginate="showPaginate"
-            :totalPages="totalPages"
-            :loadObjects="loadContracts"
+            :current-page="currentPage"
+            :show-paginate="showPaginate"
+            :total-pages="totalPages"
+            :load-objects="loadContracts"
           />
         </div>
       </div>
@@ -19,7 +27,10 @@
         :contracts="contracts"
       />
     </div>
-    <div class="new-contract" v-else>
+    <div
+      v-else
+      class="new-contract"
+    >
       <div class="d-flex">
         <NewContract />
       </div>

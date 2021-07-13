@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <div class="d-flex mb-2">
-      <FlashMessage :position="'right top'"></FlashMessage>
+      <FlashMessage :position="'right top'" />
       <div>
-        <a class="btn btn-primary" :href="batchCreateInvoicePath">{{ $t('invoice.batch_create') }}</a>
-        <a class="btn btn-primary ml-2" :href="newInvoicePath">{{ $t('invoice.add_invoice') }}</a>
+        <a
+          class="btn btn-primary"
+          :href="batchCreateInvoicePath"
+        >{{ $t('invoice.batch_create') }}</a>
+        <a
+          class="btn btn-primary ml-2"
+          :href="newInvoicePath"
+        >{{ $t('invoice.add_invoice') }}</a>
       </div>
       <div class="ml-auto">
         <Paginator
-          :currentPage="currentPage"
-          :showPaginate="showPaginate"
-          :totalPages="totalPages"
-          :loadObjects="loadInvoices"
+          :current-page="currentPage"
+          :show-paginate="showPaginate"
+          :total-pages="totalPages"
+          :load-objects="loadInvoices"
         />
       </div>
       <br>

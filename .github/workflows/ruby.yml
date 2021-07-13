@@ -34,7 +34,7 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
-        ruby-version: 2.6
+        ruby-version: 2.6.6
     - name: Install mysql
       run: |
         sudo apt-get install -y default-mysql-client libmysqlclient-dev
@@ -63,7 +63,5 @@ jobs:
     - name: Eslint and Stylelint
       run: |
         yarn install
-        yarn add eslint-config-airbnb
-        yarn add eslint-plugin-jsx-a11y@latest
         yarn lint:js
         yarn lint:style

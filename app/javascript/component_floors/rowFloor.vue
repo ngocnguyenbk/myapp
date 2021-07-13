@@ -1,8 +1,12 @@
 <template>
   <div>
-    <span class="floor_name">{{ $t('floor.self') }} {{floor.floor_number}}</span>
+    <span class="floor_name">{{ $t('floor.self') }} {{ floor.floor_number }}</span>
     <div class="grid-container row">
-      <RowRoom :room="room" v-for="(room, index) in floor.rooms" :key="index"/>
+      <RowRoom
+        v-for="(room, index) in floor.rooms"
+        :key="index"
+        :room="room"
+      />
     </div>
   </div>
 </template>

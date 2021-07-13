@@ -4,183 +4,192 @@
       <div>
         <h3>{{ $t('invoice.new_invoice') }}</h3>
       </div>
-      <hr/>
+      <hr>
       <div>
-        <form id="new-invoice" class="w-90 ml-auto mr-auto" @submit.prevent="submitForm">
+        <form
+          id="new-invoice"
+          class="w-90 ml-auto mr-auto"
+          @submit.prevent="submitForm"
+        >
           <div class="form-input p-2">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <InputSelect2
-                  :inputId="'room_id'"
-                  :labelText="$t('invoice.room_number')"
-                  :placeHolder="$t('invoice.select_room')"
-                  :options="collectionRooms"
                   v-model="roomId"
-                  :eMsg="deliverErrors('room_id')"
-                  typeSelect="single_select"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'room_id'"
+                  :label-text="$t('invoice.room_number')"
+                  :place-holder="$t('invoice.select_room')"
+                  :options="collectionRooms"
+                  :e-msg="deliverErrors('room_id')"
+                  type-select="single_select"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
               <div class="form-group col-md-6">
                 <FieldConfirm
-                  :labelText="$t('invoice.room_price')"
+                  :label-text="$t('invoice.room_price')"
                   :value="newInvoice.room_price | formatNumber"
-                  colLabel="col-md-4"
-                  colInput="col-md-6"
+                  col-label="col-md-4"
+                  col-input="col-md-6"
                 />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <InputDate
-                  :inputId="'month'"
-                  :labelText="$t('invoice.month')"
-                  :eMsg="deliverErrors('month')"
-                  :language="$i18n.locale"
-                  :dateFormat="'MM/yyyy'"
-                  :minimumView="'month'"
-                  :maximumView="'year'"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
                   v-model="month"
+                  :input-id="'month'"
+                  :label-text="$t('invoice.month')"
+                  :e-msg="deliverErrors('month')"
+                  :language="$i18n.locale"
+                  :date-format="'MM/yyyy'"
+                  :minimum-view="'month'"
+                  :maximum-view="'year'"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'used_room_quantity'"
-                  :labelText="$t('invoice.day_used_per_month')"
-                  :valueInput="newInvoice.day_used_per_month"
-                  :eMsg="deliverErrors('day_used_per_month')"
                   v-model="dayUsedPerMonth"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'used_room_quantity'"
+                  :label-text="$t('invoice.day_used_per_month')"
+                  :value-input="newInvoice.day_used_per_month"
+                  :e-msg="deliverErrors('day_used_per_month')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'electric_start'"
-                  :labelText="$t('invoice.electric_start')"
-                  :valueInput="newInvoice.electric_start"
-                  :eMsg="deliverErrors('electric_start')"
                   v-model="electricStart"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'electric_start'"
+                  :label-text="$t('invoice.electric_start')"
+                  :value-input="newInvoice.electric_start"
+                  :e-msg="deliverErrors('electric_start')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'electric_end'"
-                  :labelText="$t('invoice.electric_end')"
-                  :valueInput="newInvoice.electric_end"
-                  :eMsg="deliverErrors('electric_end')"
                   v-model="electricEnd"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'electric_end'"
+                  :label-text="$t('invoice.electric_end')"
+                  :value-input="newInvoice.electric_end"
+                  :e-msg="deliverErrors('electric_end')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'water_start'"
-                  :labelText="$t('invoice.water_start')"
-                  :valueInput="newInvoice.water_start"
-                  :eMsg="deliverErrors('water_start')"
                   v-model="waterStart"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'water_start'"
+                  :label-text="$t('invoice.water_start')"
+                  :value-input="newInvoice.water_start"
+                  :e-msg="deliverErrors('water_start')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'water_end'"
-                  :labelText="$t('invoice.water_end')"
-                  :valueInput="newInvoice.water_end"
-                  :eMsg="deliverErrors('water_end')"
                   v-model="waterEnd"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'water_end'"
+                  :label-text="$t('invoice.water_end')"
+                  :value-input="newInvoice.water_end"
+                  :e-msg="deliverErrors('water_end')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'unit_price_parking_fee'"
-                  :labelText="$t('invoice.unit_price_parking_fee')"
-                  :valueInput="newInvoice.unit_price_parking_fee | formatNumber"
-                  :eMsg="deliverErrors('unit_price_parking_fee')"
                   v-model="unitParkingFee"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'unit_price_parking_fee'"
+                  :label-text="$t('invoice.unit_price_parking_fee')"
+                  :value-input="newInvoice.unit_price_parking_fee | formatNumber"
+                  :e-msg="deliverErrors('unit_price_parking_fee')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'quantity_parking'"
-                  :labelText="$t('invoice.quantity_parking')"
-                  :valueInput="newInvoice.quantity_parking"
-                  :eMsg="deliverErrors('quantity_parking')"
                   v-model="quantityParking"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'quantity_parking'"
+                  :label-text="$t('invoice.quantity_parking')"
+                  :value-input="newInvoice.quantity_parking"
+                  :e-msg="deliverErrors('quantity_parking')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'unit_price_internet'"
-                  :labelText="$t('invoice.unit_price_internet')"
-                  :valueInput="newInvoice.unit_price_internet | formatNumber"
-                  :eMsg="deliverErrors('unit_price_internet')"
                   v-model="unitPriceInternet"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'unit_price_internet'"
+                  :label-text="$t('invoice.unit_price_internet')"
+                  :value-input="newInvoice.unit_price_internet | formatNumber"
+                  :e-msg="deliverErrors('unit_price_internet')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'unit_price_service_fee'"
-                  :labelText="$t('invoice.unit_price_service_fee')"
-                  :valueInput="newInvoice.unit_price_service_fee | formatNumber"
-                  :eMsg="deliverErrors('unit_price_service_fee')"
                   v-model="serviceFee"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'unit_price_service_fee'"
+                  :label-text="$t('invoice.unit_price_service_fee')"
+                  :value-input="newInvoice.unit_price_service_fee | formatNumber"
+                  :e-msg="deliverErrors('unit_price_service_fee')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'reduce'"
-                  :labelText="$t('invoice.reduce')"
-                  :valueInput="newInvoice.reduce"
-                  :eMsg="deliverErrors('reduce')"
                   v-model="reduce"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'reduce'"
+                  :label-text="$t('invoice.reduce')"
+                  :value-input="newInvoice.reduce"
+                  :e-msg="deliverErrors('reduce')"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
               <div class="form-group col-md-6">
                 <InputText
-                  :inputId="'total'"
-                  :labelText="$t('invoice.total')"
-                  :valueInput="newInvoice.total | formatNumber"
-                  :eMsg="deliverErrors('total')"
-                  :disabled="true"
                   v-model="total"
-                  colLabel="col-lg-4"
-                  colInput="col-lg-6"
+                  :input-id="'total'"
+                  :label-text="$t('invoice.total')"
+                  :value-input="newInvoice.total | formatNumber"
+                  :e-msg="deliverErrors('total')"
+                  :disabled="true"
+                  col-label="col-lg-4"
+                  col-input="col-lg-6"
                 />
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary float-left mt-2">{{ $t('invoice.submit_form') }}</button>
+          <button
+            type="submit"
+            class="btn btn-primary float-left mt-2"
+          >
+            {{ $t('invoice.submit_form') }}
+          </button>
         </form>
       </div>
     </div>
@@ -191,13 +200,19 @@
 import {createNamespacedHelpers} from 'vuex';
 const {mapState, mapActions} = createNamespacedHelpers('invoice');
 import InputText from '../components/inputText';
-import InputNumber from '../components/inputNumber';
 import InputSelect2 from '../components/inputSelect2';
 import InputDate from '../components/inputDate';
 import FieldConfirm from '../components/fieldConfirm';
 import show_flash_mixins from '../mixins/show_flash';
 
 export default {
+  components: {
+    InputText,
+    InputSelect2,
+    InputDate,
+    FieldConfirm,
+  },
+  mixins: [show_flash_mixins],
   data: function() {
     return {
       month: '',
@@ -238,7 +253,10 @@ export default {
       return this.newInvoice.unit_price_internet * this.newInvoice.day_used_per_month / this.totalDayInMonth;
     },
     pafTotal: function() {
-      return this.newInvoice.unit_price_parking_fee * this.newInvoice.day_used_per_month * this.newInvoice.quantity_parking / this.totalDayInMonth;
+      return this.newInvoice.unit_price_parking_fee 
+      * this.newInvoice.day_used_per_month 
+      * this.newInvoice.quantity_parking 
+      / this.totalDayInMonth;
     },
     serTotal: function() {
       return this.newInvoice.unit_price_service_fee * this.newInvoice.day_used_per_month / this.totalDayInMonth;
@@ -249,7 +267,10 @@ export default {
   },
   watch: {
     month: function(val) {
-      this.setInputNewInvoiceForm({month: `${new Date(val).getMonth() + 1}/${new Date(val).getFullYear()}`, day_used_per_month: this.totalDayInMonth});
+      this.setInputNewInvoiceForm(
+                    {month: `${new Date(val).getMonth() + 1}/${new Date(val).getFullYear()}`,
+                    day_used_per_month: this.totalDayInMonth}
+      );
       this.getResourceInfo({month: this.newInvoice.month, room_id: this.roomId});
       this.calculateTotal();
     },
@@ -306,13 +327,6 @@ export default {
       this.setInputNewInvoiceForm({total: numeral(val).value()});
     },
   },
-  components: {
-    InputText,
-    InputNumber,
-    InputSelect2,
-    InputDate,
-    FieldConfirm,
-  },
   created: function() {
     this.getResourceInfo({});
   },
@@ -331,10 +345,15 @@ export default {
       return this.errorMessages[0][attribute];
     },
     calculateTotal: function() {
-      this.total = this.roomPriceTotal + this.eleTotal + this.watTotal + this.intTotal + this.pafTotal + this.serTotal - this.newInvoice.reduce;
+      this.total = this.roomPriceTotal 
+                                      + this.eleTotal 
+                                      + this.watTotal 
+                                      + this.intTotal 
+                                      + this.pafTotal 
+                                      + this.serTotal 
+                                      - this.newInvoice.reduce;
     },
   },
-  mixins: [show_flash_mixins],
 };
 </script>
 
