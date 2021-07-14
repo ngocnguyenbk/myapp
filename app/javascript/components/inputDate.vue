@@ -1,84 +1,94 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLabel]">{{ labelText }}</label>
+    <label
+      :for="inputId"
+      :class="['col-form-label', colLabel]"
+    >{{ labelText }}</label>
     <div :class="[colInput]">
       <Datepicker
+        :id="inputId"
         v-model="inputVal"
         name="month_export-invoice"
         input-class="form-control"
-        :id="inputId"
         :language="locale[language]"
         :format="dateFormat"
         :minimum-view="minimumView"
         :maximum-view="maximumView"
       />
-      <span class="text-danger" v-if="eMsg">{{ eMsg }}</span>
+      <span
+        v-if="eMsg"
+        class="text-danger"
+      >{{ eMsg }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
-import { en, vi } from 'vuejs-datepicker/dist/locale'
+import Datepicker from 'vuejs-datepicker';
+import {en, vi} from 'vuejs-datepicker/dist/locale';
 
 export default {
-  data: function() {
-    return {
-      inputVal: this.valueInput,
-      locale: {
-        "en": en,
-        "vi": vi,
-      }
-    }
-  },
   components: {
     Datepicker,
   },
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     valueInput: {
-      type: [String, Date]
+      type: [String, Date],
+      default: new Date(),
     },
     eMsg: {
-      type: String
+      type: String,
+      default: '',
     },
     colLabel: {
       type: String,
-      default: "col-lg-2"
+      default: 'col-lg-2',
     },
     colInput: {
       type: String,
-      default: "col-lg-10"
+      default: 'col-lg-10',
     },
     language: {
       type: String,
-      default: "vi",
+      default: 'vi',
     },
     dateFormat: {
       type: String,
-      default: "dd/MM/yyyy",
+      default: 'dd/MM/yyyy',
     },
     minimumView: {
       type: String,
+      default: 'day', 
     },
     maximumView: {
       type: String,
-    }
+      default: 'year',
+    },
+  },
+  data: function() {
+    return {
+      inputVal: this.valueInput,
+      locale: {
+        'en': en,
+        'vi': vi,
+      },
+    };
   },
   watch: {
     inputVal: function(val) {
-      return this.$emit('input', val)
+      return this.$emit('input', val);
     },
     valueInput: function(val) {
-      return this.inputVal = val
-    }
-  }
-}
+      return this.inputVal = val;
+    },
+  },
+};
 </script>

@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from 'axios';
 
-axios.interceptors.request.use(function (config) {
-  config.url = `/${locale}${config.url}`
+axios.interceptors.request.use(function(config) {
+  config.url = `/${locale}${config.url}`;
   return config;
-}, function (error) {
+}, function(error) {
   return Promise.reject(error);
 });
 
-export default axios
+export default axios;

@@ -1,50 +1,52 @@
 <template>
   <div
-    class="context-menu"
-    ref="popper"
     v-show="isVisible"
-    tabindex="-1"
+    ref="popper"
     v-click-outside="close"
-    @contextmenu.capture.prevent>
+    class="context-menu"
+    tabindex="-1"
+    @contextmenu.capture.prevent
+  >
     <ul>
-      <slot/>
+      <slot />
     </ul>
   </div>
 </template>
 
 <script>
-import Popper from 'popper.js'
-import ClickOutside from 'vue-click-outside'
+import ClickOutside from 'vue-click-outside';
 
 export default {
+  directives: {
+    ClickOutside,
+  },
   props: {
     boundariesElement: {
       type: String,
       default: 'body',
     },
   },
-  components: {
-    Popper,
-  },
   data() {
     return {
       opened: false,
-    }
-  },
-  directives:{
-    ClickOutside,
+    };
   },
   computed: {
     isVisible() {
-      return this.opened
+      return this.opened;
     },
+  },
+  beforeDestroy() {
+    if (this.popper !== undefined) {
+      this.popper.destroy();
+    }
   },
   methods: {
     open(evt) {
-      this.opened = true
+      this.opened = true;
 
       if (this.popper) {
-        this.popper.destroy()
+        this.popper.destroy();
       }
 
       this.popper = new Popper(this.referenceObject(evt), this.$refs.popper, {
@@ -54,23 +56,23 @@ export default {
             boundariesElement: document.querySelector(this.boundariesElement),
           },
         },
-      })
+      });
 
       this.$nextTick(() => {
-        this.popper.scheduleUpdate()
-      })
+        this.popper.scheduleUpdate();
+      });
     },
     close() {
-      this.opened = false
-      this.contextData = null
+      this.opened = false;
+      this.contextData = null;
     },
     referenceObject(evt) {
-      const left = evt.clientX
-      const top = evt.clientY - 50
-      const right = left + 1
-      const bottom = top + 1
-      const clientWidth = 1
-      const clientHeight = 1
+      const left = evt.clientX;
+      const top = evt.clientY - 50;
+      const right = left + 1;
+      const bottom = top + 1;
+      const clientWidth = 1;
+      const clientHeight = 1;
 
       function getBoundingClientRect() {
         return {
@@ -78,25 +80,20 @@ export default {
           top,
           right,
           bottom,
-        }
+        };
       }
 
       const obj = {
         getBoundingClientRect,
         clientWidth,
         clientHeight,
-      }
-      window.localStorage.setItem('left', evt.clientX)
-      window.localStorage.setItem('top', evt.clientY)
-      return obj
+      };
+      window.localStorage.setItem('left', evt.clientX);
+      window.localStorage.setItem('top', evt.clientY);
+      return obj;
     },
   },
-  beforeDestroy() {
-    if (this.popper !== undefined) {
-      this.popper.destroy()
-    }
-  },
-}
+};
 
 </script>
 
@@ -113,8 +110,8 @@ export default {
     }
 
     ul {
-      padding:0px;
-      margin:0px;
+      padding: 0;
+      margin: 0;
     }
   }
 </style>

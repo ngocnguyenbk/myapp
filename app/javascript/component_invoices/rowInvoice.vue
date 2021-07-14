@@ -12,31 +12,42 @@
     <td>{{ invoice.reduce | formatNumber }}</td>
     <td>{{ invoice.total | formatNumber }}</td>
     <td class="text-center">
-      <i class="far fa-eye text-primary pointer"
-          data-toggle="modal"
-          data-target="#detailInvoice"
-          @click="getDetailInvoice"
+      <i
+        class="far fa-eye text-primary pointer"
+        data-toggle="modal"
+        data-target="#detailInvoice"
+        @click="getDetailInvoice"
       />
     </td>
     <td class="text-center">
-      <i class="fas fa-edit text-primary pointer mr-2"
-          data-toggle="modal"
-          data-target="#editInvoice"
-          @click="setCurrentInvoice"
+      <i
+        class="fas fa-edit text-primary pointer mr-2"
+        data-toggle="modal"
+        data-target="#editInvoice"
+        @click="setCurrentInvoice"
       />
-      <i :class="['far fa-stop-circle text-danger ml-2', invoice.active ? 'pointer' : 'pointer_disable']"
-          data-toggle="modal"
-          data-target="#deleteInvoice"
-          @click="setCurrentInvoice"
+      <i
+        :class="['far fa-stop-circle text-danger ml-2', invoice.active ? 'pointer' : 'pointer_disable']"
+        data-toggle="modal"
+        data-target="#deleteInvoice"
+        @click="setCurrentInvoice"
       />
     </td>
     <td>
-      <a target="_blank" :href="show_invoice" class="btn btn-primary mr-2">
-        <i class="fas fa-print"></i>
+      <a
+        target="_blank"
+        :href="show_invoice"
+        class="btn btn-primary mr-2"
+      >
+        <i class="fas fa-print" />
         <span>{{ $t('invoice.print_x') }}</span>
       </a>
-      <a target="_blank" :href="download_invoice" class="btn btn-info">
-        <i class="fa fa-download"></i>
+      <a
+        target="_blank"
+        :href="download_invoice"
+        class="btn btn-info"
+      >
+        <i class="fa fa-download" />
         <span>{{ $t('invoice.download') }}</span>
       </a>
     </td>
@@ -44,8 +55,8 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapActions } = createNamespacedHelpers('invoice')
+import {createNamespacedHelpers} from 'vuex';
+const {mapActions} = createNamespacedHelpers('invoice');
 
 export default {
   props: {
@@ -56,18 +67,18 @@ export default {
     odd: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   computed: {
     background_row_invoice: function() {
-      return this.odd ? 'odd-bg' : 'even-bg'
+      return this.odd ? 'odd-bg' : 'even-bg';
     },
     show_invoice: function() {
-      return `/${locale}/invoices/${this.invoice.id}`
+      return `/${locale}/invoices/${this.invoice.id}`;
     },
     download_invoice: function() {
-      return `/${locale}/download/invoices/${this.invoice.id}`
-    }
+      return `/${locale}/download/invoices/${this.invoice.id}`;
+    },
   },
   methods: {
     ...mapActions({
@@ -76,14 +87,14 @@ export default {
       clearErrorMessages: 'clearErrorMessages',
     }),
     getDetailInvoice: function() {
-      this.getInvoiceInfo(this.invoice.id)
+      this.getInvoiceInfo(this.invoice.id);
     },
     setCurrentInvoice: function() {
-      this.setInvoice(this.invoice)
-      this.clearErrorMessages()
+      this.setInvoice(this.invoice);
+      this.clearErrorMessages();
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

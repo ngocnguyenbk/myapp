@@ -86,7 +86,7 @@ const messages = {
         close: 'Close',
       },
       defaultMonth: {
-        month: '{count} months'
+        month: '{count} months',
       },
     },
     invoice: {
@@ -185,7 +185,7 @@ const messages = {
         perform_delete_invoice: 'Do you want delete invoice',
         yes: 'Yes',
         close: 'Close',
-      }
+      },
     },
     upload_file: {
       import_file: 'Import file',
@@ -196,7 +196,7 @@ const messages = {
       success: 'Success!',
       unsuccess: 'Unsuccess!',
     },
-  }
-}
+  },
+};
 
-export default messages
+export default messages;

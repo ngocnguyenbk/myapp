@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <FlashMessage :position="'right top'"></FlashMessage>
+    <FlashMessage :position="'right top'" />
     <TableFloor
       :floors="floors"
     />
@@ -8,20 +8,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import TableFloor from './component_floors/tableFloors.vue'
+import {mapState} from 'vuex';
+import TableFloor from './component_floors/tableFloors.vue';
 
 export default {
   components: {
-    TableFloor
+    TableFloor,
   },
   computed: {
     ...mapState({
-      floors: state => state.floor.floors
+      floors: (state) => state.floor.floors,
     }),
   },
   created: function() {
-    this.$store.dispatch('floor/getFloors')
+    this.$store.dispatch('floor/getFloors');
   },
-}
+};
 </script>

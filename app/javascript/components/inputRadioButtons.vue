@@ -1,10 +1,29 @@
 <template>
   <div class="form-group row">
-    <label :for="inputId" :class="['col-form-label', colLabel]" v-if="hasLabel">{{ labelText }}</label>
+    <label
+      v-if="hasLabel"
+      :for="inputId"
+      :class="['col-form-label', colLabel]"
+    >{{ labelText }}</label>
     <div :class="['align-self-center', colInput]">
-      <div class="form-check form-check-inline" v-for="(val, key) in options" :key="key">
-        <input type="radio" class="form-check-input" :id="inputId+'_'+key" :name="inputId" :checked="valueInput == key" :value="key" v-model="radioVal">
-        <label class="form-check-label" :for="inputId+'_'+key">{{ val }}</label>
+      <div
+        v-for="(val, key) in options"
+        :key="key"
+        class="form-check form-check-inline"
+      >
+        <input
+          :id="inputId+'_'+key"
+          v-model="radioVal"
+          type="radio"
+          class="form-check-input"
+          :name="inputId"
+          :checked="valueInput == key"
+          :value="key"
+        >
+        <label
+          class="form-check-label"
+          :for="inputId+'_'+key"
+        >{{ val }}</label>
       </div>
     </div>
   </div>
@@ -12,46 +31,48 @@
 
 <script>
 export default {
-  data: function() {
-    return {
-      radioVal: this.valueInput
-    }
-  },
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
-      type: String
+      type: String,
+      default: "Default labelText",
     },
     options: {
       type: Object,
-      required: true
+      required: true,
     },
     valueInput: {
-      type: String
+      type: String,
+      default: "default valueInput",
     },
     colLabel: {
       type: String,
-      default: "col-lg-2"
+      default: 'col-lg-2',
     },
     colInput: {
       type: String,
-      default: "col-lg-10"
+      default: 'col-lg-10',
     },
     hasLabel: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
+  },
+  data: function() {
+    return {
+      radioVal: this.valueInput,
+    };
   },
   watch: {
     radioVal: function(val) {
-      this.$emit('input', val)
+      this.$emit('input', val);
     },
     valueInput: function(val) {
-      return this.radioVal = val
-    }
-  }
-}
+      return this.radioVal = val;
+    },
+  },
+};
 </script>

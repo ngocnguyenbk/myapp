@@ -1,32 +1,56 @@
 <template>
-  <div id="app" class="w-50 ml-auto mr-auto">
-    <FlashMessage :position="'right top'"></FlashMessage>
-    <div ref="invoice" class="p-4">
+  <div
+    id="app"
+    class="w-50 ml-auto mr-auto"
+  >
+    <FlashMessage :position="'right top'" />
+    <div
+      ref="invoice"
+      class="p-4"
+    >
       <div class="text-center d-flex flex-column mb-4">
         <strong>{{ $t('invoice.print_title') }}</strong>
-        <span>{{ $t('invoice.month') + ' ' + invoice.month }} - {{ $t('invoice.room_no') + ' ' + invoice.room_number }}</span>
+        <span>
+          {{ $t('invoice.month') + ' ' + invoice.month }} - {{ $t('invoice.room_no') + ' ' + invoice.room_number }}
+        </span>
       </div>
       <table class="table table-multi-body table-bordered">
         <thead class="table-header">
           <tr class="table-head text-center">
-            <td class="w-5">{{ $t('invoice.no') }}</td>
-            <td class="w-15">{{ $t('invoice.service') }}</td>
-            <td class="w-5">{{ $t('invoice.unit') }}</td>
-            <td class="w-5">{{ $t('invoice.qty') }}</td>
-            <td class="w-10">{{ $t('invoice.unit_price') }}</td>
-            <td class="w-10">{{ $t('invoice.into_money') }}</td>
-            <td class="w-10">{{ $t('invoice.note') }}</td>
+            <td class="w-5">
+              {{ $t('invoice.no') }}
+            </td>
+            <td class="w-15">
+              {{ $t('invoice.service') }}
+            </td>
+            <td class="w-5">
+              {{ $t('invoice.unit') }}
+            </td>
+            <td class="w-5">
+              {{ $t('invoice.qty') }}
+            </td>
+            <td class="w-10">
+              {{ $t('invoice.unit_price') }}
+            </td>
+            <td class="w-10">
+              {{ $t('invoice.into_money') }}
+            </td>
+            <td class="w-10">
+              {{ $t('invoice.note') }}
+            </td>
           </tr>
         </thead>
         <tbody class="text-center">
           <tr class="row_room">
             <td>1</td>
-            <td class="text-left">{{ $t('invoice.room_price') }}</td>
+            <td class="text-left">
+              {{ $t('invoice.room_price') }}
+            </td>
             <td>{{ $t('invoice.month') }}</td>
             <td>{{ $t('invoice.num_month') }}</td>
             <td>{{ invoice.room_price | formatNumber }}</td>
             <td>{{ invoice.total_room_price | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_electric">
             <td>2</td>
@@ -38,105 +62,127 @@
             <td>{{ invoice.qty_electric | formatNumber }}</td>
             <td>{{ invoice.unit_price_electric | formatNumber }}</td>
             <td>{{ invoice.total_electric | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_water">
             <td>3</td>
             <td class="text-left">
               <span>{{ $t('invoice.wat_price') }}</span><br>
               <span>{{ $t('invoice.from_to', { begin: invoice.begin_number_wat, end: invoice.end_number_wat }) }}</span>
-            <td>{{ invoice.unit_water }}</td>
+            </td><td>{{ invoice.unit_water }}</td>
             <td>{{ invoice.qty_water | formatNumber }}</td>
             <td>{{ invoice.unit_price_water | formatNumber }}</td>
             <td>{{ invoice.total_water | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_parking_fee">
             <td>4</td>
-            <td class="text-left">{{ $t('invoice.paf_price') }}</td>
+            <td class="text-left">
+              {{ $t('invoice.paf_price') }}
+            </td>
             <td>{{ invoice.unit_parking_fee }}</td>
             <td>{{ invoice.qty_parking_fee | formatNumber }}</td>
             <td>{{ invoice.unit_price_parking_fee | formatNumber }}</td>
             <td>{{ invoice.total_parking_fee | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_internet">
             <td>5</td>
-            <td class="text-left">{{ $t('invoice.int_price') }}</td>
+            <td class="text-left">
+              {{ $t('invoice.int_price') }}
+            </td>
             <td>{{ invoice.unit_internet }}</td>
             <td>{{ invoice.qty_internet | formatNumber }}</td>
             <td>{{ invoice.unit_price_internet | formatNumber }}</td>
             <td>{{ invoice.total_internet | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_service">
             <td>6</td>
-            <td class="text-left">{{ $t('invoice.ser_price') }}</td>
+            <td class="text-left">
+              {{ $t('invoice.ser_price') }}
+            </td>
             <td>{{ invoice.unit_service }}</td>
             <td>{{ invoice.qty_service | formatNumber }}</td>
             <td>{{ invoice.unit_price_service | formatNumber }}</td>
             <td>{{ invoice.total_service | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_total_1">
-            <td></td>
-            <td class="font-weight-bold">{{ $t('invoice.total_1') }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td />
+            <td class="font-weight-bold">
+              {{ $t('invoice.total_1') }}
+            </td>
+            <td />
+            <td />
+            <td />
             <td>{{ invoice.total_cost | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_reduce">
-            <td></td>
-            <td colspan="3" class="text-left">{{ $t('invoice.reduce_or_increase') }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td />
+            <td
+              colspan="3"
+              class="text-left"
+            >
+              {{ $t('invoice.reduce_or_increase') }}
+            </td>
+            <td />
+            <td />
+            <td />
           </tr>
           <tr class="row_reduce_1">
             <td>1</td>
-            <td class="text-left">{{ $t('invoice.reduce_1') }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="text-left">
+              {{ $t('invoice.reduce_1') }}
+            </td>
+            <td />
+            <td />
+            <td />
             <td>{{ invoice.reduce | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_reduce_2">
             <td>2</td>
-            <td class="text-left"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="text-left" />
+            <td />
+            <td />
+            <td />
+            <td />
+            <td />
           </tr>
           <tr class="row_reduce_3">
             <td>3</td>
-            <td class="text-left"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="text-left" />
+            <td />
+            <td />
+            <td />
+            <td />
+            <td />
           </tr>
           <tr class="row_total_2">
-            <td></td>
-            <td class="font-weight-bold">{{ $t('invoice.total_2') }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td />
+            <td class="font-weight-bold">
+              {{ $t('invoice.total_2') }}
+            </td>
+            <td />
+            <td />
+            <td />
             <td>{{ invoice.total_reduce | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
           <tr class="row_total">
-            <td></td>
-            <td colspan="2" class="font-weight-bold">{{ $t('invoice.print_total') }}</td>
-            <td></td>
-            <td></td>
+            <td />
+            <td
+              colspan="2"
+              class="font-weight-bold"
+            >
+              {{ $t('invoice.print_total') }}
+            </td>
+            <td />
+            <td />
             <td>{{ invoice.total_revenue | formatNumber }}</td>
-            <td></td>
+            <td />
           </tr>
         </tbody>
       </table><br>
@@ -155,19 +201,38 @@
       </div>
     </div>
     <div class="footer mb-5">
-      <button class="btn btn-danger float-right" type="button" @click="printInvoice">
+      <button
+        class="btn btn-danger float-right"
+        type="button"
+        @click="printInvoice"
+      >
         {{ $t('invoice.print') }}
       </button>
-      <button class="btn btn-primary float-right mr-1" type="button" @click="copyInvoice">
+      <button
+        class="btn btn-primary float-right mr-1"
+        type="button"
+        @click="copyInvoice"
+      >
         {{ $t("invoice.copy") }}
       </button>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="imgInvoice" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog mw-60" role="document">
+    <div
+      id="imgInvoice"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog mw-60"
+        role="document"
+      >
         <div class="modal-content">
-          <div class="modal-body text-center" id="divImgInvoice">
-          </div>
+          <div
+            id="divImgInvoice"
+            class="modal-body text-center"
+          />
         </div>
       </div>
     </div>
@@ -175,35 +240,36 @@
 </template>
 
 <script>
-import axios from 'api/axios.js'
-import show_flash_mixins from 'mixins/show_flash'
+import axios from 'api/axios.js';
+import show_flash_mixins from 'mixins/show_flash';
 
 export default {
+  mixins: [show_flash_mixins],
   data: function() {
     return {
       invoice: {},
-      flashMsg: this.$t('invoice.copy_success')
-    }
+      flashMsg: this.$t('invoice.copy_success'),
+    };
   },
   created: function() {
-    const self = this
-    axios.get(`/invoices/${invoiceID}.json`, {}
+    const self = this;
+    axios.get(`/invoices/${invoiceID}.json`, {},
     ).then(function(response) {
-      self.invoice = response.data.invoice
+      self.invoice = response.data.invoice;
     }).catch(function(error) {
-      console.log(error.response)
-    })
+      console.log(error.response);
+    });
   },
   methods: {
     printInvoice: function() {
-      const prtHtml = this.$refs.invoice.innerHTML
+      const prtHtml = this.$refs.invoice.innerHTML;
 
-      let stylesHtml = ''
+      let stylesHtml = '';
       for (const node of [...document.querySelectorAll('link[rel="stylesheet"], style')]) {
-        stylesHtml += node.outerHTML
+        stylesHtml += node.outerHTML;
       }
 
-      const WinPrint = window.open('', '', 'scrollbars=0,status=0,fullscreen=0')
+      const WinPrint = window.open('', '', 'scrollbars=0,status=0,fullscreen=0');
       WinPrint.document.write(`<!DOCTYPE html>
                                 <html>
                                   <head>
@@ -212,33 +278,32 @@ export default {
                                   <body>
                                     ${prtHtml}
                                   </body>
-                                </html>`
-                              )
+                                </html>`,
+      );
 
-      WinPrint.document.close()
-      WinPrint.focus()
-      WinPrint.print()
+      WinPrint.document.close();
+      WinPrint.focus();
+      WinPrint.print();
     },
     copyInvoice() {
-      const node = this.$refs.invoice
-      const divImgInvoice = document.getElementById('divImgInvoice')
+      const node = this.$refs.invoice;
+      const divImgInvoice = document.getElementById('divImgInvoice');
       if (!divImgInvoice.innerHTML) {
-        domtoimage.toPng(node, { bgcolor: 'white' }).then(function (dataUrl) {
-          const img = new Image()
-          img.src = dataUrl
-          divImgInvoice.appendChild(img)
-          $('#imgInvoice').modal('toggle')
+        domtoimage.toPng(node, {bgcolor: 'white'}).then(function(dataUrl) {
+          const img = new Image();
+          img.src = dataUrl;
+          divImgInvoice.appendChild(img);
+          $('#imgInvoice').modal('toggle');
         })
-        .catch(function (error) {
-            console.error(error)
-        });
+            .catch(function(error) {
+              console.error(error);
+            });
       } else {
-        $('#imgInvoice').modal('toggle')
+        $('#imgInvoice').modal('toggle');
       }
     },
   },
-  mixins: [show_flash_mixins],
-}
+};
 </script>
 
 <style lang="scss" scoped>

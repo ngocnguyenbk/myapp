@@ -1,71 +1,71 @@
-import axios from './axios.js'
+import axios from './axios.js';
 
 export default {
-  loadWithCondition (params, cb) {
+  loadWithCondition(params, cb) {
     axios.get('/users.json', {
-      params: params
+      params: params,
     }).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
+      cb(response.data);
+    }).catch(function(error) {
+      console.log(error.response);
     });
   },
-  loadUsers (params, cb) {
+  loadUsers(params, cb) {
     axios.get('/api/floors/users.json', {
       params: {
-        room_id: params.room_id
-      }
+        room_id: params.room_id,
+      },
     }).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
+      cb(response.data);
+    }).catch(function(error) {
+      console.log(error.response);
     });
   },
-  async updateUser (params, cb) {
+  async updateUser(params, cb) {
     await axios.patch(`/users/${params.id}.json`,
-      { user: params },
-      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+        {user: params},
+        {headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}},
     ).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
+      cb(response.data);
+    }).catch(function(error) {
+      console.log(error.response);
     });
   },
-  deleteUser (params, cb) {
+  deleteUser(params, cb) {
     axios.delete(`/users/${params.id}.json`,
-      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+        {headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}},
     ).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
+      cb(response.data);
+    }).catch(function(error) {
+      console.log(error.response);
     });
   },
-  loadRooms (params, cb) {
+  loadRooms(params, cb) {
     axios.get('/api/users/rooms.json', {
-      params: params
+      params: params,
     }).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
+      cb(response.data);
+    }).catch(function(error) {
+      console.log(error.response);
     });
   },
-  createUsers (params, cb) {
+  createUsers(params, cb) {
     axios.post('/users.json',
-      { multi_users: { user_attributes: params }},
-      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+        {multi_users: {user_attributes: params}},
+        {headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}},
     ).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
+      cb(response.data);
+    }).catch(function(error) {
+      console.log(error.response);
     });
   },
-  importFile (params, cb) {
+  importFile(params, cb) {
     axios.post('/batch_create/users.json', params,
-      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+        {headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}},
     ).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
+      cb(response.data);
+    }).catch(function(error) {
+      console.log(error.response);
     });
-  }
-}
+  },
+};

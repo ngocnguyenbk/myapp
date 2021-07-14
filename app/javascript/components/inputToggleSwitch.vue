@@ -2,41 +2,47 @@
   <div class="form-group row">
     <div class="col-lg-2">
       <label class="switch">
-        <input type="checkbox" v-model="checked">
-        <span class="slider round"></span>
+        <input
+          v-model="checked"
+          type="checkbox"
+        >
+        <span class="slider round" />
       </label>
     </div>
-    <label :for="inputId" class="col-lg-2 col-form-label">{{labelText}}</label>
+    <label
+      :for="inputId"
+      class="col-lg-2 col-form-label"
+    >{{ labelText }}</label>
   </div>
 </template>
 
 <script>
 export default {
-  data: function() {
-    return {
-      checked: this.value
-    }
-  },
   props: {
     inputId: {
       type: String,
-      required: true
+      required: true,
     },
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
+  },
+  data: function() {
+    return {
+      checked: this.value,
+    };
   },
   watch: {
     checked: function(val) {
-      return this.$emit('checked', val)
+      return this.$emit('checked', val);
     },
     value: function(val) {
-      return this.checked = val
-    }
-  }
-}
+      return this.checked = val;
+    },
+  },
+};
 </script>

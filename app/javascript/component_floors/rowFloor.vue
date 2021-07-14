@@ -1,25 +1,29 @@
 <template>
   <div>
-    <span class="floor_name">{{ $t('floor.self') }} {{floor.floor_number}}</span>
+    <span class="floor_name">{{ $t('floor.self') }} {{ floor.floor_number }}</span>
     <div class="grid-container row">
-      <RowRoom :room="room" v-for="(room, index) in floor.rooms" :key="index"/>
+      <RowRoom
+        v-for="(room, index) in floor.rooms"
+        :key="index"
+        :room="room"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import RowRoom from './rowRoom.vue'
+import RowRoom from './rowRoom.vue';
 export default {
   components: {
-    RowRoom
+    RowRoom,
   },
   props: {
     floor: {
       type: Object,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

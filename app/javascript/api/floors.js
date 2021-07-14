@@ -1,23 +1,23 @@
-import axios from './axios.js'
+import axios from './axios.js';
 
 export default {
-  loadWithCondition (params, cb) {
+  loadWithCondition(params, cb) {
     axios.get('/floors.json', {
-      params: params
+      params: params,
     }).then(function(response) {
-      cb(response.data)
-    }).catch(function (error) {
-      console.log(error.response)
+      cb(response.data);
+    }).catch(function(error) {
+      console.log(error.response);
     });
   },
-  async updateRoom (params, cb) {
+  async updateRoom(params, cb) {
     await axios.patch(`/api/floors/rooms/${params.id}.json`,
-      { room: params },
-      { headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}}
+        {room: params},
+        {headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}},
     ).then(function(response) {
-      cb(response.data)
+      cb(response.data);
     })['catch'](function(error) {
-      console.log(error)
-    })
-  }
-}
+      console.log(error);
+    });
+  },
+};

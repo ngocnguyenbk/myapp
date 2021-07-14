@@ -1,26 +1,28 @@
 <template>
   <div>
     <RowFloor
-      :floor="floor" v-for="(floor, index) in floors" :key="index"
+      v-for="(floor, index) in floors"
+      :key="index"
+      :floor="floor"
     />
     <EditRoom />
   </div>
 </template>
 
 <script>
-import RowFloor from './rowFloor.vue'
-import EditRoom from './editRoom.vue'
+import RowFloor from './rowFloor.vue';
+import EditRoom from './editRoom.vue';
 
 export default {
   components: {
     RowFloor,
-    EditRoom
+    EditRoom,
   },
   props: {
     floors: {
       type: Array,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
