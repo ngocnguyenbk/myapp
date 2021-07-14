@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <div class="d-flex mb-2">
+    <div class="d-flex">
       <FlashMessage :position="'right top'" />
-      <div>
+      <div :class="[{ 'mb-2': !showPaginate }]">
         <a
-          class="btn btn-primary"
+          class="btn btn-sm btn-primary"
           :href="batchCreateInvoicePath"
         >{{ $t('invoice.batch_create') }}</a>
         <a
-          class="btn btn-primary ml-2"
+          class="btn btn-sm btn-primary ml-2"
           :href="newInvoicePath"
         >{{ $t('invoice.add_invoice') }}</a>
       </div>

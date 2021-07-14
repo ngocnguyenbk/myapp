@@ -1,7 +1,14 @@
-nav a:hover {
-  text-decoration: none;
-}
-
-nav .is-active {
-  font-weight: bold;
+.navbar {
+  padding: 0 1.5rem;
+  .nav-item {
+    padding: 0.25rem;
+    margin-right: 1.5rem;
+    font-weight: bold;
+    &.active {
+      background-color: #1f64e0;
+      .nav-link {
+        color: #fff !important;
+      }
+    }
+  }
 }

@@ -1,6 +1,6 @@
 <template>
   <table
-    class="table table-multi-body table-bordered"
+    class="table table-bordered table-striped"
     @contextmenu.prevent="$refs.menu.open($event)"
   >
     <ContextMenu ref="menu">
@@ -45,12 +45,13 @@
         </td>
       </tr>
     </thead>
-    <RowUser
-      v-for="(user, index) in users"
-      :key="index"
-      :user="user"
-      :odd="(index % 2) != 0"
-    />
+    <tbody>
+      <RowUser
+        v-for="(user, index) in users"
+        :key="index"
+        :user="user"
+      />
+    </tbody>
     <EditUser ref="modal_edit" />
     <DeleteUser ref="modal_delete" />
   </table>
