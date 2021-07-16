@@ -25,6 +25,14 @@
     <TableInvoice
       :invoices="invoices"
     />
+    <div class="d-flex flex-row-reverse">
+      <Paginator
+        :current-page="currentPage"
+        :show-paginate="showPaginate"
+        :total-pages="totalPages"
+        :load-objects="loadInvoices"
+      />
+    </div>
   </div>
 </template>
 

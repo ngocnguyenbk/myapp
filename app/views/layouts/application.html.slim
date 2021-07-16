@@ -9,6 +9,9 @@ html
     = javascript_pack_tag "application"
     = stylesheet_pack_tag "application", media: "all"
     = favicon_link_tag "favicon.png"
+    link href="https://fonts.googleapis.com" rel="preconnect"
+    link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"
+    link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,400&display=swap" rel="stylesheet"
   body.sidebar-lg-show[data-controller="#{controller_path}" data-action="#{action_name}"]
     = render "shared/menu"
     .app-body

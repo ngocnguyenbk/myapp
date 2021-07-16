@@ -20,6 +20,14 @@
     <TableUser
       :users="users"
     />
+    <div class="d-flex flex-row-reverse">
+      <Paginator
+        :current-page="currentPage"
+        :show-paginate="showPaginate"
+        :total-pages="totalPages"
+        :load-objects="loadUsers"
+      />
+    </div>
   </div>
 </template>
 

@@ -26,6 +26,14 @@
       <TableContract
         :contracts="contracts"
       />
+      <div class="d-flex flex-row-reverse">
+        <Paginator
+          :current-page="currentPage"
+          :show-paginate="showPaginate"
+          :total-pages="totalPages"
+          :load-objects="loadContracts"
+        />
+      </div>
     </div>
     <div
       v-else
