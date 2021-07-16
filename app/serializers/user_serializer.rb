@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :full_name, :first_name, :last_name, :email, :phone, :birth_day,
-             :created_date, :status_active, :room_number, :identity_card
+             :created_date, :status_active, :room_number, :identity_card, :avatar
 
   def status_active
     object.active
@@ -16,5 +16,9 @@ class UserSerializer < ActiveModel::Serializer
 
   def room_number
     object.room.room_number
+  end
+
+  def avatar
+    object.image_url
   end
 end

@@ -51,8 +51,11 @@ export default {
   },
   createUsers(params, cb) {
     axios.post('/users.json',
-        {multi_users: {user_attributes: params}},
-        {headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}},
+        params,
+        {headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          'Content-Type': 'multipart/form-data'
+        }},
     ).then(function(response) {
       cb(response.data);
     }).catch(function(error) {

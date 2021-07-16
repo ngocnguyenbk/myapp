@@ -34,6 +34,7 @@ const messages = {
         yes: 'Có',
         close: 'Đóng',
       },
+      avatar: 'Ảnh đại diện',
     },
     floor: {
       self: 'Tầng',
@@ -196,6 +197,10 @@ const messages = {
       success: 'Thành công!',
       unsuccess: 'Không thành công!',
     },
+    input_image_file: {
+      remove: 'Loại bỏ',
+      select_file: 'Chọn tệp',
+    }
   },
 };
 

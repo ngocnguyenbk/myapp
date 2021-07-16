@@ -7,6 +7,7 @@ class UsersForm < BaseForm
   attribute :phone, String
   attribute :identity_card, String
   attribute :room_id, Integer
+  attribute :avatar, String
 
   validates :birthday, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: true, model: User }, email: true,

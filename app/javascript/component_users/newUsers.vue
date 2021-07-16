@@ -120,6 +120,15 @@
                 col-label="col-lg-1"
                 col-input="col-lg-11"
               />
+              <InputImageFile
+                :input-id="'avatar_' + i"
+                :label-text="$t('user.avatar')"
+                :e-msg="errorMessages[i]? errorMessages[i]['avatar'] : ''"
+                :accept="'.jpg, .jpeg, .png'"
+                col-label="col-lg-1"
+                col-input="col-lg-11"
+                @change="handleAvatar($event, i)"
+              />
             </div>
           </div>
           <hr>
@@ -198,12 +207,14 @@ import {mapState} from 'vuex';
 import InputText from '../components/inputText.vue';
 import InputSelect2 from '../components/inputSelect2.vue';
 import UploadFile from '../components/uploadFile';
+import InputImageFile from '../components/inputImageFile.vue';
 
 export default {
   components: {
     InputText,
     InputSelect2,
     UploadFile,
+    InputImageFile,
   },
   data: function() {
     return {
@@ -254,14 +265,20 @@ export default {
     },
     handleParams: function() {
       const self = this;
+      const formData = new FormData();
       this.newUsers.forEach(function(value, index) {
-        self.params[index] = value;
+        Object.keys(value).forEach(function(key) {
+          formData.append('multi_users[user_attributes]['+ index +']['+ key +']', value[key]);
+        })
       });
-      return self.params;
+      return formData;
     },
     backToNormal: function() {
       this.isRegisterNormal = true;
     },
+    handleAvatar: function(e, index) {
+      this.newUsers[index].avatar = e;
+    }
   },
 };
 </script>

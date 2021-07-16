@@ -34,6 +34,7 @@ const messages = {
         yes: 'Yes',
         close: 'Close',
       },
+      avatar: 'Avatar',
     },
     floor: {
       self: 'Floor',
@@ -196,6 +197,10 @@ const messages = {
       success: 'Success!',
       unsuccess: 'Unsuccess!',
     },
+    input_image_file: {
+      remove: 'Remove',
+      select_file: 'Select file',
+    }
   },
 };
 
