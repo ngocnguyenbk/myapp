@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :user, only: [:update, :destroy]
 
-  USER_PARAMETERS = [:id, :birthday, :email, :first_name, :last_name, :phone, :identity_card, :room_id].freeze
+  USER_PARAMETERS = [:id, :birthday, :email, :first_name, :last_name, :phone, :identity_card, :room_id, :avatar].freeze
 
   def index
     @presenter = UsersPresenter.new(params)

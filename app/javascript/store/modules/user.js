@@ -20,6 +20,7 @@ const state = {
       birthday: '',
       identity_card: '',
       room_id: '',
+      avatar: '',
     },
   ],
   errorMessages: {},
@@ -69,7 +70,7 @@ const actions = {
   createUsers({commit}, payload) {
     user.createUsers(payload.params, (data) => {
       if (data.status === 'ok') {
-        window.location.href = '/floors';
+        window.location.href = '/users';
       } else {
         commit('setErrors', mixin.methods.handle_errors(data.errors));
       }
@@ -124,6 +125,7 @@ const mutations = {
       birthday: '',
       identity_card: '',
       room_id: '',
+      avatar: '',
     });
   },
   deleteNewUser(state, index) {

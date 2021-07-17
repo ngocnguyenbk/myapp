@@ -6,7 +6,7 @@
     aria-modal="true"
     aria-hidden="true"
     data-backdrop="static"
-    data-keyboard="false"
+    tabindex="-1"
   >
     <div
       class="modal-dialog modal-dialog-centered modal-lg"
@@ -17,6 +17,15 @@
           <h5 class="modal-title">
             Edit user <strong>{{ currentUser.full_name }}</strong>
           </h5>
+        </div>
+        <div
+          v-if="currentUser.avatar"
+          class="d-flex justify-content-center p-2"
+        >
+          <img
+            :src="currentUser.avatar"
+            class="img-thumbnail w-25"
+          >
         </div>
         <div v-show="isRegistration">
           <div class="modal-body">
