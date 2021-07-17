@@ -42,6 +42,11 @@ $origin-color: #F0AD4E;
   }
 }
 
+._vue-flash-msg-body {
+  top: 10px !important;
+  z-index: 2000;
+}
+
 @keyframes blinkingText{
   0%{ background-color: $red-color; }
   49%{ background-color: $red-color; }

@@ -186,6 +186,23 @@ const messages = {
         yes: 'Có',
         close: 'Đóng',
       },
+      search: 'Tìm kiếm',
+      placeholder_search: 'Nhập tên phòng, từ khóa cần tìm',
+      filter: 'Bộ lọc',
+      month_names: {
+        1: 'Tháng 1',
+        2: 'Tháng 2',
+        3: 'Tháng 3',
+        4: 'Tháng 4',
+        5: 'Tháng 5',
+        6: 'Tháng 6',
+        7: 'Tháng 7',
+        8: 'Tháng 8',
+        9: 'Tháng 9',
+        10: 'Tháng 10',
+        11: 'Tháng 11',
+        12: 'Tháng 12',
+      },
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',
@@ -195,6 +212,9 @@ const messages = {
     flash: {
       success: 'Thành công!',
       unsuccess: 'Không thành công!',
+    },
+    paginate: {
+      result: 'Tổng số: '
     },
   },
 };

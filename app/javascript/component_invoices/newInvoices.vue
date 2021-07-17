@@ -345,12 +345,12 @@ export default {
       return this.errorMessages[0][attribute];
     },
     calculateTotal: function() {
-      this.total = this.roomPriceTotal 
-                                      + this.eleTotal 
-                                      + this.watTotal 
-                                      + this.intTotal 
-                                      + this.pafTotal 
-                                      + this.serTotal 
+      this.total = this.roomPriceTotal
+                                      + this.eleTotal
+                                      + this.watTotal
+                                      + this.intTotal
+                                      + this.pafTotal
+                                      + this.serTotal
                                       - this.newInvoice.reduce;
     },
   },

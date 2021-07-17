@@ -186,6 +186,23 @@ const messages = {
         yes: 'Yes',
         close: 'Close',
       },
+      search: 'Search',
+      placeholder_search: 'Enter the name of the room, the keyword to search',
+      filter: 'Filter',
+      month_names: {
+        1: 'Jan',
+        2: 'Feb',
+        3: 'Mar',
+        4: 'Apr',
+        5: 'May',
+        6: 'Jun',
+        7: 'Jul',
+        8: 'Aug',
+        9: 'Sep',
+        10: 'Oct',
+        11: 'Nov',
+        12: 'Dec',
+      },
     },
     upload_file: {
       import_file: 'Import file',
@@ -195,6 +212,9 @@ const messages = {
     flash: {
       success: 'Success!',
       unsuccess: 'Unsuccess!',
+    },
+    paginate: {
+      result: 'Total: '
     },
   },
 };

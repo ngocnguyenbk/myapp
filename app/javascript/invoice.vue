@@ -1,22 +1,34 @@
 <template>
   <div id="app">
-    <div class="d-flex">
+    <SearchForm />
+    <div :class="['d-flex', {'mb-2': !showPaginate}]">
       <FlashMessage :position="'right top'" />
-      <div :class="[{ 'mb-2': !showPaginate }]">
-        <a
-          class="btn btn-sm btn-primary"
-          :href="batchCreateInvoicePath"
-        >{{ $t('invoice.batch_create') }}</a>
-        <a
-          class="btn btn-sm btn-primary ml-2"
-          :href="newInvoicePath"
-        >{{ $t('invoice.add_invoice') }}</a>
+      <div>
+        <div
+          class="btn-group"
+          role="group"
+        >
+          <a
+            class="btn btn-primary"
+            :href="batchCreateInvoicePath"
+          >{{ $t('invoice.batch_create') }}</a>
+          <button
+            type="button"
+            class="btn btn-secondary mr-0 ml-0 pr-0 pl-0"
+            disabled
+          />
+          <a
+            class="btn btn-primary"
+            :href="newInvoicePath"
+          >{{ $t('invoice.add_invoice') }}</a>
+        </div>
       </div>
       <div class="ml-auto">
         <Paginator
           :current-page="currentPage"
           :show-paginate="showPaginate"
           :total-pages="totalPages"
+          :total-count="totalCount"
           :load-objects="loadInvoices"
         />
       </div>
@@ -30,6 +42,7 @@
         :current-page="currentPage"
         :show-paginate="showPaginate"
         :total-pages="totalPages"
+        :total-count="totalCount"
         :load-objects="loadInvoices"
       />
     </div>
@@ -40,11 +53,13 @@
 import {mapState} from 'vuex';
 import TableInvoice from './component_invoices/tableInvoices.vue';
 import Paginator from './components/paginator.vue';
+import SearchForm from './component_invoices/searchForm';
 
 export default {
   components: {
     TableInvoice,
     Paginator,
+    SearchForm,
   },
   data: function() {
     return {
@@ -56,6 +71,7 @@ export default {
     ...mapState({
       params: (state) => state.invoice.params,
       totalPages: (state) => state.invoice.totalPages,
+      totalCount: (state) => state.invoice.totalCount,
       showPaginate: (state) => state.invoice.showPaginate,
       invoices: (state) => state.invoice.invoices,
     }),

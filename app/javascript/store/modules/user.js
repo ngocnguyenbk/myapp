@@ -7,6 +7,7 @@ const state = {
   users: [],
   showPaginate: false,
   totalPages: 0,
+  totalCount: 0,
   currentPage: 0,
   currentUser: {},
   isValid: true,
@@ -100,6 +101,7 @@ const mutations = {
   setUsers(state, data) {
     state.currentPage = Number(data.current_page);
     state.totalPages = data.total_pages;
+    state.totalCount = data.total_count;
     state.showPaginate = data.total_pages > 1;
     state.users = data.data;
   },

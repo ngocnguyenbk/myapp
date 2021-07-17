@@ -5,6 +5,7 @@ const state = {
   contracts: [],
   showPaginate: false,
   totalPages: 0,
+  totalCount: 0,
   currentPage: 0,
   rooms: {},
   users: {},
@@ -93,6 +94,7 @@ const mutations = {
   setContracts(state, data) {
     state.currentPage = Number(data.current_page);
     state.totalPages = data.total_pages;
+    state.totalCount = data.total_count;
     state.showPaginate = data.total_pages > 1;
     state.contracts = data.data;
   },
