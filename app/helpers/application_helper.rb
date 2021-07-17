@@ -1,5 +1,5 @@
 module ApplicationHelper
-  ACTIVE_CLASS = "is-active".freeze
+  ACTIVE_CLASS = "active".freeze
 
   def active_for(options)
     name_of_controller = options.fetch(:controller) { nil }

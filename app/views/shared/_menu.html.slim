@@ -1,21 +1,22 @@
-nav.navbar.navbar-inverse.navbar-dark.bg-primary
-  .container-fluid.d-flex
-    .navbar-header
-      = link_to t(".bms"), root_path, class: "navbar-brand text-light font-weight-bold"
-    ul.nav.navbar-nav.flex-row.flex-fill
-      li.w-100px.text-center
-        = link_to t(".user"), users_path, class: "p-2 text-light #{active_for(controller: "users")}"
-      li.w-100px.text-center
-        = link_to t(".floors"), floors_path, class: "p-2 text-light #{active_for(controller: "floors")}"
-      li.w-100px.text-center
-        = link_to t(".contracts"), contracts_path, class: "p-2 text-light #{active_for(controller: "contracts")}"
-      li.w-150px.text-center
-        = link_to t(".invoices"), invoices_path, class: "p-2 text-light #{active_for(controller: "invoices")}"
-      li.w-100px.text-center.dropdown
-        = link_to t(".downloads"), "#", class: "text-light", data: { toggle: "dropdown"}
-        .dropdown-menu.position-absolute
+nav.navbar.sticky-top.navbar-expand-lg.navbar-dark.bg-primary
+  = link_to t(".bms"), root_path, class: "navbar-brand font-weight-bold"
+  button.navbar-toggler data-target="#navbarMenu" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+  #navbarMenu.collapse.navbar-collapse
+    ul.navbar-nav
+      li.nav-item[class="#{active_for(controller: "users")}"]
+        = link_to t(".user"), users_path, class: "nav-link"
+      li.nav-item[class="#{active_for(controller: "floors")}"]
+        = link_to t(".floors"), floors_path, class: "nav-link"
+      li.nav-item[class="#{active_for(controller: "contracts")}"]
+        = link_to t(".contracts"), contracts_path, class: "nav-link"
+      li.nav-item[class="#{active_for(controller: "invoices")}"]
+        = link_to t(".invoices"), invoices_path, class: "nav-link"
+      li.nav-item.dropdown
+        = link_to t(".downloads"), "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown"}
+        .dropdown-menu
           .dropdown-item
             = link_to t(".import_user"), t(".link_import_user"), target: "_blank", class: "text-dark"
-    ul.nav.navbar-nav.navbar-right
+    ul.navbar-nav.ml-auto
       li
         = link_to t(".log_out"), destroy_admin_session_path, method: "delete" , class: "text-light font-weight-bold"

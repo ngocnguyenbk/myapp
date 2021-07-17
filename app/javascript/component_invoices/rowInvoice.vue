@@ -1,5 +1,5 @@
 <template>
-  <tr :class="[background_row_invoice, 'text-center']">
+  <tr class="text-center">
     <td>{{ invoice.id }}</td>
     <td>{{ invoice.room_number }}</td>
     <td>{{ invoice.month }}</td>
@@ -37,7 +37,7 @@
       <a
         target="_blank"
         :href="show_invoice"
-        class="btn btn-primary mr-2"
+        class="btn btn-sm btn-primary mr-2"
       >
         <i class="fas fa-print" />
         <span>{{ $t('invoice.print_x') }}</span>
@@ -45,7 +45,7 @@
       <a
         target="_blank"
         :href="download_invoice"
-        class="btn btn-info"
+        class="btn btn-sm btn-info"
       >
         <i class="fa fa-download" />
         <span>{{ $t('invoice.download') }}</span>
@@ -64,15 +64,8 @@ export default {
       type: Object,
       required: true,
     },
-    odd: {
-      type: Boolean,
-      required: true,
-    },
   },
   computed: {
-    background_row_invoice: function() {
-      return this.odd ? 'odd-bg' : 'even-bg';
-    },
     show_invoice: function() {
       return `/${locale}/invoices/${this.invoice.id}`;
     },

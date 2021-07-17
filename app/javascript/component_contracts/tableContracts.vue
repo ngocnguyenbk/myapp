@@ -1,48 +1,82 @@
 <template>
-  <table class="table table-multi-body table-bordered">
+  <table class="table table-striped table-bordered">
     <thead class="table-header">
       <tr class="table-head text-center">
-        <td class="w-120px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.contract_id') }}
         </td>
-        <td class="w-200px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.holder_name') }}
         </td>
-        <td class="w-150px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.room_number') }}
         </td>
-        <td class="align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.room_price') }}
         </td>
-        <td class="w-200px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.deposited_money') }}
         </td>
-        <td class="w-120px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.start_date') }}
         </td>
-        <td class="w-120px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.end_date') }}
         </td>
-        <td class="w-100px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.extend') }}
         </td>
-        <td class="w-100px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.details') }}
         </td>
-        <td class="w-100px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.terminate') }}
         </td>
-        <td class="w-100px align-middle">
+        <td
+          scope="col"
+          class="align-middle"
+        >
           {{ $t('contract.status') }}
         </td>
       </tr>
     </thead>
-    <RowContract
-      v-for="(contract, index) in contracts"
-      :key="index"
-      :contract="contract"
-      :odd="(index % 2) != 0"
-    />
+    <tbody>
+      <RowContract
+        v-for="(contract, index) in contracts"
+        :key="index"
+        :contract="contract"
+      />
+    </tbody>
     <DetailContract ref="detail_contract" />
     <TerminateContract />
     <ExtendContract />
