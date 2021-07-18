@@ -53,3 +53,29 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+set :stage, :production
+set :rails_env, :production
+set :user, :deploy
+set :deploy_to, "/var/www/boarding_house_management"
+
+server "103.81.85.143", user: fetch(:user), roles: %w[web app db]
+
+set :branch, :master
+
+set :application, "boarding_house_management"
+set :ssh_options,
+    keys: %w[.ssh/deploy_prd_bms.pem],
+    forward_agent: true,
+    user: fetch(:user),
+    port: 9020
+
+namespace :deploy do
+  desc "link dotenv"
+  task :link_dotenv do
+    on roles(:app) do
+      execute "ln -s /home/deploy/.env #{release_path}/.env"
+    end
+  end
+  before "deploy:assets:precompile", "deploy:link_dotenv"
+end

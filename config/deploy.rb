@@ -1,7 +1,6 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.1"
 
-set :application, "my_app"
 set :repo_url, "git@github.com:ngocnguyenbk/myapp.git"
 
 set :ssh_options, { forward_agent: true }
