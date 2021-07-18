@@ -8,7 +8,7 @@
       <div class="d-flex">
         <div :class="['btn-new-contract', { 'mb-2': !showPaginate }]">
           <button
-            class="btn btn-sm btn-primary"
+            class="btn btn-primary"
             @click="createForm"
           >
             {{ $t('contract.new_contract') }}
@@ -19,6 +19,7 @@
             :current-page="currentPage"
             :show-paginate="showPaginate"
             :total-pages="totalPages"
+            :total-count="totalCount"
             :load-objects="loadContracts"
           />
         </div>
@@ -31,6 +32,7 @@
           :current-page="currentPage"
           :show-paginate="showPaginate"
           :total-pages="totalPages"
+          :total-count="totalCount"
           :load-objects="loadContracts"
         />
       </div>
@@ -61,6 +63,7 @@ export default {
   computed: {
     ...mapState({
       totalPages: (state) => state.contract.totalPages,
+      totalCount: (state) => state.contract.totalCount,
       showPaginate: (state) => state.contract.showPaginate,
       contracts: (state) => state.contract.contracts,
       isIndex: (state) => state.contract.isIndex,

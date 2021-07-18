@@ -13,6 +13,7 @@
           :current-page="currentPage"
           :show-paginate="showPaginate"
           :total-pages="totalPages"
+          :total-count="totalCount"
           :load-objects="loadUsers"
         />
       </div>
@@ -25,6 +26,7 @@
         :current-page="currentPage"
         :show-paginate="showPaginate"
         :total-pages="totalPages"
+        :total-count="totalCount"
         :load-objects="loadUsers"
       />
     </div>
@@ -50,6 +52,7 @@ export default {
     ...mapState({
       params: (state) => state.user.params,
       totalPages: (state) => state.user.totalPages,
+      totalCount: (state) => state.user.totalCount,
       showPaginate: (state) => state.user.showPaginate,
       users: (state) => state.user.users,
     }),

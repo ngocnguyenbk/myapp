@@ -1,5 +1,9 @@
 <template>
   <div class="d-inline-block">
+    {{ $t('paginate.result') }}
+    <span class="font-weight-bold text-danger">
+      {{ totalCount }}
+    </span>
     <nav class="d-inline-block ml-4">
       <Paginate
         v-show="showPaginate"
@@ -35,6 +39,10 @@ export default {
       default: 0,
     },
     totalPages: {
+      type: Number,
+      default: 0,
+    },
+    totalCount: {
       type: Number,
       default: 0,
     },

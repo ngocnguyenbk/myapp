@@ -18,7 +18,8 @@ class ContractsPresenter
     total_pages = (total_count % @limit).zero? ? total_count / @limit : (total_count / @limit) + 1
     {
       current_page: (params[:page].presence || 1).to_i,
-      total_pages: total_pages
+      total_pages: total_pages,
+      total_count: total_count
     }
   end
 end
