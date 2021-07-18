@@ -53,7 +53,7 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-
+set :application, "my_app"
 set :stage, :staging
 set :rails_env, :staging
 set :user, :deploy
