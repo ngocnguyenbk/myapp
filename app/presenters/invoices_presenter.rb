@@ -12,9 +12,16 @@ class InvoicesPresenter
     @limit = Settings.per_page.invoices
   end
 
+  def result
+    return @result if @result
+
+    q_params = params[:q] || ActionController::Parameters.new
+    @q = SearchInvoicesForm.new(q_params.permit!).build_params
+    @result ||= Invoice.ransack(@q).result.preload(PRELOAD_TABLE).ordered
+  end
+
   def invoices
-    invoices = Invoice.all.preload(PRELOAD_TABLE).ordered.page(params[:page])
-    OpenStruct.new({ invoices: invoices }.merge(paginate))
+    OpenStruct.new({ invoices: result.page(params[:page]).per(@limit) }.merge(paginate))
   end
 
   private
@@ -22,12 +29,17 @@ class InvoicesPresenter
   attr_reader :params
 
   def paginate
-    total_count = Invoice.all.size
+    total_count = result.size
     total_pages = (total_count % @limit).zero? ? total_count / @limit : (total_count / @limit) + 1
     {
       current_page: (params[:page].presence || 1).to_i,
       total_pages: total_pages,
-      total_count: total_count
+      total_count: total_count,
+      months: months
     }
+  end
+
+  def months
+    Invoice.all.pluck(:date_export).map(&:month).uniq.sort
   end
 end

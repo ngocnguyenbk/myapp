@@ -15,7 +15,13 @@ class Invoice < ApplicationRecord
 
   belongs_to :contract
 
+  has_one :room, through: :contract
+
   scope :month_ago, -> { where(date_export: 1.month.ago.beginning_of_month..1.month.ago.end_of_month) }
   scope :ordered, -> { includes(contract: :room).order(date_export: :DESC).order("rooms.room_number ASC") }
   scope :in_month, ->(month) { where(date_export: month.to_date.beginning_of_month..month.to_date.end_of_month) }
+
+  ransacker :date_export_month, formatter: proc { |v| "0000-#{format('%02d', v)}-00" } do |_parent|
+    Arel.sql("DATE(DATE_FORMAT(#{table_name}.date_export, '0000-%m-00'))")
+  end
 end

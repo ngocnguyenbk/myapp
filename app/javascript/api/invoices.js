@@ -25,6 +25,9 @@ export default {
   loadWithCondition(params, cb) {
     axios.get('/invoices.json', {
       params: params,
+      paramsSerializer: function(params) {
+        return jQuery.param(params)
+      },
     }).then(function(response) {
       cb(response.data);
     }).catch(function(error) {

@@ -203,6 +203,7 @@ const messages = {
         11: 'Tháng 11',
         12: 'Tháng 12',
       },
+      reset: 'Reset',
     },
     upload_file: {
       import_file: 'Nhập hàng loạt',

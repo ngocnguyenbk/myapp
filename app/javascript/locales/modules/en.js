@@ -203,6 +203,7 @@ const messages = {
         11: 'Nov',
         12: 'Dec',
       },
+      reset: 'Reset',
     },
     upload_file: {
       import_file: 'Import file',
