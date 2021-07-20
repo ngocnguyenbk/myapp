@@ -10,6 +10,7 @@ class InvoiceListSerializer
       current_page: data.current_page,
       total_pages: data.total_pages,
       total_count: data.total_count,
+      months: data.months,
       data: ActiveModelSerializers::SerializableResource.new(data.invoices, each_serializer: InvoiceSerializer)
     }
   end

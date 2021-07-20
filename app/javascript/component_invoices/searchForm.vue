@@ -15,7 +15,7 @@
     </div>
     <div
       id="collapseFormSearch"
-      class="collapse"
+      class="collapse show"
     >
       <div class="card-body">
         <form
@@ -30,7 +30,7 @@
             <div class="col-3">
               <input
                 id="roomNumber"
-                v-model="room_number_cont"
+                v-model="roomNumber"
                 class="form-control"
                 type="text"
                 :placeholder="$t('invoice.placeholder_search')"
@@ -39,7 +39,7 @@
             <div class="col-1">
               <button
                 type="submit"
-                class="btn btn-light"
+                class="btn btn-light text-nowrap"
               >
                 {{ $t('invoice.search') }}
               </button>
@@ -60,15 +60,25 @@
                 role="group"
               >
                 <button
-                  v-for="(month, key) in months"
-                  :key="key"
+                  v-for="(month, index) in resultMonths"
+                  :key="index"
+                  :ref="`button_${month}`"
                   type="button"
-                  class="btn btn-light"
+                  :class="['btn btn-light', dateExport == month ? 'active' : '']"
+                  @click="setMonth(month)"
                 >
-                  {{ month }}
+                  {{ $t('invoice.month_names')[month] }}
                 </button>
               </div>
             </div>
+          </div>
+          <div class="row m-0 justify-content-end">
+            <button
+              class="btn btn-secondary text-nowrap"
+              @click="resetForm"
+            >
+              {{ $t('invoice.reset') }}
+            </button>
           </div>
         </form>
       </div>
@@ -83,15 +93,49 @@ const {mapState, mapActions} = createNamespacedHelpers('invoice');
 export default {
   data() {
     return {
-      months: this.$t('invoice.month_names'),
-      room_number_cont: '',
+      roomNumber: '',
+      dateExport: '',
     }
   },
   computed: {
-    ...mapState(['params']),
+    ...mapState(['params', 'resultMonths']),
+  },
+  mounted() {
+    this.roomNumber = this.params.room_number;
+    this.dateExport = this.params.date_export;
   },
   methods: {
     ...mapActions(['submitFormSearch']),
+    setMonth(month) {
+      for (const [_btn, element] of Object.entries(this.$refs)) {
+        element[0].classList.remove('active');
+      }
+
+      const button = this.$refs[`button_${month}`][0];
+      if (this.dateExport !== month) {
+        button.classList.add('active');
+        this.dateExport = month;
+      } else {
+        button.blur();
+        this.dateExport = '';
+      }
+
+      this.submitForm();
+    },
+    submitForm() {
+      const page = 1;
+      const params = {};
+      params['room_number'] = this.roomNumber;
+      params['date_export'] = this.dateExport;
+
+      this.submitFormSearch({ params, page });
+    },
+    resetForm() {
+      this.roomNumber = '';
+      this.dateExport = '';
+
+      this.submitForm();
+    },
   }
 }
 </script>

@@ -25,6 +25,7 @@ gem "email_validator"
 gem "seed-fu"
 gem "carrierwave"
 gem "rubyXL"
+gem "ransack"
 gem "config"
 gem "pundit"
 gem "docx"
@@ -51,6 +52,7 @@ group :development do
   gem "capistrano-bundler", require: false
   gem "capistrano-rvm"
   gem "bullet"
+  gem "rack-mini-profiler"
 end
 
 group :test do

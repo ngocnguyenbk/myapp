@@ -55,12 +55,15 @@ import TableInvoice from './component_invoices/tableInvoices.vue';
 import Paginator from './components/paginator.vue';
 import SearchForm from './component_invoices/searchForm';
 
+import convert_param_url from './mixins/convert_param_url';
+
 export default {
   components: {
     TableInvoice,
     Paginator,
     SearchForm,
   },
+  mixins: [convert_param_url],
   data: function() {
     return {
       batchCreateInvoicePath: `/${locale}/batch_create/invoices/new`,
@@ -85,7 +88,11 @@ export default {
     },
   },
   created: function() {
-    this.$store.dispatch('invoice/getInvoices');
+    const searchParams = new URLSearchParams(location.search);
+    let params = Object.fromEntries(searchParams.entries());
+
+    params = this.convert_params(params);
+    this.$store.dispatch('invoice/getInvoices', {params});
   },
   methods: {
     loadInvoices: function(current_page) {

@@ -8,6 +8,7 @@ const state = {
   totalPages: 0,
   totalCount: 0,
   currentPage: 0,
+  resultMonths: [],
   invoicesForm: {},
   inputForm: {},
   rooms: {},
@@ -53,12 +54,20 @@ const state = {
 const actions = {
   submitFormSearch({commit}, payload) {
     commit('setParams', payload);
+    let params = { q: payload.params }
+    if(payload.page && payload.page != '1'){
+      params.page = payload.page
+    }
+
+    const path = '/invoices?' + jQuery.param(params)
+    history.pushState('', '', path)
     invoice.loadWithCondition({q: payload.params, page: payload.page}, (data) => {
       commit('setInvoices', data);
     });
   },
-  getInvoices({commit}) {
-    invoice.loadWithCondition({}, (invoices) => {
+  getInvoices({commit}, payload) {
+    commit('setParams', payload);
+    invoice.loadWithCondition({q: payload.params, page: payload.page}, (invoices) => {
       commit('setInvoices', invoices);
     });
   },
@@ -160,6 +169,7 @@ const mutations = {
     state.currentPage = Number(data.current_page);
     state.totalPages = data.total_pages;
     state.totalCount = data.total_count;
+    state.resultMonths = data.months;
     state.showPaginate = data.total_pages > 1;
     state.invoices = data.data;
   },
